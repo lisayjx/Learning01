@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+    </div>
+
+    <img src="..//img/44.png" alt="">
+    <img src="../img/44.1.png" alt="">
+    <script>
+        //需求：
+        // const spec={size:'40cm*40cm',color:'黑色'}
+        // 请将size和color里面的值拼接为字符串后，写到div标签里，展示内容如下
+        // 40cm*40cm/黑色
+        // join是数组方法，但是生成得是字符串 用不了 这是对象
+
+        //思路：获得所有属性值，然后拼接字符串
+        //  1.获得所有属性值： Object.values()返回是数组
+        //  2.拼接数组是 join('')返回字符串 这样就可以转换为字符串了 然后追加到div
+
+
+        const spec = { size: '40cm*40cm', color: '黑色' }
+        //[ "40cm*40cm", "黑色" ]
+        //  Object.values(spec).join('/')  //40cm*40cm/黑色
+        document.querySelector('div').innerHTML=Object.values(spec).join('/')
+    </script>
+</body>
+
+</html>

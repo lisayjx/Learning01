@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0 30px;
+        }
+
+        p {
+            color: #333;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        span.error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../images/36.png" alt="">
+    <img src="../images/36.1.png" alt="">
+
+
+
+    <!-- 测试用标签 -->
+    <form action="">
+        <ul>
+            <li>
+                昵称:
+                <input data-required data-describedby="nickname-error" data-description="nickname" type="text"
+                    name="nickname" />
+                <span class="error" id="nickname-error"></span>
+            </li>
+            <li>
+                密码:
+                <input data-required data-pattern=".{6,}" data-describedby="password-error" data-description="password"
+                    type="password" name="password" />
+                <span class="error" id="password-error"></span>
+            </li>
+            <li>
+                <label>
+                    <input data-required data-describedby="agree-error" data-description="agree" type="checkbox"
+                        value="true" name="agree" />
+                    同意注册协议
+                </label>
+                <span class="error" id="agree-error"></span>
+            </li>
+            <li>
+                <button class="btn">提交</button>
+            </li>
+        </ul>
+    </form>
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="../jquery-validate/jquery-validate.js"></script>
+    <script>
+        // 表单元素要放在 form里面
+
+        // jQuery的表单验证插件validate,验证用户在表单中输入的内容
+
+        $('form').validate({
+            sendForm: false,
+            description: {
+                password: {
+                    required: '密码不能为空!',
+                    pattern: '密码的长度必须大于等于6!'
+                },
+                nickname: {
+                    required: '昵称不能为空!'
+                },
+                agree: {
+                    required: '必须同意用户协议!'
+                }
+            },
+            valid() {
+                console.log('验证成功')
+            },
+            invalid() {
+                console.log('验证失败')
+            }
+        })
+    </script>
+</body>
+
+</html>

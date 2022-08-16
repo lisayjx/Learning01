@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #721c24;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+
+        }
+
+        table {
+            margin: 0 auto;
+            width: 800px;
+            border-collapse: collapse;
+            color: #004085;
+        }
+
+        th {
+            padding: 10px;
+            background: #cfe5ff;
+
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        td,
+        th {
+            border: 1px solid #b8daff;
+        }
+
+        td {
+            padding: 10px;
+            color: #666;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        tbody tr {
+            background: #fff;
+        }
+
+        tbody tr:hover {
+            background: #e1ecf8;
+        }
+
+        .info {
+            width: 900px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .info input {
+            width: 80px;
+            height: 25px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #b8daff;
+            padding-left: 5px;
+        }
+
+        .info button {
+            width: 60px;
+            height: 25px;
+            background-color: #004085;
+            outline: none;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .info .age {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>新增学员</h1>
+    <div class="info">
+        姓名：<input type="text" class="uname">
+        年龄：<input type="text" class="age">
+        性别: <select name="gender" id="" class="gender">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        <!-- 学号：<input type="text" class="stuId"> -->
+        薪资：<input type="text" class="salary">
+        就业城市：<select name="city" id="" class="city">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+            <option value="曹县">曹县</option>
+
+        </select>
+        <button class="add">录入</button>
+    </div>
+
+    <h1>就业榜</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>就业城市</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+        <td>1001</td>
+        <td>欧阳霸天</td>
+        <td>19</td>
+        <td>男</td>
+
+        <td>15000</td>
+        <td>上海</td>
+        <td>
+          <a href="javascript:" id="${i}">删除</a>
+        </td>
+      </tr> -->
+
+
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+    <script>
+        //  1. 准备好数据后端的数据
+        let arr = [
+            { stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海' },
+            { stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京' },
+            { stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '20000', city: '北京' },
+        ]
+
+
+        let tbody = document.querySelector('tbody')
+        let add = document.querySelector('.add')
+
+        let uname = document.querySelector('.uname')
+        let age = document.querySelector('.age')
+        let gender = document.querySelector('.gender')
+        let salary = document.querySelector('.salary')
+        let city = document.querySelector('.city')
+
+
+
+
+        //先把本来的三条数据放进渲染函数中  把这三条数据得渲染 封装成函数 render() 因为 总会用到
+        function render() {
+            //每次重新加入一条数据 都需要重新更新渲染得三条数据，但是会有重复 所以每次插入一条数据都清空tbody
+            tbody.innerHTML = ''
+
+            //有几条数据就渲染几个tr
+            for (let i = 0; i < arr.length; i++) {
+                //创建tr
+                let tr = document.createElement('tr')
+                tr.innerHTML = `
+                        <td>${arr[i].stuId}</td>
+                        <td>${arr[i].uname}</td>
+                        <td>${arr[i].age}</td>
+                        <td>${arr[i].gender}</td>
+
+                        <td>${arr[i].salary}</td>
+                        <td>${arr[i].salary}</td>
+                        <td>
+                        <a href="javascript:" id="${i}" >删除</a>
+                        </td>
+        `
+                tbody.appendChild(tr)
+            }
+
+        }
+        render()  //这里的调用是为了最开始页面有三条数据得数组
+        //-----------------------------------------------------------
+        add.addEventListener('click', function () {
+
+            arr.push(
+                {
+                    stuId: arr[arr.length - 1].stuId + 1,
+                    uname: uname.value,  //没有 字符串 不用${}
+                    age: age.value,
+                    gender: gender.value,
+                    salary: salary.value,
+                    city: city.value
+
+                }
+            )
+            render()//这里是为了每次都调用数组 但是为了不重复给tbody清空了三条数据看不到了
+ 
+
+        })
+
+
+
+
+
+          // ------------------------------------------删除
+
+          tbody.addEventListener('click', function (e) {
+                //如果他点的是a标签，那就把它点的那个得id给 id
+                if (e.target.tagName === 'A') {
+                    let id = e.target.id
+                    arr.splice(id,1)
+                    render()
+                }
+            })
+
+
+
+    </script>
+</body>
+
+</html>

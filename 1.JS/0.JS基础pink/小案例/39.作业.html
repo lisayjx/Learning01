@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.打印0-20之间的整数
+        let i = 0
+        while (i < 20) {
+            i++
+            console.log(i);
+        }
+
+        // ---------控制台打印1-100的和---------
+        let b = 1                                 // 因为是求1-100的和,所以初始值为1
+        let sum = 0                               // 建立一个求和的辅助变量
+        while (b <= 100) {                        // 设置循环条件为100次
+            sum += b                              // 设置sum=sum+b 1+2+3...+100 
+            b++                                   // 设置变量变化量来催动循环
+        }
+        console.log(sum);                         // 条件结束,打印sum即可
+
+        //3.用户输入一个数 计算1-这个数之间的累加和
+        let shu = +prompt('请输入一个数')
+        let a = 1
+        let num = 0
+        while (a <= shu) {
+            num += a
+            a++
+        }
+        alert(num);
+
+        //4.用户登陆验证：
+        //接受用户输入的用户名和密码，若是用户名为admin 且密码为123456 提示用户登陆成功
+        //否则让用户一直输入 
+
+
+        while (true) {//进入循环里 只有符合条件的才能退出循环
+            let uname = prompt('请输入用户名')
+            let psw = prompt('请输入密码')
+            if (uname === 'admin' && psw === '123456') {
+                alert('登陆成功')
+                break
+            } else {
+                alert('用户名或者密码错误请重新输入')
+            }
+        }
+
+        // let uname = prompt('请输入用户名')
+        // let psw = prompt('请输入密码')
+        // while(uname!=='admin'||psw!=='123'){  用||有真就真 （这里就是有一个错的 那就是进行输出请你重新..）
+        //     alert('请你重新登录')
+        //     uname = prompt('请输入用户名')
+        //     psw = prompt('请输入密码')
+        // }
+        // alert('登陆成功')
+
+
+
+        // 5.用户输入分数 根据分数奖励不同的礼物
+        // 90-100法拉利
+        // 80-90 奥利
+        // 60-80 奥拓
+        // 60以下 打一顿
+
+        let math = +prompt('请输入分数')
+        if (math >= 90 && math < 100) {
+            alert('奖励法拉利')
+        } else if (math >= 80 && math < 90) {
+            alert('奖励奥迪')
+        } else if (math >= 60 && math < 80) {
+            alert('奖励奥拓')
+        } else if (math < 60) {
+            alert('奖打一顿')
+        }
+
+        //6.求1-100 之间个位数不为3的数的累加和
+        let q = 1//开始
+        let zonghe = 0
+        while (q <= 100) {//终止
+            if (q % 10 !== 3) {
+                zonghe += q
+            }
+            q++//变化
+        }
+        console.log(zonghe)
+    </script>
+</body>
+
+</html>

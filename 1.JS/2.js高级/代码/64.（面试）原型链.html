@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <img src="../img/64.png" alt="">
+    <img src="../img/64.1.png" alt="">
+    <img src="../img/64.2.png" alt="">
+    <script>
+        //类似作用域链  作用域链查找作用域 变量
+        //原型链 查找原型
+
+        //最大的内置对象 不用我们写 已经内置好了
+        //Object是构造函数  构造函数就会有原型对象
+        // function Object() { }
+        console.log(Object.prototype);//里面也有constructor那些
+        console.log(Object.prototype.__proto__);//null
+        //写个构造函数
+        function Person() {
+
+        }
+        //实例化对象
+        const ldh = new Person()
+        console.log(ldh.__proto__ === Person.prototype);//true
+        //ldh的__proto__指向Person的prototype    下面的图指向右边的图    64
+        //（只要是对象都有__proto__）右图的对象的原型（Person.prototype.__proto__）指向谁呢？？  
+        //对象原型 指向 原型对象，指向谁的原型对象呢？？Object的prototype
+        //Person.prototype 对象原型 ，__proto__是原型对象，
+        //Person.prototype.__proto__就是 对象原型中有原型对象
+        console.log(Person.prototype.__proto__ === Object.prototype);//true
+
+
+
+        // 只要是对象都有__proto__
+
+
+
+
+        //基于原型对象的继承使得不同 【构造函数的原型】 对象关联在一起，
+        // 并且这种关联的关系是一种链状的结构，我们将原型对象的链状结构关系称为原型链
+
+
+    
+
+
+
+
+
+// ---------------------------------------------
+// 3.5原型链是啥？ 查找规则
+// 当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性。
+// 如果没有就查找它的原型（也就是_proto_指向的prototype原型对象)
+// 如果还没有就查找原型对象的原型（ Object的原型对象)
+// 依此类推一直找到Object为止( null)
+// _proto_对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线
+// ⑥可以使用instanceof 运算符用于检测构造函数的 prototype属性是否出现在某个实例对象的原型链上
+//从下往上查找属性  一层层网上找 能找到 就能用 
+//  例如 map方法  Array.Prototype.map()      这里的Array相当于Object    找map属性 一层一层在链上找
+//就是因为有这条线路的存在 我们可以使用Array（Object）线路上的任何方法
+//如果没有__proto__线路断了 ，我创建的新数组就无法使用那些方法
+
+
+
+    // ！！！！！！！！！！！！！！！！！！！！！！！！！重要
+//1.只要是对象都有__proto__指向原型对象（prototype）
+//2.只要是(prototype)原型对象里面就有constructor,指回构造函数
+    </script>
+
+</body>
+
+</html>

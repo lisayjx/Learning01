@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //数组对象:数组里面包含对象
+        //解构数组对象!!!!!!!!!
+        const pig = [
+            12,
+            22,
+            { uname: '佩奇', age: 6 }
+        ]
+
+        // const []=pig
+        // const [a,b,c] = [12, 22, { uname: '佩奇', age: 6 }]
+        // console.log(a);//12
+        // console.log(b);//22
+        // console.log(c);//Object { uname: "佩奇", age: 6 }
+
+        // const [a,b,{c,d}] = [12, 22, { uname: '佩奇', age: 6 }]
+        // console.log(a);//12
+        // console.log(b);//22
+        // console.log(c); //undefined  因为 对象的属性名要和前面的变量名一致
+        // console.log(d);  //undefined
+
+        // const [a, b, { uname, age }] = [12, 22, { uname: '佩奇', age: 6 }]
+        // console.log(a);//12
+        // console.log(b);//22
+        // console.log(uname); //佩奇
+        // console.log(age);//6
+
+        //一定要注意:  数组解构 变量名可以随便起
+        //   对象解构 变量名不能随便起
+
+        const [a, b, { uname, age }] = pig
+        console.log(a);//12
+        console.log(b);//22
+        console.log(uname); //佩奇
+        console.log(age);//6           
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            margin: 100px auto;
+            border: 1px solid  red;
+        }
+        .son{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin: 150px ;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../img/57.png" alt="">
+    <!-- 说明:假设页面里有个div,当触发事件时，会经历两个阶段，分别是捕获阶段、冒泡阶段 -->
+    <!-- 简单来说:捕获阶段是从父到子 冒泡阶段是从子到父 -->
+
+
+
+<!-- 例子 -->
+<div class="father">
+    <div class="son"></div>
+</div>
+    <script>
+// 事件流指的是事件完整执行过程中的流动路径// 类似 水流
+
+
+
+//1.事件冒泡： 默认存在  在同一类型得事件里的家谱里 (从里到外)
+// 当一个元素的事件被触发时，同样的事件将会在该元素的所有祖先元素中依次被触发。
+// 这一过程被称为事件冒泡
+ 
+//例子:
+// 给孩子和爸爸和爷爷都绑定了点击事件
+// let father=document.querySelector('.father')
+// let son=document.querySelector('.son')
+// document.addEventListener('click',function(){
+//     alert('我是爷爷')
+// })
+// father.addEventListener('click',function(){
+//     alert('我是爸爸')
+// })
+// son.addEventListener('click',function(){
+//     alert('我是儿子')
+// })
+
+//点击儿子 会出现 我是儿子-->我是爸爸-->我是爷爷
+//点击爸爸 会出现 我是爸爸-->我是爷爷
+//点击爷爷 会出现 我是爷爷
+// 儿子会触发他和他上级得绑定事件 冒泡!!  从里往外冒泡
+//会一直往上冒 看你body 有没有 document有没有
+
+// 注意:必须触发的是[同一类型]的事件 比如都是 click  要是不同 就不会冒泡 !!!!!!!!!!!1
+   
+   
+   
+   
+  //2.事件捕获
+//    从DOM的根元素开始去执行对应的事件(从外到里)
+// 事件捕获需要写对应代码才能看到效果
+//代码
+// DOM.addEventListener(事件类型,事件处理函数,是否使用捕获机制)
+// addEventListener第三个参数传入true代表是捕获阶段触发（很少使用)
+// 若传入false代表冒泡阶段触发，默认就是false
+// 若是用LO事件监听，则只有冒泡阶段，没有捕获
+//  L0是 btn.onclick=function(){} 这种的事件类型 是没有捕获的
+
+let father=document.querySelector('.father')
+let son=document.querySelector('.son')
+document.addEventListener('click',function(){alert('我是爷爷')},true)
+father.addEventListener('click',function(){alert('我是爸爸')},true)
+son.addEventListener('click',function(){ alert('我是儿子')},true)
+   
+//点击儿子 会出现 我是爷爷-->我是爸爸-->我是儿子
+//点击爸爸 会出现 我是爷爷-->我是爸爸
+//点击爷爷 会出现 我是爷爷
+//和 冒泡的从里到外反过来了 变成了 从外到里
+
+// 冒泡: 从自身往外发射
+// 捕获: 最外往内发射  (用不太上)
+   </script>
+</body>
+
+</html>

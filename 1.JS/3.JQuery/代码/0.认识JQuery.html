@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+    <ul>
+        <li>西兰花</li>
+        <li>西红柿</li>
+        <li>西葫芦</li>
+        <li>西瓜</li>
+    </ul>
+
+
+    <script src="../jquery/jquery-3.5.1.js"></script>
+
+    <script>
+//         JQ是啥？
+// JavaScript类库(js文件)
+// 封装了很多简单易用的方法(浏览器兼容)
+// 绝大多数用来简化 DOM操作
+// 提升开发效率
+
+
+//对比一下原生js和JQuery
+//为所有li绑定点击事件，点击时修改背景颜色为粉色 
+//1.DOM语法
+// let lis=document.querySelectorAll('li')
+// for(let i=0;i<lis.length;i++){
+//     lis[i].addEventListener('click',function(){
+//         this.style.backgroundColor='pink'
+//     })
+// }
+// 2.JQuery的方式
+$('li').click(function(){
+    $(this).css('backgroundColor','pink')
+})
+    </script>
+</body>
+</html>

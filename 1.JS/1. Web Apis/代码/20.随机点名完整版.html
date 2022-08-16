@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .box {
+            width: 600px;
+            margin: 50px auto;
+            display: flex;
+            font-size: 25px;
+            line-height: 40px;
+        }
+
+        .qs {
+
+            width: 450px;
+            height: 40px;
+            color: red;
+
+        }
+
+        .btns {
+            text-align: center;
+        }
+
+        .btns button {
+            width: 120px;
+            height: 35px;
+            margin: 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>随机点名</h2>
+    <div class="box">
+        <span>名字是：</span>
+        <div class="qs">这里显示姓名</div>
+    </div>
+    <div class="btns">
+        <button class="start">开始</button>
+        <button class="end">结束</button>
+    </div>
+
+    <script>
+        // 需求:点击开始随机抽取，点击结束输出结果
+        // 业务分析:
+        // 点击开始按钮随机抽取数组的一个数据，放到页面中
+        // 点击结束按钮删除数组当前抽取的一个数据
+        // 当抽取到最后一个数据的时候，两个按钮同时禁用
+        // 核心:利用定时器快速展示，停止定时器结束展示
+
+
+
+        // 数据数组
+        let arr = ['马超', '黄忠', '赵云', '关羽', '张飞']
+        //一、随机函数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        //二、获取元素
+        let qs = document.querySelector('.qs')
+        let start = document.querySelector('.start')
+        let end = document.querySelector('.end')
+
+        //timer得是全局变量。要不结束定时器那里不好使
+        let timer = 0
+        //random得是全局变量。要不结束定时器那里不好使
+        let random = 0
+
+
+        //三、给开始按钮添加事件
+        start.addEventListener('click', function () {
+            //快速随机抽数据--定时器
+            // let timer = setInterval(function () {  不敢加let了 下面random前面的let也去掉
+            timer = setInterval(function () {
+                random = getRandom(0, arr.length - 1)//从数组下标0开始抽
+                qs.innerHTML = arr[random]//把随机名字写到盒子中
+            }, 25)
+
+
+
+            //3.如果到了只剩最后一个人名，给两个按钮禁用
+            //因为删除是在结束按钮的，在开始按钮里剩最后一个时候就不能点击了
+            if (arr.length === 1) {
+                // start.disabled = true
+                // end.disabled = true
+                start.disabled = end.disabled = true
+            }
+        })
+
+
+
+        //四、给结束按钮添加事件
+        end.addEventListener('click', function () {
+            //1. 点击它就停止定时器
+            clearInterval(timer)
+            //这时候会报错 说timer没有被定义，因为上面的定时器在函数里是块级作用域，把timer变成全局的
+
+            //2.删除已经被点的人名
+            arr.splice(random, 1)//这里也是和timer有作用域问题
+
+        })
+    </script>
+</body>
+
+</html>

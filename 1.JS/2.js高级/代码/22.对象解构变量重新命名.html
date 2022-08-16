@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //若是变量名和对象名一定要一致,这时候外面的变量有一个和他重名咋整?
+        // 例如:
+        // const uname = '张学友'
+        // const { uname, age }={ uname: '刘德华', age: 18 }
+        //此时会报错 
+        //全局变量不能动 因为好多人用它  后面对象的属性名也不能动 是后台传过来的
+        //只能修改 前面{}里的的变量名了,但是不能直接改
+
+        //对象解构的变量名可以重新改名  旧变量名:新变量名  冒号表示 谁的值:赋值给谁
+        //在前面{}中把要改名的变量后面加个冒号 冒号后面跟新名字
+        //前面花括号{}中冒号后面是要改的新名字 后面{}中的冒号后面跟着属性值
+        const uname = '张学友'
+        const { uname: username, age } = { uname: '刘德华', age: 18 }
+        console.log(username);//刘德华
+        console.log(age);//18
+        console.log(uname);//张学友
+    </script>
+</body>
+
+</html>

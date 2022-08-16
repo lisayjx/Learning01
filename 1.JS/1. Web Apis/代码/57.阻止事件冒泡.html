@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            margin: 100px auto;
+            border: 1px solid red;
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        //阻止事件流动
+        // 因为默认就有冒泡模式的存在，所以容易导致事件影响到父级元素
+        // 若想把事件就限制在当前元素内，就需要阻止事件流动
+        // 阻止事件流动需要拿到事件对象
+
+// 语法:
+// 事件对象.stopPropagation()
+//必须先加 事件对象 event  e  ev
+// 让谁不往外传播 就给谁加 event.stopPropagation()!!!!!!
+// 此方法可以阻断事件流动传播，不光在冒泡阶段有效，捕获阶段也有效
+ 
+
+
+let father=document.querySelector('.father')
+let son=document.querySelector('.son')
+document.addEventListener('click',function(){
+    alert('我是爷爷')
+})
+father.addEventListener('click',function(){
+    alert('我是爸爸')
+})
+son.addEventListener('click',function(event){
+    alert('我是儿子')
+    event.stopPropagation()//阻止流动
+})
+//给儿子加了阻止传播 点击儿子就只会弹出我是儿子 
+//没给爸爸添加组织传播 点击爸爸会出现 我是爸爸 我是爷爷
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  在JavaScript中的字符串、数值、布尔具有对象的使用特征，如具有属性和方法
+
+        //字符串类型
+        const str = 'hello world'
+        //统计字符串长度 （字符数量）
+        console.log(str.length);
+
+        //数值类型
+        const price = 12.345
+        //保留两位小数
+        price.toFixed(2)
+
+
+        // 之所以具有对象特征的原因是字符串、数值、布尔类型数据是JavaScript底层使用Object构造函数“包装”来的，被称为包装类型。
+
+        /*
+        1. 实例属性 `length` 用来获取字符串的度长(重点)
+        2. 实例方法 `split('分隔符')` 用来将字符串拆分成数组(重点)
+        3. 实例方法 `substring（需要截取的第一个字符的索引[,结束的索引号]）` 用于字符串截取(重点)
+        4. 实例方法 `startsWith(检测字符串[, 检测位置索引号])` 检测是否以某字符开头(重点)
+        5. 实例方法 `includes(搜索的字符串[, 检测位置索引号])` 判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false(重点)
+        5. 实例方法 `toUpperCase` 用于将字母转换成大写
+        7. 实例方法 `toLowerCase` 用于将就转换成小写
+        8. 实例方法 `indexOf`  检测是否包含某字符
+        9. 实例方法 `endsWith` 检测是否以某字符结尾
+        10. 实例方法 `replace` 用于替换字符串，支持正则匹配
+        13. 实例方法 `match` 用于查找字符串，支持正则匹配
+        
+        注：String 也可以当做普通函数使用，这时它的作用是强制转换成字符串数据类型。*/
+
+        //3种 数值型--->字符型的方式
+        let num = 10
+        console.log(String(num));
+        console.log(num.toString());
+        console.log(num + ''); 
+    </script>
+</body>
+
+</html>

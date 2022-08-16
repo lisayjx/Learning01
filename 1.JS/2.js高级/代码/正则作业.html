@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+
+var str = '<div><img src="1.jpg" /><h2>这是标题</h2><img src="img/2.jpg"><p>这是内容</p></div>';
+/* 
+
+练习一：
+  var str = '<div><img src="1.jpg" /><h2>这是标题</h2><img src="img/2.jpg"><p>这是内容</p></div>';
+
+    练习要求： 删除 str 中的所有 img 标签。
+    输出结果： '<div><h2>这是标题</h2><p>这是内容</p></div>';
+*/
+//删除页面中的所有img标签
+var str = '<div><img src="1.jpg" /><h2>这是标题</h2><img src="img/2.jpg"><p>这是内容</p></div>';
+var re=/<img\s+[^<>]*\s*\/?>/gi
+console.log(str.replace(re,''));
+
+
+/*
+练习二：
+
+  var str = "2022-06-29"; 
+  
+    练习要求： 将 "2022-06-29" 格式时间 修改为 "2022年06月29日" 格式
+
+  "（第一个分组结果）年（第二个分组结果）月（第三个分组结果）日"
+*/
+//替换  先匹配数字 
+//分组：单独可以拿到匹配结果得部分 拿出来的部分可以单独引用
+var str = "2022-06-29"; 
+var re2=/(\d+)-(\d+)-(\d+)/g
+console.log(str.replace(re2,'$1年$2月$3日'));
+  
+</script>
+
+
+</body>
+</html>

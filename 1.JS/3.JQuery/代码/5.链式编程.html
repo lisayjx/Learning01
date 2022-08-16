@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="text">
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        //  链式编程通过点(.)把多个操作(方法)连续的写下去，形成和链子一样的结构
+        // 大部分jQ对象方法的返回值还是同一个jQ对象
+
+
+
+
+
+        //这样选择器写了两次 更简便的写法
+        //    $('.text').focus(回调函数).blur(回调函数)  这样再加绑定事件 越看越像链子
+
+
+
+
+
+        //1．为输入框分别绑定获得焦点和失去焦点事件
+
+        $('.text').focus(function () {
+            console.log('获得焦点成功')
+        })
+        $('.text').blur(function () {
+            console.log('获得焦点成功')
+        })
+
+        //2．使用链式编程一次性绑定获得焦点失去焦点内容改变事件
+        $('.text').focus(function () {
+            console.log('获得焦点成功')
+        }).blur(function () {
+            console.log('失去焦点成功')
+        }).change(function () {
+            console.log('内容改变');
+        })
+
+
+        // 3．测试jQuery方法的返回值
+        //主要就是测试$text和$text2是不是一个对象
+        let $text = $('.text')
+        let $text2 = $text.focus(function () {
+            console.log('获得焦点');
+        })
+        console.log($text === $text2);//true
+        // $text === $text2是一个对象 所以可以用链式编程 因为返回的都是一个对象
+   
+   
+//   1．链式编程的含义?
+// 通过点把多个操作连续的写下去,形成和链子一样的结构
+// 2．有没有特殊情况?
+// 有
+
+   
+   
+   </script>
+</body>
+
+</html>

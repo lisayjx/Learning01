@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    font: normal 14px/1.5 Takoma, "Lucida Grande", verdana, "MicrosofYahei", STxihei, hei;
+    color: #000;
+    background: #f2f2f2;
+    overflow-x: hidden;
+    /*不出现水平滚动条*/
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+li {
+    list-style: none;
+}
+
+/* 搜索模块 */
+.search-index {
+    display: flex;
+    /*是将对象作为弹性伸缩盒显示*/
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    /*为了兼容*/
+    top: 0;
+    height: 44px;
+    width: 100%;
+    min-width: 320p;
+    max-width: 540px;
+    background-color: #F6F6F6;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.search {
+    position: relative;
+    flex: 1;
+    /*剩余空间独占一份*/
+    height: 26px;
+    border: 1px solid #000;
+    margin: 7px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #666;
+    line-height: 24px;
+    padding-left: 26px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.search::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    /* display: block;加了绝对定位盒子可以直接有大小，这个可以省略了*/
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprite.png) no-repeat -58px -279px;
+    background-size: 104px auto;
+}
+
+.user {
+    height: 44px;
+    width: 44px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.user::before {
+    content: "";
+    display: block;
+    /*别忘了*/
+    height: 23px;
+    width: 23px;
+    background: url(../images/sprite.png) no-repeat -59px -194px;
+    background-size: 104px auto;
+    /*精灵图宽208*/
+    margin: 4px auto -2px;
+}
+
+/*轮播图*/
+.focus {
+    position: relative;
+    padding-top: 44px;
+    overflow: hidden;
+}
+
+.focus ul {
+    width: 500%;
+    overflow: hidden;
+}
+
+.focus ul li {
+    float: left;
+    width: 20%;
+}
+
+/* 因为给第一张盒子前面加了一个最后的图 此时默认左对齐 要让第一张显示在第一个位置 */
+.focus ul li:nth-child(1) {
+    margin-left: -100%;
+}
+
+.focus img {
+    width: 100%;
+    vertical-align: middle;
+    /*图片与文字的基线对齐就导致下面有个缝隙 要是与中间对齐或者上面对齐 就没有了*/
+}
+
+.focus ol {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    margin: 0;
+}
+
+.focus ol li {
+    display: inline-block;
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+
+}
+
+.focus .current {
+    background-color: red;
+    width: 15px;
+}
+
+/*local-nav*/
+.local-nav {
+    display: flex;
+    height: 64px;
+    border-radius: 10px;
+    margin: 3px 4px;
+    background-color: rgb(252, 255, 252);
+    /*清除浮动*/
+    clear: both;
+}
+
+.local-nav li {
+    flex: 1;
+}
+
+.local-nav li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7px;
+    /*或者用这个方式 主轴居中对齐 height: 64px;
+    justify-content: center; */
+}
+
+.local-nav li [class^="local-nav-icon-icon"] {
+    width: 32px;
+    height: 32px;
+    background: url(../images/localnav_bg.png) no-repeat;
+    background-size: 32px auto;
+}
+
+.local-nav li .local-nav-icon-icon1 {
+    /*.local-nav-icon-icon1权重问题*/
+    background-position: 0 0;
+}
+
+.local-nav li .local-nav-icon-icon2 {
+    background-position: 0 -32px;
+}
+
+.local-nav li .local-nav-icon-icon3 {
+    background-position: 0 -64px;
+}
+
+.local-nav li .local-nav-icon-icon4 {
+    background-position: 0 -64px;
+}
+
+.local-nav li .local-nav-icon-icon5 {
+    background-position: 0 -64px;
+}
+
+/*主导航栏nav*/
+nav {
+    border-radius: 8px;
+    margin: 0 4px 0;
+    overflow: hidden;
+}
+
+.nav-common {
+    display: flex;
+    height: 88px;
+}
+
+.nav-common:nth-child(1) {
+    background: -webkit-linear-gradient(left, #FA5A55, #FA994D);
+}
+
+.nav-common:nth-child(2) {
+    background: -webkit-linear-gradient(left, #4B90ED, #53BCED);
+}
+
+.nav-common:nth-child(3) {
+    background: -webkit-linear-gradient(left, #34C2A9, #6CD559);
+}
+
+.nav-common:nth-child(2) {
+    margin: 5px 0;
+}
+
+.nav-items {
+    flex: 1;
+    /*相对于父亲来说，他是儿子*/
+    display: flex;
+    /*这会他生儿子了，也成了父亲*/
+    flex-direction: column;
+}
+
+.nav-items a {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 12px;
+    text-shadow: 1px 1px rgba(0, 0, 0, .2);
+
+}
+
+.nav-items a:nth-child(1) {
+    border-bottom: 1px solid white;
+}
+
+.nav-items:nth-child(1) a {
+    border-bottom: 0;
+    background: url(../images/hotel.png) no-repeat bottom center;
+    background-size: 121px auto;
+    /*三倍图本来宽363*/
+}
+
+.nav-items:nth-child(-n+2) {
+    /*前两个*/
+    border-right: 1px solid white;
+}
+
+/* 侧导航入口 */
+.subnav-entry {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    margin: 0 4px;
+    background-color: rgb(252, 255, 252);
+    padding-top: 5px;
+    margin-top: 2px;
+}
+
+.subnav-entry li {
+    flex: 20%;
+}
+
+.subnav-entry a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subnav-entry a [class^="subnav-entry-icon-icon"] {
+    height: 24px;
+    width: 24px;
+    background: url(../images/subnav-bg.png) no-repeat;
+    background-size: 24px auto;
+}
+
+.subnav-entry li a .subnav-entry-icon-icon1 {
+    background-position: 0 0;
+}
+
+.subnav-entry li a .subnav-entry-icon-icon2 {
+    /*别忘了负号！！！！！！*/
+    background-position: 0 -25px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon3 {
+    background-position: 0 -55px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon4 {
+    background-position: 0 -85px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon5 {
+    background-position: 0 -110px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon6 {
+    background-position: 0 -140px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon7 {
+    background-position: 0 -170px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon8 {
+    background-position: 0 -195px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon9 {
+    background-position: 0 -220px;
+}
+
+.subnav-entry a .subnav-entry-icon-icon10 {
+    background-position: 2px -245px;
+}
+
+/* 销售模块 sales-box  */
+.sales-box {
+    border-top: 1px solid #bbb;
+    background-color: #fff;
+    margin: 4px;
+}
+
+.sales-hd {
+    position: relative;
+    height: 44px;
+    border-bottom: 1px solid #ccc;
+}
+
+.sales-hd h2 {
+    position: relative;
+    text-indent: -999px;
+    overflow: hidden;
+}
+
+.sales-hd h2::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 79px;
+    height: 15px;
+    background: url(../images/hot.png) no-repeat 0 -20px;
+    background-size: 79px auto;
+}
+
+.more {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    background: -moz-linear-gradient(left, #FF506C, #FF6BC6);
+    border-radius: 20px;
+    padding: 3px 20px 3px 10px;
+    color: #fff;
+}
+
+.more::after {
+    content: "";
+    position: absolute;
+    top: 11px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+}
+
+.row {
+    display: flex;
+}
+
+.row a {
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.row a:nth-child(1) {
+    border-right: 1px solid #eee;
+}
+
+.row a img {
+    width: 100%;
+}
+
+/* tool模块 */
+/* tool-group */
+.tool-group {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.tool-group a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.tool-group-icon {
+    display: block;
+    height: 20px;
+    width: 20px;
+    background: url(../images/sprite.png) no-repeat;
+    background-size: 104px auto;
+}
+
+.tool-group a:nth-child(1) .tool-group-icon {
+    background-position: -57px -153px;
+}
+
+.tool-group a:nth-child(2) .tool-group-icon {
+    background-position: -57px -173px;
+}
+
+.tool-group a:nth-child(3) .tool-group-icon {
+    background-position: -57px -310px;
+}
+
+
+
+/* tool-ver */
+.tool-ver {
+    text-align: center;
+}
+
+.tool-ver a {
+    color: #666;
+    font-size: 12px;
+}
+
+.map {
+    position: relative
+}
+
+.map::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: -7px;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    transform: rotate(135deg);
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .open {
+            background-color: white;
+        }
+        .close{
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button>关灯</button>
+
+    <script>
+        let btn = document.querySelector('button')
+        let flag = 0
+        btn.addEventListener('click', function () {
+            if (flag === 0) {
+                document.body.className='close'
+                btn.innerHTML = '开灯'
+                flag = 1
+            }
+            else {
+                document.body.className='open'
+                btn.innerHTML = '关灯'
+                flag = 0
+            }
+
+        })
+    </script>
+</body>
+
+</html>

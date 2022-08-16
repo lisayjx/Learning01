@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/65.png" alt="">
+    <script>
+        //可以使用instanceof 运算符用于检测构造函数的 prototype属性是否出现在某个实例对象的原型链上
+
+        function Person() {
+
+        }
+        const ldh = new Person()
+        console.log((ldh instanceof Person));
+        //查找ldh是否在Person原型链上    //ldh是Person创造出来的      ldh属于Person吗？？ true
+        console.log(ldh instanceof Object);//true
+        console.log(ldh instanceof Array);//false  ldh是对象 不是数组
+        console.log([1, 2] instanceof Array);//true
+        console.log(Array instanceof Object);//true  最终一切皆对象！！！
+
+
+
+        //定义构造函数
+        function Person1() { }
+        function Person2() { }
+
+        let lisa = new Person1()
+        lisa instanceof Person1  //true 因为lisa的__proto__指向Person1的prototype
+        lisa instanceof Object   //true lisa网上查找能找到Object
+        lisa instanceof Person2  //false 因为Person2.prototype不在lisa的原型链上
+        Person1().prototype instanceof Object  //true
+   
+   
+
+        hasOwnProperty 
+// 该方法检测某个对象身上是否包含了指定的属性
+
+   </script>
+</body>
+
+</html>

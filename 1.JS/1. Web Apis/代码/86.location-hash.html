@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="#/one">第一个</a>
+    <a href="#/two">第二个</a>
+    <script>
+        //  hash 属性获取地址中的哈希值，符号#后面部分
+        //例如 点击导航上的一个
+        //  导航没变 只有下面变了 网址也没变 不需要刷新页面也不需要重新加载
+        // 后期vue路由的铺垫，经常用于不刷新页面，显示不同页面，比如网易云音乐
+
+
+        console.log(location.hash);//#/one 得刷新一次
+
+     //   file:///D:/%E7...81/86.location-hash.html 本来的网址
+     //   file:///D:/%E7%.........ocation-hash.html#/one  //点击了第一个链接
+    </script>
+</body>
+
+</html>

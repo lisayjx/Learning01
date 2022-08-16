@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.求数组[2,6,1,7,4]中所有元素的和还有平均值
+        //遍历数组 把所有元素加起来
+        let sum = 0
+        let avg = 0
+        let num = [2, 6, 1, 7, 4]
+        for (i = 0; i < num.length; i++) {
+            // console.log(num[i]); (num[i]就是数组中的各个值，把每个数都加到sum中去，然后更新变量sum
+            // sum=sum+num[i]
+            sum += num[i]
+        }
+        avg = sum / num.length
+        alert(`和是${sum}，平均值是${avg}`)
+
+
+        //2.求数组中[2,6,1,77,52,25,7]中的最大值
+        //定义一个最大值的变量max，让他等于数组中第一个数（第一个数就不用和他比了），之后的依次和max比较
+        //如果max小于arr[i] （arr[i] 一直变得 6，1，77...） 那么就要把arr[i]的值给max ,  max=arr[i]
+        //max一个个去挑衅 遇到了比他强的人就变成他，接着再和别人比 ，又遇到了再比现在强的人它就变成了现在的人
+        //max会永远保持最大值 
+
+        let arr = [2, 6, 1, 77, 52, 25, 7]
+        let max = arr[0]   //max=2
+        for (let i = 1; i < arr.length; i++) {//这里i=1是因为数组第一个数不用比了 其实写0也行
+            if (max < arr[i]) {
+                max = arr[i]
+            }
+        }
+        console.log(`最大值是${max}`);
+
+//i是序号，只不过这个i序号正好和数组索引号对应  把i看作数组索引号
+//得到数组元素的方法  数组名[索引号]   arr[i]
+    </script>
+</body>
+
+</html>

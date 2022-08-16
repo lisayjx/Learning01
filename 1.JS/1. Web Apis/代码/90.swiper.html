@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+    <style>
+        .box {
+            width: 600px;
+            height: 250px;
+            background-color: pink;
+            margin: 200px auto;
+        }
+
+        /* Swiper */
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /*修改小圆点*/
+        span.swiper-pagination-bullet {
+            height: 20px;
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- Swiper -->
+        <!-- 在这里加了类名是为了区别别的轮播图 怕混 -->
+        <div class="swiper mySwiper  one">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b01.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b02.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b03.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b04.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b05.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b06.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="box">
+        <!-- Swiper -->
+          <!-- 在这里加了类名是为了区别别的轮播图 怕混 -->
+        <div class="swiper mySwiper two">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b01.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b02.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b03.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b04.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b05.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../images/b06.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+
+
+
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script>
+        //1.
+        // 2个文件加载进来  swiper-bundle.min.js    swiper-bundle.min.css
+        // 一个在head里
+        // 一个在下面 script引入
+
+        //找到你需要的哪个样式 把style中的复制过来 html的也是
+        //2.html内容加载进来
+        //3.复制css
+        //4.初始化swiper
+        // 把  <script> <script>中的内容复制过来
+
+        // demos文件夹中都是各种样式的代码 没有网时候可以看看
+
+
+        //网页中本来有一个粉色部分 要做成轮播图 所以把复制过来的html结构放在box里
+        var swiper = new Swiper(".one", {  //为了怕两个轮播图播放受到影响 给换了类名
+            //若是想要自动播放 去API文档里找
+            autoplay: true,
+            slidesPerView: 1,
+            spaceBetween: 30,//跳转图片时候的过渡 不想要就写0
+            loop: true,//是否循环 关了就到最后一张就不动了
+            pagination: {  //小圆点 改样式去检查元素找他名字复制过来
+                el: ".swiper-pagination",
+                clickable: true,//能点就是true  不能点就是false
+            },
+            navigation: {//左右按钮
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            //开启此功能，鼠标置于swiper时暂停自动切换，鼠标离开时恢复自动切换
+            autoplay: {
+                pauseOnMouseEnter: true
+            }
+        });
+
+        /*-----------------------*/
+        var swiper = new Swiper(".two", {//为了怕两个轮播图播放受到影响 给换了类名
+            //若是想要自动播放 去API文档里找
+            autoplay: true,
+            slidesPerView: 1,
+            spaceBetween: 30,//跳转图片时候的过渡 不想要就写0
+            loop: true,//是否循环 关了就到最后一张就不动了
+            pagination: {  //小圆点 改样式去检查元素找他名字复制过来
+                el: ".swiper-pagination",
+                clickable: true,//能点就是true  不能点就是false
+            },
+            navigation: {//左右按钮
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            //开启此功能，鼠标置于swiper时暂停自动切换，鼠标离开时恢复自动切换
+            autoplay: {
+                pauseOnMouseEnter: true
+            }
+        });
+
+    </script>
+</body>
+
+</html>

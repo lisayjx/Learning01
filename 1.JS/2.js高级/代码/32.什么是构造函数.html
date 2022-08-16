@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数∶是一种特殊的函数，主要用来初始化对象
+        // （装着 抽 封 的属性）
+        // 使用场景︰
+        // 常规的{... } 语法允许创建一个对象。比如我们创建了佩奇的对象，
+        // 继续创建乔治的对象还需要重新写一遍，
+        // 此时可以通过【构造函数】来【快速创建多个类似的对象】
+
+        //用字面量创建 佩奇 乔治对象 里面属性都一样 就是对象名不一样
+        //这种重复性的东西很多 就想到 【抽出来 封装 抽封】！！！！
+        // const Peppa = {
+        //     name: '佩奇',
+        //     age: 18
+        // }
+        // const George = {
+        //     name: '乔治',
+        //     age: 16
+        // }
+        // const pigMother = {
+        //     name: '猪妈',
+        //     age: 22
+        // }
+        // const pigFather = {
+        //     name: '猪爸',
+        //     age: 24
+        // }
+        //把这四个公共的属性抽出来 封装到一个函数里去！这个函数就叫构造函数
+
+        function Pig(name, age, gender) {
+            this.name = name
+            this.age = age
+            this.gender = gender
+        }
+        //创建佩奇对象
+        const Peppa = new Pig('佩奇', 18)
+        //创建乔治对象
+        const George = new Pig('乔治', 18)
+        //创建猪妈对象
+        const pigMother = new Pig('猪妈', 18)
+        //创建猪爸对象
+        const pigFather = new Pig('猪爸', 18)
+        console.log(Peppa);
+        console.log(George);
+
+
+//  构造函数在技术上是常规函数。不过有两个约定:
+// 1.它们的命名以大写字母开头。
+// 2.它们只能由"new”操作符来执行。
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //startsWith和includes
+
+
+        //4. 实例方法 `startsWith(检测字符串[, 检测位置索引号])` 检测是否以某字符开头(重点) 返回布尔值
+
+        const str = 'To be, or not to be,that is the question.'
+        console.log(str.startsWith('To be'));//开头是这个 true
+        console.log(str.startsWith('not to be')); //开头不是这个 false
+        console.log(str.startsWith('not to be', 10)); //从索引为10开头是这个 true
+
+        console.log(str.endsWith('question.'));//true  以某个字符结尾
+
+
+
+        //5. 实例方法 `includes(搜索的字符串[, 检测位置索引号])`  区分大小写
+        // 判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false(重点)
+        //像数组中的find 数组的find也返回布尔值
+
+        console.log(str.includes('or'));//true
+        console.log(str.includes('To be',2))//从索引2开始往后找 false
+
+
+
+    </script>
+
+</body>
+
+</html>

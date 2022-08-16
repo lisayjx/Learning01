@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //定时器，连续炸  页脚循环定时器
+        //网页中经常会需要一种功能，每隔一段时间自动取执行一段代码，不需要我们手动触发
+        //  例如：网页中的倒计时，轮播图，用户协议阅读多少秒才能点
+        //  需要实现这种需求：需要定时器函数
+        //  定时器函数有两种，今天先讲间歇函数
+        //for循环也可以自动重复执行某些代码，但是没有时间
+
+
+        //定时器函数可以开启和关闭定时器
+        // 1.开启定时器
+        // setInterval(函数，间隔时间)  set设置，Interval间隔
+        //作用：每隔一段时间调用这个函数  一旦开始永不停歇
+        //间隔时间单位是毫秒
+
+        //例：方式一
+        // function show() {
+        //     console.log('你好啊')
+        // }
+        //每隔一秒调用repeat函数
+        // let timer = setInterval(show, 1000)
+        // let timer1 = setInterval(show, 1000)
+        // setInterval(repeat(), 1000)
+        //加了括号是调用,调用时立马就调用 后面就不生效了。所以不行
+        // console.log(timer);//此举是为了看看定时器函数得返回值是啥  2
+        // console.log(timer1);//3  第三个定时器
+
+
+        //例：方式二
+        // setInterval(function () {
+        //     alert('高薪就业')
+        // }, 1000)  一秒之后执行 回调函数 回头调用
+
+
+        //注意：
+        //1.函数名字不需要加括号
+        //2.定时器返回的是一个id数字，非0数值
+        //此返回值intervalID是一个非零数值，用来标识通过setInterval()创建的计时器，
+        //这个值可以用来作为clearInterval()的参数来清除对应的计时器。
+        //定时器得返回值相当于是个序号 number类型
+
+
+
+
+
+
+        //2.关闭定时器
+        //例如 轮播图鼠标经过就不播了
+        // let 变量名 = setInterval(函数,间隔时间)
+        // clearInterval(变量名)
+
+        //   
+        function sing() {
+            console.log('啊啊');
+        }
+        let time3 = setInterval(sing, 2000)
+        //sing后面不能加()加了就是直接调用不能延迟执行，
+        //或者"sing()"用在传参数
+        clearInterval(time3)
+
+
+        //想传参数的话 这样写 或者下面
+        setTimeout(() => {
+            sing(111)
+        }, 1000);
+        function sing() {
+            console.log('啊啊');
+        }
+        let time4 = setInterval('sing(111)', 2000)
+
+
+        //         关闭定时器
+        // 清除代码写在外面，定时器没有机会执行了
+
+
+        //这两个定时器给函数传参  低版本浏览器不支持传参数 ie8以下不支持
+        //从第三个参数开始，后面的参数都是传给第一个参数中指定的函数的实参
+    
+        // setInterval(函数,时间,参数..)
+        function fn1(a, b) {
+            console.log(a + b);
+        }
+        //setTimeout(fn1, 1000)  //没传参数a b 默认值是undefined 
+      console.log( setTimeout(fn1, 1000,10,20)); //30
+    </script>
+
+</body>
+
+</html>

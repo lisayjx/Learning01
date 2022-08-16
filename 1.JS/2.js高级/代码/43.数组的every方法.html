@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/43.png" alt="">
+    <script>
+
+        // 7.实例方法 every 检测数组所有元素是否都符合指定条件，返回布尔值，若收到一个空数组，此方法在一切情况下都会返回true .
+        // 如果所有元素都通过检测返回true，否则返回false(重点) 
+
+        //   filter是筛选出符合条件的数组
+        //   every 这个找到符合条件的会返回布尔值  每个都得是绿码
+        const arr = [10, 20, 30]
+        const re = arr.every(item => item >= 10)
+        console.log(re);//true
+
+
+        // some 只要有一个符合条件就行
+        const arr1 = [10, 20, 30]
+        const re1 = arr1.some(item => item >= 20)
+        console.log(re1);//true
+    </script>
+</body>
+
+</html>

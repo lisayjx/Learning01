@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //一：显示用户输入内容要求:  假如都输入的你好
+        // 1.封装函数名字为printfInput
+        // 2功能:将用户输入的内容,在页面中显示
+        // 3.测试:写一个输入确认框调用该函数时将输入内容传入观察页面中的内容是否与输入内容一致
+        let a = prompt('请您输入内容')
+        function printfInput(x) {
+            return x
+        }
+        let re = printfInput(a)
+        document.write(re)//你好     
+        document.write(re[0])//你
+        document.write(re[1])//好
+        /**--------------------------------**/
+        function printInput(content) {
+            let str = content
+            document.write(str)//你好
+            document.write(str[0])//你
+        }
+        let constr = prompt('请输入内容')
+        printInput(constr)
+
+
+        //二：求和函数
+        // 1.封装函数名字为sum
+        // 2.功能:根据传入的两个数求和井且返回求和的结果(函数必须有return返回值)
+        // 3.测试:调用该函数时获取结果后在控制台打印结果判断是否正确
+
+        //把用户输入的数存进数组
+        let arr = []
+        for (let i = 1; i <= 2; i++) {
+            let b = +prompt(`请输入第${i}个数`)
+            arr.push(b)
+        }
+
+        // //求和函数
+        function sum(shuzu) {
+            let sum1 = 0
+            for (i = 0; i < arr.length; i++) {
+                sum1 += arr[i]
+            }
+            return sum1
+        }
+        let result = sum(arr)
+        document.write(`${arr[0]}+${arr[1]}=${result}`)
+        //过程：
+        // 首先：把用户输入的数据遍历循环都打印出来，用一个数组arr接收进来
+        //其次：写求和函数
+        //sum(arr)调用者，arr是实参也就是用户传进来的数，把他传给上面的sum（shuzu）形参，相当于 shuzu=arr[用户输入进来的数]
+        //然后：写一个循环遍历，把用户输入的数都加起来，用sum1接收和
+        //return即使用来返回结果的，所以return sum1
+        //然后用let result接收return传回给调用者sum(arr)的值， let result = sum(arr)
+        //打印结果 result
+
+        //简单写法：
+        function getSum(x, y) {
+            let he = x + y
+            return he
+        }
+        let res = getSum(1, 2)
+        alert(`和是${res}`)
+        //过程：
+        // 把1和2传给x, y ，x = 1, y = 2, 让x + y=he
+        // return 结果值 he，把return传回来的值给调用者
+        // 把调用者里的值用一个变量res接收
+        // 输出这个变量res
+
+
+
+
+        //三：实现两个数的值交换(函数版本)
+        // 目的:封装函数复习函数的基本写法
+        // 要求:
+        // 1.函数名为changeNum()
+        // 2.调用函数时,在控制台输出a=1,b=2
+        // 3.经过函数内部处理后,输出a=2,b=1
+        // 4.console.log的代码全部封装在函数内部
+        // 5.准备代码如下,在此基础上继续编写
+        //6.可以多调用两次
+
+        function changeNum(x, y) {
+            let temp
+            temp = x
+            x = y
+            y = temp
+            return [x, y]
+        }
+        let resu = changeNum(1, 2)
+        document.write(resu)
+        /*-----------------------------*/
+        function changeNum1(x, y) {
+            let temp
+            temp = x
+            x = y
+            y = temp
+            document.write(x, y)
+        }
+        changeNum1(1, 2)
+        changeNum1('pink', 'black')
+
+
+        //四：   封装余额函致
+
+        // 目的:复习函数的声明与调用
+        // 要求:
+        // 1.运行程序后,浏览器显示输入确认框(prompt)
+        // 2.第一个输入确认框提示输入银行卡余额
+        // 3.第二个输入确认框提示输入当月食宿消费金额
+        // 4.第三个输入确认框提示输人当月生活消费金额
+        // 5.输入完毕后.在页面中显示银行卡剩余金额
+        // 6.提示:所有功能代码封装在函数内部《函数需要把余额返回)
+
+        function yue() {
+            let c = prompt('请您输入银行卡余额')
+            let d = prompt('请您输入当月食宿消费金额')
+            let e = prompt('请您输入当月生活消费金额')
+            let f = c - d - e
+            return f
+        }
+        let money = yue()
+        document.write(`余额是${money}`)
+
+
+        //小练习
+        //1.计算1-n之间所有和
+
+        function sum3(n) {
+            let sum = 0
+            for (let i = 1; i <= n; i++) {
+                sum += i
+            }
+            return sum
+        }
+        let hehe = sum3(10)
+        document.write(hehe)
+
+        //2.算m-n之间所有和
+        function sum4(m, n) {
+            let sum = 0
+            for (let i = m; i <= n; i++) {
+                sum += i
+            }
+            return sum
+        }
+        let hehehe = sum4(1, 100)
+        document.write(hehehe)
+        //3.学生的分数是一个数组，计算每个学生的总分
+        function getScoreSum() {
+            let arr1 = [99, 89, 100]
+            let arr2 = [90, 85, 99, 86]
+            let arr3 = [91, 82, 97]
+            let score1 = 0
+            let score2 = 0
+            let score3 = 0
+            for (i = 0; i < arr1.length; i++) {
+                score1 += arr1[i]
+            }
+            for (i = 0; i < arr2.length; i++) {
+                score2 += arr2[i]
+            }
+            for (i = 0; i < arr3.length; i++) {
+                score3 += arr3[i]
+            }
+            return [score1, score2, score3]
+        }
+        let ress = getScoreSum()
+        console.log(ress)
+    </script>
+</body>
+
+</html>

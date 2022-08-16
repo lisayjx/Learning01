@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 40px;
+            width: 200px;
+            /* background-color: pink; */
+            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        span {
+            height: 38px;
+            border: 1px solid #ccc;
+            flex: 1;
+            width: 50px;
+            text-align: center;
+            line-height: 36px;
+            display: inline-block;
+        }
+
+        button {
+            background-color: #ddd;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            flex: 1;
+            color: red;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button>-</button>
+        <span>10</span>
+        <button>+</button>
+    </div>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        // 数字到0就提示不能再减了，到10不能再加了
+
+        //累加
+        $('.box button').last().click(function () {
+            //把框里的值获取过来
+            let num = $('span').text()
+            if (num < 10) {
+                num++
+                //设置值
+                $('span').text(num)
+            } else {
+                alert('不能点了')
+            }
+        })
+
+        //递减
+        $('.box button').first().click(function () {
+            //把框里的值获取过来
+            let num = $('span').text()
+            if (num > 0) {
+                num--
+                //设置值
+                $('span').text(num)
+            } else {
+                alert('不能点了')
+            }
+        })
+
+
+
+//  1. last-child和first-child叫做什么选择器?
+// 伪类选择器
+// 2. span里面的文本设置和取值用的是什么方法?
+// text
+
+
+
+// 1. first方法和last方法筛选出来的分别是第几个元素?
+// 第一个和最后一个
+// 2. eq方法的索引从几开始?
+// 0
+// 3.这三个方法的返回值是什么对象
+// jQuery对象
+
+    </script>
+</body>
+
+</html>

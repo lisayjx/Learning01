@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //对象（动态，函数）
+        //在对象外的function是函数，在对象里的就是方法
+
+        // 数据行为性的信息称为方法，如跑步、唱歌等，一般是动词性的，其本质是函数（匿名）。
+
+        // 1.方法是由方法名和函数两部分构成，它们之间使用:分隔
+        // 2.多个属性之间使用英文，分隔
+        // 3.方法是依附在对象中的函数
+        // 4.方法名可以使用""或"，一般情况下省略，除非名称遇到特殊符号如空格、中横线等
+
+        // let 对象名 = {
+        //     方法名: 匿名函数
+        // }
+
+        let person = {
+            name: 'lisa',
+            sex: '女',
+            sayHi: function () {
+                console.log('hi');
+            }
+           
+        }
+
+        
+        //方法的访问！！！！！！！！！！！！！！！！！
+         // 对象名.方法名()
+        person.sayHi()
+        // 下面的调用这里的括号放实参，上面括号放形参
+     
+
+        let singer={
+            uname:'刘德华',
+            age:'18',
+            singSongs:function(song){
+                console.log(song);
+            }
+        }
+        singer.singSongs('冰雨')//调用方法
+        //这括号冰雨是实参，上面括号的song是形参，song='冰雨'
+
+        //要是不想传递参数就直接调用，要是想传递参数就在实参里写，跟之前类似
+    </script>
+</body>
+
+</html>

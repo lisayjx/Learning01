@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+    <!-- 手指按住，手指移动，手指离开 -->
+
+    <script>
+        //  1.touchstart、touchmove、touchend可以实现拖动元素
+        // ⒉.但是拖动元素需要当前手指的坐标值我们可以使用targetTouches[0]里面的pageX和pageY
+
+        // 3.移动端拖动的原理︰手指移动中，计算出手指移动的距离。然后用盒子原来的位置＋手指移动的距离
+        // 4.手指移动的距离:手指滑动中的位置减去手指刚开始触摸的位置
+
+
+        // 拖动元素三步曲:
+        // ( 1 )触摸元素touchstart:获取手指初始坐标，同时获得盒子原来的位置
+        // ( 2 )移动手指touchmove :计算手指的滑动距离，并且移动盒子
+        // ( 3 )离开手指touchend:
+        // 注意:手指移动也会触发滚动屏幕所以这里要阻止默认的屏幕滚动e.preventDefault();
+
+        let div = document.querySelector('div')
+        //手指初始值   因为手指移动时间也要用 所以写在外面
+        let startX = 0
+        let startY = 0
+        //盒子原来位置
+        let x = 0
+        let y = 0
+
+        //在触摸时
+        //1.触摸时候获取手指初始值和盒子原来位置
+        div.addEventListener('touchstart', function (e) {
+            //手指初始值
+            startX = e.targetTouches[0].pageX
+            startY = e.targetTouches[0].pageY
+            //盒子原来位置
+            x = this.offsetLeft
+            y = this.offsetTop
+        })
+        //在手机移动时
+        //2.计算手指的移动距离，手指移动之后的坐标-手指初始的坐标
+        div.addEventListener('touchmove', function (e) {
+            //手指移动距离
+            let moveX = e.targetTouches[0].pageX - startX
+            let moveY = e.targetTouches[0].pageY - startY
+
+            //移动盒子   盒子原来的位置+盒子移动的距离
+            this.style.left = x + moveX + 'px'
+            this.style.top = y + moveY + 'px'
+
+
+
+            // 注意:手指移动也会触发滚动屏幕所以这里要阻止默认的屏幕滚动e.preventDefault();
+            e.preventDefault()
+        })
+    </script>
+</body>
+
+</html>

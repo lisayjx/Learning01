@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="clock">
+
+    </div>
+
+    <img src="../img/78.png" alt="">
+    <script>
+     
+
+        //递归函数：自己调用自己
+        //死递归 一直调 会报已经超过最大的栈容量
+        // function fn() {
+        //     console.log(11);
+        //     //在函数里面，调用自己
+        //     fn()
+        // }
+        // fn()
+        //所以一定要有一个退出判断条件让他停下！！！！
+        let num = 0
+        function fn() {
+            num++
+            console.log(11);//输出100次11
+            if (num >= 100) {
+                return
+            }
+            fn()
+        }
+        let re = fn()
+        console.log(re);//输出undefined
+    </script>
+</body>
+
+</html>

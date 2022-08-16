@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <li>你好</li>
+    <li>你好</li>
+    <li>你好啊</li>
+    <li>你好</li>
+    <li>你好</li>
+    <li>你好</li>
+    <input type="text" class="text">
+    <div class="box"></div>
+
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        //在jQuery中以原生事件类型的名称为依据，封装了相对应的事件处理方法
+        //事件名开头不用写on
+        //   回调函数中的this 就是触发事件的dom元素
+
+        // $('选择器').事件名(function () {
+        //     //逻辑
+        // })
+
+        // //点击事件
+        // $('选择器').click(function () {
+        //     //逻辑
+        // })
+
+        //1.为li添加点击事件
+        $('li').click(function () {
+            console.log('点击成功')
+            console.log(this);//返回你点击的li对象
+            //this不可以直接 this.css() 不行 因为this是DOM对象 要把this转化
+            $(this).css('color', 'red')//这样可以
+
+        })
+        //2.为.text添加获得焦点事件
+        $('.text').focus(function () {
+            alert('获得焦点成功')
+        })
+        //3.为.text添加失去焦点事件
+        $('.text').blur(function () {
+            alert('获得焦点成功')
+        })
+        //4.为.box添加鼠标移入事件
+        $('.box').mouseenter(function () {
+            console.log('获得焦点成功');
+            $(this).css('backgroundColor', 'pink')//this是当前的对象当前的.box变色
+        })
+        //5.为.box添加鼠标移出事件
+        $('.box').mouseleave(function () {
+            alert('获得焦点成功')
+        })
+
+
+// 1．为jQuery对象绑定点击事件，方法名是onclick吗?
+// 不是，是click
+// 2．如何获取触发事件的dom元素?
+// this  先把this转换成JQ对象
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         需求:程序随机生成1~10之间的一个数字，用户输入一个数字
+        // ①:如果大于该数字，就提示，数字猜大了，继续猜
+        // ②:如果小于该数字，就提示，数字猜小了，继续猜
+        // ③:如果猜对了，就提示猜对了，程序结束
+
+        //分析：
+        // ①:利用随机数生成一个数字
+        // ②:需要一直猜，所以需要不断的循环
+        // ③:因为条件是结果猜对了，就是判断条件退出，用while循环合适
+        // ④:内部判断可以用多分支语句
+
+        //随机函数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        //生成一个1-10随机数
+        let random = getRandom(1, 10)
+
+        //开始循环，条件对了就结束循环
+        while (true) {
+            //用户输入的数,一直有弹框直到猜对
+            let n = +prompt("请您输入一个数")
+            if (random > n) {
+                alert('您猜小了')
+            } else if (random < n) {
+                alert('您猜大了')
+            }else if(random===n){
+                alert('恭喜，您猜对了')
+                break//退出循环
+            }
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

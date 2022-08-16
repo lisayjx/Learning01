@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 测试标签 -->
+    <input type="text" class="onoff" />
+    <br />
+    <button class="one">支付</button>
+    <!-- 导入jQuery -->
+    <script src="../jquery/jquery-3.6.0.js"></script>
+
+    <script>
+
+        // jQuery中封装了更为灵活的on/off、one方法处理DOM事件
+        //普通的点击事件
+        $('li').click(function(){})
+
+        //可以绑定input事件吗？不可以 这个要用on 其他就是正常绑定事件
+        $('选择器').input(function () { })
+        //解绑事件？
+        //一次性事件？
+
+        //1.注册事件
+        // .on('事件名',function(){})
+
+        $('.onoff').on('input', function () {
+            // console.log('input事件触发')  //没反应
+            // console.log(this)
+            let value = $(this).val()  //有了值有反应
+            console.log('value:', value)
+        })
+        //
+        // 2. 移除指定事件 off
+        $('.onoff').off('focus')
+
+        // 3. 移除所有事件 off
+        $('.onoff').off()
+
+        // 4. 注册一次性事件 one
+        $('.one').one('click', function () {
+            alert('支付成功998元')
+        })
+
+
+
+//  1．使用on方法进行事件绑定时第一个参数是什么?
+// 事件名   input特殊
+// 2．使用off方法是否可以省略参数?
+// 可以
+// 3.一次性事件通过什么方法绑定?
+// one
+
+    </script>
+
+</body>
+
+</html>

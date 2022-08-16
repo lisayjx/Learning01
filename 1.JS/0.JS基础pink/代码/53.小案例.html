@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.封装一个函数，计算两个数的和
+        function getSum() {
+            let a = 10
+            let b = 20
+            alert(`和是${a + b}`)
+        }
+        getSum()
+        getSum()
+        //2.封装一个函数，计算1-100之间所有数的和
+        function getSum100() {
+            let he = 0
+            for (let i = 1; i <= 100; i++) {
+                he += i
+            }
+            alert(`和是${he}`)
+        }
+        getSum100()
+        getSum100()
+
+        //这两个有啥缺点呢？只能求确定的数的和 那根用不用函数没啥区别了 函数主要就是能实现复用
+        //这些函数只能实现唯一的功能，那么解决这些缺陷，要学习函数传参
+
+
+         // 盈数是一种特殊的自然数，除去它本身以外的一切正约数(只有它本身和1能整除)的和大于它本身。
+        //1. 输出1~100的所有盈数。
+        //先找约数 下面用if判断大于它本身
+//12的约数 1 2 3 4 6=16 16>12 不包括它本身12  就从小于他开始找
+
+for (let n = 1; n <= 100; n++) {
+
+
+
+sum = 0
+for (let i = 1; i < n; i++) {//找到所有约数      i < n是小于它本身
+    if (n % i == 0)  {//当取余为0时候把所有约数存在sum里
+        sum += i//sum现在的值是所有约数得和
+    }
+}
+if (sum > n) {
+    console.log(n);//n是盈数
+}
+
+
+
+}
+//每次里面的循环完毕之后都会去执行下面的条件
+
+
+// 用户输入一个整数n：
+//2. 求1! + 2! + 3! + 4! + …… + n!的和
+// 叹号表示阶乘，如4! = 1 * 2 * 3 * 4
+// let sum = 1
+// let n = +prompt('请输入一个数')
+// let s = 0
+// for (let i = 1; i <= n; i++) {
+//     sum = sum * i
+//     s += sum
+// }
+// alert(`和是${s}`)
+    </script>
+</body>
+
+</html>

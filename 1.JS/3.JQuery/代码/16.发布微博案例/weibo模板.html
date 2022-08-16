@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/weibo.css">
+</head>
+
+<body>
+  <div class="w">
+    <div class="controls">
+      <img src="images/tip.png" alt=""><br>
+      <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+      <div>
+        <span class="useCount">6</span>
+        <span>/</span>
+        <span>200</span>
+        <button id="send">发布</button>
+      </div>
+
+    </div>
+    <div class="contentList">
+      <ul>
+
+      </ul>
+    </div>
+  </div>
+
+  <script src="../jquery-3.6.0.js"></script>
+  <script>
+
+    // 需求
+    // 1.初始状态
+    // 2.高亮效果
+    // 3.字数统计
+    // 4.启用禁用
+
+
+
+    (function () {
+
+      //1.初始状态 文字个数0 按钮禁用
+      // $('.useCount').text(0)
+      // $('#send').attr('disabled', true)//给按钮 的属性禁用
+
+      //2.鼠标获取焦点 高亮     用了2种不同的绑定事件方式
+      $('textarea').on('focus', function () {
+        $(this).addClass('active')
+
+      }).blur(function () {//鼠标失去焦点 高亮
+        $(this).removeClass('active')
+      })
+      // -----------------------------
+      //3.文字个数
+      $('textarea').on('input', function () {
+        $('.useCount').text($(this).val().length)
+        if ($(this).val().length === 0) {
+          $('#send').attr('disabled', true)
+        } else {
+          $('#send').attr('disabled', false)
+        }
+
+      })
+
+      //1.初始状态 文字个数0 按钮禁用  用了触发调用的方法  相当于 执行了一遍3.
+      $('textarea').trigger('input')
+
+
+    })()
+  </script>
+</body>
+
+</html>

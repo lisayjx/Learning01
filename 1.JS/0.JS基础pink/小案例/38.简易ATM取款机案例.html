@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+    页面显示请输入你的操作  （不输入4就会反复弹出这个对话框）
+      1.存款
+      2.取款
+      3.查看余额
+      4.退出  
+  
+      while嵌套switch
+      
+ ①:循环的时候，。需要反复提示输入框，所以提示框写到循环里面
+ ②:退出的条件是用户输入了4，如果是4，则结束循环，不在弹窗
+ ③:提前准备一个金额预先存储一个数额
+ ④:取钱则是减法操作，存钱则是加法操作，查看余额则是直接显示金额
+ ⑤:输入不同的值，可以使用switch来执行不同的操作
+
+        
+        
+        */
+
+        // 1.不断弹出对话框
+        //3.准备一个金额先存储一个数额默认里面有100
+        let money = 100
+        while (true) {
+            let str = prompt(`
+           请输入你的操作
+            1.存款 
+            2.取款
+            3.查看余额
+            4.退出 
+            `)
+            //2.除非输入的是4，则退出循环break
+            if (str === "4")//因为prompt接收过来的是字符串类型
+            {
+                break
+            }
+
+            //4.用switch进行123操作
+            switch (str) {
+                case '1':
+                    //存钱
+                    let cun = +prompt(`请你输入存钱的金额:`)
+                    money += cun
+                    break
+                case '2':
+                    //取钱
+                    let qu = +prompt(`请你输入取钱的金额:`)
+                    money -= cun
+                    break
+                case '3':
+                    //查看余额
+                    alert(`你的余额是：${money}`)
+                    break
+            }
+        }
+    </script>
+</body>
+
+</html>

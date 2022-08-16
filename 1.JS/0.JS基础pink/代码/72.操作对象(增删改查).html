@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 注:无论是属性或是方法，同一个对象中出现名称一样的，后面的会覆盖前面的。
+
+
+        //增删改查
+        let obj = {
+            name: '小名',
+            age: 18,
+            address: '大连',
+
+        }
+
+        //1.查：查询对象
+        // 对象.属性 或者 对象['属性']
+        // 对象.方法()
+        console.log(obj.name);
+
+        //2.增：对象添加新数据
+        // 对象名.新属性名=新值
+        //会去对象里面找是否有height这个属性,如果有就给他重新赋值，
+        //如果没有就新增这个属性
+        obj.height = '180cm'
+
+        //新增个方法 
+        obj.sing=function() {
+            console.log('lalisa');
+        }
+        console.dir(obj)
+         
+
+        //3.改：重新赋值
+        // 对象.属性 = 值
+        // 对象.方法 = function () { }
+        console.log(obj.name = '小明');
+
+
+        //4.删：删除对象中的属性
+        // delete 对象名.属性名
+        delete obj.address
+        console.log(obj)
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .list {
+      width: 990px;
+      margin: 100px auto 0;
+    }
+
+    .item {
+      padding: 15px;
+      transition: all .5s;
+      display: flex;
+      border-top: 1px solid #e4e4e4;
+    }
+
+    .item:nth-child(4n) {
+      margin-left: 0;
+    }
+
+    .item:hover {
+      cursor: pointer;
+      background-color: #f5f5f5;
+    }
+
+    .item img {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+
+    .item .name {
+      font-size: 18px;
+      margin-right: 10px;
+      color: #333;
+      flex: 2;
+    }
+
+    .item .name .tag {
+      display: block;
+      padding: 2px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .item .price,
+    .item .sub-total {
+      font-size: 18px;
+      color: firebrick;
+      flex: 1;
+    }
+
+    .item .price::before,
+    .item .sub-total::before,
+    .amount::before {
+      content: "¥";
+      font-size: 12px;
+    }
+
+    .item .spec {
+      flex: 2;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .item .count {
+      flex: 1;
+      color: #aaa;
+    }
+
+    .total {
+      width: 990px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid #e4e4e4;
+      padding: 20px;
+    }
+
+    .total .amount {
+      font-size: 18px;
+      color: firebrick;
+      font-weight: bold;
+      margin-right: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="list">
+    <!-- <div class="item">
+      <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+      <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机 <span class="tag">【赠品】10优惠券</span></p>
+      <p class="spec">白色/10寸</p>
+      <p class="price">289.90</p>
+      <p class="count">x2</p>
+      <p class="sub-total">579.80</p>
+    </div> -->
+  </div>
+  <div class="total">
+    <div>合计：<span class="amount">1000.00</span></div>
+  </div>
+  <script>
+    const goodsList = [
+      {
+        id: '4001172',
+        name: '称心如意手摇咖啡磨豆机咖啡豆研磨机',
+        price: 289.9,
+        picture: 'https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg',
+        count: 2,
+        spec: { color: '白色' }
+      },
+      {
+        id: '4001009',
+        name: '竹制干泡茶盘正方形沥水茶台品茶盘',
+        price: 109.8,
+        picture: 'https://yanxuan-item.nosdn.127.net/2d942d6bc94f1e230763e1a5a3b379e1.png',
+        count: 3,
+        spec: { size: '40cm*40cm', color: '黑色' }
+      },
+      {
+        id: '4001874',
+        name: '古法温酒汝瓷酒具套装白酒杯莲花温酒器',
+        price: 488,
+        picture: 'https://yanxuan-item.nosdn.127.net/44e51622800e4fceb6bee8e616da85fd.png',
+        count: 1,
+        spec: { color: '青色', sum: '一大四小' }
+      },
+      {
+        id: '4001649',
+        name: '大师监制龙泉青瓷茶叶罐',
+        price: 139,
+        picture: 'https://yanxuan-item.nosdn.127.net/4356c9fc150753775fe56b465314f1eb.png',
+        count: 1,
+        spec: { size: '小号', color: '紫色' },
+        gift: '50g茶叶,清洗球'
+      }
+    ]
+    //页面分为两部分 上面 list  下面total
+    //渲染的内容都要放在list盒子，一个div就是一行，几条数据几个div
+    //最有一条数据有赠品
+    // -------------------总体分析
+    // 分析业务模块:
+    // ①:把整体的结构直接生成然后渲染到大盒子.list里面
+    // ②:哪个方法可以遍历的同时还有返回值? map方法
+    // ③:最后计算总价模块，那个方法可以求和? reduce方法
+
+
+
+    //根据后台提供的数据，渲染购物车页面
+    //  分析业务模块:
+    // ①:渲染图片、标题、颜色、价格、赠品等数据
+    // ②:单价和小计模块
+    // ③:总价模块
+
+    // -------------------详细分析
+    // 1.:先利用map来遍历，有多少条数据，渲染多少相同商品
+    //  （1）可以先写死数据
+    //  （2）注意 map返回值是数组，我们需要用join转换为字符串
+    //    (3) 把返回的字符串赋值给list大盒子的
+
+    // 2:里面更换各种数据，注意使用对象解构赋值
+    //  先更换不需要处理的数据 比如图片 商品名称 单价 数量，  小计需要处理先不换
+    //注意 价格要保留2位小数 toFixed（2）
+    //3.更换数据–处理规格文字模块
+    // 获取每个对象里面的spec ,上面对象解构添加spec
+    // 获得所有属性值是:Object.values(),取出对象中的属性值，返回的是数组 
+    // 拼接数组是join("")这样就可以转换为字符串了
+
+    //4.赠品模块
+    // ②:更换数据–处理赠品模块
+    //   获取每个对象里面的gift ，上面对象解构添加gift
+    // 思路:
+    // 1:把字符串拆分为数组，这样两个赠品就拆分开了用那个方法?split()
+    // 2:利用map遍历数组，同时把数组元素生成到span里面，并且返回
+    // 3:因为返回的是数组，所以需要转换为字符串，用那个方法?join(")
+    //     注意要判断是否有gift属性,没有的话不需要渲染!!!!!
+    //     利用变成的字符串然后写到p.name里面
+
+    //5.小计模块
+    //          注意 精度问题
+    // 6:利用reduce计算总价
+    //         根据数据里面的数量和单价累加和即可
+    //         注意reduce方法有2个参数，第一个是回调函数，第二个是初始值，这里写0
+
+
+
+
+
+
+    //1.根据数据渲染页面 
+    //没有多次渲染 所以不用封装函数
+    let list = document.querySelector('.list')
+    let re = goodsList.map(item => {//每个item都是一个对象 几个对象几条数据循环几次
+      // 2:里面更换各种数据，注意使用对象解构赋值  要是不解构就 itme.name 写法复杂
+      const { price, picture, count, name, spec, gift } = item
+
+      //3. 规格文字模块-spec中的数据 
+      const text = Object.values(spec).join('/')////['小号','紫色']-->小号/紫色
+      //4. 赠品模块
+      //字符串split后变成了数组，数组进行map遍历 数组中每个东西都加span标签
+      //[<span class="tag">50g茶叶</span>，<span class="tag">清洗球</span>]
+      // const str = gift.split(',').map(item => ` <span class="tag">【赠品】 ${item} </span>`).join('')
+      //写完会报错 因为不是所有数据里都有gift。所以需要判断
+      //你有gift属性吗？有就上面一大堆：没有就''
+      const str = gift ? gift.split(',').map(item => ` <span class="tag">【赠品】 ${item} </span>`).join('') : ''
+
+      //5.小计模块    注意小数精度问题 采取变成整数 因为是.00 所以乘100
+      //let subTotal = price * count
+      let subTotal = (price * 100) * count / 100
+
+      // 6.总计 用数组.reduce
+      //就是累加上 每一个条的  单价*个数 和小计无关 这里不用
+      //prev相当于累计值，相当于sum，item相当于遍历的每一个对象,最后的起始值0千万别忘了
+      const total = goodsList.reduce(function (prev, item) {
+        // return prev + item
+        // return prev + (item.price*item.count)
+        return prev + ((item.price * 100 * item.count) / 100)
+      }, 0)
+      let amount = document.querySelector('.amount')
+      amount.innerHTML = total.toFixed(2)
+
+
+
+
+      return `
+      <div class="item">
+          <img src=${picture} alt="">
+          <p class="name">${name} ${str}</p>
+          <p class="spec">${text}</p>
+          <p class="price">${price.toFixed(2)}</p>
+          <p class="count">x${count}</p>
+          <p class="sub-total">${subTotal.toFixed(2)}</p>
+      </div>
+              `
+      //没join之前是[ <div class="item">... </div> ， <div class="item">... </div> ， <div class="item">... </div> ， <div class="item">... </div> ]
+    }).join('')
+    list.innerHTML = re
+  </script>
+</body>
+
+</html>

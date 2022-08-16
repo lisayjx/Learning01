@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // k得到属性值  obj[k]得到属性值
+
+
+        let person = {
+            name: '小明',
+            age: 18,
+            sex: '男'
+        }
+        console.log(obj.name);//得到属性值 小明
+        console.log(obj['name']);//得到属性值 小明
+
+        //遍历对象
+        for (let k in obj) {
+            //得到的都是属性名，因为k是变量，对象体中并没有k这个名字的属性名
+            //k变量中放的是 k==='name' k==='age' k==='sex'
+            console.log(k);//得到 'name' 'age' 'sex'
+
+            // console.log(obj.k);不可行，undefined，因为对象中并没有k这个属性名
+
+            //我们想的到的是这个 这些都能出现属性值
+            // console.log(obj['name']);
+            // console.log(obj['age']);
+            // console.log(obj['sex']);
+            //那么就是这样写
+            console.log(obj[k]);//这样写等于上面写的那三行，得到属性值
+        }
+    </script>
+
+</body>
+
+</html>

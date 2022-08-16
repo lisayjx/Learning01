@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         闭包应用:实现数据的私有
+        // 比如，我们要做个统计函数调用次数，函数调用一次，就++
+
+
+        let count = 0//全局变量 很容易被人篡改
+        function fn() {
+            count++
+            console.log(`函数被调用了${count}次`);
+        }
+        fn()//函数被调用了1次
+        fn()//函数被调用了2次
+        fn()//函数被调用了3次
+        fn()//函数被调用了4次
+
+        //因为count是全局变量 容易被篡改 所以改成闭包形式
+
+        //改成闭包的形式
+        function fn1() {
+            let count = 1
+
+            return function fn11() {
+                count++
+                console.log(`函数被调用了${count}次`);
+            }
+        }
+        let re = fn1()
+        re()//函数被调用了2次
+        re()//函数被调用了3次
+        re()//函数被调用了4次
+        re()//函数被调用了5次
+
+        //这样实现了数据私有 无法直接修改count 因为count变成了局部变量
+
+        //闭包有啥漏洞么？内存泄漏
+  //这个函数不会被回收 因为 外面一直有re()-->fn1()-->fn11-->count++
+  //因为有return  所以里面的函数一直会被外面使用 又因为 let re = fn1()是全局的 不能被销毁
+  //re会一直去使用fn11函数 count不能被销毁，标记清除法 能找到的就不能回收
+   //按道理这个应该被回收但是没被回收 内存泄漏
+    </script>
+</body>
+
+</html>

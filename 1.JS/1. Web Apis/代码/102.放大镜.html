@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .left {
+
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border: 1px solid #000;
+            left: 50px;
+            top: 50px;
+        }
+
+        .left img {
+            width: 100%;
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 200px;
+            height: 200px;
+
+            display: none;
+        }
+
+        .right {
+            position: absolute;
+            left: 410px;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            overflow: hidden;
+
+            display: none;
+        }
+
+        /* 因为右侧图片要跟着左侧移动 写成定位 然后之后操作 top left */
+        .right img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <img src="../images/iphone.jpg" alt="">
+        <span class="mask"></span>
+    </div>
+
+    <div class="right">
+        <img src='../images/big.png' alt="">
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        let mask = document.querySelector('.mask')
+        let left = document.querySelector('.left')
+        let right = document.querySelector('.right')
+        let rightImg = document.querySelector('.right img')
+
+        left.addEventListener('mouseover', function () {
+            mask.style.display = 'block'
+            right.style.display = 'block'
+        })
+        left.addEventListener('mouseout', function () {
+            mask.style.display = 'none'
+            right.style.display = 'none'
+        })
+
+        // 1.鼠标移动时候，mask跟着鼠标
+        left.addEventListener('mousemove', function (e) {
+            // 鼠标在页面的距离-left盒子距离页面的距离-鼠标在mask中间时候到mask边框得距离=mask盒子距离left盒子得距离
+            // mask.offsetWidth mask自身宽度     
+            // !!!!!! offsetLeft别写成 offsetX
+            // offsetX和offsetY表示（鼠标位置）相对于最近父级元素的坐标（无论父级是否定位）（不管是谁触发）
+            // offsetLeft 元素相对于最近定位父级元素的坐标，若在所有的父级上都没有定位，则相对于整个文档
+
+            let maskX = e.clientX - left.offsetLeft - mask.offsetWidth / 2
+            let maskY = e.clientY - left.offsetTop - mask.offsetHeight / 2
+
+
+            //2.
+            //限制mask移动不能超过left盒子范围
+            //mask盒子距离left盒子的距离要 >=0  
+            if (maskX < 0) {//若是距离小于0 就让他等于0 
+                maskX = 0
+            }
+            if (maskY < 0) {
+                maskY = 0
+            }
+            // 此时 左侧和上边已经拦住了，，，下面用left盒子得高度算  left.offsetHeight =左盒子高度
+            //左盒子高度-mask高度 就是 mask距离left距离       mask.offsetHeight mask自身高度  
+            if (maskY > left.offsetHeight - mask.offsetHeight) {
+                maskY = left.offsetHeight - mask.offsetHeight
+            }
+            if (maskX > left.offsetWidth - mask.offsetWidth) {
+                maskX = left.offsetWidth - mask.offsetWidth
+            }
+
+
+            //因为 offset只读 不能赋值  style能赋值  所以把右侧赋值给左边得!!!!别忘了加单位
+            mask.style.left = maskX + 'px'
+            mask.style.top = maskY + 'px'
+
+
+
+
+            //左侧mask移动 右侧大图也移动
+            //左右成比例
+            //mask右移时候，右侧大图像左移动
+            //移动成比例，
+            /*
+            mask 的 left值          大图的 left值（未知）别忘了单位
+            -------------      =   ------------------
+            左盒子宽-mask宽        右大图宽-右盒子宽
+            */
+
+            // 大图的 left值=（mask 的 left值）*（ 右大图宽-右盒子宽）/（左盒子宽-mask宽 ）
+            //最后的值取反
+            // style里的属性 带单位  offset那种不带单位
+            //..offsetWidth是获取自身宽度
+
+            let rightImgLeft = maskX * (rightImg.offsetWidth - right.offsetWidth) / (left.offsetWidth - mask.offsetWidth)
+            let rightImgTop = maskY * (rightImg.offsetHeight - right.offsetHeight) / (left.offsetHeight - mask.offsetHeight)
+
+
+
+            rightImg.style.left = -rightImgLeft + 'px'
+            rightImg.style.top = -rightImgTop + 'px'
+        })
+    </script>
+</body>
+
+</html>

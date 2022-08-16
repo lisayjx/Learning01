@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //目标：能说出continue和break区别
+        //  continue结束本次循环，继续下次循环
+       // break是 跳出所在循环
+
+        //我们要打印吃6个包子 但是在吃第三个包子时候吃出了虫子 就把它扔了
+        //起始条件
+        let i = 1
+        while (i <= 6) {//终止条件
+            if (i === 3) {
+                i++//如果不加1的话  它跑不出去if语句 因为一直都是3（if的条件就是i=3），所以加1，变成4之后 跳到while语句接着进行循环
+                continue
+            }
+            document.write(`<p>我要吃第${i}个包子</p>`)
+            i++//变化过程
+        }
+
+
+        //我们要打印吃6个包子 但是在吃第三个包子瘦吃饱了 剩下的不吃了
+        let j=1
+        while(j<=6){
+            if(j===3){
+                break
+            }
+            document.write(`<p><b>我要吃第${j}个包子<b></p>`)
+            j++
+        }
+    </script>
+
+</body>
+
+</html>

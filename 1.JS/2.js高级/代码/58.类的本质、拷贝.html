@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        ES6之前 用构造函数创造对象
+        function Person() { }
+        let o = new Person()
+
+        ES6 的写法
+        class Person()
+        let obj = new Person()
+
+        
+        // 类的本质还是 构造函数
+        // 每个对象（函数 构造函数）都有一个___proto __
+        // Person是个类-- > 本质是-- > 构造函数
+
+        class Person()
+        let obj = new Person()
+        console.log(typeof Person); //function  类的本质是函数
+        console.log(Person.prototype);
+        console.log(obj.__proto__ === Person.prototype);
+
+
+        //语法糖
+        //语法写出来更简单
+        let j = 1
+        j = j + 1
+        j++
+    */
+        //---------------------拷贝---------------------------------------- 
+        /*
+                //有个对象
+                let obj = {
+                    uname: '张三丰',
+                    age: 22,
+                    sex: '男'
+                }
+                //新建个对象 想让他和上面的都一样
+                let newObj = {}
+                newObj = obj //这个不叫拷贝 叫赋值（地址在栈里，东西在堆中）  比如上面改个东西 下面也跟着改了
+                //拷贝不是直接赋值！！！！！！
+                //拷贝是虽然两个对象一样 但是是两个独立的对象 改变谁的其中一个都不影响另外那个
+        
+                //----------------------浅拷贝--------------------------------
+                //复杂类型：传地址 东西放在堆里
+                //简单类型：传值 在栈中 
+        
+                //方法1   一个一个取
+                let obj1 = {
+                    uname: '张三丰',//简单数据
+                    age: 22,//简单数据
+                    sex: '男'//简单数据
+                }
+                let newObj1 = {}
+                //因为上面的一个个都是简单类型 可以把简单类型一个个取过来 （简单类型是值 不是存的地址）
+                newObj1.uname = obj1.uname
+                newObj1.age = obj1.age
+                newObj1.sex = obj1.sex
+        
+                obj1.uname = 'lisa'//此时只是obj1中的变了  newObj1中没变  独立不影响
+                console.log(obj1);//{ uname: "lisa", age: 22, sex: "男" }
+                console.log(newObj1);//{ uname: "张三丰", age: 22, sex: "男" }
+        
+                //方法2   遍历
+                for (let k in obj1) {
+                    newObj1.key = obj1[k]///每个值
+                    // 因为newObj有key,obj1没有k ，k代表的是每个属性名 动态的
+                }
+        
+               
+        // -------------------//浅拷贝：只拷贝外面层的简单类型的----------------------
+        //拷贝不干净的情况
+        //若是里面有复杂类型传过去呢？
+        let obj1 = {
+            uname: '张三丰',//简单数据
+            age: 22,//简单数据
+            sex: '男',//简单数据
+
+            color: ['pink', 'red'],//复杂类型
+            message: {//复杂类型
+                score: 100,
+                index: 6
+            }
+        }
+        let newObj1 = {}
+        for (let k in obj1) {
+            newObj1.key = obj1[k]
+        }
+        obj1.message.index = 666//会影响newObj1的吗？？？？会 
+        console.log(newObj1);
+        console.log(obj1);
+
+        //终极方法！！！！！！！！！1
+        //浅拷贝的方法   （拷贝给谁，谁被拷贝）
+        Object.assign(newObj1, obj1)
+
+
+
+
+        // --------------深拷贝：所有都拷贝，不管里层外层几层和什么类型------------------------------
+  
+        let obj1 = {
+            uname: '张三丰',//简单数据
+            age: 22,//简单数据
+            sex: '男',//简单数据
+
+            color: ['pink', 'red'],//复杂类型
+            message: {//复杂类型
+                score: 100,
+                index: 6
+            }
+        }
+        let newObj1 = {}
+        //遍历，如果obj1[k]是复杂类型，再遍历操作！！！！！！！
+        for (let k in obj1) {
+            newObj1.key = obj1[k]
+        }
+  */
+        //如果明天我要 x深拷贝给 y 后天要把s拷贝给p呢？？不能一遍一遍写，所以封装一个函数
+
+        let a = {
+            uname: '张三丰',//简单数据
+            age: 22,//简单数据
+            sex: '男',//简单数据
+
+            color: ['pink', 'red'],//复杂类型
+            message: {//复杂类型
+                score: 100,
+                index: 6
+            }
+        }
+        let b = {}
+
+        function kaobei(newObj, obj) {//obj代表被拷贝的，newObj代表接收拷贝的，空，有内容  
+            for (let k in obj) {//遍历有内容的对象
+                //    if(obj[k]是数组){
+                //     再遍历数组
+                //    }else if(obj[k]是对象){
+                //     再遍历对象
+                //    }else{
+                //     newObj.key = obj[k]
+                //    }
+
+                if (obj[k] instanceof Array) {//判断它的构造函数是不是Array就知道是不是数组
+                    //保证newObj.key是数组  直接定义个数组   
+                    newObj.key = []
+                    ///遍历 把数组里每个值拿出来
+                    //    newObj.key.array.forEach(element => {
+                    //     //万一数组里面再放了函数 难道还要用for in  万一数组里还有数组 难道还要forEach？
+                    //    });
+                    //解决方法  递归函数！！！！！！直接调用 kaobei()
+                    kaobei()
+                } else if (obj[k] instanceof Object) {
+                    kaobei(newObj.key, obj[k])
+                } else {
+                    newObj.key = obj[k]
+                }
+            }
+
+        }
+        kaobei(b, a)//前面写空对象，后面写有内容对象
+
+
+
+        // ----------老师写的深拷贝---------------------------------
+
+        let obj = {
+            uname: '张三丰',
+            age: 22,
+            sex: '男',
+            color: ['red', 'blue', 'yellow', 'pink'],
+            message: {
+                score: 99,
+                index: 6,
+            }
+        }
+
+        let newObj = {}
+
+
+        // 遍历
+        // 如果遇到obj[key]是复杂类型，再遍历操作
+        function kaobei(newObj, obj) {
+            for (let key in obj) {
+                if (obj[key] instanceof Array) {// obj[key] 是数组
+                    // 保证newObj[key]是数组
+                    newObj[key] = [];
+
+                    kaobei(newObj[key], obj[key]);
+                } else if (obj[key] instanceof Object) {// obj[key] 是对象
+                    // 保证newObj[key]是对象
+                    newObj[key] = {};
+
+                    kaobei(newObj[key], obj[key])
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+        }
+
+        kaobei(newObj, obj);
+
+        obj.message.index = 666;//不影响 newObj
+
+        console.log(obj, newObj);
+
+
+    </script>
+</body>
+
+</html>

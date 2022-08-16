@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //  call,apply,bind 他们三个都是函数的代码 也就意味着只有函数能调用这三个
+
+        //一、call
+        //1. 
+        function fn(x, y) {
+            console.log(this, x, y);//最开始指向window
+        }
+
+        //此时不想让this指向window，想让它指向对象obj
+        let obj = { uname: 'lisa' }
+
+        // fn().call(obj)//改变函数fn()的this指向  错误 函数不能加()
+        // 函数() 会返回undefined/window  相当于 undefined调用call(obj)
+
+        // fn.call(你想让函数指向谁，若干个参数都是给函数准备的)
+        fn.call(obj, 18, '你好')
+        //函数调用call、call会调用函数执行  所以不用函数调用（call调用的函数） 在执行过程中 改变this指向
+
+        //改变完this指向后再调用函数 此时this指向谁？
+        fn()  //window
+        //call只会改变当时的指向  改完了 再调用还是原来的指向
+
+        //2.
+        //注意：
+        // 属性：对象.属性
+        // 方法：对象.方法()
+
+
+        let obj1 = {
+            name: '小明',
+            age: 18,
+            fei: function () { this }
+        }
+        let obj2 = {
+            name: '大明',
+            age: 19
+        }
+        obj1.fei()//this指向obj1，如果想让 this指向obj2怎么办？
+        obj1.fei.call(obj2)
+    </script>
+</body>
+
+</html>

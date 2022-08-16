@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>面向对象封装消息提示</title>
+    <style>
+        .modal {
+            width: 300px;
+            min-height: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            background-color: #fff;
+        }
+
+        .modal .header {
+            line-height: 40px;
+            padding: 0 10px;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .modal .header i {
+            font-style: normal;
+            color: #999;
+            position: absolute;
+            right: 15px;
+            top: -2px;
+            cursor: pointer;
+        }
+
+        .modal .body {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .modal .footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+        }
+
+        .modal .footer a {
+            padding: 3px 8px;
+            background: #ccc;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 2px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .modal .footer a.submit {
+            background-color: #369;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="delete">删除</button>
+    <button id="login">登录</button>
+
+    <!-- <div class="modal">
+    <div class="header">温馨提示 <i>x</i></div>
+    <div class="body">您没有删除权限操作</div>
+  </div> -->
+
+
+    <script>
+        // 目的:练习面向对象写插件（模态框)
+
+        //不能像之前用面向过程的思想了 点击删除弹出框 点击登录弹出框啥的
+
+
+        //现在用面向对象思想
+        //点击他俩都会弹出框 给他俩封装成共用的 不怪谁点击都会出现模态框
+        //功能：显示、隐藏 （也不算是  是DOM中的追加和删除）
+
+
+
+        // 分析需求:
+        // 1．定义模态框Modal构造函数，用来创建对象
+        // 2．模态框具备打开功能open方法（按钮点击可以打开模态框)
+        // 3．模态框具备关闭功能close方法
+
+        //删除和登录按钮都有打开和关闭 他俩要公用方法，把方法写到原型中
+        // 问:
+        // open和close方法写到哪里?
+        // 构造函数的原型对象上，共享方法
+        // 所以可以分为三个模块，构造函数，open方法，close方法
+
+        //打开的关闭 方法一律放在原型身上  因为共用
+        // 这两个模态框都有标题和内容和结构（文字不同） 都可以往构造函数中写   
+        // -----------------------------------------------------------------
+        // 1.模态框的构造函数 
+        //    - 需要的公共属性：标题title、提示信息内容message、可以设置默认参数
+        //    - 在页面中创建模态框
+        //    (1)创建div标签可以命名为: modalBox
+        //    (2) div标签的类名为modal
+        //    (3）标签内部添加基本结构，并填入相关数据
+
+        //2.打开方法  挂载到模态框的构造函数原型身上
+        // 步骤:
+        //     open方法
+        //     -写到构造函数的原型对象身上
+        //     -把刚才创建的modalBox添加到页面body 标签中
+        //     - open打开的本质就是把创建标签添加到页面中
+        //     -点击按钮，实例化对象，传入对应的参数，并执行open方法
+
+        //3.关闭方法  挂载到模态框的构造函数原型身上
+
+        // -------------------------------------------------------------------------------------
+
+
+
+        // this指向的就是下面谁new它  this和new是一对   this.title我的标题 不是别人的标题
+        //谁new出来的模态框就是谁用
+        // 1.模态框的构造函数
+        function Modal(title = '', message = '') {//这么写防止报错，没传过来文字就是空
+            //公共的属性部分
+            this.title = title
+            this.message = message
+            //因为盒子是公共的  1.创建  2.填充内容 
+            //盒子在下面打开时候才渲染
+            // 1.创建    加this  谁new我盒子我就给谁用
+            this.ModalBox = document.createElement('div') //this别忘记写 不写this就变成了全局的  因为这是构造函数中，盒子是归属于你new出来的实例对象的  而且每个new出来都不同
+            //2.给盒子添加类名 modal
+            this.ModalBox.classList.add('modal')
+            //3.填充内容  更换数据
+            this.ModalBox.innerHTML = `
+             <div class="header">${this.title} <i>x</i></div>
+             <div class="body">${this.message}</div>
+            `
+            // console.log(this.ModalBox);
+        }
+
+        //2.打开方法  挂载到模态框的构造函数原型身上
+        Modal.prototype.open = function () {
+            if (!document.querySelector('.modal')) {//如果页面中没有模态框才创建模态框
+                //把刚才创建的盒子modalBox渲染到页面   父元素.appendChild(子元素)
+                document.body.appendChild(this.ModalBox)//this别忘了 我创建的所有内容只针对s，相当于s.ModalBox
+
+                //关闭 写到这里 因为拿到了盒子也拿到了x号
+                //获取x 调用关闭方法
+                this.ModalBox.querySelector('i').addEventListener('click', function () {
+                    this.close()//=== 这里的this指向i
+                })
+                this.ModalBox.querySelector('i').addEventListener('click', () => {
+                    this.close()//=== 这里的this指向this.ModalBox的this也就是s
+                    //因为箭头函数没有this
+                    //不能直接写s.close()  因为此时她不能使用另外一个函数里面的变量
+                })
+            }
+
+        }
+
+
+        //3.关闭方法  挂载到模态框的构造函数原型身上
+        Modal.prototype.close = function () {
+            document.body.removeChild(this.ModalBox)
+        }
+
+
+
+        //4.删除按钮点击
+        document.querySelector('#delete').addEventListener('click', () => {
+            //一点击就调用Modal模态框
+            const s = new Modal('温馨提示', '您没有删除权限！')//实例化
+            //下一步就是打开了，  此时这步只是创建了个盒子里面有内容 但是还打开
+            //跳到2去写打开方法 
+            //调用打开方法
+            s.open()
+        })
+        //5.登录按钮点击
+        document.querySelector('#login').addEventListener('click', function () {
+            const d = new Modal('提示', '您还没注册账号！！')
+            d.open()
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------
+        //模态框MOdal是公共的属性 像是Star
+        // 每个new实例对象open close像是ldh和zxy
+        //ldh和zxy虽然都用到Modal中的公共属性部分
+        //但是他们自己的new 的对象的内容都不同
+        //this指向new  指向每个人的new都不同
+    </script>
+</body>
+
+</html>

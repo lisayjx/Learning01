@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 产品需求:写一个求和函数
+        // 不管用户传入几个实参，都要把和求出来
+        // getsum(2，3)
+        // getsum(1，2，3)
+        // getsum( 1，2，3，4，5，6)
+        //遇见这种情况怎么办??形参怎么改??
+        // getSum(???) 
+        //剩余参数也能做!!!!!!!!!!!!!!!!!
+
+
+        //         目标:能够使用剩余参数
+        // 剩余参数允许我们将一个不定数量的参数表示为一个数组
+
+        //arguments长又不好写 我们又有了另外一种方法 剩余参数
+        //...后面的名字随便写
+        // function getSum(...arr) {
+        //     console.log(arr);
+        // }
+        // getSum(2, 3)//[ 2, 3 ]
+        // getSum(1, 2, 3)//[ 2, 3 ]
+
+        //求和
+
+        function getSum(...arr) {
+            let sum = 0
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i]
+            }
+            console.log(sum);
+        }
+        getSum(2, 3)
+        getSum(1, 2, 3)
+
+
+        //比如说 用户的形参说至少有两个 
+        //前面的参数是一一对应的 剩下的都给...xxx
+        function getSum(a, b, ...arr) {//这里要写...
+            console.log(arr);//这里不用写...
+        }
+        getSum(1, 2, 3, 4, 5, 6)
+        // a=1 b=2 剩下的由arr接收
+
+        // 剩余参数和动态参数的区别:         动态参数是真数组
+        // 1....是语法符号，置于最末函数形参之前，用于获取多余的实参
+        // 2.借助...获取的剩余实参，是个[真数组] 可以用数组的全部方法 pop啥的
+        // 开发中提倡多使用 剩余参数
+
+
+//  1．剩余参数主要的使用场景是 ?
+//             用于获取多余的实参
+// 2．剩余参数和动态参数区别是什么 ? 开发中提倡使用哪一个 ?
+//             动态参数是伪数组
+//             剩余参数是真数组
+//         开发中使用剩余参数想必也是极好的
+
+    </script>
+</body>
+
+</html>

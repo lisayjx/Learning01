@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>/*
+●普通字符:
+大多数的字符仅能够描述它们本身，这些字符称作普通字符，例如所有的字母和数字。
+也就是说普通字符只能够匹配字符串中与它们相同的字符。
+
+●元字符(特殊字符)
+是一些具有特殊含义的字符，可以极大提高了灵活性和强大的匹配功能。
+>比如，规定用户只能输入英文26个英文字母，普通字符的话abcdefghijklm....
+但是换成元字符写法:[a-z]
+
+参考文档:
+MDN: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions>
+正则测试工具: http://tool.oschina.net/regex
+*/
+
+
+        // 为了方便记忆和学习，我们对众多的元字符进行了分类:
+        // 1.边界符（表示位置，开头和结尾，必须用什么开头，用什么结尾)
+        // 2.量词（表示重复次数)
+        // 3.字符类（比如\d 表示0~9)
+
+        /*
+                1.边界符
+                    ^ 表示匹配行首的文本(以谁开始)
+                    $ 表示匹配行尾的文本(以谁结束)
+             如果^和$在一起，表示必须是精确匹配
+  */
+        console.log(/哈/.test('哈哈哈哈'));//true
+        console.log(/^哈/.test('二哈哈哈'));//false  因为要求是以哈开头
+
+        console.log(/^哈$/.test('哈哈'))//false
+        console.log(/^哈$/.test('哈'))//true    以哈开头以哈结尾
+
+        console.log(/^二哈$/.test('二哈二哈'))//false
+        console.log(/^二哈$/.test('二哈'))//true
+
+
+        console.log('----------------------------------------------');
+        /*
+         2.量词（表示重复次数)
+        量词                说明
+        *                重复0次或更多次
+        +                重复1次或更多次
+        ?                重复0次或1次
+        {n}              重复n次
+        {n,}             重复n次或更多次
+        {n,m}            重复n到m次
+注意:逗号左右两侧千万不要出现空格
+      
+        */
+        //这几个不严谨
+        //量词  *   n>=0
+        console.log(/a*/.test(''));//true
+        console.log(/a*/.test('aaaa'));//true
+        console.log(/a*/.test('bc'));//true  因为有没有a无所谓
+        console.log('----------------------------------------------');
+        //量词  +   n>=1
+        console.log(/a+/.test(''));//false
+        console.log(/a+/.test('a'));//true
+        console.log(/a+/.test('aaaaa'));//true
+        console.log(/a+/.test('bc'));//false
+        console.log(/a+/.test('abc'));//true
+        console.log('----------------------------------------------');
+        //量词  ?   n=0/n=1
+        console.log(/a?/.test(''));//true
+        console.log(/^a?$/.test(''));//true
+        console.log(/a?/.test('a'));//true
+        console.log(/^a?$/.test('aa'));//false
+        console.log(/a?/.test('aa'));//true     ?????
+        console.log(/^a?$/.test('aa'));//false  !!!!！  
+        console.log(/a?/.test('bc'));//true
+        console.log('----------------------------------------------');
+
+        //下面的严谨
+        // { n }  只能出现n次
+        console.log(/a{3}/.test('aa'));//false
+        console.log(/a{3}/.test('aaa'));//true
+        console.log(/a{3}/.test('aaaa'));//true   ?????
+
+        console.log(/^a{3}$/.test('aa'));//false
+        console.log(/^a{3}$/.test('aaa'));//true
+        console.log(/^a{3}$/.test('aaaa'));//false !!!!!
+        console.log('----------------------------------------------');
+        // { n ,} 只能出现n次及以上
+        console.log(/a{3,}/.test('a'));//false
+        console.log(/a{3,}/.test('aaa'));//true
+        console.log(/a{3,}/.test('aaaaaaaaa'));//true
+        console.log(/a{3,}/.test('bc'));//false
+
+        console.log(/^a{3,}$/.test('a'));//false
+        console.log(/^a{3,}$/.test('aaa'));//true
+        console.log(/^a{3,}$/.test('aaaaaaaaa'));//true
+        console.log(/^a{3,}$/.test('bc'));//false
+        console.log('----------------------------------------------');
+        // { n , m } 只能出现n~m次
+        console.log(/a{3,5}/.test('a'));//false
+        console.log(/a{3,5}/.test('aaa'));//true
+        console.log(/a{3,5}/.test('aaaa'));//true
+        console.log(/a{3,5}/.test('aaaaa'));//true
+        console.log(/a{3,5}/.test('aaaaaaaaaa'));//true ?????????????
+
+        console.log(/^a{3,5}$/.test('a'));//false
+        console.log(/^a{3,5}$/.test('aaa'));//true
+        console.log(/^a{3,5}$/.test('aaaa'));//true
+        console.log(/^a{3,5}$/.test('aaaaa'));//true
+        console.log(/^a{3,5}$/.test('aaaaaaaaaa'));//false !!!!!!!!!!
+        console.log('----------------------------------------------');
+        // 加上严谨写法 /^xxxx$/     就比较准确！！！！
+        //符号之间不要随意加空格 会出现错误！！！！！！
+
+
+
+        //3.字符类（比如\d 表示0~9)
+        // []匹配字符集合    从中选择一个!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // 后面的字符串只要包含abc中的任意一个字符 都会返回true
+        console.log(/abc/.test('andy'));//false   这个意思是看看包含不包含abc
+        console.log(/[abc]/.test('andy'));//true  这个意思是看看包含不包含abc其中任何一个
+        console.log(/[abc]/.test('baby'));//true
+        console.log(/[abc]/.test('city'));//true
+        console.log(/[abc]/.test('dddd'));//false
+        console.log(/[abc]/.test(''));//false
+
+        console.log(/[abc]/.test('abc'));//true
+        console.log(/^[abc]$/.test('abc'))//false  精确匹配
+        //只有下面三种是true  三挑一
+        console.log(/^[abc]$/.test('a'))//true
+        console.log(/^[abc]$/.test('b'))//true
+        console.log(/^[abc]$/.test('c'))//true
+        console.log('----------------------------------------------');
+        // [-] 连字符  什么到什么之间       范围    从中选1个
+        // [0-9]表示O~9的数字都可以
+
+        console.log(/^[a-z]$/.test(''))//false
+        console.log(/^[a-z]$/.test('1'))//false
+        console.log(/^[a-z]$/.test('A'))//false
+        console.log(/^[a-z]$/.test('你'))//false
+        console.log(/^[a-z]$/.test('*'))//false
+
+        console.log(/^[a-z]$/.test('car')) //false
+        console.log(/^[a-z]$/.test('c')) //true  精确匹配  从中选一个
+        console.log(/^[a-z]$/.test('a')) //true  精确匹配  从中选一个
+        console.log(/^[a-z]$/.test('r')) //true  精确匹配  从中选一个
+        console.log('----------------------------------------------');
+
+        // [a-z]表示a到z，26个英文字母都可以  选一个
+        console.log(/^[a-z]$/.test('d'))//true
+        console.log(/^[a-z]$/.test('dac'))//false
+        console.log(/[a-z]/.test('dac'))//true
+        console.log('----------------------------------------------');
+
+        // [a-zA-Z]表示大小写都可以
+        console.log(/[a-zA-Z]/.test('dAc'))//true
+        console.log(/^[a-zA-Z]$/.test('dAc'))//false
+        console.log(/^[a-zA-Z]$/.test('a'))//true
+        console.log(/^[a-zA-Z]$/.test('A'))//true
+        console.log('----------------------------------------------');
+        // [a-zA-Z0-9]表示大小写和数字其中之一都可以
+        console.log(/[a-zA-Z0-9]/.test('dAc'))//true
+        console.log(/^[a-zA-Z0-9]$/.test('dAc'))//false
+        console.log(/^[a-zA-Z0-9]$/.test('C'))//true
+        console.log(/^[a-zA-Z0-9]$/.test('c'))//true
+        console.log(/^[a-zA-Z0-9]$/.test('2'))//true
+        console.log('----------------------------------------------');
+        // - 不是连字符 意思里面可以出现-,还有_下划线
+        console.log(/^[a-zA-Z0-9-]$/.test('2-0'))//false
+        console.log(/^[a-zA-Z0-9-]$/.test('2'))//true
+        console.log(/^[a-zA-Z0-9-]$/.test('-'))//true
+        console.log(/^[a-zA-Z0-9-_]$/.test('_'))//true
+        console.log(/[a-zA-Z0-9-]/.test('2-0'))//true
+        console.log(/[a-zA-Z0-9-]/.test('Lily-2-0_'))//true
+
+        //腾讯qq号从10000开始最小是5位
+        //       /^ [1 - 9][0 - 9]{ 4,} $ /    第一位1-9随便一个，后面的4-n位取0-9任何数都可以,总长度至少为5
+        //量词{ 4,}只针对最近的[0 - 9]
+        console.log(/^abcd+$/);  //只根据最近的，是d可以有1-n次
+
+
+
+
+
+
+        /*
+        
+              3.字符类:
+              （1）
+              []里面加上 ^ 取反符号
+              比如:
+              [^a-z]匹配除了小写字母以外的字符
+              注意要写到中括号里面
+              之前那个/^ $/  这个^是以谁谁开头  是在/ /外头的边界符  别和这个混了
+      
+              （2） .  匹配除换行符之外的任何单个字符
+              （3）预定义:指的是某些常见模式的简写方式。
+      
+      \d     | 匹配 0~9 之间的任意数字                       
+      \D     | 匹配除了数字以外的任意字符                    
+      \w     | 匹配数字、字母或下划线                        
+      \W     | 匹配除了数字、字母或下划线之外的任意字符      
+      \s     | 匹配空白字符（空格，回车符，换行符，制表符等）
+      \S     | 匹配非空白字符                                
+      \t     | 匹配制表符                                    
+      \n     | 匹配换行符                                    
+      \r     | 匹配回车符                                    
+      
+      */
+        //  日期格式： /^\d{4}-\d{1,2}-\d{1,2}/
+        /*
+            1.4修饰符 修饰符约束正则执行的某些细节行为，如 是否区分大小写，是否支持多行匹配等
+            /表达式/修饰符
+        
+        | 属性名称   | 含义                            |
+        | ---------- | ------------------------------- |
+        | lastIndex  | 下一次匹配开始的位置，默认值为0 |
+        | ignoreCase | i忽略大小写（布尔值）           |  
+        | global     | g全局（布尔值） 匹配所有满足正则的结果               |
+        | multiline  | m多行匹配 （布尔值）             |
+        | source     | 正则表达式内容                  |*/
+        console.log(/a/i.test('a'));//true
+        console.log(/a/i.test('A'));//true
+
+        // 替换 replace
+        // 字符串.replace(/正则表达式/,'替换的文本')
+        let str='你好啊前端'
+        str.replace(/前端/,'春天')  
+        // 在你好啊前端中找到正则 前端俩字，替换成春天
+        console.log(str);//你好啊前端
+        console.log( str.replace(/前端/,'春天') );//你好啊春天
+    </script>
+</body>
+
+</html>

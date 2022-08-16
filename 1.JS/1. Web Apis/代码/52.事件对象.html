@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <script>
+
+        // 目标:能说出什么是事件对象
+
+        // 事件对象是什么?
+        //     也是个【对象】，这个对象里有事件触发时的相关信息
+        //     例如:鼠标点击事件中，事件对象就存了鼠标点在哪个位置等信息
+        //可以帮我们判断鼠标在页面中得坐标 判断用户按了哪个键
+        // 如何获取?
+        //     在事件绑定的回调函数的第一个参数就是事件对象一般命名为event、ev、e
+        //判断用户按了哪个键用哪个属性呢
+
+
+        //以前我们得回调函数中一直是空着的，这回可以写了
+        //  e 就是事件对象 也像形参 但是不是接收参数的 而是在我们得绑定事件里内置好了一个对象
+        //有可能他里面就存了 鼠标的点击信息 位置啥的
+        //他像形参 但是不能接收数据，但是形参是变量，可以随意命名，一般写成 event  ev  e
+
+        // 元素.addEventListener('click', function (e)){
+
+        // }
+
+        let btn = document.querySelector('button')
+        btn.addEventListener('click', function (event) {
+            console.log(event);
+            // 点击了之后会出现 event是什么东西
+           // click { target: button, buttons: 0, clientX: 22, clientY: 20, layerX: 22, layerY: 20 }
+        })
+
+        let area = document.querySelector('textarea')
+        area.addEventListener('input',function(event){
+            console.log(event);
+            //input { target: textarea, isTrusted: true, isComposing: false, inputType: "insertCompositionText", data: "哈哈", view: Window, detail: 0, layerX: 0, layerY: 0, which: 0, … }
+        })
+
+        area.addEventListener('focus', function (event) {
+            console.log(event);
+            //focus { target: textarea, isTrusted: true, view: Window, detail: 0, layerX: 0, layerY: 0, which: 0, rangeParent: Restricted, rangeOffset: 0, SCROLL_PAGE_UP: -32768, … }
+        })
+
+
+
+
+        // 就是这个event是随着你前面的 注册事件变化而变化的，
+        // 比如前面是click，那么event就是点击得各种属性
+        // 比如前面是focus，那么event就是获取焦点得各种属性
+
+
+//  1．事件对象是什么?
+// 也是个对象，这个对象里有事件触发时的相关信息
+//  2．事件对象在哪里?
+//  在事件绑定的回调函数的第一个参数就是事件对象
+
+    </script>
+</body>
+
+</html>

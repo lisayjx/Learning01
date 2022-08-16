@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/72.png" alt="">
+    <script>
+        //去66看对比
+
+        //  获取宽高:
+        // 获取元素的可见部分宽高（不包含边框，滚动条等)
+        //        clientwidth和clientHeight
+        // 获取位置:
+        //         获取左边框和上边框宽度
+        //         clientLeft和clientTop注意是只读属性
+
+        //会在窗口尺寸改变的时候触发事件！！！！！！1
+        // resize
+        window.addEventListener('resize', function () {
+            //执行的代码
+           let w=  document.documentElement.clientWidth  // html的宽 =拿到屏幕的宽度
+
+            //媒体查询
+            if (w < 1920) {
+                document.body.style.backgroundColor = 'pink'
+            }else if(w<540){
+                document.body.style.backgroundColor = 'orange'
+            }else{
+                document.body.style.backgroundColor = 'hotpink'
+            }
+        })
+//检测屏幕宽度
+
+    </script>
+</body>
+
+</html>

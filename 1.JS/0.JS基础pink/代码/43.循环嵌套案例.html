@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: inline-block;
+           height: 25px;
+           width: 60px;
+           line-height: 25px;
+           margin: 5px;
+           background-color: pink;
+           padding: 0 10px;
+           border: 1px solid hotpink;
+            color: deeppink;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px #f6f6f6;
+            text-align: center;
+            cursor: pointer;
+        }
+        div:hover{
+            background-color: #fff;
+            color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+      //.打印五行五列星星
+    for (let i = 1; i <= 5; i++) {//控制外面得行数
+            for (let j = 1; j <= 5; j++) {//控制里面列数
+                document.write(`⭐`)
+            }
+            // 每次5个星星打完了再换行
+            document.write(`<br>`)
+        }
+
+        //.用户输入行数和列数,打印对应的星星
+        let row = prompt('请输入行数')
+        let col = prompt('请输入列数')
+        for (let i=1;i<=row;i++){
+           
+            for(let j=1;j<=col;j++){
+                document.write(`⭐`)
+            }
+            document.write(`<br>`)
+        }
+
+       //打印正三角星星
+       //内层循环得个数跟第几行是一一对应得
+       for(let i=1;i<=5;i++){
+    
+        for(j=1;j<=i;j++){
+            document.write(`⭐`)
+        }
+        document.write(`<br>`)
+       }
+
+       
+       //打印倒三角星星
+       for(let i=1;i<=5;i++){
+       
+        for(j=5;j>=i;j--){
+            document.write(`⭐`)
+        }
+
+        document.write(`<br>`)
+       }
+    
+       //九九乘法表
+       //跟正三角差不多 把⭐换成1*2=2的格式
+
+       for(let i=1;i<=9;i++){
+        for(let j=1;j<=i;j++){
+            document.write(`
+            <div> ${j}*${i}=${i*j}</div>
+                `)
+        }
+        document.write(`<br>`)
+       }
+       //每一行里 i是不变的 第一行i是1  第二行i是2 以此类推
+       //但是每一行里得j是1 2 3 4 5 一次循环一遍
+       //所以 j*i
+    </script>
+</body>
+
+</html>

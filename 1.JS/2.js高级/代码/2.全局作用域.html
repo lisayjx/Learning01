@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+          <script>标签和.js文件的【最外层】就是所谓的全局作用域，
+            在此声明的变量在函数内部也可以被访问。全局作用域中声明的变量，
+            任何其它作用域都可以被访问
+        */
+
+        //全局作用域下声明了num变量
+        const num = 10
+        function fn() {
+            //函数内部可以使用全局作用域的变量
+            console.log(num);
+        }
+
+//         注意:
+// 1.为window对象动态添加的属性默认也是全局的，不推荐!
+ 
+// 2.函数中未使用任何关键字声明的变量为全局变量，不推荐!!!
+
+// 3.尽可能少的声明全局变量，防止全局变量被污染
+
+
+// 1．全局作用域有哪些?
+// <script>标签内部.js文件
+// 2．全局作用域声明的变量其他作用域能使用吗?
+// 相当能
+
+    </script>
+</body>
+
+</html>

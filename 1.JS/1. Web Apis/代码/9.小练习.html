@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(../images/desktop_1.jpg);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //页面刷新，页面随机更换背景图片
+        //分析：
+        // 1.随机函数
+        // 2.css页面背景图片 background-image
+        // 3.标签选择器body，因为body是唯一的标签，所以可以直接写document.body.style
+
+
+
+        //随机数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let random = getRandom(1, 10)
+
+        //修改元素  (页面中就一个body，所以不用获取 直接用)
+        document.body.style.backgroundImage = `url(../images/desktop_${random}.jpg)`
+        //修改的是样式！！！！！！！！！不要忘了style
+        //要把所有url都拿过来,不要有空格
+
+
+
+
+    </script>
+</body>
+
+</html>

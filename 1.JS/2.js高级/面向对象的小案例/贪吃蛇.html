@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 思想：
+
+1、设计蛇：属性有宽、高、方向、状态（有多少节），方法：显示，跑
+
+2、设计食物：属性宽、高
+
+3、显示蛇：根据状态向地图里加元素
+
+4、蛇跑起来：下一节到前一节的位置，蛇头根据方向变，删除原来的蛇，新建蛇；当出界时，死亡，初始化；当蛇头吃到自己的时候，死亡，初始化
+
+5、食物被吃掉，蛇加一节，去掉原来的食物，生成新的食物
+
+6、添加定时器，绑定按键 -->
+ 
+    <button id="btn">点击开始游戏</button>
+    <script>
+        //思路：面向对象 
+        // 1. 对象：地图、贪吃蛇、食物
+        // 2.流程： 点击按钮 整个游戏开始运行
+        //        （1）创建地图：本质创建div，给div加样式
+        //        （2）创建食物：本质创建div，给div加样式
+        //        （3）创建蛇：本质创建n个div
+        // 设计蛇的数据解构：初始化时候3个div，一个头2个身体，用数组装div
+        // snake.body = [div1, div2, div3]
+        // 思路：循环创建出这些div，
+        // 二维数组：每个小数组存储的是每个div相关信息
+        // snake.body = [
+        //     [x的坐标，y的坐标，颜色，div对象],
+        //     [x的坐标，y的坐标，颜色，div对象],
+        //     [x的坐标，y的坐标，颜色，div对象],
+        // ]
+
+        //        （4）蛇移动
+        //        （5）可以控制蛇的方向
+        //        （6）吃掉食物，赢积分
+        // 在移动时候：  食物的位置变化，蛇长度增加
+        //        （7）结束游戏运行
+
+
+        // 1.创建地图
+        function Map() {
+            //地图属性
+            this.width = 800
+            this.height = 400
+            this.position = 'relative' //因为蛇移动需要定位
+            this.bgColor = '#ccc'
+            this._map = null//定义个变量装div
+            this._idName = 'map'//给盒子个id名
+
+        }
+        //地图方法
+        Map.prototype.init = function () {
+            //创建个地图 div 给div一些样式
+            //为啥上面也写样式下面也写呢》因为下面不用改 以后改数据改上面就行 方便
+            // 本来是要写这个let oDiv，但是最终还要拿出来用 所以放到全局里
+            // 最终我们创建的div最终丢给_map这个变量
+            // 所以在这里就不用let oDiv了 直接 this._map
+
+            //设置一些样式
+            this._map = document.createElement('div')
+            this._map.style.width = this.width + 'px'
+            this._map.style.height = this.height + 'px'
+            this._map.style.position = this.position
+            this._map.style.backgroundColor = this.bgColor
+            this._map.id = this._idName
+            //把_map地图盒子丢进body中
+            document.body.appendChild(this._map)
+        }
+
+        // ------------------------------------------------------------
+
+
+
+        //2.创建食物  本质创建div 设置样式和位置？
+        function Food() {
+            //食物属性
+            this.width = 20
+            this.height = 20
+            this.position = 'absolute' //因为蛇移动需要定位
+            this.bgColor = 'orange'
+            this.oFood = null//顶一个变量装div
+            //获取地图对象
+            this.map = document.querySelector('#map')
+
+            //位置
+            this.x = 0
+            this.y = 0
+        }
+        //食物方法
+        Food.prototype.init = function () {
+            //创建food
+            //需要判断之前有没有食物盒子。如果刚开始没有这个盒子就创建
+            if (this.oFood == null) {
+                this.oFood = document.createElement('div')//创建这个盒子装进oFood中
+                this.oFood.style.width = this.width + 'px'
+                this.oFood.style.height = this.height + 'px'
+                this.oFood.style.position = this.position
+                this.oFood.style.backgroundColor = this.bgColor
+                //把食物添加到地图中
+                this.map.appendChild(this.oFood)//这个map需要获取过来
+            }
+            //如何让他的位置随机变化？位置有范围 x:(0,800-20=780)   y(0,400-20=380)   每次移动20px
+            //x轴 800-20=40个格子   y轴400/20=20个格子
+            //把地图认为划分成xy轴 变成了表格
+            //坐标
+            //    左上角：0，0 ，左下角0，19，右下角 39，19 右上角39，0
+            //x随机坐标*盒子宽度20=x轴偏移数值  也就是left值
+            //求出 x和y的随机值  在上面定义一个x和y
+            //坐标范围  x:(0,780/20)   [0，39]    |   y(0,380/20)   [0，19] 
+            //x随机数范围[0，39] ，  y随机数范围  [0，19] 
+
+            this.x = Math.floor(Math.random() * 40)//取到0~39的随机数
+            this.y = Math.floor(Math.random() * 20)//取到0~19的随机数
+
+            this.oFood.style.left = this.x * 20 + 'px'
+            this.oFood.style.top = this.y * 20 + 'px'
+
+        }
+        // -------------------------------------------------------------
+
+
+
+
+        //3.创建蛇的构造函数
+        function Snake(food) {
+            this.width = 20
+            this.height = 20
+            this.position = 'absolute'
+            this.direct = 'right'//默认方向往右移动  这个变量存储方向
+            this.num = 0//统计分数
+            this.timer = null//定时器变量
+            //初始化蛇身  里面每一节具体属性
+            this.body = [           // [x,y,颜色，div]
+                //蛇头
+                [3, 2, 'red', null],
+                //蛇身
+                [2, 2, 'blue', null],
+                [1, 2, 'blue', null]
+            ]
+            //存储食物对象
+            this.food=food
+
+            //获取一下地图。因为一会要把蛇丢进去
+            this.map = document.querySelector('#map')
+        }
+        //蛇跑起来的方法  
+        Snake.prototype.run = function () {
+            let that = this
+            //在这里直接运行
+            //1.创建蛇(直接调用下面的show方法就创建了)
+            this.show()
+            //2.蛇移动  1s移动一次
+            this.timer = setInterval(function () {
+                that.move()
+            }, 500)
+            //3.控制方向 （做键盘监听）
+            document.addEventListener('keyup', function (e) {
+                //根据键盘控制方向（更改控制this.direct）
+                that.setDirect(e.key)//设置direct的方法，根据e.keyCode的不同
+
+            })
+        }
+        //创建蛇的方法
+        Snake.prototype.show = function () {
+            //具体写创建蛇  循环上边三个数组的信息
+            for (let i = 0; i < this.body.length; i++) {
+                //判断蛇节div是否存在
+                if (this.body[i][3] == null) {//i是0 1 2 
+                    //在这里创建div，创建好的div放进this.body[i][3] 他是上边null的那个位置
+                    // this.body[i][3]是一个div对象，是document.createElement('div')这条代码把他创建出来的，然后把他丢到二维数组null的那里，然后循环出来就可以设置样式 
+                    this.body[i][3] = document.createElement('div')
+                    this.body[i][3].style.width = this.width + 'px'
+                    this.body[i][3].style.height = this.height + 'px'
+                    this.body[i][3].style.backgroundColor = this.body[i][2]//red blue blue
+                    this.body[i][3].style.position = this.position
+                    //把this.body[i][3]丢进地图
+                    this.map.appendChild(this.body[i][3])
+                }
+                //设置每个蛇节的位置    this.body[i][0] * 20===x*20
+                this.body[i][3].style.left = this.body[i][0] * 20 + 'px'
+                this.body[i][3].style.top = this.body[i][1] * 20 + 'px'
+            }
+        }
+        //创建蛇移动的方法
+        Snake.prototype.move = function () {//这个只移动一次 
+            //具体蛇要移动的代码
+            //移动原理： 后面一个蛇节要往前面走一个格子，
+            // 实际上就是把后一个蛇节的位置信息赋值给前一蛇节  左-》右（前->后）
+            //假如往右移动
+            //移动前的坐标：（1，2）（2，2）（3，2）
+            //移动后的坐标：（2，2）（3，2）（4，2）
+            //移动后的坐标：（3，2）（4，2）（5，2）
+            //蛇节前一个赋值给后一个，蛇头单独拿出来增加（因为要控制方向）
+            //从后面往前面设置 
+            let len = this.body.length//此时len是3
+            for (let i = len - 1; i > 0; i--) {//因为顺序到着来  此时i=2
+                //这个循环初始化时只执行了2次,只挪了2次，只挪了蛇身
+                //把后一个蛇节的位置信息赋值给前一个蛇节
+                this.body[i][0] = this.body[i - 1][0]
+                this.body[i][1] = this.body[i - 1][1]
+            }
+            //蛇头单独加(控制方向)
+            //控制x轴方向移动
+            // this.body[0][0] += 1  往右
+            // this.body[0][0] -= 1  往左
+            // //控制y轴方向移动
+            // this.body[0][1] += 1  往下
+            // this.body[0][1] -= 1  往上
+            switch (this.direct) {//默认是右
+                case 'right': this.body[0][0] += 1
+                    break
+                case 'left': this.body[0][0] -= 1
+                    break
+                case 'up': this.body[0][1] -= 1
+                    break
+                case 'down': this.body[0][1] += 1
+                    break
+            }
+            //5.判断吃食物       食物的位置需要变化，蛇长增加（增加蛇身 增加数组）,分数统计
+            //什么情况可以吃食物？蛇头和食物的位置一样了
+            if (this.body[0][0] === this.food.x && this.body[0][1] === this.food.y) {
+                //蛇身添加小数组[x,y,'blue',null]  先记住蛇尾的位置
+                let len = this.body.length
+                let x = this.body[len - 1][0] //蛇尾的x坐标
+                let y = this.body[len - 1][1] //蛇尾的y坐标
+                this.body.push([x, y, 'blue', null])//添加一次蛇身
+                //添加一次蛇身就要记录一次分数
+                this.num++
+                document.title = this.num
+
+                //食物被被吃之后就要重新创建
+                this.food.init()
+            }
+
+            //6.判断是否结束  设置限制
+            //如果蛇头的x轴<0 >39  如果蛇头的y轴<0  >19
+            if (this.body[0][0] < 0 || this.body[0][0] > 39 || this.body[0][1] < 0 || this.body[0][1] > 19) {
+                //结束游戏 停止移动
+                clearInterval(this.timer)
+                alert('游戏结束')
+                return //是防止结束之后他还调用 this.show()
+            }
+
+
+
+            //位置变化后还需要显示一下这条蛇
+            this.show()
+        }
+        //设置方向的方法
+        Snake.prototype.setDirect = function (key) {
+            //上ArrowUp  下ArrowDown 左ArrowLeft   右ArrowRight
+            // console.log(key);
+            switch (key) {
+                case 'ArrowUp': this.direct = 'up'
+                    break
+                case 'ArrowDown': this.direct = 'down'
+                    break
+                case 'ArrowLeft': this.direct = 'left'
+                    break
+                case 'ArrowRight': this.direct = 'right'
+                    break
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------------------------
+
+        //点击按钮时候开始运行
+        let btn = document.querySelector('#btn')
+        btn.addEventListener('click', function (e) {
+
+            //本来里面这些都是全局变量，进来之后变成了局部变量  food不好使了 要把food传到Snake中变成全局变量
+
+            //1.创建出了地图实例
+            let map = new Map()//实例对象
+            map.init()//调用方法 去上面运行  真正的创建出div让他显示出来
+            //2.食物
+            let food = new Food()
+            food.init()
+            //3.蛇
+            let snake = new Snake(food)
+            snake.run()
+
+
+        })
+
+
+    </script>
+</body>
+
+</html>

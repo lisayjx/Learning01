@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/localStorage.png" alt="">
+    <script>
+        /*
+        3.1本地存储特性
+        随着互联网的快速发展，基于网页的应用越来越普遍，同时也变的越来越复杂，
+        为了满足各种各样的需求，会经常性在本地存储大量的数据，HTML5规范提出了相关解决方案。
+        1、数据存储在用户【BOM浏览器中】
+        2、设置、读取方便、甚至页面刷新不丢失数据
+        3、容量较大，sessionStorage和localStorage约5M左右
+        */
+        /*
+        3.2 localStorage
+        1、生命周期永久生效，除非手动删除否则关闭页面也会存在
+        2、可以多窗口（页面)共享（同一浏览器可以共享)
+        3．以键值对的形式存储使用
+        */
+        // 3.2 localStorage     引号！！！！！！！！
+        // 1.存储数据：  window.localStorage.setItem('key键',value值)    window可以省
+
+        localStorage.setItem('uname', 'lisa')//现在已经将数据存储在了浏览器中
+        //找到检查元素的Application选项卡--左侧Storage--localStorage
+        //然后随便点开一个页面（点开90把） 再找一下localStorage 看看有没有东西
+        //找到了
+        localStorage.setItem('age', 18)
+        //存一堆 就把对象存进去把  （复杂或者引用类型）用JSON方法存
+        //存进去是字符串
+        let obj = {
+            name: 'rose',
+            age: 18,
+            height: 170
+        }
+        localStorage.setItem('obj', JSON.stringify(obj))//注意写法！！！！！！！！！！
+        //这样里面都是双引号包含的 对象变成了字符串
+
+        //存复杂类型时 显示的类型看起来不清楚 不能这样存 所以要把他转换成JSON
+        /*
+            存储复杂数据类型存储：
+       本地只能存储字符串,无法存储复杂数据类型.需要将复杂数据类型转换成JSON字符串,在存储到本地
+            JSON.stringify(复杂数据类型)
+       将复杂数据转换成JSON字符串   【存储】本地存储中
+            JSON.parse(JSON字符串)
+       将JSON字符串转换成对象       【取出】时候使用
+          
+       */
+        // JSON属性和值都是双引号包含
+
+
+        //2.获取数据        
+        // localStorage.getItem('key键')
+        console.log(localStorage.getItem('uname'));
+
+        //获取复杂类型的JSON数据  JSON.parse(JSON字符串)  取出来是对象
+     console.log(  JSON.parse(localStorage.getItem('obj'))); 
+
+
+        //3.删除数据
+        localStorage.removeItem('uname')//删除成功
+
+        // 简单类型直接存，复杂类型看不懂需要转成JSON字符串 
+
+
+
+//         3.3 sessionStorage (了解)
+// 1、生命周期为关闭浏览器窗口
+// 2、在同一个窗口(页面)下数据可以共享3．以键值对的形式存储使用
+// 4．用法跟localStorage基本相同
+
+    </script>
+    <img src="../img/91.png" alt="">
+    <!-- 点击这个也可以删除所有 -->
+
+
+   
+
+
+
+
+
+</body>
+
+</html>

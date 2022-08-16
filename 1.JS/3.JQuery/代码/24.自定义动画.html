@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        body{
+            height: 1000px;
+            width: 1000px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>点击滚动</button>
+    <script src="../jquery/jquery-3.5.1.js"></script>
+    <script>
+
+        //之前的动画为了解决元素显示隐藏效果 
+        // jQuery提供了animate方法来实现更为复杂的动画效果
+        // $('选择器).animate(动画属性,持续时间)
+        //    数值类样式支持动画,支持多个
+
+        $('选择器').animate(
+            {
+                width: 500,
+                height: '300%',    //不写单位默认是px  要是写单位要加引号
+                margin: 20,
+                scrollTop: 100,
+                scrollLeft: 200,  // 支持非样式的特殊属性
+                //  backgroundColor:'red'//不能加非数值类得
+            }, 2000
+        )
+
+
+
+        // 数值类样式支持动画
+        // 支持多个默认单位是px
+        // 支持非样式的特殊属性
+        //但是 非数值类得不能加 比如 背景颜色  因为动画是累加的 数值变化才行
+
+
+        //让整个页面滚动
+        $('button').click(function () {
+            $('html').animate({
+                scrollLeft: 30,
+                scrollTop: 30
+            })
+        })
+
+
+
+//  1．是否所有的样式都支持自定义动画?
+// 不是
+// 2．直接写数值默认的单位是什么?
+// px
+// 3．是否只支持样式类的自定义动画?
+// scrollTop、scrollLeft
+
+    </script>
+</body>
+
+</html>

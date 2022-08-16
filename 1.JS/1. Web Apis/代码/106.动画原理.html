@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        span {
+
+            position: absolute;
+            top: 400px;
+            left: 200px;
+            height: 200px;
+            width: 200px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+    <span>夏雨荷 </span>
+    <button>点击夏雨荷才走</button>
+
+    <script>/*
+核心原理∶通过定时器setInterval()不断移动盒子位置。
+实现步骤:
+1.获得盒子当前位置
+2.让盒子在当前位置加上1个移动距离
+3.利用定时器不断重复这个操作
+4.加一个结束定时器的条件
+5.注意此元素需要添加定位，才能使用element.style.left
+
+*/
+        // offset只能获取不能赋值  xx.style.left可以赋值
+
+
+        // let timer = setInterval(function () {
+        //     if (box.offsetLeft >= 400) {
+        //         clearInterval(timer)
+        //     }
+        //     //  //1.获得盒子当前位置 让当前位置加10
+        //     box.style.left = box.offsetLeft + 10 + 'px'
+        // }, 100)
+
+
+        //动画封装！！！！！！！！！
+        //  注意函数需要传递2个参数，
+        // 动画对象（谁做动画）和移动到的距离（目标位置）。
+        //注意！！！！！！动画 别忘了加定位！！！！！！！
+
+        // let box = document.querySelector('.box')
+
+        // function animate(obj, target) {
+        //     let timer = setInterval(function () {
+        //         if (obj.offsetLeft >= target) {
+        //             clearInterval(timer)
+        //         }
+        //         obj.style.left = obj.offsetLeft + 1 + 'px'
+        //     }, 30)
+        // }
+        // animate(box, 700)
+
+        //给不同元素指定不同的定时器
+        // 不同元素就是获取到的不同参数作为对象，
+        // 然后就实现了有各自的定时器，
+        // obj可以理解成动态的，变化的对象
+        let box = document.querySelector('.box')
+        let span = document.querySelector('span')
+        let btn = document.querySelector('button')
+        function animate(obj, target) {
+            //这句话是 启动动画之前先把之前的定时器清除在启动
+            //让里面一直就是有一个定时器在运动
+            //先清除以前的定时器，只保留当前的一个定时器执行
+
+            clearInterval(obj.timer)
+
+            obj.timer = setInterval(function () {
+                if (obj.offsetLeft >= target) {
+                    clearInterval(timer)
+                }else{
+                    obj.style.left = obj.offsetLeft + 1 + 'px'
+                }
+              
+            }, 10)
+        }
+        animate(box, 700)
+        //点击夏雨荷才会动
+        //bug：点击好几次夏雨荷起飞了 开起了好多定时器
+        btn.addEventListener('click', function () {
+            animate(span, 1000)
+        })
+        //解决bug：
+        // 解决方案就是让我们元素只有一个定时器执行
+        // 点击之后先进行一次清除
+
+        
+
+    </script>
+</body>
+
+</html>

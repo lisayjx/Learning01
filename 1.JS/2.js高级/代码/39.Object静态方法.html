@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 引用类型(复杂类型)： Object对象 Array数组 RegExp正则 Date日期 所有的开头字母大写
+        // 包装类型: String Number Boolean  
+        // 【简单类型包装了一下能使用属性和方法了就是包装类型】
+
+
+
+//一:Object得静态方法
+// Object.keys(对象名)
+// Object.values(对象名)
+// Object.assign(拷贝给谁, 谁被拷贝) 也可看成追加
+
+
+
+        //1.Object 对象构造函数 有哪些方法和属性？
+        // Object 是内置的构造函数，用于创建普通对象。
+        //通过构造函数创建普通对象
+        const user = new Object({ name: '小明', age: 16 })
+        // 推荐使用字面量方式声明对象，而不是Object构造函敏
+
+
+        // 学习三个常用【静态方法】
+        // （静态方法就是只有构造函数Object可以调用的)写在构造函数里的  实例对象无法调用 
+
+        //想要获得对象里面的属性和值怎么做
+        const o = { name: '佩奇', age: 6 }
+        // o.name
+        // o.age
+        //一下子全拿出来用forin遍历对象
+        for (let k in o) {
+            console.log(k);//属性 name age
+            console.log(o[k]);//属性值 佩奇 6
+        }
+        //现在有了更简洁的新方法
+
+        //1.Object.keys(对象名)  取对象中的属性名
+        //作用：Object.keys静态方法获取对象中所有属性(键)
+        //语法：
+        const lisa = { name: '丽萨', age: 16 }
+        //获得对象的所有属性名（键） 返回的是个数组
+        const arr = Object.keys(lisa)
+        console.log(arr);//[ "name", "age" ]
+
+        //2.Object.values()获取值
+        const value = Object.values(lisa)
+        console.log(value);//[ "丽萨", 16 ]
+
+        //3.Object.assign 静态方法常用于对象拷贝
+        // Object.assign(拷贝给谁, 谁被拷贝)  后给前
+        // 把对象jennie拷贝给对象yg
+        const jennie = { name: '珍妮', age: 18 }
+        const yg = {}
+        Object.assign(yg, jennie)
+        console.log(yg);//{ name: "珍妮", age: 18 }
+        //拷贝的使用场景: 给对象添加属性  以前咱们是追加这个也类似
+        Object.assign(yg, {sex:'女'}) //{ name: "珍妮", age: 18, sex: "女" }
+        //把属性性别拷贝到yg中
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //解构赋值  有两部分
+        //1. 数组解构       2.对象解构
+        //目标:知道解构的语法及分类，使用解构简洁语法快速为变量赋值
+
+
+        //很容易会忘记 每个值对应的是啥 所以把取出来的值赋值给变量会很好记住
+        // const arr = [100, 60, 80]
+        // console.log(arr[0]) //最大值
+        // console.log(arr[1]) //最小值
+        // console.log(arr[2]) //平均值
+
+        // const arr1 = [100, 60, 80]
+        // const max = arr1[0]
+        // const min = arr1[1]
+        // const avg = arr1[2]
+        // console.log(max)//最大值
+        // console.log(min)//最小值
+        // console.log(avg)//平均值
+
+        //以上要么不好记忆 要么书写麻烦 此时可以用 解构赋值 方法 让代码更简洁
+
+
+
+
+        //  数组解构是将 数组的单元值(数组元素) 快速批量赋值给一系列 变量 的简洁 语法。
+
+        // 基本语法:
+        // 1.赋值运算符=左侧的[用于批量声明变量，右侧数组的单元值将被赋值给左侧的变量
+        // 2.变量的顺序对应数组单元值的位置依次进行赋值操作
+
+        const [max, min, avg] = [100, 60, 80]
+        console.log(max);//打印时候直接写max  不用写什么[0]
+        console.log(min);
+        console.log(avg);
+
+
+        //典型案例 两个数交换数值
+
+        let a = 1     //一定要用let  因为const没办法重新赋值
+        let b = 2;   //这里必须必须有分号!!!!!!!!!!!!!
+        [b, a] = [a, b]
+        console.log(a, b);//2 1
+
+        //以前的写法
+        let arr = [2, 6, 4, 3, 5, 1]
+        for (let i = 0; i < arr.length - 1; i++) {
+            for (let j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]]
+                }
+            }
+        } console.log(arr);// [ 1, 2, 3, 4, 5, 6 ]
+    </script>
+
+</body>
+
+</html>

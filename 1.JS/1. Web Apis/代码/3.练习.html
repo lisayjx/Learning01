@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我的首页</li>
+        <li>产品介绍</li>
+        <li>联系方式</li>
+    </ul>
+    <script>
+        // 请控制台依次输出3个li得DOM对象
+
+        //1.获取数组对象
+        let lis = document.querySelectorAll('ul li')
+        //遍历数组
+        for (let i = 0; i < lis.length; i++) {
+            //找到对象
+             console.log(lis[i]);
+             console.log(lis[i].innerHTML);//找到对象中得属性innerHTML对应得属性值，或者麻烦点用下面循环对象找
+
+            // for(let k in lis){
+            //    // console.log(k);//属性名 inndeHTML之类的
+            //   //  console.log(lis[k]);//属性值，相当于console.log(lis['inndeHTML'])之类的  
+            // }
+        }
+    </script>
+</body>
+
+</html>

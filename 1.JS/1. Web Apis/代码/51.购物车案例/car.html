@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>购物车全选功能</title>
+  <!-- 引入初始化 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+
+    body {
+      background: #fff;
+      color: #666;
+      font-size: 14px;
+    }
+
+    input {
+      outline: none;
+    }
+
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .clearfix {
+      *zoom: 1;
+    }
+  </style>
+  <!-- 引入购物车样式 -->
+  <style>
+    table {
+      width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    th {
+      font: normal 14px/50px '宋体';
+      color: #666;
+    }
+
+    th,
+    td {
+      border: none;
+      text-align: center;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    input[type='checkbox'] {
+      width: 13px;
+      height: 13px;
+    }
+
+    tbody p {
+      position: relative;
+      bottom: 10px;
+    }
+
+    tbody .add,
+    tbody .reduce {
+      float: left;
+      width: 22px;
+      height: 22px;
+      border: 1px solid #ccc;
+      text-align: center;
+      background: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    tbody input[type='text'] {
+      width: 50px;
+      float: left;
+      height: 18px;
+      text-align: center;
+    }
+
+    tbody .count-c {
+      width: 98px;
+      margin: 0 auto;
+    }
+
+    button[disabled] {
+      color: #ddd;
+      cursor: not-allowed;
+    }
+
+    tbody tr:hover {
+      background: #eee;
+    }
+
+    tbody tr.active {
+      background: rgba(241, 209, 149, 0.945);
+    }
+
+    .controls {
+      width: 790px;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      line-height: 50px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .controls .del-all,
+    .controls .clear {
+      float: left;
+      margin-right: 50px;
+    }
+
+    .controls p {
+      float: right;
+      margin-right: 100px;
+    }
+
+    .controls span {
+      color: red;
+    }
+
+    .controls .pay {
+      position: absolute;
+      right: 0;
+      width: 80px;
+      height: 54px;
+      background: red;
+      font: bold 20px/54px '宋体';
+      color: #fff;
+      text-align: center;
+      bottom: -1px;
+    }
+
+    .controls .total-price {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="car">
+    <table>
+      <!-- th -->
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="all" />全选</th>
+          <th>商品</th>
+          <th>单价</th>
+          <th>商品数量</th>
+          <th>小计</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <!-- td -->
+      <tbody id="carBody">
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" readonly />
+          </td>
+          <td>
+            <img src="./images/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">5￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">5￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="./images/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">10￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">20￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="./images/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">20￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">40￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="./images/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">35￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">70￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- --------------------------------------------------------- -->
+    <div class="controls clearfix">
+      <a href="javascript:" class="del-all">删除所选商品</a>
+      <a href="javascript:" class="clear">清理购物车</a>
+      <a href="javascript:" class="pay">去结算</a>
+      <p>
+        已经选中<span id="totalCount">0</span>件商品;总价：<span id="totalPrice" class="total-price">0￥</span>
+      </p>
+    </div>
+  </div>
+  <script>
+
+//大概思路：
+// 加减按钮这两个绑定事件会影响 小计 和 下面的选中商品数和总价  所以 给小计和下面得封装成两个函数
+// 用的时候就调用函数
+// 加减按钮 差不多 所以在一个for循环里写
+ //核心：点击删除，要重新获取 商品数量，小计 
+
+
+
+
+   
+   
+    // -
+    let reduces = document.querySelectorAll('.reduce')
+    //输入框 商品数量
+    let inputs = document.querySelectorAll('.count-c input')
+    // +
+    let adds = document.querySelectorAll('.add')
+    // 删除
+    let dels = document.querySelectorAll('.del')
+    //单价
+    let prices = document.querySelectorAll('.price')
+    //小计
+    let totals = document.querySelectorAll('.total')
+    //选中的数量
+    let totalCount = document.querySelector('#totalCount')
+    //总价
+    let totalResult = document.querySelector('#totalPrice')
+    // tbody  事件委托给tbody了 因为要选择所有tbody里的tr 不委托就得循环太麻烦
+    let carbody = document.querySelector('#carBody')
+    //小计的函数
+    //数量变化了 小计也要变化 加号减号都能影响小计的值，所以两个+-绑定事件里都要写它 所以封装成一个函数
+    // parseInt('50￥') 返回50
+
+
+ //+ - 删除是相同的，一一对应的 我们完全可以用一个for来遍历绑定事件
+    for (let i = 0; i < adds.length; i++) {
+
+ 
+      //想让页面一打开默认的 小计 和 单价 一样
+      totals[i].innerHTML = prices[i].innerHTML
+
+
+      //1.+的事件
+      adds[i].addEventListener('click', function () {
+        //点击了谁就让对应的输入框自增
+        inputs[i].value++
+        //点击了哪个加 对应的哪个减就不禁用
+        reduces[i].disabled = false
+        //数量变化了 小计也要变化 加号减号都能影响小计的值，所以两个绑定事件里都要写它 所以封装成一个函数
+        getTotal()//小计函数
+        result()//总计和选中个数函数
+
+      })
+
+      //小计的函数
+      function getTotal() {
+        // parseInt(prices[i].innerHTML)//把除了￥的数值取出来
+        return totals[i].innerHTML = `${parseInt(prices[i].innerHTML) * inputs[i].value}￥`
+      }
+
+      //2.-的事件
+      reduces[i].addEventListener('click', function () {
+        //点击了谁就让对应的输入框自减
+        inputs[i].value--
+        // 对应的哪个减到了1就禁用
+        if (inputs[i].value <= 1) {//最好别到0 因为 不要的话就按删除 不用数量0表示
+          this.disabled = true
+        }
+        getTotal()//小计函数
+        result()//总计和选中个数函数
+      })
+
+      //3.计算总价和选中数量的result函数 
+      //遍历小计和选中个数 把所有小计和 选中个数 加起来
+      //bug:点击 +  -  时候 总价也要一起变 所以要把他写在 + - 绑定事件里
+      //同时也把选中的input的个数写在这里 因为数量是和小计个数一样的 所以在一个for循环里
+      function result() {
+        //小计
+        let totals = document.querySelectorAll('.total')
+        //输入框 商品数量
+        let inputs = document.querySelectorAll('.count-c input')
+
+        let sum = 0
+        let num = 0 //数量框框的个数
+        for (let i = 0; i < totals.length; i++) {//遍历小计
+          sum += parseInt(totals[i].innerHTML)
+          num += Number(inputs[i].value)
+        }
+
+        totalResult.innerHTML = sum + '￥'
+        totalCount.innerHTML = num
+      }
+      result()
+
+
+      //3.删除操作 因为好几个 删除 所以也在for循环里
+      dels[i].addEventListener('click', function () {
+        // 父元素.removerChild(子元素)
+        //我们要删除对应的tr(this.parentNode.parentNode) ，他的父亲是tbody
+        carbody.removeChild(this.parentNode.parentNode)
+
+ 
+        result()//总计和选中个数函数
+        //这里点击删除了以后 result()中的小计和选中个数没变拥护啥？
+        // 因为这个totals在函数外 的for循环  i < totals.length 是获取的totals的长度，
+        //  最开始就获取4个 到了函数里还是4个 没变
+        // totals长度会影响 小计的个数和选中数量的个数
+        //  所以要在函数里再获取一便新的个数值
+        // 所以把 totals获取 写在result()函数中在获取一次   输入框（商品数量）也是
+        //核心：点击删除，要重新获取 商品数量，小计  
+        //这样总价和选中个数就是 新获取的值的 做计算得出来的了
+      })
+    }
+
+
+  </script>
+</body>
+
+</html>

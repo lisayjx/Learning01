@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        //原型是通过构造函数体现出来的，可以把一些方法挂载到原型身上
+
+
+        //构造函数
+        function Star(uname,age) {
+            this.name = uname
+            this.age = age
+        }
+        // Star.prototype.sing = function () {//用原型写 实例方法是因为不浪费内存 都指向一个地方
+        //     console.log('唱歌');
+        // }
+        // Star.prototype.dance = function () {
+        //     console.log('跳舞');
+        // }
+        // Star.prototype.film = function () {
+        //     console.log('演电影');
+        // }
+        //这样写有点麻烦，假如我写一个对象把这些方法都包进去怎么样 解构
+        Star.prototype = {
+            //重新指一下实例方法的爹 Star      
+            constructor: Star,
+            sing: function () { console.log('唱歌'); },
+            dance: function () { console.log('唱歌'); },
+            film: function () { console.log('演电影'); }
+        }
+        //看看原型里有啥  有这三个实例方法，constructor没有了呢
+        console.log(Star.prototype);
+        //这种直接把{}给Star.prototype，让它就变成了这个{}   给覆盖换值了
+        //之前那个一个一个写的就不是 算是追加  这个是直接覆盖了
+        //所以 {}中的方法要重新指回他的爹，指回创造这个原型对象的构造函数
+        //constructor.Star,
+
+
+
+
+//constructor可以用在 实例方法很多的时候需要写对象里，
+// constructor需要帮助 里面的实例对象找爹（指回构造函数）
+
+
+// 1. constructor属性的作用是什么?
+// 指向该原型对象的构造函数
+
+
+
+
+    </script>
+
+</body>
+
+</html>

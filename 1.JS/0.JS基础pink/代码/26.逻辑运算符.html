@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*提问：如果我想判断一个数据大于5且小于10，怎么办？
+        错误写法：5<数据<10
+
+        逻辑运算符用来解决多重条件判断
+
+        符号      名称      日常读法        特点       口诀
+       &&        逻辑与      并且        都是真才为真   一假则假
+       ||         逻辑或      或者       有一个真就为真  一真则真
+       ！        逻辑非      取反      true->false...    真假互变
+
+
+//短路：只存在&&和||中，当满足一定条件会让右边代码不执行
+&&左边为false就短路 后面不用看了 整个就是假
+||左边为true就短路  后面不用看了 整个就是真
+
+
+// 有几个值当false看：数字0、''、false、undefined、null、Nan偶尔也算
+其余都是真的
+
+   */
+
+
+        console.log(false && 20);//false
+        console.log(5 < 3 && 20);//false
+        console.log(undefined && 20);//undefined
+        console.log(null && 20);//null
+        console.log(0 && 20);//0
+        console.log(10 && 20);//20
+
+        console.log(false || 20);//20
+        console.log(5 < 3 || 20);//20
+        console.log(undefined || 20);//20
+        console.log(null || 20);//20
+        console.log(0 || 20);//20
+        console.log(10 || 20);//10
+
+
+
+        function fun(x, y) {
+            x + y
+        } fun()
+        //此时没有值传给x,y也没有值传给上面的y
+        //定义了未赋值 是 undefined
+        //undefined+undefined=Nan
+        function fun(x, y) {
+            x = x || 0 //undefined||0 输出0
+            y = y || 0//undefined||0 输出0
+            x + y
+        } fun()
+//此时会看出短路的好处
+
+    </script>
+
+
+</body>
+
+</html>

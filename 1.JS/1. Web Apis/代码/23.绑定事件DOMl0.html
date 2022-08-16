@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <script>
+
+        let btn = document.querySelector('button')
+        //这是最开始的写法 以前的
+        btn.onclick = function () {
+            alert(1111)
+        }
+
+        //事件监听版本
+    //    1. DOML0
+    //     事件源.on事件=function(){}
+    
+    //     2. DOML2（现在用这种）
+    //     事件源.addEventListener(事件，事件处理函数)
+
+    //     发展史：
+    //     DOM LO:是DOM的发展的第一个版本;L: level
+    //     DOM L1: DOM级别1于1998年10月1日成为W3C推荐标准
+    //     DOM L2︰使用addEventListener注册事件
+    //     DOML3: DOM3级事件模块在DOM2级事件的基础上重新定义了这些事件，也添加了一些新事件类型
+
+
+    </script>
+</body>
+
+</html>

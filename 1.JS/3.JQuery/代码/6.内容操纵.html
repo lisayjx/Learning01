@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            height: 100px;
+            width: 100px;
+            background-color: green;
+        }
+
+        .box2 {
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        // jQuery中封装了设置和读取网页元素文本内容的方法
+        // 设置时: html方法解析标签，text不解析标签
+        // 取值时: html方法获取标签，
+        // text只获取文本有一种使用方式支持链式编程
+
+
+
+        //设置
+        // $('选择器').html('内容')
+        // $('选择器').text('内容")
+        //      读取
+        // $('选择器').html()
+        // $('选择器').text()
+
+
+
+        //1.给盒子设置普通文本
+        $('.box1').html('你好')
+        $('.box2').text('你好')
+        //2.设置标签
+        $('.box1').html('<i>你好</i>')//识别标签
+        $('.box2').text('<i>你好</i>')
+        //3.取值
+        let box1Html = $('.box1').html()
+        console.log(box1Html);//<i>你好</i>
+        let box1Text = $('.box1').text()
+        console.log(box1Text);//你好
+        //4.链式编程
+        let $box1 = $('.box1')//声明一个变量box1，用他接收.box1盒子
+        let $res1 = $box1.html('<i>新的值</i>')//用html方法为box1设置值，用变量$res1存起来
+        //比较一下$res1和$box1
+        console.log($res1 === $box1);//true
+        //说明我们调用的html方法的返回值的是同一个JQ对象
+        //所以我们就能继续点下去
+        //先用html给他设置值，然后给他链式绑定点击事件
+        $box1.html('<i>新的值</i>').click(function(){
+            console.log('你好');
+        })
+
+        //总结！！！！！！取值时候不能链式编程，设置值时候可以
+        $box1.html().click(function(){})//不对  因为取值返回的不是同一个对象 是个字符串
+        $box1.html('你好').click(function(){})//对
+   
+   
+// 1．哪个方法设置的标签会被正常解析?
+// html方法
+// 2.只获取元素的文本使用哪个方法?
+// text方法
+// 3．设置还是取值支持链式编程?
+// 设置
+
+   
+   
+   </script>
+</body>
+
+</html>

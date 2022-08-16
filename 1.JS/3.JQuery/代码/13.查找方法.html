@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fa{
+            border: 1px solid #ccc;
+            height: 200px;
+            width: 200px;
+        }
+        .son1,.son2{
+            border: 1px solid #000;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fa">
+        <div class="son1">
+            <li class="one">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </div>
+        <div class="son2">
+            <li class="one">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </div>
+    </div>
+    <!-- 导入jQuery -->
+    <script src="../jquery/jquery-3.6.0.js"></script>
+
+    <script>
+       // jQuery中封装了查找元素的方法，可以基于元素的结构关系查找新的元素
+
+//1.查找父元素
+ $('.son1').parent().css('backgroundColor','pink')
+//1.查找子元素  有没有选择器都行
+$('.fa').children('.son2').css('backgroundColor','red')
+//1.查找兄弟元素 有没有选择器都行
+$('.one').siblings().css('color','skyblue')
+//1.查找后代元素 find()方法需要传入选择器
+$('.fa').find('.one').css('color','orange')
+    </script>
+
+
+
+
+<!-- 
+1. parent方法是否需要传递参数?
+不需要
+2．获取子元素的方法是什么?
+children
+3. siblings方法一定要传入选择器吗?
+不一定
+4. find方法是否可以获取到子元素?
+可以
+ -->
+
+</body>
+
+</html>

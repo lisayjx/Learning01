@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>  
+
+// jQuery中提供了更为简便的入口函数写法
+
+
+ //原生写法
+window. onload = function (){}
+// jQ写法
+$(window).on('load' , function () {})
+
+// 页面资源加载完毕执行(包括图片、css等等)逻辑代码
+// ---------------------------------------------------------
+// /完整写法
+$(document).ready(function(){} )
+//简化写法
+$(function (){})
+// DOM载入完毕就会执行     他比上边的执行的快  因为等DOM树上得标签执行完就可以
+
+
+
+
+
+
+
+
+
+// 1. window.onload和ready哪个先执行?
+// ready
+// 2. window.onload和ready哪个可以获取图片尺寸?
+// window.onload
+// 3．开发中用哪个?
+// 具体情况具体分析  最好用window.onload
+
+    </script>
+</body>
+</html>

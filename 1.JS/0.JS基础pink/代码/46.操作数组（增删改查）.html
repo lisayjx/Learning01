@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //数组本质上是数据集合，数组操作就是增删改查语法
+        /*
+                1.  增：数组添加新的数据
+                arr.push(新增的内容)  ：数组.push()方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度(重点)
+                arr.unshift(新增的内容)
+        
+                2.删：删除数组中的数据
+                arr.pop() 括号里没内容 是删除最后一个
+                arr.shift() 括号里没内容 是删除第一个
+                arr.splice(操作的下标，删除的个数)
+        
+                3.改：重新赋值
+                数组[下标] = 新值
+        
+                4.查：查询数组数据
+                数组[下标]  或者我们成为访问数据数据
+        
+        
+         */
+
+
+        //  1.查
+   /*     let arr = ['pink', 'hotpink', 'deeppink']
+        console.log(arr[0]);//pink
+
+        //2.改
+        arr[0] = 'lightpink'
+
+        //3.增   .
+        // (1)数组.push() 推（从后面推） 方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度(重点)
+        //push只能给数组用
+        arr.push('red', 'blue')
+        console.log(arr);
+        console.log(arr.length);//5
+        //(2)arr.unshift() 在最前面加  比如你写留言 最后写的就在最前面出来
+        arr.unshift('rainbow1', 'rainbow2')
+        console.log(arr);
+        console.log(arr.length);//7
+*/
+        //4.数组删除元素
+        // （1）数组.pop()方法 从数组中删除最后一个元素，并返回该元素的值
+        let arr1 = ['a', 'b', 'c']
+        console.log(arr1.pop());  //c   因为他删除最后一个 并且放回最后一个值
+        console.log(arr1);// ['a', 'b']
+
+        //（2）数组.shift()方法 从数组中删除第一个元素，并返回该元素的值
+        let arr2 = ['a', 'b', 'c']
+        console.log(arr2.shift());//a
+        console.log(arr2);// [ 'b', 'c']
+
+        //(3)arr.splice(从哪里开始删，删几个) 如果不写删除几个，就删到最后
+        let arr3 = ['a', 'b', 'c','d','e','f','g']
+        console.log(arr3.splice(2,3));//删除了cde  // c d e
+        console.log(arr3);['a', 'b','f','g']
+
+        let arr4 = ['a', 'b', 'c','d','e','f','g']
+        console.log(arr4.splice(2));//从c开始删到最后 就剩 ab  //cdefg
+        console.log(arr4);//['a', 'b']
+
+        //数组元素使用场景：
+        // 1.随机抽奖，中奖的用户就需要从数组里删除 不能重复抽奖
+        //2.购物车时候 点击删除按钮，就会把相关数据从商品数据中删除
+    </script>
+</body>
+
+</html>

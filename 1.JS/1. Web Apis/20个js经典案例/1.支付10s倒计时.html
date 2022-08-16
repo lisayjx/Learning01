@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 300px;
+            background-color: pink;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>商品: web</p>
+        <p>原价:1980元</p>
+        <p>现价:1.98元</p>
+        <p>内容:HTML CSS JS</p>
+        <p>地址:北京市昌平区</p>
+        <p>
+            <button>取消</button>
+            <button>支付</button>
+        </p>
+
+    </div>
+
+    <script>
+        let btn = document.querySelector('button:last-child')
+        btn.addEventListener('click', function () {
+            let res = window.confirm('您确定要付款吗?')//返回布尔值
+            if (res) {
+                location.href = './1.10s跳转到的页面.html'
+            }
+        })
+    </script>
+</body>
+
+</html>

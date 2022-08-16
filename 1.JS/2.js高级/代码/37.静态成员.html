@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //构造函数的属性和方法被称为静态成员（跟构造函数有关）
+
+        function Goods(name, price, count) {
+            this.name = name
+            this.price = price
+            this.count = count
+            // this.sayHi=function(){}
+        }
+        let mi = new Goods('小米', 1999, 20)
+        let hw = new Goods('华为', 3999, 59)
+        let vv = new Goods('vivo', 1888, 100)
+
+
+
+        //静态成员
+        // this.name这些虽然写到了构造函数Goods里面 但是他还是属于对象的
+        //Goods是个构造函数
+        Goods.num = 10//可以给构造函数添加任何属性
+        //这种就属于静态成员  
+        //this一行是实例成员是在new完之后创建的空对象中的
+        //直接用函数名.属性 创建的 没用this的 是静态成员
+        Goods.sayHi = function () { }//静态方法
+
+
+
+        function Person(name, age) {
+            //对象中的 实例成员
+            this.name = name
+            this.age = age
+        }
+        let lisa = Person('lisa', 16)
+        //构造函数Person中的 静态属性成员
+        Person.eyes = 2
+        Person.arms = 2
+        //静态方法
+        Person.walk = function () {
+            console.log('人都会走路');
+            //this指向Person
+            console.log(this.eyes);
+        }
+
+
+//         说明:
+// 1.构造函数的属性和方法被称为静态成员
+// 2.一般公共特征的属性或方法静态成员设置为静态成员
+    //   （静态成员任何都能使用 但是实例成员不能共享只能当前实例使用）
+// 3.静态成员方法中的 this指向构造函数本身
+
+
+
+// 1．什么是实例成员?
+// 实例对象的属性和方法即为实例成员
+// 2.什么是静态成员?
+// 构造函数的属性和方法被称为静态成员
+
+    </script>
+</body>
+
+</html>

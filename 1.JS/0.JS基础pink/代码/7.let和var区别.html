@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        let和 var区别:
+let为了解决var 的一些问题var声明:
+可以先使用在声明(不合理)
+var声明过的变量可以重复声明(不合理)
+比如变量提升、全局变量、没有块级作用域等等结论:
+以后声明变量我们统一使用let
+
+     -->
+    <script>
+        age = 19
+        var age
+        console.log(age);
+
+        // 先使用了 在声明 也会出19  但是不合理！！！！1 因为var会变量提升
+
+        age = 19
+        let age
+        console.log(age);
+        // 会报错，不能再初始化之前访问age
+    </script>
+
+
+</body>
+
+</html>

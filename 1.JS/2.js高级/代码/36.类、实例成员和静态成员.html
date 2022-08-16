@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // class类
+        // 传统面向对象的编程序语言都是【类】的概念，
+        // 对象都是由类创建出来，然而早期JavaScript 中是没有类的，
+        // 面向对象大多都是基于构造函数和原型实现的，
+        // 但是ECMAScript 6 规范开始增加了【类】相关的语法，
+        // 使得JavaScript 中的面向对象实现方式更加标准。
+
+        // 2.1封装
+        // class(类)是ECMAScript6中新增的关键字，
+        // 专门用于创建类的，类可被用于实现逻辑的封装。
+        //以前我们是写在构造函数中 现在写在类中
+
+        //创建类 定义类      区别没有小括号()！！！！
+        class Person { 此处编写封装逻辑 }
+        class Cat { }
+
+        //实例化 对象
+        let p1 = new Person()
+        let c1 = new Cat()
+
+
+        console.log(p1 instanceof Object);//true
+
+        //定义类 不加()  ，实例类加()
+
+        //1.静态成员 只能类（构造函数）访问
+        class People {
+            //静态成员
+            static language = '汉语'
+            static skin = 'yellow'
+            static eat() {  //不写function
+                console.log('吃饭');
+            }
+        }
+        //实例化对象
+        let obj = new People()
+        obj.language //undefined  obj不能访问language
+        People.language//People可以访问   汉语
+        People.eat()  //吃饭
+        // --------------------------------------------------
+        //和上面的静态  区别就是没有 static
+        //2.实例成员
+        class People1 {
+            //实例成员
+            language = '英语'
+            skin = 'yellow'
+            eat() {
+                console.log('吃菜');
+            }
+        }
+        //实例化对象
+        let obj1 = new People1()
+        obj.language  //英语
+        People1.language //undefined  
+        People1.eat()  //undefined  
+
+        //实例成员只能被实例对象（obj）访问，静态成员只能被类【构造函数People】访问
+
+        // ---------------------------------------------
+
+        class Dog {
+            //添加成员：
+            //静态成员
+            static color = 'white'
+            static legs = 4
+            //实例成员
+            name = '金毛'
+            age = 1
+            //静态方法
+            static ww() {
+                console.log('汪汪');
+            }
+            //实例方法
+            running() {
+                console.log('跑');
+            }
+        }
+        //实例化
+        let d1 = new Dog() //这里面只有实例成员和 实例方法（在__proto__中）
+
+        // 类里只放成员（静态动态）
+
+
+
+
+
+
+
+
+
+
+        // ------------------------------------------------------------
+        // 通过构造函数创建的对象称为实例对象，例如 mi hw count
+        // 实例对象中的属性和方法称为实例成员。例如this.name中的name是实例属性 和sayHi是实例方法
+
+
+        function Goods(name, price, count) {
+            this.name = name
+            this.price = price
+            this.count = count
+            // this.sayHi=function(){}
+        }
+        let mi = new Goods('小米', 1999, 20)
+        let hw = new Goods('华为', 3999, 59)
+        let vv = new Goods('vivo', 1888, 100)
+
+
+//         说明:
+// 1.实例对象的属性和方法即为实例成员
+// 2.为构造函数传入参数，动态创建结构相同但值不同的对象 
+    // 例如mi和hw和vv 后面new Goods('vivo', 1888, 100)结构一样 但是值不同
+// 3.构造函数创建的实例对象彼此独立互不影响。
+
+    </script>
+</body>
+
+</html>

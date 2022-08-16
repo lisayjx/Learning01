@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>微博发布</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .w {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        .controls textarea {
+            width: 878px;
+            height: 100px;
+            resize: none;
+            border-radius: 10px;
+            outline: none;
+            padding-left: 20px;
+            padding-top: 10px;
+            font-size: 18px;
+        }
+
+        .controls {
+            overflow: hidden;
+        }
+
+        .controls div {
+            float: right;
+        }
+
+        .controls div span {
+            color: #666;
+        }
+
+        .controls div .useCount {
+            color: red;
+        }
+
+        .controls div button {
+            width: 100px;
+            outline: none;
+            border: none;
+            background: rgb(0, 132, 255);
+            height: 30px;
+            cursor: pointer;
+            color: #fff;
+            font: bold 14px '宋体';
+            transition: all 0.5s;
+        }
+
+        .controls div button:hover {
+            background: rgb(0, 225, 255);
+        }
+
+        .controls div button:disabled {
+            background: rgba(0, 225, 255, 0.5);
+        }
+
+        .contentList {
+            margin-top: 50px;
+        }
+
+        .contentList li {
+            padding: 20px 0;
+            border-bottom: 1px dashed #ccc;
+            position: relative;
+        }
+
+        .contentList li .info {
+            position: relative;
+        }
+
+        .contentList li .info span {
+            position: absolute;
+            top: 15px;
+            left: 100px;
+            font: bold 16px '宋体';
+        }
+
+        .contentList li .info p {
+            position: absolute;
+            top: 40px;
+            left: 100px;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .contentList img {
+            width: 80px;
+            border-radius: 50%;
+        }
+
+        .contentList li .content {
+            padding-left: 100px;
+            color: #666;
+            word-break: break-all;
+        }
+
+        .contentList li .the_del {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 28px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w">
+        <!-- 操作的界面 -->
+        <div class="controls">
+            <img src="./images/9.6/tip.png" alt="" /><br />
+            <!-- maxlength 可以用来限制表单输入的内容长度 -->
+            <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+            <div>
+                <span class="useCount" id="useCount">0</span>
+                <span>/</span>
+                <span>200</span>
+                <button id="send">发布</button>
+            </div>
+        </div>
+        <!-- 微博内容列表 -->
+        <div class="contentList">
+            <ul id="list"></ul>
+        </div>
+    </div>
+
+    <!-- 添加了hidden属性元素会直接隐藏掉 -->
+    <!-- <li hidden>
+    <div class="info">
+      <img class="userpic" src="./images/9.6/03.jpg" />
+      <span class="username">死数据:百里守约</span>
+      <p class="send-time">死数据:发布于 2020年12月05日 00:07:54</p>
+    </div>
+    <div class="content">死数据:111</div>
+    <span class="the_del">X</span>
+  </li> -->
+
+    <script>
+        // maxlength 是一个表单属性, 作用是给表单设置一个最大长度
+
+        // 模拟数据
+        let dataArr = [
+            { uname: '司马懿', imgSrc: './images/9.5/01.jpg' },//这里数据src有引号 下面就不用加引号了
+            { uname: '女娲', imgSrc: './images/9.5/02.jpg' },
+            { uname: '百里守约', imgSrc: './images/9.5/03.jpg' },
+            { uname: '亚瑟', imgSrc: './images/9.5/04.jpg' },
+            { uname: '虞姬', imgSrc: './images/9.5/05.jpg' },
+            { uname: '张良', imgSrc: './images/9.5/06.jpg' },
+            { uname: '安其拉', imgSrc: './images/9.5/07.jpg' },
+            { uname: '李白', imgSrc: './images/9.5/08.jpg' },
+            { uname: '阿珂', imgSrc: './images/9.5/09.jpg' },
+            { uname: '墨子', imgSrc: './images/9.5/10.jpg' },
+            { uname: '鲁班', imgSrc: './images/9.5/11.jpg' },
+            { uname: '嬴政', imgSrc: './images/9.5/12.jpg' },
+            { uname: '孙膑', imgSrc: './images/9.5/13.jpg' },
+            { uname: '周瑜', imgSrc: './images/9.5/14.jpg' },
+            { uname: '老夫子', imgSrc: './images/9.5/15.jpg' },
+            { uname: '狄仁杰', imgSrc: './images/9.5/16.jpg' },
+            { uname: '扁鹊', imgSrc: './images/9.5/17.jpg' },
+            { uname: '马可波罗', imgSrc: './images/9.5/18.jpg' },
+            { uname: '露娜', imgSrc: './images/9.5/19.jpg' },
+            { uname: '孙悟空', imgSrc: './images/9.5/20.jpg' },
+            { uname: '黄忠', imgSrc: './images/9.5/21.jpg' },
+            { uname: '百里玄策', imgSrc: './images/9.5/22.jpg' },
+        ]
+
+
+        //按下回车可以发布留言
+        //和按下发布 是两个事件  不要写在一起
+        //event不要忘记写
+
+
+        //需求一：
+        let textarea = document.querySelector('#area')
+        let useCount = document.querySelector('#useCount')
+        textarea.addEventListener('input', function () {
+            useCount.innerHTML = textarea.value.length
+        })
+        //需求二：
+        let send = document.querySelector('#send')
+        send.addEventListener('click', function () {
+            if (textarea.value.trim() === '') {
+                textarea.value === ''
+                useCount.innerHTML = 0
+                return alert('内容不能为空')
+            }
+
+            //需求3
+            let li = document.createElement('li') //创建li
+            let ul = document.querySelector('#list')
+            function getRandom(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min
+            }
+            let random = getRandom(0, dataArr.length - 1)
+            li.innerHTML = `
+                    <div class="info">
+                        <img class="userpic" src=  ${dataArr[random].imgSrc}>
+                        <span class="username">${dataArr[random].uname}</span>
+                        <p class="send-time"> 发布于${new Date().toLocaleString()}</p>
+                    </div>
+                        <div class="content">${textarea.value}</div>
+                        <span class="the_del">X</span>
+            
+                        `
+
+            //需求4:删除留言 放在发布按钮得点击事件里面（x是li里的，因为li是得点击了发布才能出现的）
+            //bug:怕需求4没写在 发布的点击事件里 
+            //bug:因为不止一个li  要遍历li，感觉好麻烦 
+            // 解决bug：每次点击发布生成新li时候不仅生成新数据 而且就同时给x绑定个删除事件
+            //把这写在 li追加到ul list之前 把所有都准备好 在把li往list中加
+            //所以要把需求4 放在追加到ul之前
+            let del = li.querySelector('.the_del')//!!!!!!!!!!注意这里li
+            del.addEventListener('click', function () {
+                ul.removeChild(li)
+            })
+
+
+
+            //把li追加给ul
+            ul.insertBefore(li, ul.children[0])
+
+
+            //需求五：你写完的内容发布之后 在上面的textarea中的内容要清空，useCount红色字要变成0
+            textarea.value = ''
+            useCount.innerHTML = 0
+
+        })
+
+        //回车发布 写在点击的下面
+        //在输入框中按回车才有效
+        // keydown 按下就触发  keyup按下之后弹起触发
+        // textarea.addEventListener('键盘事件', function () { 发布信息 })
+        textarea.addEventListener('keyup', function (event) {
+            //此时是按了键盘就触发 此时我们怎么知道用户按了什么键呢？
+            //从事件对象中可以知道 key： 只读属性  会知道用户按下了什么 
+            // console.log(e.key);//按下回车会出现 Enter
+            if (event.key === 'Enter') {
+                //发布新闻
+                //因为回车发布和按了发布按钮的效果一样 粘贴复制很麻烦
+                //有一个想法就是 可以设置按了回车之后让系统自动按发布按钮！！！！！绝妙
+                //自动触发发布按钮
+                send.click()//send按钮调用点击事件     
+            }
+
+            //但是此时 回车发布之后内容没清空 所以把上面两条复制过来  按完之后在情况 写在外面
+            //   textarea.value === ''
+            //         useCount.innerHTML = 0
+            //一直用keydown  到这里一直不能清空  把keydown改成 keyup就可以清空了
+            //因为键盘弹起有一个换行，down的话先清空了，弹起就换行了。所以多一个空格！！！！！
+            //要是down的话 清空完事之后 咱们放开回车就会默认弹起  所以用keyup弹起保险点
+        })
+
+
+    </script>
+</body>
+
+</html>

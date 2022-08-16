@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            display: flex;
+            width: 700px;
+            height: 300px;
+            border-left: 1px solid pink;
+            border-bottom: 1px solid pink;
+            margin: 50px auto;
+            justify-content: space-around;
+            align-items: flex-end;
+            text-align: center;
+        }
+
+        .box>div {
+            display: flex;
+            width: 50px;
+            background-color: pink;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        span {
+            margin-top: -20px;
+        }
+
+        h4 {
+            margin-bottom: -35px;
+            width: 70px;
+            margin-left: -10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="box">
+        <div style="height: 123px;">
+            <span>123</span>
+            <h4>第一季度</h4>
+        </div>
+        <div style="height: 156px;">
+            <span>156</span>
+            <h4>第二季度</h4>
+        </div>
+        <div style="height: 120px;">
+            <span>120</span>
+            <h4>第三季度</h4>
+        </div>
+        <div style="height: 210px;">
+            <span>210</span>
+            <h4>第四季度</h4>
+        </div>
+    </div>
+    <script>
+
+
+        //练习到了 循环和数组
+
+        //用户输入四个季度的数据，可以生成柱状图
+        //要输入四个数据，每个数据和每个高度要一样  最高高度300（因为最大的盒子是300高）
+
+
+
+        // 需求:用户输入四个季度的数据，可以生成柱形图分析:
+        // ①:需要输入4次，所以可以把4个数据放到一个数组里面
+        // 利用循环，弹出4次框，同时存到数组里面
+        // ②:遍历改数组，根据数据生成4个柱形图，渲染打印到页面中
+        // 柱形图就是div盒子，设置宽度固定，
+        // 高度是用户输入的数据div里面包含显示的数字和第n季度
+        let arr = []
+        for (let i = 1; i <= 4; i++) {
+            let num = +prompt(`请输入第${i}个季度的数据`)
+            arr.push(num)
+        }
+
+        // 注意我们渲染循环的是柱子 这样会打印一个盒子
+        document.write(`<div class="box">`)
+        // 中间是循环四个柱子
+        for (let i = 0; i < arr.length; i++) {
+            document.write(`
+            <div style="height: ${arr[i]}px;">
+            <span>${arr[i]}</span>
+            <h4>第${i+1}季度</h4>         
+            </div>
+            `)
+        }
+
+        document.write(`</div>`)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/7.闭包.png" alt="">
+    <img src="../img/7.闭包2.png" alt="">
+    <script>
+
+        /*
+Closure闭包
+目标:能说出什么是闭包，闭包的作用以及注意事项
+概念:一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域
+简单理解:闭包 = 内层函数＋外层函数的变量 
+函数套函数也不能产生闭包得满足上面的两个条件才行
+
+//好多见到 return了一个函数的 要注意是不是闭包
+        */
+
+        function outer() {
+            let a = 1//外层函数的变量
+
+            function inner() {//内层函数使用了外层函数的变量
+                console.log(a);
+            }
+            inner()
+
+        } outer()
+        //别忘了调用 不调用相当于都没执行
+
+        //例如 a=1 我想让外面的函数能拿到这个值能使用这个值
+        //可以运用闭包来实现
+
+        /*----------------------*/
+        // 闭包作用:封闭数据，提供操作，【外部也可以访问函数内部的变量】
+        //以前内部的函数只能内部自己访问，现在有了闭包 外部的函数也可以访问内部的函数变量了
+        // 闭包的基本格式:常用写法
+        //！！！有了闭包：外部可以访问内部函数得变量了
+        function outer() {
+            let i = 1//这个i=1只有函数 outer能用
+
+            function fn() {
+                console.log(i);
+            }
+            return fn//他的接收者（调用者）是outer()函数
+        }
+        const fun = outer()//只要调用outer()就会产生函数fn , outer() === fn === fn(){console.log(i);}
+        //此时 fun接收到了 fn(){console.log(i);}   相当于 const fun=fn(){console.log(i);}
+        //fun装着的又是个函数 最后调用fun
+        fun()//外面的函数  输出1 最终实现了外部函数fun()使用了内部局部得变量里得值 i=1
+
+        //外面想使用 outer函数里的 i=1  
+        //写一个return fn 别写括号 括号是调用 这个是返回, fn是局部函数 装着i
+        //把fn函数得值 给送出去到外面得调用者 outer，然后用变量fun接收 out传过来的值
+
+
+        //大白话 ：
+        //把装着你想用得变量得函数给return， 然后此时有调用者outer接收fn传过来的函数
+        // 然后再把负重前行得outer函数赋值给一个变量fun，此时fun装着函数了算是
+        //最后调用fun（fun是外面的函数）最后输出1
+
+        //  类似 外部的函数想调用内部的变量 ，先把变量用函数装起来 给return 有接收者接收出去，再把调用者函数用变量给接收，最后变量调用
+
+
+
+
+
+        //常见的写法2
+        function outer1() {
+            let i = 1
+
+            // function fn1() {
+            //     console.log(i);
+            // }
+            // return fn1
+            return function fn1() {
+                console.log(i);
+            }
+
+            //因为return 的是 fn这个函数 那不如直接把fn这个函数写在return后面
+        }
+        const fun1 = outer1()
+        // fun1()//因为接过来的是函数 所以最后要调用 
+         fun1() 
+    </script>
+</body>
+
+</html>

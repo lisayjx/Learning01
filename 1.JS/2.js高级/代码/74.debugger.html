@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //debugger  打断点
+
+
+
+
+        const obj = {
+            uname: 'lisa',
+            age: 18,
+            hobby: ['乒乓球', '篮球', '足球'],
+            play: { type: '冒险', name: '双人成行' }
+
+        }
+        const o = {}
+        //核心思想：利用遍历把属性和值取过来 然后赋值
+        function deepCopy(newObj, oldObj) {
+
+
+            debugger//类似在这里打开了个断点   打开断点调试直接找到这里
+            //目的代码特别长！！！！！直接调到这里！！！！！！有这个可能在调节bug
+
+
+
+
+            for (let k in oldObj) {//遍历旧数组，把里面每一项都给新数组 
+                if (oldObj[k] instanceof Array) {
+                    newObj[k] = []//让新的值是数组形式 这样传过来的值都是数组里装着的
+                    deepCopy(newObj[k], oldObj[k])//把旧值传给前面新值里
+                    //newObj[k]空数组 等着接收oldObj[k]传过来的值
+                } else if (oldObj[k] instanceof Object) {
+                    newObj[k] = {}
+                    deepCopy(newObj[k], oldObj[k])
+                } else {
+                    newObj[k] = oldObj[k]
+                }
+
+            }
+        }
+        deepCopy(o, obj)
+    </script>
+
+</body>
+
+</html>

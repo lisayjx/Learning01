@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //    比较运算符作用：比较两个数据大小，是否相等
+        //  >  <  >=  <=  ==(左右值相等就行)  ===(左右值和类型是否全等)  !==
+
+        //比较运算符得到的值都是 布尔值 boolean 只会得到 true和false
+
+        console.log(3 > 5);//false
+        console.log(5 >= 5);//true
+        console.log(5 = 5);//报错 这是赋值 左边必须是容器
+        console.log(5 == 5);//true
+        console.log(5 == '5');//true
+        console.log(5 === '5');//false
+
+        // 开发常用：在开发中判断数据还是应该用===，因为==包含太多不确定性
+
+        //   字符串也可以比较 是比较的字符对应的ASCII码
+        // 从左往右依次比较 如果第一位一样就比较第二位 以此类推 比较的少 了解即可
+        console.log('pink' > 'red'); // p和r比较  r在后面 所以red大
+        console.log('pink' > 'pin');//true
+
+        // Nan不等于任何值，包括它本身
+        console.log(Nan == Nan);//false
+        console.log(Nan === Nan);//false
+
+        // 尽量不要比较小数 因为小数精度有问题
+        console.log(1.2 + 1.3 === 2.5);//true
+        console.log(0.1 + 0.2 === 0.3);//false
+        console.log(0.2 + 0.3 === 0.5);//true
+
+        // 不同类型之间比较会发生隐式转换
+        //最终把数据隐式转换转成number类型再比较
+        //所以开发中，如果进行准确的比较我们更喜欢===或者!==
+
+        console.log(3>'2');//3>2  会把2转换成数字型进行比较
+
+
+
+        //总结 
+      /*  =  ==  ===怎么区别？
+      =是赋值
+      ==是判断 值相等就可以 不要求数据类型一样
+      ===是判断要求值和数据类型都得一样
+      开发中请使用===
+
+      比较运算符返回的结果是啥？
+      布尔值 true或者false
+      */
+    </script>
+</body>
+
+</html>

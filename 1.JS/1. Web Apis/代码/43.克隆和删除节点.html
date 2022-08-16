@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我是内容</li>
+    </ul>
+
+    <!-- ------------------ -->
+    <button>点击</button>
+    <ul class="two">
+        <li>把我删除</li>
+    </ul>
+    <script>
+        // 特殊情况下，我们新增节点，按照如下操作:
+        // 复制一个原有的节点
+        // 把复制的节点放入到指定的元素内部
+
+        // 轮播图无缝滚动 第一张要复制到最后一张
+
+        //1.克隆 一个已有的元素节点
+        // 元素.cloneNode(布尔值)
+        // cloneNode会克隆出一个跟原标签一样的元素，括号内传入布尔值
+        //  若为true，则代表克隆时会包含后代节点一起克隆（带着孩子）
+        //  若为false，则代表克隆时不包含后代节点（净身出户）
+        //  默认为false
+
+        let ul = document.querySelector('ul')
+        //克隆个ul
+        ul.cloneNode(false)//或者里面不写 默认是false  只克隆了ul
+        let newUl = ul.cloneNode(true)//克隆了ul加ul得后代
+        //把新克隆的这个ul追加到body
+        document.body.appendChild(newUl)
+
+
+
+
+        //2.删除
+
+        // 若一个节点在页面中已不需要时，可以删除它
+        // 在JavaScript 原生DOM操作中，要删除元素必须通过父元素删除
+        // ●语法
+        // 父元素.removeChild(要删除的元素)
+        // 注:
+        // 如不存在父子关系则删除不成功
+        // 删除节点和隐藏节点（display:none）有区别的:隐藏节点还是存在的，但是删除，则从html中删除节点
+
+        //需求：点击按钮 删除小li
+        let btn = document.querySelector('button')
+        let two = document.querySelector('.two')
+        btn.addEventListener('click', function () {
+            // two.removeChild(li) 别忘了 子元素li也要获取 所以写成two得儿子就不用获取了
+            two.removeChild(two.children[0])//因为children返回的是伪数组
+        })
+    </script>
+</body>
+
+</html>

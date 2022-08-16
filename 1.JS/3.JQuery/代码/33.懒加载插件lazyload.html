@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wall{
+            height: 3000px;
+            background-color: orange;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wall"></div>
+    <img class="lazyload" data-original="../images/1.png" alt="">
+    <img class="lazyload" data-original="../images/2.png" alt="">
+   
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="../lazyload/jquery.lazyload.js"></script>
+    <script>
+        //jQuery 的懒加载插件lazyload
+        //懒加载:图片用到了再去加载，常见于有大量图片的网页，比如电商， 淘宝啥的 图片 滚到了才加载
+
+
+        // 下包: 把插件下载到本地
+        // 导包: 先导入jQuery，再导入插件，导入css(需要的话)
+        // 用包: 根据文档(说明书)使用
+
+        // 语法： <img class="lazyload" data-original="../images/1.png" alt="">
+        //找到希望懒加载的图片并调用lazyload方法
+        // $ ('.lazyload').lazyload()
+
+        $('.lazyload').lazyload()
+    </script>
+</body>
+
+</html>

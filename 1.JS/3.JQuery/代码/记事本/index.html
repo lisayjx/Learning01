@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notebook</title>
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <section class="todoapp">
+    <header class="header">
+      <h1>记事本</h1>
+      <!-- 输入框 -->
+      <input id="addTodo" class="new-todo" placeholder="请输入内容" autofocus />
+    </header>
+    <section class="main">
+      <!-- 容器 -->
+      <ul class="todo-list" id="todoList">
+        <!-- 模板 -->
+        <!-- <li>
+            <div class="view">
+              <label>模板</label>
+              <button class="destroy"></button>
+            </div>
+          </li> -->
+      </ul>
+    </section>
+    <footer class="footer">
+      <!-- 计数区域 -->
+      <span class="todo-count">
+        合计:
+        <strong>0</strong>
+      </span>
+    </footer>
+  </section>
+
+  <script src="./libs/jquery-3.5.1.min.js"></script>
+  <!-- <script src="./js/index.js"></script> -->
+
+
+  <!-- 三部分 ：新增、删除、计数 -->
+  <script>
+    ; (function () {
+      //3.计数
+      function count() {
+        $('.todo-count strong').text($('.todo-list li').length)
+      }
+
+
+
+
+      //1.新增
+      //1.在输入内容的情况下,回车新增记事本项,并且以动画的方式添加到页面中,同时清空输入
+      // 1:新增时,判断按键为回车,及输入内容非空
+      //     keyup , keyCode , val
+      // ②:添加记事本项到页面,并设置输入内容
+      //     append
+      // ③:通过展开动画的方式展示元素
+      //     display:none , slideDown
+      // ④:清空输入内容
+      //     val
+      $('.new-todo').keyup(function (e) {
+        if (e.keyCode === 13) {
+          let value = $(this).val()
+          if (value !== '') {
+            // console.log('输入了内容');
+            $('.todo-list').append(`
+            <li style="display:none">
+            <div class="view">
+              <label>${value}</label>
+              <button class="destroy"></button>
+            </div>
+          </li>
+            `)
+            $('.todo-list li')//找到最后一个li给展开
+              .last()
+              .slideDown(function () {//回调函数，动画展开完执行 数字++
+                //  $('.todo-count strong').text($('.todo-list li').length)
+                count()
+              })
+            //输入完给输入框清空
+            $(this).val('')//赋值
+          }
+        }
+      })
+
+
+      //2.删除
+      //  2:点击删除按钮,播放淡出动画,然后删除所在记事本项
+      //  分析:
+      // ①:为删除按钮绑定点击事件
+      // on , click
+      // ②:找到祖先元素li标签并播放淡出动画
+      // parent , fadeOut
+      // ③:动画播放完毕,删除li标签
+      // 回调函数，remove
+
+      $('.todo-list').on('click', '.destroy', function () {
+        let $li = $(this).parent().parent()
+        $li.fadeOut(1000, function () {
+          $(this).remove()//回调函数 动画执行完把li删除
+
+          // text($('todo-list li').length是li得个数
+          //  $('.todo-count strong').text($('.todo-list li').length)//回调函数 动画执行完strong标签数字--
+          count()
+        })
+      })
+
+      //3.计数
+      // 需求:新增和删除时更新个数分析:
+      // :新增和删除动画播放完毕时执行逻辑
+      // 动画的回调函数
+      // ②:获取li标签的个数并更新个数
+      // text
+      // ③:代码复用
+      // 封装成函数
+
+
+
+
+    })()
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

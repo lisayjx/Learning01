@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="one">克隆（不带事件）</button>
+    <button class="two">克隆（带事件）</button>
+
+    <div class="box">
+        <button>按钮</button>
+    </div>
+    <script src="./jquery-3.6.0.js"></script>
+    <script>
+        // jQuery中封装了克隆(复制)，节点的方法
+
+        //不带事件
+        // .clone()
+        //带事件
+        // .clone(true)
+
+        // 方法返回的还是jQuery对象
+        // 传入true事件也会—起克隆
+        // -----------------------------------------
+        //为按钮绑定一个事件
+        $('.box button').click(function () {
+            $(this).parent().css('background', 'yellow')
+        })
+
+        // 普通克隆   克隆后的东西点击里面按钮不会变色
+        $('.one').click(function () {
+            let $clone = $('.box').first().clone()
+            $('body').append($clone)
+        })
+
+        // 带事件的克隆   克隆后的东西点击里面按钮会变色
+        $('.two').click(function () {
+            let $clone = $('.box').first().clone(true)
+            $('body').append($clone)
+        })
+    </script>
+</body>
+
+</html>

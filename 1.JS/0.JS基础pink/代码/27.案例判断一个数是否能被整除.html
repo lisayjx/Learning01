@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 为下面得案例准备
+        let i = 1
+        i = i + 5//i+5不对 得是i=i+5
+        console.log(i);
+*/
+        /*
+        需求：用户输入一个，判断这个数能被4整除，但是不能被100整除
+        分析：1.用户输入 2.控制台：是否能被4整除并且100整除*/
+        let num = prompt('请输入一个数')
+        // 若是用户输入的不是数字是空字符串''当假看  就让num返回0
+        num = num || 0//num||0不对，得是num = num || 0
+       // num = num || 0若是num='5'为真 后面不用看了就是真 到下面当5去做运算
+        console.log(num % 4 === 0 && num % 100 !== 0)
+        //若是输入20就是true
+        //若是输入30就是false
+    </script>
+</body>
+
+</html>

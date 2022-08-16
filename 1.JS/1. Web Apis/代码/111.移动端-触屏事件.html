@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+
+// 移动端浏览器兼容性较好，我们不需要考虑以前JS的兼容性问题，
+// 可以放心的使用原生S书写效果，但是移动端也有自己独特的地方。
+// 比如触屏事件touch (也称触摸事件），Android和IOS都有。 
+
+// touch对象代表一个触摸点。触摸点可能是一根手指，也可能是一根触摸笔。
+// 触屏事件可响应用户手指（或触空笔）对屏幕或者触控板操作。
+ 
+// touchstart     手指触摸到一个DOM元素时触发
+// touchmove      手指在一个DOM元素上滑动时触发
+// touchend       手指从一个DOM元素上移开时触发
+//touchcancel     例如手指在滑动时候突然来电话了 他肯定会阻止你
+let box=document.querySelector('.box')
+box.addEventListener('touchstart',function(e){
+    console.log('摸了一下');
+    console.log(e.type);//加入你点击了一下盒子会输出 touchstart
+})
+box.addEventListener('touchmove',function(){
+    console.log('继续摸');
+})
+box.addEventListener('touchend',function(){
+    console.log('不摸了');
+})
+
+// 不管你移没移出这个区域 你touchstart中的干啥了 move和end中就干啥了
+
+    </script>
+</body>
+</html>

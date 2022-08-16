@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+// 1．变量访问原则是什么?
+// >作用域链:采取就近原则的方式来查找变量最终的值
+
+
+
+
+
+
+        //在不同作用域下，可能存在变量命名冲突的情况，到底该执行谁呢？
+        // 先从自己当前的作用于查找，要是没有再去上一级查找..一直没有就undefined
+        let num5 = 10//全局作用域
+        function fn5() {
+            let num5 = 20//函数（局部作用域）
+            alert(num5)//他到底执行谁呢？？执行它最近的
+        }
+        fn5()
+
+        //引出了作用域链
+        // 变量访问原则-作用域链
+        // ●只要是代码,就至少有一个作用域
+        // ●写在函数内部的局部作用域
+        // ●如果函数中还有函数，那么在这个作用域中就又可以诞生一个作用域
+        // ●根据在内部函数可以访问外部函数变量的这种机制，用链式查找决定哪些数据能被内部函数访问，就称作作用域链
+        //从里往外查找
+
+        //例1：看输出语句离谁近，123
+        function f1() {
+            let num = 123
+
+            function f2() {
+                alert(num)//123
+            }
+            f2()
+        }
+        let num = 456
+        f1()
+/*--------------------------------*/
+        //例2：输出语句a和b离a=4和b='22'近 
+        let a = 1
+        function fn1() {
+
+            let a = 2
+            var b = '22'
+            fn2()//a=3,b='22'
+
+            function fn2() {
+                let a = 3
+                fn3()//a=4,b='22'
+
+                function fn3() {
+                    let a = 4
+                    alert(a)//a的值？   4
+                    alert(b)//b的值？ '22'
+                }
+            }
+        }
+        fn1()
+
+        // ---------------------------------------------
+        
+        var c = 100
+        function fn3() {
+            // var c
+            console.log(c);//undefined  访问的是fn3中定义的c       
+            var c = 200
+            console.log(c);//200
+        }
+
+
+
+        var d = 50
+        function fn4() {
+            var d = 500
+            function fn5() {
+                // var d
+                console.log(d, 1);//undefined
+                var d = 1000
+            }
+
+            console.log(d, 2);//500
+            fn5()//此时调用了fn5,fn5函数可以用了
+            console.log(d, 3);
+        }
+        fn4()
+
+        // 当访问一个变量，如果函数内声明了变量，那就是函数内的
+        // 但是函数内的没声明直接赋值，就去往上查找带声明的
+        // 当访问一个变量时，会优先在当前作用域查，如果当前作用域有声明这个变量，就使用当前作用域中声明的变量
+        // 如果当前作用域没有声明这个变量，就往上一层查找有没有声明这个变量，如果声明了就用上一层的，如果没有就继续往上查
+        // 以此类推一直找到最上层的作用域，如果还没找到就报错了
+        //函数查找过程也是
+    </script>
+</body>
+
+</html>

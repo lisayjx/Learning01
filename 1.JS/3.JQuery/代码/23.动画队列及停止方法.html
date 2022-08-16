@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //例如 腾讯全段案例
+
+    // 滚动到一定位置会出现返回顶部盒子
+    // 如果滚动过快 一会上一会下 会出现你鼠标滚动完了 但是 返回顶部的盒子还在来回出现
+    //这个问题就是动画队列带来的
+
+    // 通过jQuery为元素设置的多个动画会依次添加到动画队列中,并根据添加的顺序依次播放
+//上一个动画还没播完就继续添加动画
+
+//停止当前动画，然后执行下一个动画
+$('选择器').stop()
+//清空队列在动画当前状态停止  别的动画也不播放了
+$('选择器').stop(true)
+//清空队列直接到当前动画的结束状态  （比如正在展开时候你按了这个，会一下子显示展开完得样子） 别的也不播了
+$('选择器').stop(true ,true)
+
+// 动画方法和stop方法返回的是同一个jQuery对象(链式编程)
+
+    </script>
+</body>
+</html>

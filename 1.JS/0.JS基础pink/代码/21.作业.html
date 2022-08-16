@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            height: 100px;
+            border-collapse: collapse;
+        }
+        caption {
+            font-size: 18px;
+            font-weight: 600;
+            color: green;
+        }
+        table th,
+        td {
+            border: 1px solid #000;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+  
+
+    <script>
+/*复习 
++上下文：
+如果+号左右只有一个值解析的结果是正号可用于隐式转换如果两边都是数值(Number)类型则是+号运算符
++号的左右如果有一个数据是字符串数据类型的话那么这个+号会被解析成连接符
+
++“123” ->数字型
+123+“123” ->字符型 123123
+11+11->22
+
+数字相加 字符相连
+*/
+
+
+
+    // 1.询问 用户姓名，年龄，性别 收集数据后在后台打印出来
+        let uname = prompt('请输入你的名字')
+        let age = prompt('请输入你的年龄')
+        let gender = prompt('请输入你的性别')
+        document.write(`
+        <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        <tr>
+            <td>${uname}</td>
+            <td>${age}</td>
+            <td>${gender}</td>
+        </tr>
+    </table>
+        `)
+
+        // 2.增加年龄，用户输入年龄后，把用户的年龄增加5岁
+         // 增加5岁后 通过弹出框提示用户 “据我估计，五年后你可能xx岁了”
+
+         let nianling=prompt('请输入你的年龄')
+         let result=Number(nianling)+5
+        //  let result=+(nianling)+5 也行
+         alert(`据我估计，五年后你可能${result}岁了`);
+
+
+        //  3.计算银行卡余额
+       // 用户输入银行卡金额，依次输入本月的电费，水费，网费
+       // 页面打印个表格，计算出本月银行卡的余额
+       let money=+prompt('请输入您的银行卡金额')
+       let dianfei=+prompt('请输入本月电费')
+       let shuifei=+prompt('请输入本月水费')
+       let wangfei=+prompt('请输入本月网费')
+       let yue=money-dianfei-shuifei-wangfei
+      document.write(`
+      <table>
+        <caption>消费支出 </caption>
+        <tr>
+            <th>银行卡金额</th>
+            <th>电费</th>
+            <th>水费</th>
+            <th>网费</th>
+            <th>您的余额</th>
+        </tr>
+        <tr>
+            <td>${money}</td>
+            <td>${dianfei}</td>
+            <td>${shuifei}</td>
+            <td>${wangfei}</td>
+            <td>${yue}</td>
+        </tr>
+    </table>
+      `)
+    </script>
+</body>
+
+</html>

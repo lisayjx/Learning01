@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button class="btn500">点击才动到500</button>
+    <button class="btn800">点击才动到800</button>
+    <script>
+        // 缓动动画就是让元素运动速度有所变化，最常见的是让速度慢慢停下来
+        //每次走的长度越来越短
+        //2．核心算法∶(目标值-现在的位置)/ 10做为每次移动的距离步长
+        //相当于每次走剩余部分的十分之一距离
+        // (target-obj.offsetLeft)/10
+
+
+        let box = document.querySelector('.box')
+        let btn500 = document.querySelector('.btn500')
+        let btn800 = document.querySelector('.btn800')
+        function animate(obj, target) {
+
+            clearInterval(obj.timer)
+
+            obj.timer = setInterval(function () {
+                //step要考虑 往前走和后退的问题 向前走向大取整 向后退向小取整(因为除法精度不准)
+                let step = (target - obj.offsetLeft) / 10
+                step = step > 0 ? Math.ceil(step) : Math.floor(step)
+
+                if (obj.offsetLeft == target) {
+                    clearInterval(timer)
+                } else {
+                    //把每次加1这个步长值改为一个慢慢变小的值
+                    obj.style.left = obj.offsetLeft + step + 'px'
+                }
+
+            }, 20)
+        }
+        btn500.addEventListener('click', function () {
+            animate(box, 500)
+        })
+        btn800.addEventListener('click', function () {
+            animate(box, 800)
+        })
+
+
+
+
+ //匀速动画就是盒子是当前的位置+固定的值10
+//缓动动画就是﹐盒子当前的位置＋变化的值(目标值–现在的位置)/ 10)     往上取值！！
+
+    </script>
+</body>
+
+</html>

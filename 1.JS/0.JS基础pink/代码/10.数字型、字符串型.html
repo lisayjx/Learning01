@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+               1.数字型 整数 小数 正数 负数
+        注意事项：
+            JS是弱数据类型，变量到底属于那种类型，只有赋值之后，我们才能确认
+            Java是强数据类型例如int a= 3必须是整数
+        
+        */
+        /*
+                let age = 18
+                let num = 12.3
+                let num1 = -12
+        
+        */
+        /*2.字符串型string
+        通过单引号'' 双引号"" 反引号` 包裹的数据都叫字符串推荐使用单引号
+       注意事项:
+        1.无论单引号或是双引号必须成对使用
+        2.单引号/双引号可以互相嵌套，但是不以自已嵌套自已(口诀:外双内单，或者外单内双)
+        3.必要时可以使用转义符\，输出单引号或双引号
+   *//*
+             let userName = '小明'
+             let gender = '男'
+             let str = '123'
+             let str1 = ''//空字符串
+     
+             console.log(gnder) //输出男
+             console.log('gender') //输出gender字符串型  变量不能加引号
+     *//*
+                console.log('你好"刘德华"') 
+                console.log("你好'刘德华'") 
+                // console.log('我是\'刘德华\'') 转义了解
+        
+                // 字符串拼接
+                字符串+字符串=字符串
+                字符串+数字（正常数字）=字符串
+                字符串+变量=字符串
+                
+                console.log('你'+'好')
+        
+                let name='刘德华'
+                let song='冰雨'
+                console.log(name+song) //刘德华冰雨
+        
+                console.log('我今年：'+18) //输出字符串型我今年18
+        
+                let age=19
+                console.log('我今年：'+age) //字符串和变量拼接
+        */
+        let uname = prompt('请输入你的名字')
+       document.write('你的名字是' + uname);
+    </script>
+</body>
+
+</html>

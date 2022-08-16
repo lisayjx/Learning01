@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>哈哈哈哈哈哈</li>
+        <li>哈哈哈哈哈哈</li>
+        <li>哈哈哈哈哈哈</li>
+        <p>你好</p>
+    </ul>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        // jQuery中利用选择器获取到的并非原生的DOM对象，而是jQuery 对象
+
+        //jQuery对象和DOM对象的语法不能混用
+
+        //各自有各自的语法
+
+        //例如
+        //JQuery获取p标签 改变背景为粉色
+        //  $('p').css('background', 'pink')
+        //DOM获取p标签 改变背景色为粉色
+        //  document.querySelector('p').style.backgroundColor = 'pink'
+
+        //dom对象转换
+        //   $(dom对象) 返回的是JQ对象 也就可以用JQ那些方法了
+
+
+        //1.打印dom和JQ对象得区别
+        let li = document.querySelector('li')
+        console.log('li:', li);//li: null
+
+        let $li = $('li')//获取了所有li  不用再循环着获取了
+        console.log('$li:', $li);
+        //$li:  Object { length: 0, prevObject: {…} }
+
+        //2.JQ对象的方法
+        $('li').css('background', 'pink')
+
+        //3.混着用（只是测试而已）
+        // li.css('background', 'pink')//不对
+
+
+        //4.dom对象转JQ对象  $(dom对象).css('background', 'pink')
+        //把原生DOM对象放进$()中就转了
+        //转换的前提是 你在原生时候已经获取过了这个变量 才能给他转换
+        let p = document.querySelector('p')
+        $(p).css('backgroundColor', 'red')
+
+
+// 1．调用$方法传入选择器或dom元素获取到的是什么对象?
+// jQuery对象
+// 2. jQuery对象的方法,比如css方法放在什么位置?
+// 原型
+
+    </script>
+</body>
+
+</html>

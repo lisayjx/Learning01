@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin: 0 auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table th,
+        td {
+            border: 1px solid #000;
+            padding: 15px;
+        }
+
+        table caption {
+            margin: 10px 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>订单付款页面</caption>
+        <tr>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>总价</th>
+            <th>收货地址</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+    <script>
+        /*
+       1. 计算两者的和 打印到页面中
+        注意：prompt和表单取过来的值是字符串类型
+        */
+
+        let num1 = prompt('请输入第一个数')
+        let num2 = prompt('请输入第二个数')
+        let result = Number(num1) + Number(num2)
+        // let result = +(num1) + +(num2)也行
+        alert(`两个数的和是${result}`)
+
+
+        //  2.用户订单案例
+        //用户输入商品价格和商品数量以及收货地址，可以自动打印订单信息
+        /*分析:
+        ①:需要输入3个数据，所以需要3个变量来存储price numaddress
+        ②:需要计算总的价格total
+        ③:页面打印生成表格，里面填充数据即可
+        ④:记得最好使用模板字符串
+        */
+        let name = prompt('请输入产品名称')
+        let price = +prompt('请输入产品单价')
+        let num = +prompt('请输入产品数量')
+        let area = prompt('请输入产品收货地址')
+        let total=price*num
+        document.write(`
+       <table>
+        <caption>订单付款页面</caption>
+        <tr>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>总价</th>
+            <th>收货地址</th>
+        </tr>
+        <tr>
+            <td>${name}</td>
+            <td>${price}元</td>
+            <td>${num}个</td>
+            <td>${total}元</td>
+            <td>${area}</td>
+        </tr>
+    </table>
+       
+       `)
+    </script>
+</body>
+
+</html>

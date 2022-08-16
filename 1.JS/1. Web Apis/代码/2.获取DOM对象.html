@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+
+        用js获取html的标签把它变成dom对象
+
+       一、根据css选择器来获取dom元素（重点）
+       二、其他获取DOM元素方法（了解）
+     -->
+    <div>第一个盒子</div>
+    <div>第二个盒子</div>
+    <div class="three">第三个盒子</div>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>第三个</li>
+    </ul>
+
+<div id="div1">22</div>
+
+
+    <img src="../img/3.获取元素.png" alt="">
+    <img src="../img/3.获取元素1.png" alt="">
+    <img src="../img/3.获取元素2.png" alt="">
+    <script>
+        // 提问：我们想要操作某个标签首先做什么？
+        //      肯定是先选中这个标签，类似css选择器，选中标签才能操作
+        // ！！查找元素DOM元素就是选择页面中标签元素
+
+
+
+        // 一、根据css选择器来获取dom元素（重点）
+        // 1.1选择匹配的第一个元素
+        // 语法：
+        //query查询 、Selector选择器（类就加. id就加# 后代就加空格）
+        document.querySelector('css选择器')
+        //参数：包含一个或者多个有效的css选择器 字符串！别忘了加引号！！！！！！！
+        //返回值：css选择器匹配的第一个元素，一个HTMLElement对象，如果没有匹配到就返回null
+
+        //1.用js获取元素，把他变成了对象,声明一个变量把他（对象）存起来
+        let div = document.querySelector('div')
+        // console.log(div);
+        //只会获取第一个盒子对象
+
+
+        //2.我想把three盒子获取过来
+        let div3 = document.querySelector('.three')
+        // console.log(div3);
+
+
+        //3.获取第三个li
+        let li3 = document.querySelector('ul li:last-child')
+        // console.log(li3);
+
+
+
+        //注意：
+        // 1.获取时候一定要加引号，里面的内容和css选择器那样就可以
+        // 2.好几个相同的标签时候只能获取第一个
+
+
+        //1.2一下子获取多个元素，得到的是伪数组
+        //document.querySelectorAll('css选择器')    
+        //参数：包含一个或者多个有效的css选择器字符串
+        //返回值:css选择器匹配的NodeList对象集合
+
+        let lis = document.querySelectorAll('ul li')//获取所有li
+        console.log(lis)//返回的是数组对象[{li},{li},{li}],每一个li都是对象
+        //获取数组对象中每一个li，for循环
+        for (let i = 0; i < lis.length; i++) {
+            console.log(lis[i]);//得到了每一个对象li
+        }
+
+
+
+
+        //总结
+// 1．获取一个DOM元素我们使用谁 ?
+//             querySelector()
+// 2．获取多个DOM元素我们使用谁 ?
+//             querySelectorAll()
+// 3. querySelector()方法能直接操作修改吗 ?
+//             可以
+// 4. querySelectorAll()方法能直接修改吗 ? 如果不能可以怎么做到修改 ?
+//             不可以，只能通过遍历的方式一次给里面的元素做修改
+//             因为里面放的是多个是数组对象，可以用for循环遍历然后选取
+
+//5.伪数组：有长度、索引号，但是没有pop（），push（）等方法
+//想要得到里面的每一个对象，用for循环方式获得
+//6.for遍历数组，for in遍历对象
+//7.哪怕只有一个一个元素，通过querySelectorAll()获取过来的也是伪数组，里面只有一个元素（对象）而已，[{obj}]
+  
+  
+  
+//   所有的id属性标签 可以通过id名获取到这个元素
+  console.log(div1);//<div id="div1">
+  
+  
+  
+  </script>
+</body>
+
+</html>

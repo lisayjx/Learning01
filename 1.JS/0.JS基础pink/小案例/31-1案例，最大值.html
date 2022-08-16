@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+//   错误做法：
+          //用户输入两个数，控制台输出最大的值
+ /*       let num1 = prompt(`请您输入第一个数`)
+        let num2 = prompt(`请您输入第二个数`)
+        // num1 > num2 ? num1 : num2 是个表达式 这样没输入 所以我们经常用下面的方法给个变量接收
+        let result=num1 > num2 ? num1 : num2
+        alert(`${result}是最大值`)
+        //有bug  输入10和5会出错  因为拿过来的是字符串 字符串相比10 和5 是先用1和5 比 然后0和空比
+        // 所以数值相比要换成数字型 
+ */
+      
+//  正确做法：   
+        let num1 = +prompt(`请您输入第一个数`)
+        let num2 = +prompt(`请您输入第二个数`)
+        let result = num1 > num2 ? num1 : num2
+        alert(`${result}是最大值`)
+            
+    </script>
+</body>
+
+</html>

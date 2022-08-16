@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //请把['赵云','黄忠','关羽','张飞']随机显示一个名字到页面中，不允许重复显示
+        // 1.利用随机函数随机生成一个数字作为索引号
+        // 2.数组[随机数]生成到页面中
+        //注意：按道理点过名的小伙伴下次就不会再被点了怎么做？？点完名就删除，然后从剩余的点
+        //3.数组中删除刚才抽中的索引号
+
+
+        //方法1 
+        // let arr1 = ['赵云', '黄忠', '关羽', '张飞']
+        // let re = Math.floor(Math.random() * (arr1.length - 0)) + 0
+        // document.write(arr1[re])
+
+
+        //方法2 用封装的函数
+        let arr = ['赵云', '黄忠', '关羽', '张飞']
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let random = getRandom(0, arr.length - 1)//生成0-3中随机数，这个数当作数组下标放到下面
+        console.log(arr[random]);//数组下标不一定是几
+        //打印完就给他删除 splice（从哪里开始删除，删除几个）
+        arr.splice(random,1)
+        // console.dir(arr);
+    </script>
+</body>
+
+</html>

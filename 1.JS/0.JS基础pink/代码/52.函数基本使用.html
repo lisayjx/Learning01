@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //函数名命名规范：
+        // 和变量命名基本一致
+        // 尽量小驼峰式命名法
+        // 前缀应该为动词
+        // 命名建议:常用动词约定
+
+        // can判断是否可执行某个动作
+        // has判断是否含某个值
+        // is 判断是否为某个值
+        // get获取某个值
+        // set设置某个值
+        // load加载某些数据
+
+        //调用： 函数名()
+        //注意：声明（定义）的函数必须调用才会真正被执行，使用（）调用函数
+        //以前的alert（）其实是系统内置函数 也是会做某种功能的函数
+
+
+        //函数执行顺序：
+        // 先执行调用：（因为不调用就不会执行）
+        // 然后将实参的数据赋值给形参
+
+        
+        // 1.函数的声明
+        function sayHi() {
+            alert('你好，你不调用我我就不出来')
+        }
+        //2.函数调用
+        sayHi()
+        sayHi()
+        sayHi()
+        sayHi()
+    </script>
+</body>
+
+</html>

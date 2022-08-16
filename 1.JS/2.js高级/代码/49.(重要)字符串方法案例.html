@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p class="name">
+        <span class="tag">【赠品】50克茶叶</span>
+        <span class="tag">【赠品】清洗球</span>
+    </p>
+
+
+    <img src="../img/49.1.png" alt="">
+    <!-- 把gift字符串取出来 分别放到两个不同的盒子里去 -->
+    <img src="../img/49.2.png" alt="">
+
+
+
+    <script>
+        // 思路 
+        //  把字符串拆分为数组，这样两个赠品就拆分开了用那个方法? split(',')  [50克茶叶,清洗球]
+        //  利用map遍历数组给数组值加标签（返回也是数组，每个数组的每个值都装了个span），[<span>,<span>]
+        //把 [<span>,<span>]再转成字符串  用 join('')
+
+        // split 字符串-->数组 
+        // join 数组-->字符串    正好相反的一对 
+
+        // 字符串-->数组-->加了标签的数组-->加了标签的字符串
+
+        // const gift = '50g茶叶,清洗球'
+        // //字符串-->数组  拆分数组  因为不知道每个值多长 所以不能用字符串截取
+        // // console.log(gift.split(','));   //[ "50g茶叶", "清洗球" ]
+        // //  gift.split(',')
+        // //遍历数组 给每个值加标签 根据数组元素的个数生成对应的span
+        // const arr = gift.split(',').map(item => `<span>【赠品】 ${item}</span>`)
+        // console.log(arr);//[ "<span>【赠品】 50g茶叶</span>", "<span>【赠品】 清洗球</span>" ]
+        // //转成字符串 
+        // const re = arr.join('')  
+        // console.log(re);//<span>【赠品】 50g茶叶</span><span>【赠品】 清洗球</span>
+
+        // //加到div中去
+        // document.querySelector('div').innerHTML=re
+
+
+        //精简写法 箭头函数写法
+
+        const gift = '50g茶叶,清洗球'
+        document.querySelector('div').innerHTML = gift.split(',').map(item => `<span>【赠品】${item}</span> <br>`).join('')
+    </script>
+</body>
+
+</html>

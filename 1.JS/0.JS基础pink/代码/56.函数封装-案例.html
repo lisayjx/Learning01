@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需求:学生的分数是一个数组,计算每个学生的总分分析:
+        // ①:封装一个求和函数
+        // ②:传递过去的参数是一个数组
+        // ③:函数内部遍历数组求和
+
+
+
+        function getSum(arr) { //2.接收实参  等价于     let arr = [1, 2, 3, 4, 5]    
+            let sum = 0
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i]
+            }
+            document.write(`和是${sum}`)
+        }
+        //1.调用函数 传参
+        getSum([1, 2, 3, 4, 5]) //张三成绩
+        getSum([100, 200])  //李四成绩
+        getSum([1050, 2000, 3600]) //王二麻子成绩
+
+        //调用时候要是数组别忘了加[]
+    </script>
+</body>
+
+</html>

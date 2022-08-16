@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 请声明一个产品对象，里面包含如下信息：
+        // 要求：
+        // 1.对象是一个产品信息可以命名为：goods
+        // 2.商品名称：name
+        // 3.商品编号：num
+        // 4.商品毛重：weight
+        // 5.商品产地：address
+
+        let goods = {
+            name: '小米',
+            num: '1001',
+            weight: '0.55kg',
+            address: '中国大陆',
+            callIphone: function () {
+                console.log('打个电话')
+            }
+
+        }
+        console.dir(goods);
+        console.log(goods);
+        //console.dir()可以显示一个对象所有的属性和方法。
+
+        //访问属性
+        console.log(goods.name)
+        //访问方法 有小括号
+        //调用这个方法，这个不用输出语句包裹了 因为方法里就有输出语句
+        goods.callIphone()
+
+
+        document.write()//write是一个方法，它属于document
+
+
+
+
+        //刘德华
+        let ldh = {
+            //属性
+            uname: '刘德华',
+            //方法  方法名：function{}{}
+            sing: function () {
+                console.log('唱歌');
+            },
+            dance:function(d){
+                console.log(d);
+            }
+        }
+        //外部使用 对象.方法名()
+        ldh.sing()
+        ldh.dance('开心的马骝')
+    </script>
+</body>
+
+</html>

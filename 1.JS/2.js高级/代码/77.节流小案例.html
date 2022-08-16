@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: #ccc;
+            color: #fff;
+            text-align: center;
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+闭包
+<img src="../img/77.png" alt="">
+
+    <div class="box"></div>
+    <script>
+        // 要求:鼠标在盒子上移动，里面的数字就会变化+1
+        //节流：想让他不管滑动多少下都能控制在3s以后再++
+        // 核心思路:
+        // 利用时间相减:移动后的时间–刚开始移动的时间>= 500ms我才去执行mouseMove函数
+
+        // ①:写一个节流函数throttle，来控制这个操作函数(mouseMove)，500ms之后才去执行这个函数
+        // ②:节流函数传递2个参数，第一个参数mouseMove函数，第二个参数指定时间500ms
+        // ③:鼠标移动事件，里面写的是节流函数
+        // ④:声明一个起始时间startTime = o
+        // ⑤:但是节流函数因为里面写的函数名throttle(mouseMove,500),是调用函数，无法再次调用执行，所以需要在节流函数里面写return函数这样可以多次执行
+        // ⑥:记录当前时间now = Date.now()   鼠标移入时的时间
+        //7:进行判断如果大于等于500ms，则执行函数，但是千万不要忘记让起始时间=现在时间
+
+
+
+        const box = document.querySelector('.box')
+        let i = 1
+        //鼠标移动函数
+        function mouseMove() {
+            box.innerHTML = ++i
+            //如果里面存在大量操作DOM情况 可能会卡顿
+
+        }
+        //节流函数 throttle
+        function throttle(fn, t) {
+            let startTime = 0 //页面一打开记录时间 初始时间
+            //只要一滑动就开始调用里面的function函数
+            return function () {
+                let now = Date.now()//鼠标移入的时间（当前时间  永远是动态的 现在的时间）
+                //如果大于等于300采取调用函数
+                if (now - startTime >= t) {//t是300
+                    //调用函数   mouseMove
+                    fn()
+                    //(调用完了之后立马重新赋值)让起始时间=现在的时间
+                    startTime = now
+                }
+
+            }
+        }
+        //调用节流函数
+        box.addEventListener('mousemove', throttle(mouseMove, 300))
+        //函数调用就是返回return后面的内容
+        //调用一次它相当于调用一次它  滑动一次就打印一次function
+        // throttle(mouseMove, 300) === function () { console.log(11);}
+    // 就像是写成这样    box.addEventListener('mousemove', function () { console.log(11)})
+
+
+    </script>
+</body>
+
+</html>

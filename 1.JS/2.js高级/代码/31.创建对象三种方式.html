@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // -----------------创建对象3种方法-------------------------------
+        //1.用字面量创建对象
+        let obj = {
+            //键值对，也叫成员
+            uname: 'lisa',
+            age: 18,
+            sing: function () {
+                console.log('唱歌');
+            }
+        }
+        //属性
+        console.log(obj.uname);
+        console.log(obj['uname']);
+        //方法
+        console.log(obj.sing);      //把函数当作属性一样当作值访问
+        obj.sing()  //调用
+        //遍历对象  for in
+        for (let k in obj) {
+            console.log(k);//属性名
+            console.log(obj[k]);//属性值   k是动态不能用点 会变得都不能用点
+        }
+        //数组也是对象，遍历数组也可以用 for in
+        let arr= [1, 2, 3, 4]
+        for (let k in arr) {
+            arr[k] //k这里是索引
+        }
+
+
+
+ 
+
+        // const person=new Object()
+        // person.name='lisa'
+        // console.log(person);
+
+        //3.利用构造函数创建对象
+        // 构造函数其实就是函数，只不过构造函数一般用于和new搭配使用，创建对象
+        //内置构造函数：Object  专门用来创建对象的
+        let obj2 = new Object()  //只要new Object()就会得到一个对象
+        //此时对象中没有东西，添加东西直接赋值就行
+        //添加
+        obj2.uname = '阿飞'
+        obj2.age = 22
+        obj.fei = function () { }
+        //不想一个个加属性 可以加个对象
+        let obj3 = new Object({
+            uname: 'lisa',
+            age: 18
+        })
+        console.log(obj3);//{ uname: "lisa", age: 18 }
+        //修改
+        obj2.uname = '阿飞1'
+        //注意 ：如果构造函数不需要参数，那么可以省略括号
+        let obj4 = new Object 
+        //没有属性时候也可以往里加
+        obj4.uname = '阿'
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/73.png" alt="">
+
+    <p></p>
+
+    <script>
+
+        //    我们可以通过try / catch捕获错误信息（浏览器提供的错误信息)
+
+
+        //     总结:
+        // 1.try...catch 用于捕获错误信息
+        // 2.将预估可能发生错误的代码写在try 代码段中
+        // 3.如果 try 代码段中出现错误后，会执行catch 代码段，
+        // 并截获到错误信息4.finally不管是否有错误，都会执行
+        function fn() {
+
+
+            try {
+                //把可能出现问题的代码写在这里
+                const p = document.querySelector('p')//  p改成 .*离谱的
+            } catch (err) { //err这个参数就是浏览器提供的信息参数 我们自定义的
+                //如果有错误信息就可以打印下来
+                console.log(err.message);//err活得，message死的
+                //如果程序有错误就中断(finally也不好使 啥都不好使)  没错误就不中断
+                // return
+                //或者不写return  写throw抛异常
+                throw new Error('你是不是又把选择器写错了')
+
+            } finally {//比如加载页面 不管打不打开最开始都有转圈圈
+                alert('执行')
+            }
+
+            //从上往下执行
+            //    先执行try里的代码 如果遇到里面那段代码有错误
+            //    catch就会捕获到错误信息 并且给他打印出来
+            //    finally一定会执行 不管你有没有try还是catch（不管有没有错 都执行它里面代码）
+
+            console.log(111);
+        }
+        fn()
+
+
+        // 1．捕获异常我们用那2个关键字?可能会出现的错误代码写到谁里面
+        // try catch
+        // try
+
+        // 2.怎么调用错误信息？
+        // 利用 catch的参数
+
+
+    </script>
+</body>
+
+</html>

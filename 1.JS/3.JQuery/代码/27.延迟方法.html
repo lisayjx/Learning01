@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="simple">简单动画</button>
+    <button class="animate">自定义动画</button>
+    <div class="box"></div>
+
+    <script src="../jquery/jquery-3.5.1.js"></script>
+    <script>
+        // jQuery 不仅可以设置动画执行的速度，还能在动画执行前设置一定的延时
+        // 语法:
+        // $("选择器').delay(延迟时间).动画方法()
+         // $("选择器').delay(延迟时间).动画方法().delay(延迟时间).动画方法()
+
+         $('.simple').click(function () {
+            $('.box').delay(2000).fadeOut().delay(2000).slideDown()  
+        })
+
+
+
+
+
+        // 简单动画
+        // $('.simple').click(function () {
+        //     $('.box').delay(5000).fadeOut(1000, function () {
+        //         console.log('动画执行完就会执行得回调函数');
+        //     })
+        // })
+        //自定义动画
+        $('.animate').click(function () {
+            $('.box').delay(5000).animate({
+                width: 400
+            }, 2000, function () {
+                $(this).css('background', 'red')
+            })
+        })
+    </script>
+</body>
+
+</html>

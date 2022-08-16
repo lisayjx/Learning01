@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        nav {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        粉红色的回忆
+    </div>
+
+    <nav>
+        你好啊
+    </nav>
+
+    <script>
+        //设置/修改DOM元素内容 这几个方式
+        //1.document.write()方法
+        //2.  对象.innerText属性   每一个标签获取过来就是一个对象，对象中有多个属性 这只是其中一个
+        //3.  对象.innerHTML属性   每一个标签获取过来就是一个对象，对象中有多个属性 这只是其中一个
+
+
+        //1.document.write()方法
+        //只能将文本内容追加到</body>前面的位置
+        //文本中包含的标签会被解析
+        //    document.write('你好')
+
+
+        //2.  对象.innerText属性       innerText意思是里面的文字  不识别标签
+        //将文本内容 添加/更新 到任意标签位置
+        //文本中包含的标签不会被解析
+
+        //用js方式把盒子里的内容修改一下
+        //（1）.获取标签（对象）
+        let box = document.querySelector('div')
+        //（2）.修改标签（对象里的属性值）     box.innerText 会出来“粉红色的回忆”
+        //box是对象。innerText是属性名   对象.属性名=属性值
+        box.innerText = '夏天夏天悄悄过去'//修改属性值
+        // box.innerText = '<span>夏天夏天悄悄过去</span>' innerText不识别标签
+
+
+
+
+        //3.  对象.innerHTML属性  和上边的唯一区别就是能解析标签
+        let box1 = document.querySelector('nav')
+        box1.innerHTML = '中午好啊'
+        box1.innerHTML = '<i>中午好啊</i>' //可以斜体
+
+        //纠结用哪个？？就用innerHTML把，因为加不加标签都行 都能做inndeText的功能他都有
+
+
+        //    document表示整个HTML文档
+        // 唯一的标签（比如html body head title等）可以直接通过属性取到
+        // document.head   不可以改内容 只读
+        // document.body   不可以改内容 只读
+        // document.title='哈哈' title可以改内容
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //作用域：规定了变量能够被访问的“范围”，离开了这个“范围”变量便不能被访问,
+
+        //作用域分为两大类 局部 全局
+
+
+        //1.局部作用域
+        // （1）函数作用域 
+        // 在函数内部声明的变量只能在函数内部被访问，外部无法直接访问
+
+        //         总结;
+        // 1.函数内部声明的变量，在函数外部无法被访问
+        // 2.函数的参数也是函数内部的局部变量
+        // 3.不同函数内部声明的变量无法互相访问
+        // 4.函数执行完毕后，函数内部的变量实际被清空了
+
+        // （2）块作用域
+        //只要是被 {}包裹的都是
+        // 代码块内部声明的变量外部将【有可能】无法被访问。
+
+        //总结：
+        // 1.let声明的变量会产生块作用域，var不会产生块作用域
+        // 2.const声明的常量也会产生块作用域
+        // 3.不同代码块之间的变量无法互相访问
+        // 4.推荐使用let 或 const
+        // 5.带{}的最好用块级作用域 比如 for循环 if 啥的 用let或者const  （自己加的一条）
+
+        // for(let i=0;i<=3;i++){
+        //     console.log(i);
+        // }
+        // console.log(i);//i is not defined
+        //这外部不能访问 那么什么时候有可能会被访问呢？？var时候
+        for (var i = 0; i <= 3; i++) {
+            console.log(i);
+        }
+        console.log(i)//0 1 2 3 4
+        //因为var没有块级作用域，对于var来说{}无效
+
+
+
+        //         1．局部作用域分为哪两种?
+        // 函数作用域函数内部块级作用域 
+        // 2．局部作用域声明的变量外部能使用吗?
+        // 不能
+
+
+
+        //这样会报错
+        // let num=10
+        // let num=20
+
+        //这样不会报错 因为里面得是局部作用域 不影响外面
+        // let num = 10
+        // console.log(num);//10
+        // {
+        //     let num = 20
+        //     console.log(num);//20
+        // }
+
+
+        //或者 这样也不会有冲突  其中一个放在立即执行函数里
+        (function () {
+            let num = 10
+        })()
+        let num = 20
+    </script>
+</body>
+
+</html>

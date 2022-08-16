@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+箭头函数中的 this与普通函数完全不同，也不受调用方式的影响，
+事实上箭头函数中并不存在[this!箭头函数中访问的this 不过是箭头函数所在作用域的this变量。
+
+
+
+        目标:能够熟悉箭头函数不同写法
+        目的:引入箭头函数的目的是 更简短的函数写法 并且 不绑定this，
+        箭头函数的语法比函数表达式更简洁
+        
+        使用场景:箭头函数更适用于那些本来[需要匿名函数的地方]
+        //以后在这种函数表达式 就用箭头函数写!!!!!!!
+        学习路径:
+        1．基本语法  2.箭头函数参数  3．箭头函数this
+        
+        //箭头函数主要是替代箭头表达式 变量=匿名函数 
+        */
+
+        //以前的函数表达式写法
+        const sum = function () {
+            console.log(123);
+        }
+        sum()
+
+        //1.箭头函数写法   () 是形参 ,=>是function
+        const sum1 = () => {
+            console.log(123);
+        }
+        sum1()//调用
+        //2.只有一个形参的时候可以省略()
+        const sum2 = y => {
+            console.log(y);
+        }
+        sum2(5)//调用
+        //3.只有一行代码的时候可以省略{}
+        const sum3 = (z, y) => console.log(z, y);
+        sum3(6, 7)//调用
+
+        const sum4 = t => console.log(t);
+        sum4(6)//调用
+
+        //4.如果代码一行 也可以省略return
+        const sum5 = r =>/*return*/ r + r
+        console.log(sum5(1));
+
+        // 5.箭头函数可以直接返回一个对象
+
+        /*本来的写法
+       const fn = function () {
+           return { uname: uname }
+       }
+       fn()
+       const fn = () => {
+           return { uname: uname }
+       }
+       fn()
+*/
+
+
+
+        // const fnn = () => {}
+        // fn('刘德华')
+
+        // const fnn = (name形参) => {                name='刘德华'
+        // return {uname:uname}                        return{属性名:形参属性值}   return可以省略
+        // }                 
+        // fn('刘德华')
+
+        // const fnn = (uname形参) => { {uname:uname} }      这样两个花括号会分不清所以把外层的变成()                         
+        // fn('刘德华')
+
+        // const fnn = (uname形参) => ({uname:uname})       v这样两个花括号会分不清所以把外层的变成()                         
+        // fn('刘德华')
+
+
+        const fn = (uname) => ({ uname: uname })         //他有retun 会有返回值 
+        console.log(fn('刘德华'));
+        //Object { uname: "刘德华" }
+        //返回的是对象 不是在写那个函数体
+
+
+
+
+
+
+
+
+
+
+
+        //实例子 阻止表达默认提交
+
+        const form = document.querySelector('form')
+        form.addEventListener('clikc', ev => ev.preventDefault())
+    
+    
+    //总结
+// 1.箭头函数属于表达式函数，因此不存在函数提升 用let const就行
+// 2.箭头函数只有一个参数时可以省略圆括号()
+// 3.箭头函数函数体只有一行代码时可以省略花括号，并自动做为返回值被返回
+// 4.加括号的函数体返回对象字面量表达式  简单来说 返回是对象就用({})
+
+    
+    </script>
+</body>
+
+</html>

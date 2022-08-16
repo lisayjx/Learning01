@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将数组[2,60,6,54,8,28,9,874,3,1,44]中 大于等于10的元素选出来 放入新数组
+        // 声明一个新的数组用于存放新数据newArr:
+        // 遍历原来的旧数组，找出大于等于10的元素
+        // 依次追加给新数组newArr
+
+
+        let arr = [2, 60, 6, 54, 8, 28, 9, 874, 3, 1, 44]
+        let newArr = []
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] >= 10) {
+                // 满足条件的 依次追加给新数组  把arr[i]追加给newArr
+                // newArr=push(arr[i])可不是这种写法！！！！！这种=是赋值 相当于newArr成了变量 变量只能存一个值
+                newArr.push(arr[i])//这种不是赋值 对旧的也没影响 是在后屁股加
+            }
+        }
+        console.log(newArr);
+
+
+        // 将数组[2,0,6,1,77,0,52,0,25,7]中的0去掉后，形成一个不包含0的新数组
+        // 声明一个新的数组用于存放新数据newArr
+        // 遍历原来的旧数组，找出不等于0的元素
+        // 依次追加给新数组newArr
+
+        let arr1 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7]
+        let newArr1 = []
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== 0) {
+                newArr1.push(arr1[i])
+            }
+        }
+        console.log(newArr1);
+    </script>
+</body>
+
+</html>

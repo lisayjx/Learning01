@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //做页面滚动事件
+        //再得到页面滚动距离 scrollTop
+        window.addEventListener('scroll', function () {
+            //谁滚走的头部呢？？内容  页面的内容
+            //所以 写法是 获得【当前页面】被卷去的头部
+            //页面.页面的元素.scrollTop
+            // documentElement=html
+            let num = document.documentElement.scrollTop
+            console.log(num);//数值型 不带单位！！是动态的 因为一直在滚
+
+
+
+
+            // console.log(document.documentElement);//<html lang="en">
+
+            // scrollTop  和 scrollLeft 是可以修改的  可读写的！！！！！
+            //想让页面一打开就跑到500px的位置  一滚动就到500定住了
+            document.documentElement.scrollTop = 500//别给单位
+        })
+
+
+
+
+
+
+        // --------------------------------------------
+// 1. scrollwidth和scrollHeight是得到元素什么的宽高?
+// 内容
+// 不包含滚动条
+// 2．被卷去的头部或者左侧用那个属性?是否可以读取和修改?
+// scrollTop / scrollLeft
+// 可以读取，也可以修改（赋值)
+// 3．检测页面滚动的头部距离（被卷去的头部）用那个属性?
+// document.documentElement.scrollTop
+
+    </script>
+</body>
+
+</html>

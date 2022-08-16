@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .one {
+            position: fixed;
+            right: 0;
+            top: 50vh;
+            height: 50px;
+            width: 50px;
+            background-color: pink;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        .two {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 50px;
+            width: 200px;
+            background-color: purple;
+            z-index: -1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="one">
+        <span>←</span>
+        <div class="two">问题反馈</div>
+    </div>
+    <script src="./js/animate.js"></script>
+    <script>
+        //例如 京东右侧 鼠标经过侧边栏 会有长方形出来 ，离开恢复正方形
+        //一个粉色正方形盒子，里面装紫色的长方形盒子
+        //默认时候紫色盒子压在了粉色盒子左上角位置   紫色盒子的左边框和粉色盒子左边框在一起
+        //鼠标经过就把紫色盒子滑动到粉色盒子的左侧   紫色盒子的右边框和粉色盒子右边框在一起
+        //左右的滑动！！！用到动画
+
+
+
+        //鼠标经过就让紫色盒子滑动到左侧   滑动出去之后变成右箭头（回调）
+        let one = document.querySelector('.one')
+        let span = document.querySelector('span')
+        one.addEventListener('mouseenter', function () {
+            // animate(obj, target, callback)  谁做动画，走多少，结束后有啥变化
+            let twoMove = two.offsetWidth - one.offsetWidth//紫色盒子移动距离
+            animate(two, -twoMove, function () {
+                span.innerHTML = '→'
+            })
+
+        })
+
+
+        //鼠标离开就让紫色盒子滑动到右侧  箭头方向改变（动画做完之后  回调）
+        let two = document.querySelector('.two')
+        one.addEventListener('mouseleave', function () {
+            let twoMove = two.clientWidth - one.clientWidth//紫色盒子移动距离
+            animate(two, 0, function () {
+                span.innerHTML = '←'
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>

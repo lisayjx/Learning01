@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        span {
+            position: absolute;
+            top: 400px;
+            left: 200px;
+            height: 200px;
+            width: 200px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box"></div>
+    <span></span>
+    <button class="btn500">点击才动到500</button>
+    <button class="btn800">点击才动到800</button>
+    <script>
+        //回调函数原理∶函数可以作为一个参数。将这个函数作为参数传到另一个函数里面，
+        // 当那个函数执行完之后，再执行传进去的这个函数，这个过程就叫做回调。
+        // callback就是 动画执行完会出现什么
+
+
+
+        let box = document.querySelector('.box')
+        let btn500 = document.querySelector('.btn500')
+        let btn800 = document.querySelector('.btn800')
+        let span = document.querySelector('span')
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer)
+
+            obj.timer = setInterval(function () {
+                let step = (target - obj.offsetLeft) / 10
+                step = step > 0 ? Math.ceil((target - obj.offsetLeft) / 10) : Math.floor((target - obj.offsetLeft) / 10)
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer)
+                    //回调函数写在定时器结束的里面
+                    //如果有callback函数就调用那个函数
+                    //等到动画执行完他才执行
+                    if (callback) {
+                        callback()
+                    }
+                } else {
+                    //把每次加1这个步长值改为一个慢慢变小的值
+                    obj.style.left = obj.offsetLeft + step + 'px'
+                }
+
+            }, 30)
+        }
+
+        btn500.addEventListener('click', function () {
+            animate(box, 500, function () {
+                // alert('结束了')
+                box.style.backgroundColor='red'
+            })
+        })
+        btn800.addEventListener('click', function () {
+            animate(span, 800)
+        })
+
+    </script>
+</body>
+
+</html>

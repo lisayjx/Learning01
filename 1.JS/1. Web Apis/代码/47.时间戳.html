@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //什么是时间戳 是毫秒数 计量时间的  【总的毫秒数】 独一无二的
+        //可以用来计算倒计时
+        //是指1970年01月01日00时00分00秒起至现在的毫秒数，它是一种特殊的计量时间的方式
+        //将来时间和现在时间不能相减，但是时间戳是总的毫秒数就可以相减 然后转化成时间
+        //    将来时间 9.1 12：00 有一个时间戳20000
+        //    现在时间 8.29 15：00 有一个时间戳18000
+        //可以利用将来的时间戳-现在的时间戳=剩余的时间毫秒数
+        //把剩余的毫秒数转换为时分秒
+
+        //三种获取时间戳的方法
+        // 1. 前提实例化，getTime() 会得到现在时间的毫秒
+        let date = new Date()
+        // console.log(date.getTime());
+
+        //2.简写 +new Date()     推荐
+        console.log(+new Date());//当前时间戳
+        console.log(+new Date('2022-8-3 11:00:00'));//1659495600000  //设置一下8.3号上午11点的时间戳
+        
+        //3.使用Date.now() 无需实例化 
+        //但是只能得到当前的时间戳，而前面两种可以返回指定时间的时间戳
+        console.log(Date.now());
+
+       
+
+
+       console.log(new Date().toLocaleString()); //2022/8/2 15:38:44 这种格式
+        //这个方法直接可以获得当前时间
+       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //创建一个 猪 构造函数
+        function Pig(uname, age) {
+            //this指向我们自己创建的对象 (调用者)
+            this.name = uname   //把uname='佩奇' 赋值给 this.name(自己创建的对象的属性)
+            this.age = age
+        }
+        // new Pig('佩奇', 6)//调用有所不同 多了个new
+        //   console.log(new Pig('佩奇', 6));//Pig { name: "佩奇", age: 6 } 相当于 const peppa ={uname:'佩奇',age:6}
+        //   console.log(new Pig('乔治', 16))//Pig { name: "佩奇", age: 6 } 相当于 const qiaozhi ={uname:'乔治',age:16}
+        const peppa = new Pig('佩奇', 6) //用变量接收一下新创建的对象
+
+ 
+ 
+//         说明:
+// 1.使用new关键字调用函数的行为被称为实例化（变成了实实在在的对象）
+// 2.实例化构造函数时没有参数时可以省略()
+// 3.构造函数内部无需写return，返回值即为新创建的对象
+// 4.构造函数内部的return返回的值无效，所以不要写return
+// 5. new object ( ) new Date ( )也是实例化构造函数
+
+ 
+ 
+// 1．构造函数的作用是什么?怎么写呢?
+// 构造函数是来快速创建多个类似的对象大写字母开头的函数
+// 2. new关键字调用函数的行为被称为?
+// 实例化
+// 3．构造函数内部需要写return吗，返回值是什么?
+// 不需要
+// 构造函数自动返回创建的新的对象
+
+ 
+ 
+ </script>
+</body>
+
+</html>

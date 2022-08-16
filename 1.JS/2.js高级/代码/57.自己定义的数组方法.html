@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //在任何时候都可以用！！！！！！！
+        //this指向实例对象 实参
+        /*
+        
+                //1.求数组最大值
+                const arr = [1, 2, 3, 4]   //const arr = new Array(1, 2, 3, 4)
+                Array.prototype.max = function () {
+                    return Math.max(...this)
+                }
+                arr.max() //调用
+        
+                [1, 5, 9, 6].max()  //调用
+        
+                //2.求数组最小值
+                const arr1 = [1, 2, 3]
+                Array.prototype.min = function () {
+                    return Math.min(...this)
+                }
+                arr1.min() //调用
+                [5, 6, 4, 7, 8, 2, 3].min() //2 
+        */
+
+
+        //3.求和
+
+        // Array.prototype.sum = function () {
+        //     return this.reduce(function (prev, item) {
+        //         return prev + item
+        //     }, 0)
+        // }
+
+// this指向实例对象 [2, 5, 6, 4, 6]
+        Array.prototype.sum = function () {
+            return this.reduce((prev, item) => prev + item, 0)
+        }
+        console.log([2, 5, 6, 4, 6].sum());   //调用
+    </script>
+
+</body>
+
+</html>

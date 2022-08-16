@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/82.png" alt="">
+    <script>
+        console.log(1);//同步
+
+        document.addEventListener('click', function () {//异步
+            console.log(4);
+        })
+
+        console.log(2);//同步
+
+        setTimeout(function () {//异步
+            console.log(3);
+        }, 3000);
+
+        //1243 或者1234
+        //假如你再定时器开始执行之前（3s前）就点击了就是1243
+        //假如你是在定时器执行了之后（3s后）点击得就是1234
+
+        //在异步里也有执行顺序 因为可能有好多个异步任务
+        //先执行同步任务，再执行异步任务（里面也有顺序）
+        //若是有点击事件和定时器 他会分辨哪个先执行
+        
+        //与用户的操作有关
+        // 就是谁先触发谁在前
+        //总结：同步得都先执行，异步得看谁先触发谁先执行
+
+        //面试：什么是事件循环？（初级）
+        // js执行机制 分为同步任务异步任务
+        // 同步任务放入执行栈中 异步任务放进任务队列中
+        // 执行栈执行完了就去任务队列中检查，有就再放入执行栈中执行
+        // 执行栈执行完了又空了，再回到执行队列中看看有没有异步任务 ，有就再推到执行栈，转圈循环
+  
+  
+      //  由于主线程不断的重复获得任务、执行任务、再获取任务、再执行，所以这种机制被称为事件循环（ event loop)。
+
+  </script>
+</body>
+
+</html>

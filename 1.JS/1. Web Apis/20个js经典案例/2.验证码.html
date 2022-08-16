@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        p {
+            width: 150px;
+            height: 30px;
+            background-color: orange;
+            display: inline-block;
+            text-align: center;
+            font-size: 30px;
+            color: blue;
+        }
+
+        a {
+            color: red;
+
+        }
+
+        input {
+            height: 30px;
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <p></p>
+        <a href="javascript:;">看不清换一张</a>
+        <br>
+        验证码: <input type="text">
+        <button>确定</button>
+    </div>
+
+    <script>
+        //1.生成6位随机数 0-9 a-z
+
+        getCode()//页面打开的时候就调用就会有随机数
+        function getCode() {
+
+
+            function getRandom(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min
+            }
+            let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+            let re = ''
+            for (let i = 0; i < 6; i++) {
+                let random = getRandom(0, arr.length - 1)
+                re += arr[random]
+            }
+            // return re  因为 我已经把  p.innerHTML = re 写在了函数里 就不用写返回值送出去了
+
+            let p = document.querySelector('p')
+            p.innerHTML = re
+
+        }
+        //点击 看不清 就会换
+        let a = document.querySelector('a')
+        a.addEventListener('click', function () {
+            getCode()
+        })
+
+
+        //2.如果验证码和用户填写的一致 点击确定才可以跳转
+        let input = document.querySelector('input')
+        let btn = document.querySelector('button')
+        let p = document.querySelector('p')
+        btn.addEventListener('click', function () {
+            if (input.value != p.innerHTML) {
+                alert('您输入有误 请重新输入')
+                input.value=''
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

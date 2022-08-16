@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 加载外部资源（如图片、外联CSS和Javascript等）加载完毕时触发的事件
+        let div = document.querySelector('div')
+        console.log(div);//null 因为 页面是从上往下加载的 先加载js 此时还没有div
+        //所以若是js写在了上面 想让他最后执行 就用页面加载
+
+
+        // 加载外部资源（如图片、外联CSS和JavaScript等）加载完毕时触发的事件
+        // 为什么要学?
+        //         有些时候需要等页面资源全部处理完了做一些事情
+        //         老代码喜欢把script 写在head 中，这时候直接找dom元素找不到
+        // 事件名: load
+        // 监听页面所有资源加载完毕:
+        //        给window添加load事件
+
+        //等页面全部加载完毕再执行这句话里面的内容
+        window.addEventListener('load', function () {
+            //这里的内容是页面加载完毕之后执行的
+        })
+        //所以以后js写在哪里都无所谓了 因为有了这句话
+
+        //也可以给某元素添加加载事件
+
+        //等图片加载完毕 再执行里面的
+        img.addEventListener('load', function () {
+
+        })
+
+        // .前面的 先做  做完了再执行里面的
+
+
+
+
+        //第二种加载事件  比load块
+        //要是页面中有大图，先把别的都执行完 再反过来整大图
+
+        // 当初始的HTML文档被完全加载和解析完成之后，DOMContentLoaded事件被触发，而无需等待样式表、图像等完全加载
+        // 事件名:DOMcontentLoaded
+        // 监听页面DOM加载完毕:
+        //           给document添加DOMContentLoaded 事件
+        //DOM树最大的元素==》document
+
+        //加载完文档就执行里面的话 只要DOM渲染完就行 就是页面中标签渲染完就行 不等别人
+        document.addEventListener('DOMContentLoaded', function () {
+
+        })
+
+
+
+
+
+
+// 1．页面滚动事件如何添加?
+//     scroll
+//     ≥监听整个页面滚动给window或 document 加
+// 2.加载事件有哪两个?如何添加?
+//     load事件
+// 监听整个页面资源给window 加 DOMContenttoaded
+//   给document加,当初始的HTML文档被完全加载和解析完成之后，
+//   DOMContentLoaded事件被触发，而无需等待样式表、图像等完全加载
+
+
+    </script>
+
+
+    <div>11</div>
+</body>
+
+</html>

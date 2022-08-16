@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 了解JavaScript中程序异常处理的方法，提升代码运行的健壮性。
+
+        // 异常处理是指预估代码执行过程中可能发生的错误，然后最大程度的避免错误的发生导致整个程序无法继续运行
+
+        //异常处理 是给程序员看的 不是给用户
+        function fn(x, y) {
+            if (!x || !y) { // 非假就是真，说明下面传过来的是空然后为假，这里取反一下是真才能执行里面的话
+                //throw '参数不能为空！'
+                throw new Error('没有参数传进来！')
+            }
+            return x + y
+        }
+        fn()
+
+//  总结:
+// 1.throw抛出异常信息，程序也会终止执行
+// 2.throw后面跟的是错误提示信息
+// 3.Error对象配合throw使用，能够设置更详细的错误信息
+
+
+// 1．抛出异常我们用那个关键字?它会终止程序吗?
+//         throw关键字
+//         会中止程序
+// 2.抛出异常经常和谁配合使用?
+//         Error 对象配合throw使用
+
+
+    </script>
+</body>
+
+</html>

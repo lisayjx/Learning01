@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 数组的map方法
+        // 目标：
+        // 1.理解map定义 掌握语法 使用
+        // 2.理解map实现，实现一个map方法
+
+
+        const fruits = [
+            { name: '苹果', price: 15 },
+            { name: '香蕉', price: 6 },
+            { name: '草莓', price: 12 },
+            { name: '西瓜', price: 8 },
+        ]
+
+        //  要获得一个新数组 要求 新数组的每项price是原数组的两倍
+        //1.用for循环做
+        // let nArr = []
+        // for (let i = 0; i < fruits.length; i++) {
+        //     nArr.push({
+        //         name: fruits[i].name,
+        //         price: fruits[i].price * 2
+        //     })
+        // }console.log(nArr);
+
+        //map方法 更速度更简洁
+        // const nArr = fruits.map(item => {
+        //     const rObj = {
+        //         name: item.name,
+        //         price: item.price * 2
+        //     }
+        //     return rObj
+        // })
+        // console.log(nArr)
+
+        // const nArr = fruits.map(
+        //     function (item) {
+
+        //     }
+        // )
+
+        // map方法会生成一个新的数组，
+        // 这个数组是由原数组中每一项调用提供的callback函数的返回值组成的
+        // callback：也就是 map(item,index,array)  括号中的东西
+        //   item:数组中正在调用callback的当前项
+        //   index：当前项对应的索引
+        //   array：调用这个方法的数组本身
+
+        // thisArg：在调用callback函数时 this这个指向会指向到这个参数
+
+        // map方法不会改变原数组 只会生成新数组
+        const arr = [
+            { label: 'name', value: '前端要分析' },
+            { label: 'job', value: '前端工程师' },
+            { label: 'age', value: '26' }
+        ]
+        //要变成
+        // [
+        //     { name: '前端要分析' },
+        //     { job: '前端工程师' },
+        //     { age: '26' }
+        // ]
+        const newArr = arr.map(
+            function (item, index, array) {
+                let nObj = {}
+                nObj[item.label] = item.value
+                return nObj
+            }
+        )
+        console.log(newArr);
+
+
+        const arr1=[1,2,3]
+        const re=arr1.map(item=>item+10)
+        console.log(arr1);//原来数组没变
+        console.log(re);//新的数组
+    </script>
+</body>
+
+</html>

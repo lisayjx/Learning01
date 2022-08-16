@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../images/1.webp" alt="">
+    <script>
+        //每次刷新页面 图片都会变
+        // 分析:
+        // 1: 随机显示，则需要用到随机函数
+        // 2: 更换图片需要用到图片的src属性，进行修改
+        // 3: 核心思路:
+        //     获取图片元素
+        //     随机得到图片序号
+        //     图片.src = 图片随机路径
+
+
+        //1.获取元素
+        let pic = document.querySelector('img')
+        //2.生成一个随机数 得到图片名的序号
+        function getRandom(min,max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let random = getRandom(1, 6) //因为一共6个图 图片名字是1-6 不要和数组混了
+        //3.修改元素属性src 里的值
+        pic.src = `../images/${random}.webp`      //注意这里要加变量，外层变成了``
+    </script>
+</body>
+
+</html>

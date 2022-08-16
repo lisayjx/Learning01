@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //立即执行函数写不写函数名都行，不需要调用立即执行  不会有函数提升
+        //只能在被定义时候执行一次 ，不能被再次调用，所以有名字没名字都没啥区别 所以通常不写
+//注意： 每一个立即执行函数的最后要加分号结束！！！！！！！
+        //场景介绍：避免全局变量之间的污染（冲突）
+        //他和普通函数唯一不同就是不能重复调用 其他都一样
+        //函数的默认返回值是undefined，就是不写return时候 但是外面有变量接收时候
+
+        //语法：2种方式
+
+        //1.  (function () {})();     先写两个小括号()()，第一个括号写函数
+        // let fn=function(){}    fn里装的是后面的函数
+        // fn()     所以把fn替换成 函数    function(){}()  也算是直接调用了
+        //最后把代替fn的函数用括号包起来算一个整体  (function(){})  ()
+        //第一个小括号里是形参，最后的括号是实参(也是调用的意思)
+        //放在立即执行中的函数都是局部变量，不会和外面写的变量起冲突（防止污染）谁都干扰不了我
+        (function () {
+            alert(11)//直接输出不用调用
+        })();
+
+        (function (x, y) {//有形参实参情况
+            alert(x + y)
+        })(1, 2);
+
+        (function fn() {//有函数名的情况，也不需要调用了就能输出
+            alert(1111)
+        })();
+      
+
+       //2. (function () { alert(11) }());
+
+ 
+
+    </script>
+</body>
+
+</html>

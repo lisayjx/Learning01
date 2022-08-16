@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const Person = {
+        //     eyes: 2,
+        //     head: 1,
+        //     run: function () { }
+        // }
+
+        //还是不完美 ，继续抽取
+        // const Person1 = {
+        //     eyes: 2,
+        //     head: 1,
+        //     run: function () { }
+        // }
+        // const Person2 = {
+        //     eyes: 2,
+        //     head: 1,
+        //     run: function () { }
+        // }
+        function Person() {//父构造函数（父类）
+            this.eyes = 2
+            this.head = 1
+            this.run() = function () { }
+        }
+
+        //男  //子构造函数（子类）
+        function Men() {
+
+        }
+        //new 一下就会出来新对象指向this.eyes..
+        Men.prototype = new Person()//这里也变了     像不像 const ldh= new Person()
+        Men.prototype.constructor = Men
+        const Kenny = new Men()
+
+        //女  //子构造函数（子类）
+        //在原型上挂载个baby方法 所有女人都能用
+        Women.prototype.baby = function () { console.log('生baby'); }
+        function Women() {
+
+        }
+        Women.prototype = new Person()
+        Women.prototype.constructor = Women
+        const lucy = new Women()
+
+
+
+        //这回 男和女 都指向不同的Person对象 就不能相互影响了  
+        //让两个对象名字不一样 但是内容一样
+        //可以用构造函数解决
+        //构造函数new出来的对象 结构一样 对象不一样
+        // Men.prototype = new Person()
+        // Women.prototype = new Person()
+        // 虽然后面都是new  但是每次的new不一样
+        //这回就可以实现  给女人或者男人加方法 不影响另外一个了
+
+
+   //     例如
+
+        function Star() {
+            this.age = 18
+        }
+        const ldh = new Star()
+        const zxy = new Star()
+        console.log(ldh === zxy);//false
+
+
+
+
+
+
+//         思路
+// 真正做这个案例，我们的思路应该是先考虑大的，后考虑小的
+// 1．人类共有的属性和方法有那些，然后做个构造函数，进行封装，
+// 一般公共属性写到构造函数内部，公共方法，挂载到构造函数原型身上。
+// 2.男人继承人类的属性和方法，之后创建自己独有的属性和方法
+// 3.女人同理
+
+//子类（子构造函数）  父类（父构造函数）
+// 子类的原型= new 父类   核心代码
+
+//这种继承是 原型继承   继承还有好多种方式
+    </script>
+</body>
+
+</html>

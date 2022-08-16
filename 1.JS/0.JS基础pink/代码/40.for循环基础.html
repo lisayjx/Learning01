@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //for循环最大的价值：循环(遍历)数组！！！！！！！！！
+       //4.请将 马超 赵云 张飞依次打印出来
+       let arr = ['马超', '赵云', '张飞']
+        for (i = 0; i <= arr.length - 1; i++) {//也可以写成for (i = 0; i < arr.length ; i++)
+            document.write(`<br> ${arr[i]}`)
+        }
+        //arr是包含多个值  arr[i]是其中一个值  [i]是索引号 下标号
+        //顶算是
+        // document.write(arr[0])
+        // document.write(arr[1])
+        // document.write(arr[2])
+        // document.write(arr[3])
+        // document.write(arr[4])
+
+//length 长度 通过它可以知道数组索引号从哪里到哪里
+//比如有10个名字在数组里(arr.length 数组长度或者个数就是10) 索引就是0-9   所以 i<=arr.length-1    （最大索引数arr.length-1）
+//i从0开始 是因为数组下标从0开始 0是马超 1是赵云 2是张飞
+
+
+// for循环和while循环有什么区别呢:
+// 当如果明确了循环的次数的时候推荐使用for循环：遍历数组 数组长度明确 
+// 当不明确循环的次数的时候推荐使用while循环：比如你吃饭了吗那个你没吃就一直循环吃了就停止
+
+
+        // for (起始条件1；退出条件2；变化量3) {
+        //     循环语句4
+        // }
+
+
+
+        // 输出10句月薪过万！！！！
+        for (let i = 1; i <= 10; i++) {
+            document.write(`月薪过万！！！！！<br>`)
+        }
+
+        //  1->2->4->3->2->4->3->2->4->3->2->4->3..
+
+
+        //   循环练习
+
+        //1.输出1-100岁
+        for (let i = 1; i <= 100; i++) {
+            console.log(`${i}岁`);
+        }
+
+        //2.求1-100之间所有偶数和
+        let sum = 0
+        for (let i = 1; i <= 100; i++) {
+            if (i % 2 === 0) {
+                sum += i
+            }
+        }
+        console.log(`所有偶数和是${sum}`);
+
+        //3.页面中打印5个小星星
+        for (let i = 1; i <= 5; i++) {
+            document.write(`⭐`)
+        }
+
+
+    </script>
+</body>
+
+</html>

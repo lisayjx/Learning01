@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // for (外部声明记录循环次数的变量（初始值）; 循环条件（终止值）;变化值) {
+        //     for (内部声明记录循环次数的变量（初始值）; 循环条件（终止值）;变化值) {
+        //         循环体
+        //     }
+        // }
+
+        //一个循环里再套一个循环 一般用在for循环里
+
+
+        for (let i = 1; i < 6; i++) {
+            for (let j = 1; j < 6; j++) {
+                document.write(`⭐`)
+            }
+            document.write(`<br>`) //在这里加是为了 里面全部完循环一次以后换行
+        }
+        // 当外层：i=1时候  内部：j循环输出12345  换行
+        // 当外层：i=1时候  内部：j循环输出12345  换行
+        // 当外层：i=1时候  内部：j循环输出12345  换行
+        // 当外层：i=1时候  内部：j循环输出12345  换行
+        // 当外层：i=1时候  内部：j循环输出12345  换行
+
+        //因为外面循环一次的时候，里面就得全部循环一次！！！！！！！！！！！！1
+
+
+
+
+
+
+        //练习：假如每天能记住5个单词，3天后一共能记住多少个单词？
+        //第一天：5个单词
+        //第二天：5个单词
+        //第三天：5个单词
+
+        for (let q = 1; q <=3; q++) {
+
+            document.write(`第${q}天<br>`)//外面得执行一次
+
+            for (let w = 1; w <=5; w++) {
+                document.write(`记住${w}个单词 <br>`)//里面得循环全部执行一遍
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .active {
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+            border: 5px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+    <script>
+        //1.获取元素
+        let box = document.querySelector('div')
+        //2.设置样式
+        // box.style.width = '300px'
+        // box.style.height = '300px'
+        // box.style.backgroundColor = 'orange'
+        // box.style.border = '5px'
+        // box.style.borderStyle = 'solid'
+        // box.style.borderColor = 'green'
+        //这样一个一个修改有点麻烦怎么办？
+
+
+        //如果修改的样式比较多，直接通过style属性修改比较繁琐，
+        //我们可以通过借助于css类名的形式。
+
+        //可以写一个类，里面写上你想修改的地方 然后把这个类加到div上就可以了
+        //相当于    <div class="active"></div>
+        // 元素.className='active'
+        //注意：class是关键字，所以使用className去代替
+        //className是使用新值换旧值，如果需要添加一个类，需要保留之前的类名
+
+        box.className = 'active'
+
+        //可以用到鼠标移动到哪个tab栏，哪个就加下划线和变色之类的
+
+        //但是，假如div之间就有类名 叫 one，用这个方法会覆盖掉one类名，可以这么写
+        box.className = 'one active'
+
+        //这没有修改id的样式的 尽量用class写
+
+        //总结：
+        // 1.使用className有什么好处?
+        // 可以同时修改多个样式
+        // 2.使用className有什么注意事项?
+        // 直接使用className赋值会覆盖以前的类名
+
+    </script>
+</body>
+
+</html>

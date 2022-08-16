@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="http://www.baidu.com">跳转到百度</a>
+    <script>
+        // 阻止默认行为，比如链接点击不跳转，表单域的跳转
+        //他跟冒泡没啥关系
+        // 语法:
+        // event.preventDefault()
+        // 用事件对象 完成
+
+        //想让他一点击先不跳转 
+        let a = document.querySelector('a')
+        a.addEventListener('click', function (e) {
+            e.preventDefault()
+        })
+    </script>
+</body>
+
+</html>

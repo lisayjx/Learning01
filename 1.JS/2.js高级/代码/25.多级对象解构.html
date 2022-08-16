@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //多级对象解构
+        //例1: 对象包对象
+        const pig = {
+            name: '佩奇',
+            family: {
+                mother: '猪妈',
+                father: '猪爸',
+                sister: '乔治'
+            },
+            age: 6
+        }
+        // const {name,family,age } = pig
+        // const {name, {mother,father,sister} ,age} = pig  //不对
+        //得让人知道你解析得是哪个对象 前面写出 对象名:
+        const { name, family: { mother, father, sister }, age } = pig
+        console.log(name);
+        console.log(mother);
+        console.log(father);
+        console.log(sister);
+        console.log(age);
+
+        //例2:数组包对象包对象
+        const people = [
+            20,
+            11,
+            {
+                name: '佩奇',
+                family: {
+                    mother: '猪妈',
+                    father1: '猪爸',
+                    sister1: '乔治'
+                },
+                age: 6
+            }
+        ]
+        // const [{ family: { } }] = people
+        const [a, b, { name: uname, family: { mother: mother1, father1, sister1 } }] = people
+        console.log(a);
+        console.log(b);
+        console.log(uname);
+        console.log(mother1);
+        console.log(father1);
+        console.log(sister1);
+        console.log(age);
+
+
+
+        //对象是无序的  后面的和前面的顺序不对应也没事 名字是对应的就行
+
+        //数组是有序的 要一一对应
+    </script>
+</body>
+
+</html>

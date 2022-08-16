@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .one {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .active {
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+            border: 5px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div class="one"></div>
+    <script>
+        // 属性是通过=来赋值，方法通过（）来传参
+
+
+        //className总是会把以前的类覆盖掉怎么办？用classList.xx()
+
+        // 追加一个类，  add()是方法
+        元素.classList.add('类名')//<div class="one active"></div>
+        //删除一个类
+        元素.classList.remove('类名')
+        //切换一个类(原来有的给删除，原来没有的给加上)
+        元素.classList.toggle('类名')
+
+        //获取元素
+        let box=document.querySelector('div')
+        //追加一个类
+        box.classList.add('active')
+        box.classList.toggle('active')
+        //假如原来<div class="one"></div>是这个，然后切换类一下，就把one删除了
+        //假如原来<div></div>是这个，然后切换类一下，就把one添加上了
+        
+        // div.style.cssText='font-size:1px;color:red'//可以设置多个样式 会覆盖之前的
+    //    div.setAttribute('style','color:pink;background:ren') 添加多个样式 会覆盖之前的
+     
+     
+     
+// classList.add()添加
+
+// classList.remove()移除
+
+// classList.toggle()切换
+
+// classList.contains()看看有没有（某个类），如果有则返回true，没有则返回false
+
+     
+     </script>
+</body>
+</html>

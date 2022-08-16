@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+            overflow: auto;
+            margin: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../img/66.png" alt="">
+    <img src="../img/69.1.png" alt="">
+    <div>
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+        我有很多内容
+    </div>
+    <script>
+        // 目标:掌握元素大小和位置的获取方法，为后续网页特效打基础
+
+        //scroll家族
+        //offset家族
+        //client家族
+
+        /*
+                1.scroll家族
+        
+                使用场景:
+                我们想要页面滚动一段距离，比如100px，
+                就让某些元素显示隐藏，那我们怎么知道，页面滚动了100像素呢 ? 
+                就可以使用scroll来检测页面滚动的距离~~~
+    */
+
+        // （1）获取(内容的)宽高:  (了解)
+        //     获取元素的【内容】总宽高（不包含滚动条)返回值不带单位
+        //     scrollWidth和scrollHeight
+        //获取div得内容的宽高（内容不包括滚动条）
+        let div = document.querySelector('div')
+        console.log(div.scrollWidth);//返回的不带单位100
+        console.log(div.scrollHeight);//返回的不带单位368
+        console.log('-------------对比-----------------');
+        //怪异盒子得宽高
+        console.log(div.offsetWidth);//100  //这俩是获取元素的自身宽高、包含元素自身设置的宽高、padding、border
+        console.log(div.offsetHeight)//100
+        console.log(div.offsetTop)//226
+        console.log(div.offsetLeft)//208  body有默认的8px边距 可以清除掉
+        console.log('-------------对比------当前可视区----------');
+        //不包含滚动条边框等等
+        console.log(div.clientHeight)
+        console.log(div.clientWidth)
+        console.log(div.clientTop)//其实就是上边框长  可视区（内容）到边框外层的距离
+        console.log(div.clientLeft)//左边框长
+
+
+
+
+        // （2）获取位置:（重点）
+        //被卷去的头部和左侧
+        // 获取元素内容往左、往上滚出去看不到的距离
+        // scrollLeft和scrollTop
+        // 这两个属性是可以修改的
+        //某个元素也可以加这个事件
+
+        //给div添加滚动事件 打印出他滚动时被卷去的头部是多少=滚动条向下滚动了多少
+        //内容被卷去的头部=页面的滚动条向下拉多少
+        div.addEventListener('scroll', function () {
+            console.log(this.scrollTop);//值是动态的 因为一直在滚
+        })
+    </script>
+
+
+    <img src="../img/66.1.png" alt="被卷去的头部">
+</body>
+
+</html>

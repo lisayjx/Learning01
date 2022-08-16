@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>刷新</button>
+    <script>
+        //reload方法用来刷新当前页面，传入参数true时表示强制刷新
+        //是个方法！！！
+        //等于 浏览器左上角得刷新按钮
+
+        let btn = document.querySelector('button')
+        btn.addEventListener('click', function () {
+            // location.reload() 有本地缓存
+            //强制刷新 ctrl+f5 直接更新最新内容从网上拉取 不走本地
+            location.reload(true)
+        })
+
+        //之前打开过一个网页 再打开加载速度会很快
+        //强制刷新就不会有任何缓存
+    </script>
+</body>
+
+</html>

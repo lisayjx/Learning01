@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我是第1个小li</li>
+        <li>我是第2个小li</li>
+        <li>我是第3个小li</li>
+        <li>我是第4个小li</li>
+        <li>我是第5个小li</li>
+    </ul>
+    <script>
+        //事件委托  (了解它的好处 用到了冒泡)
+        // 事件委托是利用事件流的特征解决一些开发需求的知识技巧
+        //委托:例如有80个同学买了快递 快递员送过来80个 不能一个一个给 所以他把快递给了班主任
+        // 下课同学到班主任这里取
+
+        //要是想给五个li都绑定事件 以前是挨个获取过来然后遍历  循环遍历-添加事件
+        //这样很麻烦 所以用到了委托
+        //不要给买个li都注册绑定事件了，而是把事件委托给他爸爸
+        //所以事件委托 是给儿子添加事件还是给老子添加事件？？ 给爸爸！！！！！！！1
+
+        // let ul=document.querySelector('ul')
+        // ul.addEventListener('click',function(){
+        //     alert('我点击了')
+        // })
+
+        //点击li 会出现弹窗 为什么呢？？因为事件冒泡 点击li，发现li没有绑定事件 就网上找 发现ul有绑定事件 就会弹窗
+        //所以这就是冒泡的好处 以前给一群孩子加事件还要挨个获取加循环
+        //现在冒泡了 只需要找到他们的父亲 给父亲加绑定事件
+        //因为找不到孩子就找父亲 爷爷也行 就是一直往上找
+
+
+        let ul = document.querySelector('ul')
+        ul.addEventListener('click', function (event) {
+            //    得到你点击的是哪个元素(对象) 需要事件对象
+           console.log(event.target); 
+           //你点谁谁就变颜色
+           event.target.style.color='red'
+        })
+
+
+        //总结：
+// 优点:给父级元素加事件（可以提高性能)
+// 原理:事件委托其实是利用事件冒泡的特点，给父元素添加事件，子元素可以触发>
+// 实现:事件对象.target可以获得真正触发事件的元素   （就是能知道你点击了父元素中的哪个子元素）
+// 1．事件委托是委托给了谁?
+// 父元素
+// 2．如何找到真正触发的元素?
+// e.target事件对象.target
+
+    </script>
+</body>
+
+</html>

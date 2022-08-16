@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 2.退出循环 
+        // continue 结束本次循环 继续下次循环
+        // break 退出所在循环
+
+
+        // 输出1-5  3扔出去
+        for(let i=1;i<=5;i++){
+            if(i===3){
+                continue//退出本次循环 继续下次循环
+            }
+            document.write(i)
+        }//1245
+
+        // 输出1-5  从3开始以后不要了
+        for(let i=1;i<=5;i++){
+            if(i===3){
+                break//退出当前循环 
+            }
+            document.write(`<br> ${i}`)
+        }//12
+    </script>
+</body>
+
+</html>

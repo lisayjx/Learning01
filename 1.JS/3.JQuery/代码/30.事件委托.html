@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+
+    </div>
+    <script src="./jquery-3.6.0.js"></script>
+    <script>
+
+        // jQuery中封装了事件委托的支持，直接通过on方法即可使用
+        // 语法
+        //直接绑定
+        //     $('选择器').on("事件名", function () { })
+        //事件委托
+        //   $('祖先选择器').on('事件名', '后代选择器', function () { })
+
+        // 减少事件注册
+        // 解决动态增加后代元素的事件绑定问题
+        // 原理是事件冒泡
+        // 回调函数中的this是触发事件的dom对象
+
+
+        // $('.box').on('click', 'li', function () {
+        //     // console.log($(this));//li
+        //     $(this).remove()
+        // })
+
+        //新增后代元素的事件绑定
+        $('.box').on('click', function () {
+            $('.box').append('<button class="btn">你好</button>')
+        })
+        $('.box').on('click', '.btn', function () {
+            console.log($(this));//button
+        })
+
+
+
+//  1．事件委托中绑定事件的对象必须是父元素吗?
+// 不是，祖先元素即可
+// 2．事件委托只能用在动态添加的后代元素上吗?
+// 不是，默认存在的后代元素也可以使用
+// 3．原理是?
+// 事件冒泡
+
+    </script>
+</body>
+
+</html>

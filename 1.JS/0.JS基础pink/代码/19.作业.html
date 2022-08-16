@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  获取用户输入的内容：prompt()方法，方法的参数是提示的内容。
+        // 例如：
+        // var num = prompt('请输入一个数字')
+        // alert('你输入的数字是' + num)
+        // prompt与alert相比，prompt允许用户输入内容
+
+
+        //1.住房公积金缴纳金额与工资两者的关系是：
+        // 住房公积金 = 税前工资 * 0.1 * 2 ;
+        // 编写程序，让用户输入税前工资，弹出对应的公积金数额。
+
+        var gz = +prompt('请输入税前工资')
+        var gjj = gz * 0.1 * 0.2
+        alert(`公积金是${gjj}`)
+
+
+        //2.
+        var sum = Math.pow((23 + Math.pow(5, 7)) / 45, 2)
+        alert(`结果是${sum}`)
+
+
+        //3.编写程序，提示用户输入圆锥的底面半径和高，
+        // 然后弹出它的体积，计算圆锥体积的公式是：体积V=1/3π半径2*高
+        let banjing = +prompt(`请输入底面半径`)
+        let gao = +prompt(`请输入高`)
+        let tiji = (Math.PI / 3) * Math.pow(banjing, 2) * gao
+        alert(`体积是${tiji}`)
+
+        //4.如果今天是星期四，那么1000天后是星期几？用户输入一个天数，计算这个天数后是星期几。
+        // 该题假设今天是星期4,又一个星期为七天是固定的,所以只要是7倍数的天数,就都为星期4。
+        // 所以，不论是求多少天后是星期几，只要将天数对7取余得到的数+4就能得到今天是星期几。
+
+        // let xingqiji = 4
+        // let day=1000
+        // let d=(day+xingqiji)%7
+        // alert(`1000后是星期${d}`)
+
+        let week = +prompt(`请输入星期几，1-7`)
+        let day = +prompt(`请输入一个天数，计算这个天数之后是星期几`)
+        let re = (week + day) % 7
+        alert(`星期${week}之后的${day}天是星期${re}`)
+
+
+        //5.5）用户输入一个三位数，弹出各个数位的和。
+        // 比如：
+        // 用户输入155，就弹出11
+        // 用户输入316，就弹出10
+        // 用户输入989，就弹出26
+        // 用户输入678，就弹出21
+        var c = +prompt(`请输入一个三位数`)
+        var ge = parseInt(c % 10)
+        var shi = parseInt((c % 100) / 10) //取余之后剩下十位和个位数/10
+        var bai = parseInt(c / 100)
+        var sum=ge+shi+bai
+        alert(`和是${sum}`)
+
+    </script>
+</body>
+
+</html>

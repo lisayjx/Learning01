@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //函数是执行特定任物的代码块
+        //执行完特定任务后 会把结果给我们
+        //缺点：把计算后的结果处理方式写死了，内部处理了
+        //解决：把处理的结果返回给调用者
+
+        function getSum(num1, num2) {
+            document.write(num1 + num2)//厨子（现在是自己做完菜自己吃了）
+        }
+        getSum(10, 20)//点菜的人
+
+        //有返回值函数的概念：
+        // 当调用某个函数时候，这个函数会返回一个结果出来
+        // 这就是有返回值的函数
+
+        // 其实我们前面接触过很多函数具备返回值 例如 这些是js底层内置的可以直接用
+        let result = prompt(`请输入一个数`) //我们输入的数会返回给result
+        let result1 = parseInt('111')
+        //但是有些函数没有返回值：
+        alert(`我是弹窗 我没有返回值`)
+
+        //要根据需求来设定需不需要返回值！！！！！！！！！！！！！！！！！！！！！！
+//    例如订单结算时候需要返回值
+    </script>
+</body>
+
+</html>

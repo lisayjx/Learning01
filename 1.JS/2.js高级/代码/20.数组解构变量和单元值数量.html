@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.变量多 单元值少的情况
+        const [a, b, c, d] = [1, 2]
+        console.log(a);//1
+        console.log(b);//2
+        console.log(c);//undefined
+        console.log(d);//undefined
+
+        //2.变量少 单元值多的情况
+        const [x, y] = [1, 2, 3, 4]
+        console.log(x); //1
+        console.log(y); //2
+
+
+        //3. 我们可以利用剩余参数解决变量少 单元值多的情况
+        const [k, t, ...arr] = [1, 2, 3, 4]
+        console.log(arr[0]);//1
+        console.log(arr[1]);//2
+        console.log(arr[2]);//3
+        console.log(arr[3]);//4
+
+        //4.为了防止有undefined传递单元值得情况,可以设置默认值
+        // const [j, f] = [1]
+        // console.log(j);  //1
+        // console.log(f);  //undefined
+        const [j = 0, f = 0] = [1]
+        console.log(j);  //1
+        console.log(f);  //0
+
+        const [e = '手机', s = '华为'] = ['小米']
+        console.log(e)//小米
+        console.log(s) //华为
+
+        //5.按需导入 忽略某些返回值  看见你了 假装没看见
+        const [v, , h, w] = ['小米', '苹果', '华为', '格力']
+        console.log(v);//小米
+        console.log(h);//华为
+        console.log(w);//格力
+    </script>
+</body>
+
+</html>

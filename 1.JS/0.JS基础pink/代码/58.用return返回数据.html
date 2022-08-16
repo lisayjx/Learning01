@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 当函数需要返回数据出去时，用return关键字
+
+        //语法：  return 数据
+
+
+
+        function fn() {
+            return 20
+        }
+        document.write(fn())//20,相当于document.write(20)
+        //这个函数执行完以后会有一个返回值给我们
+        //return相当于执行了一句话 fn()=20
+        //就是return后面有啥就把啥返回给调用人（调用函数）！！！！！！！！！！！！！！！！！
+
+
+        //有的时候深入研究 函数名有点长
+        function getSumxxxxxxx() {
+            return 20
+        }
+        // document.write(getSumxxxxxxx())这种写法太复杂 所以下面声明一个变量，以后使用这个变量就行
+        let num = getSumxxxxxxx()  //return后面是20,把20传给getSumxxxxxxx()
+        document.write(num)//以后想在哪用20 直接输出变量名就行
+
+        //return 后面接的就是我们想要的结果！！！！！！！！！！
+
+
+
+        ///求和函数有返回值   这个函数就只是求和，把结果返回给我们就行了，
+        //这个函数不需要打印输出
+        function getSum(x, y) {
+            x = x || 0
+            y = y || 0
+            //先计算x+y再返回
+            return x + y  //不想在里面直接打印，我们给个返回值 x+y传给getSum() ，getSum()=x+y 
+        }
+        let re = getSum(1, 2)//类似 let num1=prompt(`请输入第一个数 第二个数`) 结果都是存到了前面变量
+        document.write(re)//以后用re就行了
+
+        // 1.在函数体中使用return关键字能将内部的执行结果交给函数外部使用
+        // 2.函数内部只能出现1次return，并且return后面代码不会再被执行，
+        //   所以 return后面的数据不要换行写（不要手动换行）
+        // 3.return会立即结束当前函数
+        // 4.函数可以没有return，这种情况函数默认返回值为_undefined
+
+        //return后面不要换行写
+        function fn() {
+            return//return还有退出代码的功能，因为return以后代码就不执行了
+            alert(11)
+        }
+        fn()
+
+        //如果写return 默认返回的值是undefined
+        function fn1() {
+            //空，有return后面没有值也是返回undefined
+        }
+        let result = fn1()
+        console.log(result);//undefined
+    </script>
+</body>
+
+</html>

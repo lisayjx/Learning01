@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //js必须加分号的情况
+
+        // 1.立即执行函数
+
+        (function fn() { })();
+        //或者
+        ; (function fn() { }())
+
+        //2.数组解构 使用数组的时候
+        //数组开头的 特别是前面有语句的 一定注意加分号
+
+        let a = 1
+        let b = 2
+            ;[b, a] = [a, b]  ////这里必须必须有分号!!!!!!!!!!!!!
+        console.log(a, b);//2 1
+
+        const str = 'pink'
+            ;[1, 13, 2].map(function (item) {  //一定要加分号!!!!!!
+                console.log(item);
+            }) 
+
+
+
+
+
+
+ //总结
+// 1．数组解构赋值的作用是什么?
+//         是将数组的单元值快速批量赋值给一系列变量的简洁语法
+// 2.Js前面有两哪种情况需要加分号的?
+//         立即执行函数
+//         数组解构(数组开头)
+
+    </script>
+</body>
+
+</html>

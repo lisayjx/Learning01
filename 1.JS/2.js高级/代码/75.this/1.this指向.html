@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         学习路径:
+        // 1．普通函数this指向   谁调用我我就指向谁
+        // 2.箭头函数this指向    本身没有this 指向它爷爷
+
+
+
+
+
+
+        //1.全局的this  是window     window.调用者
+        //2.函数的this  是调用者
+        //3.箭头函数的this  指向 爷爷
+        //4.构造函数的this  指向实例对象new的 比如ldh
+        //7.定时器的this  指向 window
+
+
+        //5.方法
+        let obj = {
+            uname: 'lisa',
+            age: 18,
+            fei: function () {
+                console.log(this);
+            }
+        }
+        //this指向 obj  调用者
+
+        //6.事件处理函数
+        btn.addEventListener('click', function () {
+            console.log(this);
+        })
+        // --------------------
+        function fn() {   //this指向btn
+            console.log(this);
+        }
+        btn.addEventListener('click', fn)
+
+
+
+            //this指向btn 事件源
+
+            //8.立即执行函数   指向window    window.调用者
+            ; (function () {
+
+            })()
+
+        // --------------------------------------
+        // 箭头函数  区别
+
+
+        const btn = document.querySelector('.btn')
+
+        btn.addEventListener('click', function () {
+            console.log(this);//这个this指向btn
+        })
+
+        btn.addEventListener('click', () => {
+            console.log(this);//这个this指向window
+        })
+
+        // 同样由于箭头函数 this的原因，基于原型的面向对象也不推荐采用箭头函数
+
+        // 构造函数和圆形对象中的this 都指向实例 所以原型啊构造函数啊也别用箭头函数
+        function Person() {
+
+        }
+        //原型对象上添加了箭头函数
+        Person.prototype.walk = () => {
+            console.log('人都要走路');
+            console.log(this);//window  所以最好别用箭头函数，因为本来this 是指向p1实例的
+        }
+        const p1 = new Person()
+        p1.walk()
+
+
+//  总结:
+// 1.函数内不存在this，沿用上一级的
+// 2.不适用
+// 构造函数，原型函数，dom事件函数等等
+// 3.适用需要使用上层this的地方
+// 4.使用正确的话，它会在很多地方带来方便，后面我们会大量使用慢慢体会
+
+
+// 1．函数内不存在this，沿用上一级的，过程:向外层作用域中，一层
+// 一层查找this，直到有this的定义
+// 2．不适用
+// >构造函数，原型函数，字面量对象中函数，dom事件函数
+// 3.适用
+// >需要使用上层this的地方
+
+    </script>
+</body>
+
+</html>

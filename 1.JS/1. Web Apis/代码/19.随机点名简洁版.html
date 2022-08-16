@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 300px;
+            height: 100px;
+            border: 1px solid #ddd;
+            text-align: center;
+            line-height: 100px;
+            vertical-align: middle;
+             
+        }
+
+        button {
+            height: 50px;
+            width: 100px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div>开始点名吧</div>
+    <button>点击随机点名</button>
+    <script>
+        //         随机点名
+        // 需求:点击按钮之后，随机显示一个名字，如果没有显示则禁用按钮
+        //         分析:
+        // ①:点击的是按钮②:随机抽取一个名字
+        // ③:当名字抽取完毕，则利用disabled设置为true
+
+
+        //1.获取元素
+        let box = document.querySelector('div')
+        let btn = document.querySelector('button')
+
+        //2.随机数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let arr = ['lisa', '朴彩英', 'jennie', '智秀', '辉人', 'solar', '文星', '华莎',]
+
+        //监听事件
+        btn.addEventListener('click', function () {
+            //拿到一个随机名字的下标
+            let random = getRandom(0, arr.length - 1)
+            //把随机的名字放进盒子中
+            box.innerHTML = arr[random]
+            //之后删除这个名字
+            arr.splice(random, 1)//从第x（随机的）删除，删除一个
+
+            // 如果数组没有了 长度为0，就要禁用按钮
+            if (arr.length === 0) {
+                btn.disabled = true
+                btn.innerHTML='已经抽完'
+            }
+        })
+
+    </script>
+</body>
+
+</html>

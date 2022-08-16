@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 注意：字符串所有的方法，都不会修改字符串本身(字符串是不可变的)，操作完成会返回一个新的字符串。
+
+        //----------------------------1.根据字符返回位置
+        // （1） indexOf('要找的字符'，起始的位置)：返回指定内容在元字符串中的位置，如果找不到就返回-1，开始的位置是index索引号
+        var str = '改革春风吹满地，春天来了'
+        console.log(str.indexOf('春'));//2
+        console.log(str.indexOf('春', 4));//8  从下标为4开始往后找春
+
+
+
+        // （2） lastIndexOf() 从后往前找 只找第一个匹配上的
+        console.log(str.lastIndexOf('春'))//8
+
+
+        //案例 面试题
+        // 查找字符串"abcoefoxyozzopp"中所有o出现的位置以及次数
+
+        //         核心算法∶先查找第一个o出现的位置
+        // 然后只要indexOf返回的结果不是-1就继续往后查找
+        // 因为indexOf只能查找到第一个，所以后面的查找，利用第二个参数，当前索引加1，从而继续查找
+
+        var str = 'sgnsojsdbgksjoosddgo'
+        var count = 0
+        var index = str.indexOf('o')//index是第一个o的索引位置
+        while (index !== -1) {
+            console.log(index);
+            count++
+            index = str.indexOf('o', index + 1)
+
+        }
+        console.log('次数是' + count);
+
+
+        //2.---------------------------根据位置返回字符
+        //1.   charAt(index) 返回指定位置的字符
+        var str1 = '改革春风吹满地，春天来了'
+        console.log(str1.charAt(2));//春
+
+
+        //2.   charCodeAt(index)  返回指定位置的字符的ASCII码
+        console.log(str1.charCodeAt(2));//26149
+
+
+        //3.str[index]    HTML5,IE8+支持 和charAt()等效  获取指定位置处字符
+        console.log(str1[2]);//春
+
+       //3.------------------------------字符串操作
+    //    1.concat(str1,str2..) 等效于+ +更常用
+    //截取
+    //    2.substr(开始索引号，娶几个)       记住这个就可以
+    //    3.slice(开始索引，结束索引)   结束位置娶不到
+    //    4.substring(开始索引，结束索引)   结束位置娶不到  和slice差不多 就是不能接受负值
+
+
+//4.---------------替换字符串 replace('被替换的字符','新的字符')
+//5.---------------字符串转为数组  split('分隔符')
+
+    </script>
+
+</body>
+
+</html>

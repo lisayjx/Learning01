@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 slick的css -->
+    <link rel="stylesheet" href="../slick/slick.css" />
+    <link rel="stylesheet" href="../slick/slick-theme.css" />
+
+    <!-- 自己的样式 -->
+    <style>
+        body {
+            background-color: #ccc;
+        }
+
+        .slider {
+            width: 640px;
+            height: 360px;
+            margin: 0 auto;
+        }
+
+        .control {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .prev,
+        .next {
+            font-size: 40px;
+            color: red;
+        }
+
+        .slick-dots {
+            bottom: 0;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <img src="../images/32.png" alt="">
+    <img src="../images/32.1.png" alt="">
+    <img src="../images/32.2.png" alt=""> -->
+
+
+
+    <!-- 测试用标签 -->
+    <div class="slider-container">
+        <!-- 轮播图区域 -->
+        <div class="slider">
+            <div><img src="../images/1.png" alt="" /></div>
+            <div><img src="../images/2.png" alt="" /></div>
+            <div><img src="../images/3.png" alt="" /></div>
+            <div><img src="../images/4.png" alt="" /></div>
+            <div><img src="../images/5.png" alt="" /></div>
+        </div>
+        <!-- 自定义左右箭头 -->
+        <div class="control">
+            <div class="prev">上一个</div>
+            <div class="next">下一个</div>
+        </div>
+    </div>
+
+    <!-- 引入 JQ -->
+    <script src="../jquery/jquery-3.5.1.js"></script>
+    <!-- 引入slick -->
+    <script src="../slick/slick.js"></script>
+
+    <script>
+        //       jQuery的轮播图插件slick
+        // ●下包:把插件下载到本地
+        // ●导包:先导入jQuery，再导入插件，导入css(需要的话)
+        // ●用包:根据文档(说明书)使用
+
+
+        // $('.slider').slick()
+        $('.slider').slick({
+            // autoplay: true,
+            // arrows: false,   //是否显示翻页按钮
+           prevArrow: '.prev',  //用的自己定义的 上一页按钮
+            dots: true,  //是否显示指示器
+        })
+
+
+
+// 1. slick.js文件导入的位置是jQuery之前还是之后?
+// 之后 他依赖jQuery
+// 2．是否需要把使用步骤和配置背下来?
+// 不需要
+
+
+    </script>
+</body>
+
+</html>

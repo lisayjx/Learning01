@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.具名函数：
+        // 声明：function fn(){}  
+        // 调用： fn()
+
+        //2.匿名函数： (把函数赋值给变量)函数表达式写法
+        // 将匿名函数赋值给一个变量，
+        // 并且通过变量名称进行调用我们将这个称为函数表达式语法:
+        // 声明：function (){}  
+        //调用：函数（变量）名()
+        let fn1 = function () {
+            //函数体
+            console.log(1111);
+        }
+        fn1()
+        //可以搞形参实参吗？可以
+        let fn2 = function (x, y) {
+            //函数体
+            console.log(x + y);
+        }
+        fn2(1, 2)
+
+        //使用场景  后期web API会用
+        // <body>
+        //     <button>点击我</button>
+        //     <script>
+        //         let btn=document.querySelector('button')
+        //         btn.onclick=function(){
+        //             alert(`我是匿名函数`)
+        //         }
+        //     </script>
+        // </body>
+    </script>
+</body>
+
+</html>

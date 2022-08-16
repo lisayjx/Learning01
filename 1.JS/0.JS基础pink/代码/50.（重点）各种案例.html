@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.使用for循环 求出数组元素的和 [5,8,9,3,7,22,66]
+        let sum = 0
+        let arr = [5, 8, 9, 3, 5, 22, 5]
+        for (i = 0; i < arr.length; i++) {
+            sum += arr[i]
+        }
+        console.log(`和是${sum}`);
+
+
+        //2.求出数组里大于5的数之和， [5,8,1,3,7,22,66]
+        let sum1 = 0
+        let arr1 = [5, 8, 1, 3, 7, 22, 66]
+        for (i = 0; i < arr1.length; i++) {
+            if (arr1[i] > 5) {
+                sum1 += arr1[i]
+            }
+        }
+        console.log(`所有大于5的数的和是${sum1}`);
+
+        //3.求平均年龄 [15,19,22,20,21,18]
+        let sum2 = 0
+        let avg = 0
+        let arr2 = [15, 19, 22, 20, 21, 18]
+        for (i = 0; i < arr2.length; i++) {
+            sum2 += arr2[i]
+        }
+        console.log(`平均年龄是：${sum2 / arr2.length},取整是${parseInt(sum2 / arr2.length)}`);
+
+        //4.打印出[5,8,1,3,7,22,66]所有奇数
+        let arr3 = [5, 8, 1, 3, 7, 22, 66]
+        for (i = 0; i < arr3.length; i++) {
+            if (arr3[i] % 2 !== 0) {
+                console.log(`奇数是${arr3[i]}`);
+            }
+        }
+
+
+        //5.计算[2，6，18，15，40]中可以被3整除的偶数的个数
+        let count = 0
+        let arr4 = [2, 6, 18, 15, 40]
+        for (i = 0; i < arr4.length; i++) {
+            if (arr4[i] % 3 === 0 && arr4[i] % 2 === 0) {
+                count++
+            }
+        }
+        console.log(`有${count}个`);
+
+        //6.计算[2，6，18，15，40]中可以被3整除的偶数的和
+        let sum3 = 0
+        let arr5 = [2, 6, 18, 15, 40]
+        for (i = 0; i < arr5.length; i++) {
+            if (arr5[i] % 3 === 0 && arr5[i] % 2 === 0) {
+                sum3 += arr5[i]
+            }
+        }
+        console.log(`和是${sum3}`);
+
+
+        //7.给一个数组数组，该数组中有很多数字0，将不为0的数存入到一个新的数组中
+        let arr6 = [1, 0, 5, 0, 6, 9, 8, 2, 55, 22, 11, 0]
+        let newArr = []
+        for (i = 0; i < arr6.length; i++) {
+            if (arr6[i] !== 0)
+                newArr.push(arr6[i])
+        }
+        console.log(newArr);
+
+
+
+        //前提 提要
+        var obj = {
+            name: 'lsia'
+        }
+        if (obj['name']) {  //用这个方法判断是不是存在该属性
+            console.log('存在该属性');
+        } else {
+            console.log('不存在该属性');
+        }
+        //8.判断一个字符串 'abcoefoxyozzopp'中出现次数最多的字符，并统计其次数。
+        // 核心算法:利用charAt())遍历这个字符串 把每个字取出来
+        // 然后把每个字符都存储给对象，如果对象没有该属性，就为1，
+        // 如果存在了就+1遍历对象，得到最大值和该字符
+
+
+
+        //字符是 属性 次数是 属性值
+        var str = 'abcoefoxyozzopp'
+        var obj = {}
+        for (var i = 0; i < str.length; i++) {
+            var chars = str.charAt(i)//每个字符都取出来了 chars是字符串的每一个字符
+            // obj = chars //看看该对象有没有 obj.a  obj.b..属性啊 如果有就让值加1 如果没有赋值为0
+            if (obj[chars]) {//如果对象中存在a属性 如果对象中存在b属性....
+                //obj[chars]得到的是属性值
+                obj[chars]++
+            } else {
+                obj[chars] = 1
+            }
+        }
+        console.log(obj);//{ a: 1, b: 1, c: 1, o: 4, e: 1, f: 1, x: 1, y: 1, z: 2, p: 2 }
+
+        //2.  //得到了 有字符和次数的对象之后把 次数给选出来比较就行
+        //遍历对象
+        var max = 0
+        var ch = '' //放属性名的
+        for (var k in obj) {
+            //k得到的是属性名  obj[k]得到属性值
+            if (obj[k] > max) {
+                max = obj[k]
+                ch = k
+            }
+        }
+        console.log(`最大的次数是${max},次数最多的字符是${ch}`);
+    </script>
+</body>
+
+</html>

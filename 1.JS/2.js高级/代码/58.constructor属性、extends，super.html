@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/58.png" alt="">
+    <img src="../img/58.1.png" alt="">
+    <script>
+        /*      //constructor构造 建造
+              function Star() {
+      
+              }
+              const ldh = new Star()
+              console.log(Star.prototype);
+      
+              //原型对象默认都有 constructor
+              //这里的constructor指向 Star构造函数   Star.prototype.constructor    Star <-- prototype <-- constructor
+              //  作用:该属性指向该原型对象的构造函数，简单理解，就是指向我的爸爸，我是有爸爸的孩子
+      
+              //构造函数（父亲）
+              //原型prototype里的constructor（孩子）
+              //他俩互相指向！！！就是一样的意思
+              console.log(Star === Star.prototype.constructor);//true 父亲===孩子
+      
+      
+              //简单理解 原型中的constructor就是和 构造函数 互相指  一样
+      
+              // ----------------------------------------
+              class Person {
+                  name = '张三丰'
+                  age = 18
+              }
+              let obj = new Person()//{ name: "张三丰", age: 18 }
+              let obj1 = new Person()//{ name: "张三丰", age: 18 }
+              let obj2 = new Person()//{ name: "张三丰", age: 18 }
+              //一样！！！！！
+              //constructor构造器 构造函数 构造方法
+              //是一个特殊的方法，如果我们不写，那么会自动的帮我们创建这个构造方法
+              // 创建类时在类的内部有一个特定的方法constructor，
+              // 该方法会在类被实例化时自动被调用，常被用于处理一些初始化的操作。
+              //这个constructor在实例化对象的时候就会执行
+              //通常constructor用于接收参数,做初始化操作
+      
+              class People {
+                  //类里存了三个方法，页面中只打印了constructor里的
+                  constructor(a) { //实例化new时自动执行
+                      this.name = name
+                      this.age = age
+                      console.log(a);
+                  }
+                  say() { console.log('说话'); }
+                  run() { console.log('跑步'); }
+              }
+              let o = new People('张三丰', 18)
+              let k = new People('lisa', 19)
+              let p = new People('rose', 20)
+              //new一下就会 自动执行constructor ，可以加个形参
+      
+              // constructor是类中固定的方法名
+              // constructor方法在实例化时立即执行
+              // constructor方法接收实例化时传入的参数
+              // constructor并非是类中必须要存在的方法 
+              // ---------------------------------------
+              class Star {
+                  //构造函数 初始化 属性
+                  constructor(name, age) {
+                      this.uname = name
+                      this.age = age
+                      this.height = '177CM' //初始化 写外面也行 写外面不用写this
+                  }
+                  //方法
+                  sing() {
+                      console.log('唱歌');
+                  }
+                  dance() {
+                      console.log('跳舞');
+                  }
+              }
+              let zxy = new Star('张学友', 18,)
+              console.log(zxy);//{ uname: "张学友", age: 18, height: "177CM" }
+              //以前不是类的时候 构造函数 是跟类的位置差不多 function Star(){} 现在变成了里面的constructor！！！！！！！
+      
+     
+
+        //   ----------------extends继承------------------------------
+        // class Father {
+        //     constructor(uname, age) {
+        //         this.uname = uname
+        //         this.age = age
+        //     }
+        //     money() {
+        //         console.log('赚钱');
+        //     }
+        // }
+        // class Son {
+        //     constructor(uname, age) {
+        //         this.uname = uname
+        //         this.age = age
+        //     }
+        //     money() {
+        //         console.log('赚大钱');
+        //     }
+        // }
+        //这两个类几乎一样 没必要写两遍 所以 儿子继承父亲的就可以
+        class Father {
+            constructor(uname, age) {
+                this.uname = uname
+                this.age = age
+            }
+            money() {
+                console.log('赚钱');
+            }
+        }
+        //继承父亲属性和方法
+        class Son extends Father {
+            //虽然没写 但是继承了父亲的所以也有姓名和年龄
+        }
+        let kenny = new Son('肯尼', 18)
+        console.log(kenny);//{ uname: "肯尼", age: 18 }
+        kenny.money()  //赚钱
+
+
+        
+
+
+        class Person {
+            constructor(uname, age, sex) {
+                this.uname = uname
+                this.age = age
+                this.sex = sex
+                this.head = 1
+                this.eyes = 2
+            }
+            say() {
+                console.log('说话');
+            }
+            eat() {
+                console.log('吃饭');
+            }
+        }
+        class Star extends Person {
+
+        }
+        let ldh = new Star('刘德华', 18, '男')
+        console.log(ldh);//{ uname: "刘德华", age: 18, sex: "男", head: 1, eyes: 2 }
+        ldh.say()//说话
+        ldh.eat()//吃饭
+
+ */
+        // ---------------super--------------------------------
+
+        // super:调用父类的方法
+
+        class Father {
+            constructor(uname, age) {
+                this.uname = uname
+                this.age = age
+            }
+            money() {
+                console.log('赚钱');
+            }
+        }
+        //继承 
+        //子类有自己独有的成员  加个考试成绩
+        class Son extends Father {
+            constructor(uname, age, score) {
+                //先调用super（）然后让super调用父类得
+                super(uname, age)
+                this.score = score
+                //如果子类有自己的constructor，必须通过super才可以调用父类的方法
+            }
+            money() {
+                // super.money()
+                console.log('赚大大钱');
+            }
+        }
+        let kenny = new Son('肯尼', 18, 99)//这三个参数是传给constructor中的参数
+        //但是得是儿子自己得constructor
+        //那儿子的constructor里写几个参数？ 3个 不能缺
+        //儿子调用自己得money方法怎么调？？就近原则 一定是先调自己的money()
+        //如果依旧想要调用父亲得money() 可以在上面加 super.money()
+        kenny.money()//赚大大钱
+//  例子
+        class Person {
+            constructor(uname, age, sex) {
+                this.uname = uname
+                this.age = age
+                this.sex = sex
+            }
+            say() {
+                console.log('说话');
+            }
+        }
+        class Star extends Person {
+            constructor(uname, age, sex, area) {
+                super(uname, age, sex)
+                this.area = area
+            }
+            say() {
+                // super.say() //继承父类的  说话
+                console.log('说话啊');
+            }
+        }
+        let ldh = new Star('刘德华', 18, '男', '大连')
+        ldh.say() //就近原则自己的  说话啊
+    </script>
+
+</body>
+
+</html>

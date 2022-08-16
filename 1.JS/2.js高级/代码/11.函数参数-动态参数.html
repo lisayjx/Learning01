@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 目标:函数参数的使用细节，能够提升函数应用的灵活度。
+        // 学习路径:
+        // 1.动态参数
+        // 2.剩余参数
+
+
+
+        // 产品需求:写一个求和函数
+        // 不管用户传入几个实参，都要把和求出来
+        // getsum(2，3)
+        // getsum(1，2，3)
+        // getsum( 1，2，3，4，5，6)
+        //遇见这种情况怎么办??形参怎么改??
+        // getSum(???)  用动态参数做!!!!!!!!
+
+        // 1.动态参数。
+        // arguments是函数内部内置的 [伪数组] 变量，它包含了调用函数时传入的所有实参
+        //实参太多 不知道写几个形参接收他 算了不写了  在内部用arguments[]代替
+        //arguments动态参数 只存在于函数里面
+
+        //计算所有参数的和 遍历arguments伪数组
+        function sum() {
+            let s = 0
+            for (let i = 0; i < arguments.length; i++) {
+                s += arguments[i]//arguments[i]装着的下面的每个实参
+            }
+            console.log(s);
+        }
+        //调用求和函数
+        sum(5, 10)
+        sum(1, 2, 3, 5, 6, 8, 7, 10, 9, 4, 4)
+
+
+//         总结:
+// 1. arguments是一个伪数组，只存在于函数中
+// 2. arguments 的作用是动态获取函数的实参
+// 3.可以通过for循环依次得到传递过来的实参
+
+
+// 1．当不确定传递多少个实参的时候，我们怎么办?
+// arguments动态参数
+// 2. arguments是什么?
+// 伪数组
+// 它只存在函数中 出了函数啥也不是
+ 
+
+    </script>
+</body>
+
+</html>

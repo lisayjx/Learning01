@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //需求：数组扩展最大值和求和
+        //比如：以前学过
+        // const arr = [1, 2, 3]
+        arr.reverse() //结果是[3,2,1]
+        //扩展完毕之后 
+        arr.sum() //返回结果是6
+
+        //reduce是累计器
+
+        //现在我们想写一个求和函数 以后一调用就可以给数组直接求和
+        //想任何时候任何数组都能用这个方法，所以要挂在数组的原型上
+        //我们创建的一般都是 const arr = [1, 2, 3] （跟new创建的那个一样）实例化
+
+        //1.求最大值
+        //我们定义的这个方法，任何一个数组实例对象都能使用,写到数组原型 数组.prototype身上
+        // const arr = [1, 2, 3] 就是一个实例对象 它等于const arr = new Array(1, 2, 3) ，Array是构造函数相当于Star，arr是实例对象相当于刘德华
+        // const arr = [1, 2, 3]
+        // Array.prototype.max = function (arr) {//arr形参=实例对象
+        //     return Math.max(...arr)
+        //     //...展开运算符 [1, 2, 3]-->1,2,3 求最大值 Math.max(1,2,3)
+        // }
+        // arr.max()//前面arr已经是个数组了 没必要在括号里在写实参了 那怎么把arr送过去呢？
+
+
+
+        const arr = [1, 2, 3]//=const arr = new Array(1, 2, 3) arr是实例对象，Array是构造函数  
+        Array.prototype.max = function () {//arr形参=实例对象
+            return Math.max(...this)//因为原型函数里的this指向实例对象ldh=arr=[1,2,3]
+        }
+        arr.max()//没必要再在括号里传递参数了，this直接指向arr
+                 //相当于以前传值是 实参传给上面的形参 然后形参在传给里面
+                 //现在是直接里面的this把外面的实参接过去了！！！！！！！！！！
+    </script>
+</body>
+
+</html>

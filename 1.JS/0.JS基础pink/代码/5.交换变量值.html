@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        需求:
+有2个变量: num1里面放的是10,num2里面放的是20
+最后变为num1里面放的是20 , num2里面放的是10
+ 
+目的:
+1．练习变量的使用
+2．为了后面冒泡排序做准备
+
+分析：
+1.核心思路:使用一个临时变量用来做中间存储
+
+
+步骤:
+1.声明一个临时变量temp
+2.把num1的值赋值给temp （此时num里还是有10得但是别的数可以进来了）
+3.把num2的值赋值给num1（此时20可以进入num1中）
+4.把temp的值给num2 （此时把num1得10给num2）
+
+        */
+       let num1=10,num2=20,temp
+       temp=num1
+       num1=num2
+       num2=temp
+       document.write(num1,num2)
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需要点谁谁变色，其余不变 -->
+    <!-- 思路1 -->
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+
+    <!-- 思路2 -->
+    <button>1</button>
+    <button class="pink">2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <script>
+        //当前只有一个人能变，其他不行
+        //当前元素为A状态，其他元素为B状态
+        //使用：
+        // 1.干掉所有人  使用for循环
+        // 2.复活他自己  通过this或者下标找到自己或对应的元素
+
+
+        //需要点谁谁变色，其余不变
+        //给所有按钮获取过来，依次写点击事件
+
+        // let btns = document.querySelectorAll('button')//别忘了是ALL
+        // for (let i = 0; i < btns.length; i++) {//给每个按钮添加绑定事件
+        //     btns[i].addEventListener('click', function () {
+        //         //1.干掉所有人 用for循环每个按钮小兄弟（包括自己）
+        //         for (let j = 0; j < btns.length; j++) {
+        //             btns[j].classList.remove('pink')//移除所有按钮的变色类
+        //         }
+        //         //2.复活我自己  this
+        //         this.classList.add('pink')
+        //     })
+        // }
+
+        //思路2，只找到唯一的那个 给他选出来移除掉
+
+        let btns1 = document.querySelectorAll('button')//别忘了是ALL
+        for (let i = 0; i < btns1.length; i++) {//给每个按钮添加绑定事件
+            btns1[i].addEventListener('click', function () {
+                //1.我只需要找出那个唯一的pink类删除(需要本来有一个叫pink类的button)
+                //document.querySelector('.pink')从5个中选出第一个带有pink类的
+                document.querySelector('.pink').classList.remove('pink')
+                //2.就加我的  this
+                this.classList.add('pink')
+            })
+        }
+    </script>
+</body>
+
+</html>

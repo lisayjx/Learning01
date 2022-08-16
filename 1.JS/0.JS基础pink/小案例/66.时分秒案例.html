@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //转换时间案例
+        //需求：用户输入总秒数，可以自动转换为时分秒
+        //以后可以用到倒计时的效果中
+
+        // 1.用户输入总秒数
+        // 2.计算时分秒（封装函数)里面包含数字补0
+        // 3.打印输出
+
+        // 计算公式:计算时分秒
+        // 小时:h= parselnt(总秒数/60/60 % 24)
+        // 分钟:m = parselnt(总秒数/60% 60 )
+        // 秒数:s = parselnt(总秒数% 60)
+
+
+        let miao = +prompt(`请您输入秒数`)
+
+        function getTimes(t) {
+            let h = parseInt(t / 60 / 60 % 24)
+            let m = parseInt(t / 60 % 60)
+            let s = parseInt(t % 60)
+            // 补0
+            h = h < 10 ? '0' + h : h//h < 10 ? '0' + h : h 直接这样写不行，补0没成功，因为假如补了0的新值没给h赋值上
+            m = m < 10 ? '0' + m : m
+            s = s < 10 ? '0' + s : s
+            return `计算之后的时间是${h}小时，${m}分钟${s}秒`
+        }
+        let re = getTimes(miao)
+        document.write(re)
+
+        /*
+                let miao = +prompt(`请您输入秒数`)
+        
+                function getTimes(t) {
+                    let h = parseInt(t / 60 / 60 % 24)
+                    let m = parseInt(t / 60 % 60)
+                    let s = parseInt(t % 60)
+                    // 补0
+                    h < 10 ? '0' + h : h
+                    m < 10 ? '0' + m : m
+                    s < 10 ? '0' + s : s
+                    return [h, m, s]
+                }
+                let re = getTimes(miao)
+                document.write(`${miao}秒是${re[0]}小时，${re[1]}分，${re[2]}分`)*/
+    </script>
+</body>
+
+</html>

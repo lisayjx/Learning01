@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.定义规则
+        // 2.按照规则去查找
+
+
+        /* 1.定义正则表达式的语法：
+       JavaScript中定义正则表达式的语法有两种，我们先学习其中比较简单的方法:
+
+        let 变量名 = /表达式/
+          / / 是正则表达式的字面量  reg变量存的是正则对象 一定会有属性和方法
+        let reg = /前端/
+
+        //2.判断是否有符合规则的字符串：
+        test()方法：用来查看 正则表达式 与 指定的字符串 是否匹配
+        reg.test(被检测的字符串)     你定义的规则有没有在字符串里被包含，有就是true
+  */
+        // text()方法              检测是否匹配   有木有啊
+        let str = '你好啊,lisa'
+        let reg = /你好/
+        let reg1 = /python/
+        console.log(reg.test(str))//true
+        //    /你好/.test('你好啊,lisa') 也可以
+        console.log(reg1.test(str))//false
+
+
+         //检索 exec()
+        // exec()方法 在一个指定字符串中执行一个搜索匹配
+        // reg.exec(被检测的字符串)
+
+        let str1 = '春眠不觉晓'
+        let reg2 = /春/
+        let reg3 = /夏/
+        console.log(reg2.exec(str1));//Array [ "春" ]  还能知道这个字的索引
+        console.log(reg3.exec(str1))//null
+
+
+/*
+1.正则表达式检测查找test方法和exec方法有什么区别?
+    test方法用于判断是否有符合规则的字符串，返回的是布尔值找到返回
+    true，否则false
+exec方法用于检索（查找）符合规则的字符串，找到返回数组，否则为null
+*/
+
+    </script>
+
+</body>
+
+</html>

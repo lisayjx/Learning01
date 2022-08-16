@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 600px;
+            width: 600px;
+            border: 1pxs solid #000;
+        }
+        li{
+            height: 100px;
+            width: 100px;
+        }
+        .one{
+            background-color: red;
+        }
+        .two{
+            background-color: pink;
+        }
+        .three{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <li class="one"></li>
+        <li class="two"></li>
+        <li class="three"></li>
+    </div>
+
+    <script src="./jquery-3.6.0.js"></script>
+    <script>
+        // jQuery中封装了在指定位置动态插入元素节点的方法,
+        // 可以【插入】节点或者【改变】节点位置
+        /*
+                //4个方法参数—样位置不同
+                $('父元素选择器').append(参数)//父元素里结尾
+                $('父元素选择器').prepend(参数)//父元素里开头
+                $('兄弟元素选择器').before(参数)//兄弟元素前面
+                $('兄弟元素选择器').after(参数)//兄弟元素后面
+        
+        */
+        // 插入节点:传入创建的dom元素或者html结构
+        // 改变位置:传入现有的dom元素或者jQuery对象
+
+        //父元素插入
+        // $('.box').append('<img src="../images/1.png" alt="">')
+        //父元素移动
+        // $('.box').append($('.one'))
+        //兄弟元素移动
+        $('.two').prepend($('.three'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+             注意数据和case中的值数据类型也要相同 否则会出错
+             找到跟小括号里数据全等的case值，
+             并执行里面对应的代码若没有全等===的则执行default里的代码
+             
+             例:数据若跟值2全等，则执行代码2
+     
+             1. switch case语句一般用于等值（直接有准确的值）判断,不适合于区间判断
+             2. switch case一般需要配合break关键字使用没有break会造成case穿透（漏水 一直往下进行）
+             3. default可写可不写
+             4.switch（） （）中的内容不一定非得要是布尔值了
+             */
+
+
+        /*
+                switch (数据) {
+                    case 值1:
+                        代码1
+                        break
+                    case 值2:
+                        代码2
+                        break
+                    case 值3:
+                        代码3
+                        break
+        
+                    default:
+                        代码n
+                        break
+                }
+        */
+
+        //需求：用户输入2个数字，然后输入+-*/任何一个，可以计算结果
+        // 用户输入数字,用户输入不同算术运算符，可以去执行不同的运算(switch)
+
+        let num1 = +prompt(`请输入第一个数`)
+        let num2 = +prompt(`请输入第二个数`)
+        let fuhao = prompt(`请输入+-*/中的其中一个`)
+
+        // 根据不同的运算符，去执行不同的运算
+        switch (fuhao) {
+            case '+': //报错原因是没加''，取过来的是字符串 它也得是字符串类型
+                alert(`你选择的是+，结果是${num1 + num2}`)
+                break
+            case '-':
+                alert(`你选择的是-，结果是${num1 - num2}`)
+                break
+            case '*':
+                alert(`你选择的是*，结果是${num1 * num2}`)
+                break
+            case '/':
+                alert(`你选择的是/，结果是${num1 / num2}`)
+                break
+            default:
+                alert(`你输入的不对`)
+        }
+    </script>
+</body>
+
+</html>

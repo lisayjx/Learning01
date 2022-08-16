@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>微博发布</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .w {
+      width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls textarea {
+      width: 878px;
+      height: 100px;
+      resize: none;
+      border-radius: 10px;
+      outline: none;
+      padding-left: 20px;
+      padding-top: 10px;
+      font-size: 18px;
+    }
+
+    .controls {
+      overflow: hidden;
+    }
+
+    .controls div {
+      float: right;
+    }
+
+    .controls div span {
+      color: #666;
+    }
+
+    .controls div .useCount {
+      color: red;
+    }
+
+    .controls div button {
+      width: 100px;
+      outline: none;
+      border: none;
+      background: rgb(0, 132, 255);
+      height: 30px;
+      cursor: pointer;
+      color: #fff;
+      font: bold 14px '宋体';
+      transition: all 0.5s;
+    }
+
+    .controls div button:hover {
+      background: rgb(0, 225, 255);
+    }
+
+    .controls div button:disabled {
+      background: rgba(0, 225, 255, 0.5);
+    }
+
+    .contentList {
+      margin-top: 50px;
+    }
+
+    .contentList li {
+      padding: 20px 0;
+      border-bottom: 1px dashed #ccc;
+      position: relative;
+    }
+
+    .contentList li .info {
+      position: relative;
+    }
+
+    .contentList li .info span {
+      position: absolute;
+      top: 15px;
+      left: 100px;
+      font: bold 16px '宋体';
+    }
+
+    .contentList li .info p {
+      position: absolute;
+      top: 40px;
+      left: 100px;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .contentList img {
+      width: 80px;
+      border-radius: 50%;
+    }
+
+    .contentList li .content {
+      padding-left: 100px;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .contentList li .the_del {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 28px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="w">
+    <!-- 操作的界面 -->
+    <div class="controls">
+      <img src="./images/9.6/tip.png" alt="" /><br />
+      <!-- maxlength 可以用来限制表单输入的内容长度 -->
+      <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+      <div>
+        <span class="useCount" id="useCount">0</span>
+        <span>/</span>
+        <span>200</span>
+        <button id="send">发布</button>
+      </div>
+    </div>
+    <!-- 微博内容列表 -->
+    <div class="contentList">
+      <ul id="list"></ul>
+    </div>
+  </div>
+
+  <!-- 添加了hidden属性元素会直接隐藏掉 -->
+  <!-- <li hidden>
+    <div class="info">
+      <img class="userpic" src="./images/9.6/03.jpg" />
+      <span class="username">死数据:百里守约</span>
+      <p class="send-time">死数据:发布于 2020年12月05日 00:07:54</p>
+    </div>
+    <div class="content">死数据:111</div>
+    <span class="the_del">X</span>
+  </li> -->
+
+  <script>
+    // maxlength 是一个表单属性, 作用是给表单设置一个最大长度
+
+    // 模拟数据
+    let dataArr = [
+      { uname: '司马懿', imgSrc: './images/9.5/01.jpg' },//这里数据src有引号 下面就不用加引号了
+      { uname: '女娲', imgSrc: './images/9.5/02.jpg' },
+      { uname: '百里守约', imgSrc: './images/9.5/03.jpg' },
+      { uname: '亚瑟', imgSrc: './images/9.5/04.jpg' },
+      { uname: '虞姬', imgSrc: './images/9.5/05.jpg' },
+      { uname: '张良', imgSrc: './images/9.5/06.jpg' },
+      { uname: '安其拉', imgSrc: './images/9.5/07.jpg' },
+      { uname: '李白', imgSrc: './images/9.5/08.jpg' },
+      { uname: '阿珂', imgSrc: './images/9.5/09.jpg' },
+      { uname: '墨子', imgSrc: './images/9.5/10.jpg' },
+      { uname: '鲁班', imgSrc: './images/9.5/11.jpg' },
+      { uname: '嬴政', imgSrc: './images/9.5/12.jpg' },
+      { uname: '孙膑', imgSrc: './images/9.5/13.jpg' },
+      { uname: '周瑜', imgSrc: './images/9.5/14.jpg' },
+      { uname: '老夫子', imgSrc: './images/9.5/15.jpg' },
+      { uname: '狄仁杰', imgSrc: './images/9.5/16.jpg' },
+      { uname: '扁鹊', imgSrc: './images/9.5/17.jpg' },
+      { uname: '马可波罗', imgSrc: './images/9.5/18.jpg' },
+      { uname: '露娜', imgSrc: './images/9.5/19.jpg' },
+      { uname: '孙悟空', imgSrc: './images/9.5/20.jpg' },
+      { uname: '黄忠', imgSrc: './images/9.5/21.jpg' },
+      { uname: '百里玄策', imgSrc: './images/9.5/22.jpg' },
+    ]
+
+
+
+
+    //最下面的li模块加了hidden属性就会隐藏 
+    // 每次点击发布就会把隐藏li添加到 类名为list 的ul中 就不会隐藏了
+    //五个需求
+
+    //        需求1∶检测用户输入字数
+    // 1.注册input事件
+    // 2.将文本的内容的长度赋值给对应的数值
+    // 3.表单的maxlength属性可以直接限制在200个数之间
+    //        需求2:输入不能为空
+    // 判断如果内容为空，则提示不能输入为空，(点击发布时候会提示)
+    // 并且直接return不能为空防止输入无意义空格,使用字符串.trim()去掉首尾空格
+    // '   你好  '.trim()  会去掉你好前后的空格
+    // 并将表单的value值设置为空字符串
+    // 同时下面红色为设置为0
+    //        需求3:新增留言
+    // 创建一个小li，然后里面通过innerHTML追加数据
+    // 随机获取数据数组里面的内容，替换newNode的图片和名字以及留言内容
+    // 利用时间对象将时间动态化 new Date().toLocaleString()
+    // 追加给ul
+    //       需求4:删除留言
+    // 在事件处理函数里面获取点击按钮,注册点击事件(易错点:必须在事件里面获取,外面获取不到)
+    // 删除对应的元素(通过this获取对应的那条需要删除的元素)
+    // 教你一招:放到追加进ul的前面，这样创建元素的同时顺便绑定了事件，赞~~
+    //       需求5:重置
+    // 将表单域内容重置为空
+    // 将usercount里面的内容重置为0
+
+
+
+    //需求一：
+    let area = document.querySelector('#area')
+    let useCount = document.querySelector('.useCount')
+    area.addEventListener('input', function () {//绑定事件是input
+      useCount.innerHTML = this.value.length
+    })
+    //需求二：
+    // bug1:输入空格 点击发布也行 不会弹出内容不能为空 解决：给area.value加.trim()
+    // bug2: 输入空格下面的文字个数也会变 解决：将表单的value值设置为空字符串，将下面的红色字设置为0
+    let btn = document.querySelector('#send')
+    btn.addEventListener('click', function () {
+      if (area.value.trim() === '') {//area.value是用户输入的字符，让他去除空格
+        //将表单的value值设置为空字符串 把输入的空格变空，将下面的红色字设置为0
+        //都是在点击时候出现的 输入空格时候点击按钮 然后将空格清空 数字变0
+        area.value = ''
+        useCount.innerHTML = 0
+        return alert('内容不能为空')//return下一行不执行 return后的这句话会执行
+      }
+
+
+      //需求三：写在点击事件里面 因为添加评论是点击之后加的
+      // bug1：<img class="userpic" src=${dataArr[random].imgSrc}   /> 这句话 img单标签 后面的 /和前面的内容要有空格 最好是别写/
+      //点击按钮 就把下面的li追加到list中，点一次追加一次
+      //获取 list  创建li，然后通过innerHTML追加数据
+      let list = document.querySelector('#list')
+      let li = document.createElement('li')//小li会有好多个 点击就会有 所以点击按钮之中
+      //把数据追加给li
+      //每次追加的li的数据 都是随机的
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+      }
+      let random = getRandom(0, dataArr.length - 1)
+      li.innerHTML = `
+        <div class="info">
+              <img class="userpic" src=${dataArr[random].imgSrc}>
+              <span class="username"> ${dataArr[random].uname}</span>
+              <p class="send-time"> 发布于 ${new Date().toLocaleString()}</p>
+        </div>
+        <div class="content">${area.value}</div>
+        <span class="the_del">X</span>
+`
+
+
+
+      //需求4:删除留言 放在发布按钮得点击事件里面（x是li里的，因为li是得点击了发布才能出现的）
+      //bug:怕需求4没写在 发布的点击事件里 
+      //bug:因为不止一个li  要遍历li，感觉好麻烦 
+      // 解决bug：每次点击发布生成新li时候不仅生成新数据 而且就同时给x绑定个删除事件
+      //把这写在 li追加到ul list之前 把所有都准备好 在把li往list中加
+      //所以要把需求4 放在追加到ul之前
+
+      //获取用li.querySelector 是因为是每次生成的li中的X
+      let the_del = li.querySelector('.the_del')//获取× 此时获取一个就可以
+
+      the_del.addEventListener('click', function () {
+        // this.parentNode.style.display = 'none'
+        //或者
+        list.removeChild(li)
+      })
+
+
+
+
+      //把li追加到list
+      //然后把li追加给list，父元素.insertBefore(子元素,谁之前)  因为评论最后评论在最上面
+      list.insertBefore(li, list.children[0])
+
+
+      //需求五：你写完的内容发布之后 在上面的textarea中的内容要清空，useCount红色字要变成0
+      area.value = ''
+      useCount.innerHTML = 0
+
+
+
+
+    })
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="../img/53.png" alt="">
+    <script>
+
+// e.type              获取当前的事件类型
+// e.clientX/clientY   获取光标相对于浏览器可见窗口左上角的位置  可见窗口浏览器变化得窗口大小 被控制台挡住的也不是可视区
+// e.pageX/pageY       获取相对于当前【文档document】得左上角的位置
+// e.offsetX/offsetY   获取光标相对于当前DOM元素左上角的位置
+// e.key               用户按下的键盘键的值  现在不提倡使用keyCode
+// e.target	           返回触发事件的对象  比如 事件委托给ul时候你点了li 他会知道你点了哪个li对象  你点击了哪个对象
+// e.preventDefault()  阻止事件对象的默认行为，比如说不让链接进行跳转
+// e.stopPropagation() 阻止冒泡行为，标准的 不让他往上发散
+
+// e.target.tagName      用户点击的是什么标签
+ // 如果 event.target.tagName==='A'  就说明用户点击的是a链接
+ // 如果 event.target.tagName==='SPAN' 就说明用户点击的是span标签 返回大写
+document.addEventListener('click',function(event){
+    console.log(`clientX:${event.clientX},clientY:${event.clientY}`);
+    console.log(`pageX:${event.pageX},pageY :${event.pageY }`);
+    console.log(`offsetX:${event.offsetX},offsetY:${event.offsetY}`);
+})
+    </script>
+
+    <!-- 有了鼠标对象 event e之类的才能使用 这些属性 -->
+</body>
+</html>

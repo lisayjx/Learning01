@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置构造函数</title>
+</head>
+
+<body>
+    <script>
+        // 内置构造函数
+        // 1.Object
+        // 2.Array
+        // 3.String
+        // 4.Number
+
+
+
+
+        // 在Javascript中最主要的数据类型有6种:
+        // 基本数据类型:字符串、数值、布尔、undefined、null
+        // 引用类型: 对象
+
+        // 但是，我们会发现有些特殊情况: 
+        //一般时候对象才有属性和方法 但是简单数据类型的字符串怎么也可以str.length？有属性？甚至有方法？
+        //普通字符串
+        const str = 'lisa'
+        console.log(str.length);//4  有属性
+        const num = 12
+        console.log(num.toFixed(2)); //有方法
+
+        // 其实字符串、数值、布尔、等基本类型也都有专门的构造函数，
+        // 这些我们称为包装类型。
+        // JS中几乎所有的数据都可以基于构成函数创建。
+
+
+        //虽然这些都是简单数据类型 但是我们js给底层做了个包装
+        //看上去是这么些 const str = 'lisa'
+        //底层是这么做的：const str = new String('pink')实例化
+        //他给字符串包装成了对象 所以就可以调用属性和方法
+        //这些都是js底层完成的 把简单数据类型包装成了复杂（引用）数据类型
+  
+// 其实字符串、数值、布尔、等基本类型也都有专门的构造函数，这些我们称为包装类型。
+// JS中几乎所有的数据都可以基于构成函数创建。
+
+  
+  
+  </script>
+</body>
+
+</html>

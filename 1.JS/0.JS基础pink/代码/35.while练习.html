@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //谨记循环三要素  开始 结束 变化
+
+        //  1.页面输出1-100
+        //利用i，因为正好和数字对应
+        //起始值
+        /*       let i = 1
+               while (i <= 100) {//终止值
+                   document.write(`${i}<br>`)//(`<p>${i}</p>`)也能给换行
+                   //变量变化
+                   i++
+               }
+       */
+        // 2.计算1-100的总和并输出 1+2+3+4+5+6... 这个不是输出一堆 只是输出一个和 不要把结果写在循环里
+        //声明累加的和的变量result
+        // 每次把a加到result里
+        let a = 1
+        let result = 0
+        while (a <= 100) {
+            result += a//每次都是result+a，但是这样result没变 所以给result+a赋值给result
+            a++//别把变量过程忘了
+        }
+        document.write(`<p>1+2+3..+100=${result}</p>`)
+
+
+        //3.计算1-100之间的所有偶数和
+        // 声明累加和的变量re
+        //首先利用if语句把b里面是偶数筛选出来
+        //把筛选的b加到re里面
+
+
+        let b = 1
+        let re = 0
+        while (b <= 100) {
+            if (b % 2 === 0) {
+                //只要能进入这个循环说明此时b就是偶数，那么就让re=re+b，
+                re += b
+            }
+            b++//写在if外面说明 不管是奇数还是偶数 我的b一定是++要的
+        }
+         document.write(re)
+
+    </script>
+</body>
+
+</html>

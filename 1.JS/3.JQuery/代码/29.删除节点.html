@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button class="self">删除自己</button>
+        <button class="shanfu">删除父元素</button>
+    </div>
+    <script src="./jquery-3.6.0.js"></script>
+    <script>
+        //         jQuery对象.remove()
+        // remove方法删除的是调用方法的元素节点
+        // 不用再费劲找父元素删除了
+
+        //删除自己
+        $('.self').click(function () {
+            $(this).remove()
+        })
+        //删除父元素
+        $('.shanfu').click(function () {
+            $(this).parent().remove()
+        })
+    </script>
+</body>
+
+</html>

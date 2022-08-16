@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 注:普通函数没有明确调用者时this值为window，
+        // 严格模式下没有调用者时 this的值为_undefined 。
+
+        //严格模式：没有歧义的代码
+        // n=3就是有歧义的代码  要先声明在使用
+
+        //开启严格模式    "use strict"; 放在任何的作用域的开头
+        //  "use strict";如果放在全局的开头 代表全局都要严格；如果放到函数开头代表就代表函数内部严格
+
+
+        "use strict";//开启严格全局模式
+        n = 3  //普通模式时候能用，严格模式时候报错
+
+
+        //1.变量必须定义，不准删除变量
+        //2.普通函数中的this指向undefined
+        function fn() {
+            console.log(this);//普通模式指向window，严格模式指向undefined
+        } fn()
+       //3. 函数的形参不准重名
+       function fn(a,a) {//不行
+          return a+a
+        } fn(1,2)
+
+    </script>
+</body>
+
+</html>

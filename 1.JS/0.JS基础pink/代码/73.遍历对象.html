@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         对象没有像数组―样的length属性,所以无法确定长度
+        // 对象里面是无序的键值对,没有规律.不像数组里面有规律的下标
+                                                   //所以专门有一个遍历对象的东西就是：for in
+        //k也就是key关键字，也是变量
+
+        //想得到属性名：k     想得到属性值：obj[k]
+
+        let obj = {
+            name: 'lisa',
+            age: 18,
+            sing: function () {
+                console.log('lalisa');
+            }
+        }
+        //遍历对象
+        for (let k in obj) {
+            console.log(k);//遍历属性名
+            console.log(obj[k]);//遍历属性值  （没有引号，也不要写成obj.k，这是平时访问属性值用的，但是这里是遍历对象用的 ）
+    //    console.log(obj.k);//大错特错，因为obj中没有k这个属性，k代表obj['name']等，这个可以输出属性值
+        }
+
+//为什么这么写？
+// k是变量，得到的是属性名，字符串，有引号 所以我认为 k==='name'  ==='age'
+//obj[k]  代入法 obj['name'] 所以这个就是之前讲的获取属性值的方法2（参考69页） 所以obj['name']可以得到lisa
+    </script>
+</body>
+
+</html>

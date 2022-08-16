@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //数组里面可以放任何数据类型
+        //let arr=[1,'pink',true,undefined,null,{},[]]
+        //console.log(arr)
+        //数组对象
+        let students = [
+            { name: '小明', age: 18, gender: '男', hometown: '河北' },//数组下标是 students[0]
+            { name: '小红', age: 19, gender: '女', hometown: '河南' },//数组下标是 students[1]
+            { name: '小刚', age: 17, gender: '男', hometown: '陕西' },//数组下标是 students[2]
+            { name: '小丽', age: 18, gender: '女', hometown: '山西' }//数组下标是 students[3]
+        ]
+        //先得到所有对象，才能得到所有属性值
+        //1.遍历数组
+        for (let i = 0; i < students.length; i++) {
+            students[i]//得到的是每一个对象
+            students[i].name//得到的是所有对象里的name的值：小明小红小刚小丽
+            students[i].age//得到的是所有对象里的age的值:18,19,17,18
+            students[i].gender//得到的是所有对象里的gender的值:男女男女
+            students[i].hometown//得到的是所有对象里的hometown的值：河北河南陕西山西
+        }
+
+
+
+        //要是在遍历数组里再写一个遍历对象 会把按照每个人的属性值输出（需要就写 不需要就不写）
+        for (let k in students[i]) {   //students[i]代表每个对象{}
+              //  console.log(k);//得到所有的属性名
+                //3.//得到所有的属性值
+                console.log(students[i][k]);// 小明18男河北，小红19女河南..
+            }
+
+
+    </script>
+</body>
+
+</html>

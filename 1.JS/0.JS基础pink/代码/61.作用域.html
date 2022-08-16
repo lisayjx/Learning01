@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+ // 函数外部声明的变量和函数，函数内部可以访问
+        // 函数内部声明的变量和函数，函数外部不可以访问
+
+
+
+
+        //思考：为啥在外面的i打印不出来
+        //情况一：
+        for (let i = 0; i < 3; i++) {
+            document.write(`咋回事`)
+        }
+        console.log(i);//出现 i is not defined
+        //情况二：在函数内定义变量，在函数外打印 
+        function fn(){
+            let num1=20
+        }
+        fn()
+        console.log(num1);//num1 is not defined
+
+        //作用域概述：（就是这个代码在哪个范围内有效）
+        //通常来说，一段程序代码中所用到的名字并不总是有效和可用的，
+        //而限定这个名字的可用性的代码范围就是这个名字的作用域。
+        //作用域的使用提高了程序逻辑的局部性，增强了程序的可靠性，减少了名字冲突.
+
+        //1.全局作用域：全局有效
+        //作用于所有代码执行的环境(整个script标签内部)或者一个独立的js文件
+
+
+        //2.局部（函数）作用域：局部有效
+        //作用于函数内的代码环境,就是局部作用域。因为跟函数有关系，所以也称为函数作用域。
+
+        //3.块级作用域： {}内有效
+        //块作用域由得包括,if语句和for语句里面的{}等
+
+// undefined是一个默认值  声明了不赋值就是这个
+// not is a defined 是报错信息
+       
+// 表达式方式定义函数不会有函数提升
+// fn()
+// var fn=function(){
+
+// }
+// //会报错
+
+// function fn(){
+
+// }fn() //不会报错
+
+
+// 函数里在套一个函数 ，里面的函数叫 局部函数
+// 要是在外边调用里边的哪个，也不行 
+// 在函数内部声明的函数，在函数外面访问不到
+for(var i=0;i<5;i++){
+            var num=123
+        }
+        console.log(num);//123 
+        //他可以访问内部的
+  //在ECMA3.0时候 除了函数有作用域 其他都没有 
+  //作用域只有在调用时候才产生，每次调用函数都会有新的作用域 
+
+  function fn5(){
+    var d=100
+    e=200//没声明  工作中禁止这样写 会扣工资！！！！！！！
+  }
+  fn5()
+  console.log(d);//访问不到
+  console.log(e);//可以访问  没声明直接赋值 相当于一个全局变量 隐士全局变量
+    </script>
+</body>
+
+</html>

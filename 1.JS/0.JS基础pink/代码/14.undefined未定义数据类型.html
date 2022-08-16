@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+ 未定义是比较特殊的类型，只有一个值undefined。
+ 什么情况出现未定义类型?
+只声明变量，不赋值的情况下，变量的默认值为undefined，
+一般很少【直接】为某个变量赋值为undefined。
+
+
+工作中的使用场景:
+我们开发中经常声明一个变量，等待传送过来的数据。
+如果我们不知道这个数据是否传递过来，
+此时我们可以通过检测这个变量是不是undefined，
+就判断用户是否有数据传递过来。
+
+        */
+
+        //undefined类型  只声明 不赋值
+        let age
+        console.log(age);
+
+        //工作场景
+        function fun(x, y) {
+            x + y//x=x||0 找了个备胎，x优先，x没来就用0，x来了就不用0了
+        } fun()
+        ///此时fun()中没有数据 也不会给上面fun(x,y)传什么 就会导致里面
+        //x是undefined y也是undefined
+        //一般会采取x||0 这种 若是是undefined 就输出0
+    </script>
+</body>
+
+</html>

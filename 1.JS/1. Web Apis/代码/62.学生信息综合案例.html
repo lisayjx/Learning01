@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #721c24;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+
+    }
+
+    table {
+      margin: 0 auto;
+      width: 800px;
+      border-collapse: collapse;
+      color: #004085;
+    }
+
+    th {
+      padding: 10px;
+      background: #cfe5ff;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    td,
+    th {
+      border: 1px solid #b8daff;
+    }
+
+    td {
+      padding: 10px;
+      color: #666;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    tbody tr {
+      background: #fff;
+    }
+
+    tbody tr:hover {
+      background: #e1ecf8;
+    }
+
+    .info {
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .info input {
+      width: 80px;
+      height: 25px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid #b8daff;
+      padding-left: 5px;
+    }
+
+    .info button {
+      width: 60px;
+      height: 25px;
+      background-color: #004085;
+      outline: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .info .age {
+      width: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>新增学员</h1>
+  <div class="info">
+    姓名：<input type="text" class="uname">
+    年龄：<input type="text" class="age">
+    性别: <select name="gender" id="" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    <!-- 学号：<input type="text" class="stuId"> -->
+    薪资：<input type="text" class="salary">
+    就业城市：<select name="city" id="" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+
+    </select>
+    <button class="add">录入</button>
+  </div>
+
+  <h1>就业榜</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>1001</td>
+        <td>欧阳霸天</td>
+        <td>19</td>
+        <td>男</td>
+
+        <td>15000</td>
+        <td>上海</td>
+        <td>
+          <a href="javascript:" id="${i}">删除</a>
+        </td>
+      </tr> -->
+
+
+    </tbody>
+
+  </table>
+
+
+
+
+  <img src="../img/62.png" alt="">
+  本来是这种情况 默认时候是 最上面三条数据
+  然后录入了一条新的 下面的lisa 但是录入新的时候把之前的三条也带着了
+  因为每次更新录入 都是往数组中插入一条数据 所以每次都会带着之前的
+  怎么办？？那么就每次录入新数据之前把 tbody中的三条tr删除 简单做法 tbody.innerHTML = ''
+
+
+  <a
+    href="https://www.bilibili.com/video/BV1AT4y1v75t?p=46&spm_id_from=pageDriver&vd_source=2fd18316f23162e685d8dbdadd9417f1">pink老师讲解</a>
+  <script>
+    //  1. 准备好数据后端的数据
+    let arr = [
+      { stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海' },
+      { stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京' },
+      { stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '20000', city: '北京' },
+    ]
+    //本次案例主要目的是为了后面学习Vue做铺垫（数据驱动视图)
+    //之前都是往DOM节点里加 例如在ul中加li
+    //这次是 往数组中加对象！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+
+
+
+
+    /*
+    需求:点击录入按钮，可以增加学生信息
+    分析:
+         【1.不管添加还是删除，都是操作的数据（数组)不是dom节点，然后从新渲染页面
+         其实渲染的是行，然后把行往tbody里追加 】
+        
+    需求①:  添加数据
+          点击录入按钮，把表单里面的值都放入数组里面
+          学号自动生成，是数组最后一个数据的学号+1
+    
+    需求②:  渲染
+          把数组的数据渲染到页面中，同时清空表单里面的值，下拉列表的值复原
+          注意，渲染之前，先清空以前渲染的内容
+          因为多次渲染，最好封装为函数
+    
+    需求③:删除数据
+          为了提高性能，最好使用事件委托方式，找到点击的是链接e.target.tagName
+          根据当前的删除链接，找到这条数据
+          需要得到当前数据的索引号，可以渲染a的时候，把当前索引号给id属性，然后通过e.target.id来获取
+          然后使用splice来删除对应数据重新渲染
+
+    */
+
+    // 学号在html中给注释了是因为 想自动生成 不用我们输入
+
+    // 不管添加还是删除，都是操作的数据（数组)不是dom节点！！！！！！！！！！！！！！！！
+
+    //一、先把本来的数据放入页面中
+
+    //渲染函数 因为要多次使用(增加删除啥的都要用到他)所以封装成函数
+
+    //1.获取父元素tbody
+    //因为要用到好多tr 所以事件委托 就获取父元素tbody
+    let tbody = document.querySelector('tbody')// 唯一的所以不用写函数里面也行
+    //获取数据按钮
+    let add = document.querySelector('.add')
+    //获取表单元素  没获取学号是想自动生成
+    let uname = document.querySelector('.uname')
+    let age = document.querySelector('.age')
+    let gender = document.querySelector('.gender')
+    let salary = document.querySelector('.salary')
+    let city = document.querySelector('.city')
+
+
+
+    //渲染函数 把数组里的数据渲染到页面中
+    function render() {
+      //其实二。3和三可以写到点击事件里 但是由于还要有删除的操作和这两个类似 所以写在渲染里了
+      //二、3.先干掉之前的数据 让tbody里的原来的tr都没有（那三条） 简单做法
+      tbody.innerHTML = ''  //tbody里的东西为空
+      //再渲染新的数据（每次新的都是那三条加你录入的）
+
+
+      //三、录入信息（渲染）完毕之后将上面的表单信息复原，渲染完复原 因为追加是渲染
+      //所以在这后面写复原 复原所有表单数据
+      uname.value = age.value = salary.value = ''
+      gender.value = '男'
+      city.value = '北京'
+      //此时页面就只有一条数据？？把获取元素放在函数上面 先获取在使用
+
+
+      var count = 0;
+      var interval = setInterval(function () {
+        count++;
+        console.log(count);
+        if (count == 5) {
+          clearInterval(interval);
+        }
+      }, 1000)
+      console.log('hello');
+
+
+
+
+
+
+      //根据数据条数创建小tr 根据数据渲染 几条数据渲染几个tr
+      //所以遍历一下数据对象的条数
+      for (let i = 0; i < arr.length; i++) {//有几条数据创建几个tr
+        //2.创建tr
+        let tr = document.createElement('tr')//创建标签的英文别写成获取标签的
+        //3.tr里面放内容
+        tr.innerHTML = `
+            <td>${arr[i].stuId}</td>
+            <td>${arr[i].uname}</td>
+            <td>${arr[i].age}</td>
+            <td>${arr[i].gender}</td>
+
+            <td>${arr[i].salary}</td>
+            <td>${arr[i].city}</td>
+            <td>
+              <a href="javascript:" id="${i}">删除</a>
+            </td>
+        `
+        //4.追加tr给tbody 往后追加 父元素.appendChildren(子元素)
+        tbody.appendChild(tr)
+
+
+      }
+    }
+
+    render()//页面加载就调用函数  所以一开始就默认有三条数据
+
+    /*----------------------------------------------*/
+    //二、把用户输入的新数据放在页面中
+    //录入数据  点击录入时
+    //1.获取用户输入的表单的值  2.追加到数组里  用push({数据对象})方法  
+
+
+    //点击录入时候 渲染页面也就是调用render() 但是渲染之前把数据加进去
+    add.addEventListener('click', function () {
+
+      // 1.获取用户输入的表单的值 例如  uname.value
+      //2.追加对象到数组
+      //若是把所有数据都删除时候 新数据找不到上一个数据的学号时候 用这个
+      // arr.stuId = arr.length === 0 ? 1001 : arr[arr.length - 1].stuId + 1
+      arr.push(
+        {
+          //把用户输入的值 给了 数组对象里
+          stuId: arr[arr.length - 1].stuId + 1,
+          uname: uname.value,  //没有 字符串 不用${}
+          age: age.value,
+          gender: gender.value,
+          salary: salary.value,
+          city: city.value
+        }
+      )
+      // console.log(arr);
+
+
+      //自动生成id怎么写？
+      //因为本来的数据都是 1001  1002 1003 那么下一个用户输入的新数据
+      //需要比上一个大1  所以+1  
+      //一般都是通过数组的最后一条数据 +1 
+      //所以取到数组的最后一条元素的学号 +1 就是下一个学号的值
+      //arr[arr.length - 1].stuId  数组的最后一个对象中的学号
+
+      //把加入的新数据和之前的三条再重新渲染到页面 不是 一条一条渲染 是把整个数组重新渲染
+      //所以还要调用一下 render() 把数组数据渲染到页面
+      //重新渲染函数
+      render()//拿到数组里的数据重新渲染
+      // bug:此时录入个数据进去会把整个数组再录入进去 会有重复的
+      //应该是录入数据 开始渲染后 把以前的数据删除 此时的数据中有之前的 也有最新的 没有重复的
+      //每次发布都把以前的数据干掉 再把最新的数据的里的数据重新渲染 在render（）里写 去上面 或者在点击事件的最上面写也行
+
+    })
+
+
+
+    //四、删除事件 用事件委托tbody，然后设定一下点它里面的啥地方才会触发删除
+    tbody.addEventListener('click', function (event) {
+      //我们只能点击了链接a才能执行删除操作，那么我们怎么知道点击了a呢?
+      //  console.log( event.target.tagName);//点了a以后: A 得到的是用户点击的地方的名字
+      // 如果 event.target.tagName==='A'  就说明用户点击的是a链接
+      // 如果 event.target.tagName==='SPAN' 就说明用户点击的是span标签
+      if (event.target.tagName === 'A') {  //如果点击的是a标签
+        //得到 a标签（删除按钮） 的id号
+        let id = event.target.id//你点击的那个对象的id属性的值
+
+        //splice(从哪里删除，删几个)
+        arr.splice(id, 1)
+
+
+        //最后一步 删除了一条数据以后 数组要重新渲染 调用render()
+        render()
+      }
+      // 删除操作删除 数组 里面的数据  记住都是对数据进行变化
+      //删除数组的数据 用 splice(从哪里删除，删几个)
+      //【难点】从哪里删除呢？？肯定是你点击哪个删除的那条数据了 那么怎么获取你点击的时候哪条数据呢？
+      //以后vue也是这种方法 记住！！ 怎么知道你点击的那个删除是对应的tbody里面的哪条数据呢？
+      //给 删除a 添加一个属性 把他的索引号记录下来，有了索引号就知道删除哪个了
+      //在html中的删除a里面加一个属性 id="${i}" 这个i是循环的变量 从0开始到数组长度结束
+      //所以现在只要把id获取过来就知道在哪里开始删除了
+      //我现在一点击某个删除a 就会知道id是几 所以把你当前点击的删除a的id拿出来
+    })
+
+
+
+
+    // bug：全部都删除之后 不能追加数据了 因为你删完了  append  加的东西没了
+    //   学号也会不知道从个数开始加 （最好至少保留一条数据）
+      // 这里的话可以这样解决stuId: (arr.length === 0 ? 1001 : arr[arr.length - 1].stuId + 1)
+
+  </script>
+</body>
+
+</html>

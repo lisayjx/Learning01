@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="../img/45.伪数组.png" alt="">
+    <img src="../img/45.真数组.png" alt="">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        // 静态方法 Array.from()
+        //把所有li获取过来是个伪数组    arguments也是伪数组 字符串中得每个元素 含有length属性得对象
+        const li=document.querySelectorAll('ul li')
+        // console.log(li);
+       console.log(Array.from(li))
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // jQuery绑定的事件中可以获取事件参数(事件对象),用法和原生js完全一致
+
+        // 没定义事件参数
+        $('选择器').事件(function () {})
+        // 定义了事件参数
+        $('选择器').事件(function (event) {})
+
+        event.stopPropagation()//组织冒泡
+    </script>
+</body>
+</html>

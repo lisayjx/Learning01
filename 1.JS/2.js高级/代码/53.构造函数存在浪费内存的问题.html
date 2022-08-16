@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/54.png" alt="">
+    <script>
+        /*       构造函数
+    封装是面向对象思想中比较重要的一部分，js面向对象可以通过构造函数实现的封装。
+    同样的将变量和函数组合到了一起并能通过this 实现数据的共享，
+    所不同的是借助构造函数创建出来的实例对象之间是彼此不影响的
+    
+    
+    总结:
+    1.构造函数体现了面向对象的封装特性
+    2.构造函数实例创建的对象彼此独立、互不影响
+    */
+        // js中通过 构造函数 实现封装性！！！！！！！！！！！！！！！！！！
+
+        // 实例对象ldh = new Star('刘德华', 55)   ，this指向实例对象  this就是实例对象  相当于 ldh.uname=’刘德华
+        //Star是构造函数
+        function Star(uname,age) {
+            this.name = uname,
+                this.age = age,
+                this.sing = function () {
+                    console.log('唱歌');
+                }
+        }
+        const ldh = new Star('刘德华', 55)
+        const zxy = new Star('张学友', 55)
+
+
+// ----------------------------------------------------------
+
+        // 封装是面向对象思想中比较重要的一部分，
+        // js面向对象可以通过构造函数实现的封装。
+        // 前面我们学过的构造函数方法很好用，但是存在浪费内存的问题
+
+
+
+// 1.Js 实现面向对象需要借助于谁来实现?
+// 构造函数
+// 2．构造函数存在什么问题?
+// 浪费内存(主要是存方法时候function)
+ 
+
+// 我们希望所有的对象使用同一个函数，这样就比较节省内存，那么我们要怎样做呢?
+//原型
+
+    </script>
+
+    </script>
+</body>
+
+</html>

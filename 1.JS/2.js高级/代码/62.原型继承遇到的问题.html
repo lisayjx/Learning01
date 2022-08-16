@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //人类
+        const Person = {
+            head: 1,
+            eyes: 2,
+            legs: 2,
+            say: function () { },
+            eat: function () { }
+        }
+        //男人
+        function Man() { }
+        Men.prototype = Person
+        Men.prototype.constructor = Men
+        // -----------------------------------------------
+        //女人
+        //给女人添加一个男人没有的方法 生孩子 所有女人都能有这个方法 挂载到原型上
+        //此时给女人加的方法 为啥下面的男人也有呢？？？？
+        //因为他俩的原型都继承了Person ！！！！
+        Women.prototype.baby = function () { console.log('生孩子'); }
+        function Women() {
+
+            // this.baby = function () { }
+        }
+        const lucy = new Women()//实例对象lucy可以有baby方法
+        //通过原型继承人类中的 属性和方法
+        Women.prototype = Person
+        Women.prototype.constructor = Women
+// ---------------------------------------------------
+    //他俩都能有baby方法的原因是 这两句话  他俩都接收了Person
+        // Men.prototype = Person
+        // Women.prototype = Person
+     //   男人和女人都同时使用了同一个对象，根据引用类型的特点，他们指向同一个对象，修改一个就会都影响
+//Person是对象 复杂类型 存在堆里  他俩指向同一个地址 有一个修改了 那个也跟着变
+//怎么解决？？？？？？
+// 很简单  让他俩指向不同的对象！！！！！！！对象虽然不同 但是内容需要一样
+         // Men.prototype = Person1
+        // Women.prototype = Person2
+
+
+    </script>
+
+
+</body>
+
+</html>

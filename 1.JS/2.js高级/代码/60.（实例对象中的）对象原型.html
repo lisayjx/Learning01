@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/60.png" alt="">
+    <img src="../img/60.1.png" alt="">
+    <img src="../img/60.重要.png" alt="">
+    <script>
+       
+        function Star() {
+
+        }
+        const ldh=new Star()
+         console.log(ldh.__proto__===Star.prototype) //true
+         //实例对象.对象原型__proto__ 指向   构造函数.原型对象 prototype
+
+         //实例对象中的 对象原型中也有constructor指向 构造函数Star
+         console.log(ldh.__proto__.constructor===Star.constructor )  //true
+
+
+
+
+
+        //对象原型          别和上面的混了
+        //对象原型肯定是在对象身上的，
+        // 之所以我们的实例对象能用能访问原型prototype中的属性和方法
+        //因为 我们有对象原型_proto_ 属性，这个属性指向（=）原型对象prototype
+   
+   
+//         注意:
+// __proto__是JS非标准属性     4个杠
+//  [[prototype]] 和_proto_意义相同
+// 用来表明当前实例对象指向哪个原型对象prototype
+// __proto__对象原型里面也有一个constructor属性，【指向创建该实例对象的构造函数】
+
+   //区别：  
+//    __proto__只读 不可赋值，prototype可以
+//    位置不同，__proto__在实例对象（ldh）中   prototype在构造函数（Star）中
+   
+
+
+
+
+
+// 1. prototype是什么?哪里来的?
+//         原型（原型对象)
+//         构造函数都自动有原型
+// 2. constructor属性在哪里?作用干啥的?        帮各种方法指向爹（构造函数Star）的
+//         prototype原型和对象原型__proto___里面都有
+//         都指向创建实例对象/原型的构造函数
+// 3._proto_属性在哪里?指向谁?
+//         在实例对象里面
+//         指向原型prototype
+ 
+
+   </script>
+
+</body>
+
+</html>

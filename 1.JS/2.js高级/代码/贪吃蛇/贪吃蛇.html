@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            margin: 50px auto;
+            border: 1px solid #000;
+        }
+        .row {
+            display: flex;
+        }
+        .col{
+            border: 1px solid #000;
+            flex: 1;
+            background-size: cover;
+        
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <script src="./js/block.js"></script>
+    <script src="./js/map.js"></script>
+    <script src="./js/food.js"></script>
+    <script src="./js/snake.js"></script>
+    <script src="./js/game.js"></script>
+    <script>
+
+        //  我们决定使用面向对象的方式来书写该游戏
+        // 因为面向对象是最适合书写游戏的我们将这个游戏看成是一个类(Game类)
+        // 既然把游戏看成是一个类，它可以拥有属性和方法
+        // 1.有一个地图属性:
+        // 我们可以把地图看成一个类
+        // 有一个行属性
+        // 有一个列属性
+        // 有宽度属性(总宽度)
+        // 有高度属性（总高度)
+        // 有一个数组属性是一个二维数组，里面存储的都是一个小方格元素
+
+        // 2.有一个蛇属性
+
+        // 我们可以把蛇也看成是一个类
+        // 有一个数组属性，存储蛇的每一节身体
+        // 有一个方向属性，用于控制蛇的方向
+        // 蛇增长的方法
+        // 蛇转向的方法
+
+        // 3.有一个食物属性
+        // 我们可以把食物看成一个类
+        // 有一个x属性
+        // 有一个y属性
+        // 有一个图片属性
+
+        // 4.有一个障碍物属性
+        // 数组属性
+
+
+        //实例化各个类
+        let block = new Block('./img/block.png')
+
+        //给地图实参， 行数、列数、总宽度、总高度、数组
+        let map = new Map(10,10,300,300)
+        let food = new Food(6,2,'./img/food.jpg')
+        let Snake = new Snake({
+            head:['./img/1.png','./img/2.png','./img/3.png','./img/4.png'],
+            body:'./img/5.png',
+            tail:['./img/8.png','./img/9.png','./img/6.png','./img/7.png']
+        })
+
+        //game类要控制上面四个属性 所以将四个属性传递给game类
+        let Game = new Game(snake,map,food,block)
+    </script>
+</body>
+
+</html>

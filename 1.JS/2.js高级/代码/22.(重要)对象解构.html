@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        对象解构是将对象 [属性和方法] 快速批量赋值给一系列 变量 的简洁语法
+        //对比
+        数组解构是将 [数组的单元值(数组元素)] 快速批量赋值给一系列 变量 的简洁 语法。
+        
+        1．基本语法:
+        1.赋值运算符=左侧的(用于批量声明变量，右侧对象的属性值将被赋值给左侧的变量
+        2.对象属性的值将被赋值给与属性名相同的变量
+        3.注意解构的变量名不要和外面的变量名冲突否则报错
+        4.对象中找不到与变量名一致的属性时变量值为undefined
+         */
+
+
+        const obj = {
+            uname: '刘德华',
+            age: 18
+        }
+        //  属性名在对象中叫属性 在对象外叫变量
+        const { uname, age } = { uname: '刘德华', age: 18 }
+        // 等价于 const uname=obj.uname
+        //前面花括号里面装俩变量名 后面俩花括号里装 两属性和属性值
+        //把后面得 (obj.uname)属性值取出来  给前面得变量uname
+        console.log(uname);//刘德华
+        console.log(age);//18
+
+        //注意:
+        // 1.变量名和对象中的属性名要一样!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // 2.解构的变量名不要和外面的变量名冲突 例如外面有一个 const uname='张学友'
+        //3.后面对象中找不到与前面变量名一致的属性时  变量值 为 undefined  相当于 声明了没赋值
+    </script>
+</body>
+
+</html>

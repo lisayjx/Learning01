@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box">
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+    今天天气真好
+</div>
+
+
+
+    <script>
+        // 1.1滚动事件
+        //   当页面进行滚动时触发的事件
+        // ●为什么要学?
+        //   很多网页需要检测用户把页面滚动到某个区域后做一些处理，比如固定导航栏，比如返回顶部
+        //   事件名: scroll
+
+        //监听整个页面的滚动
+        //页面滚动事件
+        window.addEventListener('scroll', function () {
+
+        })
+        //给window或者document添加scroll事件
+        //若想监听某个元素给某个元素添加滚动事件也可以
+
+        //例子  滚动页面就输出'滚动页面啦' 不管上滚还是下滚 滚动了就出现
+        window.addEventListener('scroll', function () {
+            console.log('滚动页面啦');
+        })
+        //例子  给某个元素 添加滚动事件
+        let box=document.querySelector('.box')
+        box.addEventListener('scroll', function () {
+            console.log('文字滚动啦');
+        })
+    </script>
+</body>
+
+</html>

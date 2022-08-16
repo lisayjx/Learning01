@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            height: 100px;
+            width: 200px;
+            background-color: #fff;
+        }
+
+        .pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="pink">按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+        /*
+        html+css+js 
+
+        排他思想
+        点击任意一个按钮，当前变色，其余不变色 
+        */
+
+        let btns = document.querySelectorAll('button')
+
+        for (let i = 0; i < btns.length; i++) {
+            // 当鼠标点击的时候 ，可以把click换成mouseover 就是鼠标滑过变色
+            btns[i].addEventListener('click', function () {
+                // 先把所有类名是pink的清空
+                document.querySelector('.pink').className = ''
+                // 选中当前叫pink 的
+                this.className = 'pink'
+            })
+        }
+        // className可以改变标签元素的css类选择器
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>你好</p>
+    <p class="p">你好哈</p>
+    <p id="p">你好哈哈</p>
+    <p> 你好哈哈<span>哈哈哈</span> 哈哈哈</p>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        //jQuery中通过选择器来获取 DOM节点，功能类似于原生的querySelectorAll方法，
+        // 支持的选择器与csS的选择器几乎一致。
+
+        $('p').css('backgroundColor', 'pink')
+        $('.p').css('backgroundColor', 'red')
+        $('#p').css('backgroundColor', 'skyblue')
+        $('p span').css('backgroundColor', 'green')
+
+        // $('选择器')
+    </script>
+</body>
+
+</html>

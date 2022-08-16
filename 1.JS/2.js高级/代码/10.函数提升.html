@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        函数进阶:
+        目的:知道函数参数默认值、动态参数、剩余参数的使用细节，
+        提升函数应用的灵活度，知道箭头函数的语法及与普通函数的差异。
+        */
+
+
+        // 1.函数提升
+        // 目标:能说出函数提升的过程 
+        // 函数提升与变量提升比较类似，是指函数在声明之前即可被调用。
+
+        //情况一: 函数在声明之前调用  (可以被执行)
+        fn()
+        function fn() {
+            console.log('函数提升');
+        }
+        //   流程:
+        //  1.先把所有函数声明提升到当前作用域的最前面
+        //  2.只提升函数声明 不提升函数调用
+        //相当于
+        function fn() {
+            console.log('函数提升');
+        }
+        fn()
+
+
+        //情况二: 函数表达式声明的函数 只能先声明后调用 (不可以被执行)
+        fun()
+        var fun = function () {
+            console.log('函数表达式');
+        }
+        // 谨记 只提升声明 不提升赋值, 这里的赋值相当于 function和后面那一堆
+        //相当于
+        var fun
+        fun()
+        fun = function () {
+            console.log('函数表达式');
+        }
+
+
+//         总结:
+// 1.函数提升能够使函数的声明调用更灵活
+// 2.函数表达式不存在提升的现象
+// 3.函数提升出现在相同作用域当中
+
+    </script>
+</body>
+
+</html>

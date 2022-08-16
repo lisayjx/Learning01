@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //注意：  
+        //   obj[k]是属性值   k是属性名
+        //   遍历数组用 forEach 
+        //   遍历对象是 for in
+        //   newObj[k]===o.uname  等价  k代表好几个属性名
+
+        //-----------------------------------浅拷贝
+        //利用递归函数 实现深拷贝
+        //把obj拷贝给o
+        // const obj = {
+        //     uname: 'lisa',
+        //     age: 18
+        // }
+        // const o = {}
+        // //核心思想：利用遍历把属性和值取过来 然后赋值
+        // function deepCopy(newObj, oldObj) {
+        //     for (let k in oldObj) {//遍历旧数组，把里面每一项都给新数组 
+        //         newObj[k] = oldObj[k]//像是o.uname=obj.uname
+        //     }
+        // }
+        // deepCopy(o, obj)//函数调用,o是旧，obj是新，把新的给旧的，把后面拷贝给前面
+
+
+
+
+
+
+
+        //---------------------------------------深拷贝
+
+        //注意：  
+        //   obj[k]是属性值   k是属性名
+        //   遍历数组用 forEach 
+        //   遍历对象是 for in
+        //   newObj[k]===o.uname  等价  k代表好几个属性名
+        //注意 数组也属于对象  [1,2,3,4] instanceof Object?? true
+        //所以先判断如果是数组怎么怎么样 再判断如果是对象怎么怎么样！！！
+
+        //利用递归函数 实现深拷贝
+        //把obj拷贝给o
+        //通过oldObj[k]值来判断装着什么类型
+        // 如果数组里面装着数组就  再调用deepCopy()
+        // 如果数组里面装着对象就  再调用deepCopy()    
+        //如果数组里装简单类型就正常赋值 newObj[k] = oldObj[k]
+        //oldObj[k]是谁？？是'lisa'是18是 ['乒乓球', '篮球', '足球'] 是 { type: '冒险', name: '双人成行' }
+        const obj = {
+            uname: 'lisa',
+            age: 18,
+            hobby: ['乒乓球', '篮球', '足球'],
+            play: { type: '冒险', name: '双人成行' }
+
+        }
+        const o = {}
+        //核心思想：利用遍历把属性和值取过来 然后赋值
+        function deepCopy(newObj, oldObj) {
+            for (let k in oldObj) {//遍历旧数组，把里面每一项都给新数组 
+                if (oldObj[k] instanceof Array) {
+                    newObj[k] = []//让新的值是数组形式 这样传过来的值都是数组里装着的
+                    deepCopy(newObj[k], oldObj[k])//把旧值传给前面新值里
+                    //newObj[k]空数组 等着接收oldObj[k]传过来的值
+                } else if (oldObj[k] instanceof Object) {
+                    newObj[k] = {}
+                    deepCopy(newObj[k], oldObj[k])
+                } else {
+                    newObj[k] = oldObj[k]
+                }
+
+            }
+        }
+        deepCopy(o, obj)//函数调用,o是旧，obj是新，把新的给旧的，把后面拷贝给前面
+
+// ----------------------------------------------------------------------------------
+        // 面试问： 深拷贝怎么实现的？！！！！！
+/* 深拷贝是做到，拷贝出来的新对象不会影响旧对象
+  1.要想实现深拷贝 要用到函数递归
+  2.当我们在普通的拷贝的时候直接赋值即可不会出现问题，但是如果遇到数组，再次调用这个递归函数即可
+  3.如果遇到对象，那就再用递归把对象解决
+  4.先判断数组再判断对象（因为数组也是对象）
+
+  */
+    </script>
+</body>
+
+</html>

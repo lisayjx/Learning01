@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //高阶函数：高级函数 函数的高级应用
+        //在js中把函数当成【值】来对待 ，基于这个特性实现函数的高级应用
+        //【值】就是js中的数据，如数值、字符串、布尔、对象等
+
+        // 学习路径：
+        // 1.函数表达式
+        // 2.回调函数（定时器，事件之后，Ajax等等）说白了就是套娃
+
+        let num = 10//10是个值，赋值给num
+        //高阶函数 函数的高级用法 把函数当值看
+        let fn = function () { }//function(){}是个函数，把函数赋值给了fn变量
+
+
+        //函数表达式与普通函数本质上是一样的
+        let counter = function (x, y) {
+            return x + y
+        }
+        // counter()
+        //调用函数
+        let result = counter(5, 10)
+        console.log(result);
+
+        //重点-回调函数！！！！！！！！！！！！！！！！！！！！！！！！
+        // 如果将【函数A】做为参数传递给【函数B】时，我们称函数A为回调函数
+        //回调函数：谁当参数被传过来谁就是回调函数
+        //注意：回调函数！！回头去调用的函数 
+        //比如定时器，不会立马调用那个函数，得等1s之后再回头调用这个函数
+
+
+
+        // 简单理解:当一个函数当做参数来传递给另外一个函数的时候，这个函数就是回调函数
+        //常见的使用场景
+        function fn() {//函数A
+            console.log('我是回调函数');
+        }
+        //fn传递给了setInterval(它是间歇函数),fn就是回调函数
+        setInterval(fn, 1000)
+        // 函数B(函数A, 1000)
+
+        //1.//function () { }就是回调函数
+        setInterval(function () { }, 1000)
+        //2.fn是回调函数
+        function fn() { }
+        setInterval(fn, 1000)
+
+
+        //页面执行时候不会立马调用这个函数，得等用户点击之后才调用
+        //1.
+        box.addEventListener('click', function () {
+            console.log('我也是回调函数');
+        })
+        //2.
+        box.addEventListener('click', fun)//这里fun没有括号详情见下面的区分
+        function fun() {
+            console.log('我也是回调函数');
+        }
+
+        //区分
+       // fn是函数名，fn()是调用函数
+       
+       
+
+       //总结 2个高级函数
+//     1．函数表达式
+// 函数也是【数据】把函数赋值给变量
+//     2．回调函数
+// 把函数当做另外一个函数的参数传递，这个函数就叫回调函数
+// 回调函数本质还是函数，只不过把它当成参数使用
+// 使用匿名函数做为回调函数比较常见
+
+    </script>
+</body>
+
+</html>

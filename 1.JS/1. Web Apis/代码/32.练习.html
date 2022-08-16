@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pink{
+            background-color: pink;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>1</button>
+    <button>1</button>
+    <button class="pink">1</button>
+    <button>1</button>
+    <button>1</button>
+
+    <script>
+        let bts = document.querySelectorAll('button')
+        for (let i = 0; i < bts.length; i++) {
+            bts[i].addEventListener('click', function () {
+                for (let j = 0; j < bts.length; j++) {
+                    bts[j].classList.remove('pink')
+                }
+                this.classList.add('pink')
+            })
+        }
+
+        // let bts=document.querySelectorAll('button')
+        // for(let i=0;i<bts.length;i++){
+        //     bts[i].addEventListener('click',function(){
+        //         document.querySelector('.pink').classList.remove('pink')
+        //         this.classList.add('pink')
+        //     })
+        // }
+    </script>
+</body>
+
+</html>

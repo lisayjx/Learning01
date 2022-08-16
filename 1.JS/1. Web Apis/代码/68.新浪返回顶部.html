@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content {
+            width: 1000px;
+            height: 3000px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+
+        .backtop {
+            display: none;
+            width: 50px;
+            left: 50%;
+            margin: 0 0 0 505px;
+            position: fixed;
+            bottom: 60px;
+            z-index: 100;
+        }
+
+        .backtop a {
+            height: 50px;
+            width: 50px;
+            background: url(../images/bg2.png) 0 -600px no-repeat;
+            opacity: 0.35;
+            overflow: hidden;
+            display: block;
+            text-indent: -999em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">1234</div>
+
+    <div class="backtop">
+        <img src="../images/close2.png" alt="">
+        <a href="javascript:;"></a>
+    </div>
+
+    <script>
+
+        // 需求:当页面滚动500像素，就显示返回顶部按钮，否则隐藏，同时点击按钮，则返回顶部
+        // 分析:
+        //     ①:用到页面滚动事件
+        //     ②:检测页面滚动大于等于100像素，则显示按钮
+        //     ③:点击按钮，则让页面的scrollTop重置为0
+
+
+        //1.页面滚动事件
+        let backtop = document.querySelector('.backtop')
+
+
+
+        window.addEventListener('scroll', function () {  //这句话是 页面滚动一下 里面的代码就得执行一次 
+            //2.检测滚动距离
+            let num = document.documentElement.scrollTop//写在滚动事件里面，因为每次滚动都有新的值
+            //3.进行判断显示和隐藏
+            if (num >= 500) {
+                //显示元素
+                backtop.style.display = 'block'
+            } else {
+                backtop.style.display = 'none'
+            }
+
+        })
+
+
+        //2.点击链接 a 会返回顶部(别写在页面滚动事件里面，不需要每次滚动来判断)
+        //backtop.children[1] 就是a   
+        backtop.children[1].addEventListener('click', function () {
+            document.documentElement.scrollTop = 0
+            //这里为啥不用 num=0呢，内部的也可以用那个变量啊，为啥不能用呢？
+            //因为 上面那句话是     let num = document.documentElement.scrollTop 就像是let num =10
+            //然后在这里又写了一个 num=0 会覆盖上面的！！！！！！因为变量一次只能存一个值
+        })
+        //其实这句话也可以写在window得滚动事件里，只不过 window那里 只要滚动就会执行一次代码 ，会影响性能
+
+
+
+
+
+        //3.点击x会隐藏backtop  不能删除 因为触发时候还要出现
+        let img = document.querySelector('img')
+        img.addEventListener('click', function () {
+            backtop.style.display = 'none'
+        })
+
+
+
+
+        //容易犯错的地方：
+        // 1.写成了if (num === 500) ，这样就是只有在500时候触发 不对
+        // 2.别把返回顶部的点击事件 写在了 window的滚动事件里
+        //3. {}里的语句 document.documentElement.scrollTop === 0  又写错了 是=
+  
+  
+  //有bug：点击删除之后 但是 滚动了以后又出现了
+  
+  
+  
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*
+   标记清除法
+现代的浏览器已经不再使用引用计数算法了。
+现代浏览器通用的大多是基于标记清除算法的某些改进算法，
+总体思想都是一致的。
+核心:
+1．标记清除算法将 【 “不再使用的对象”】  定义为【 “无法达到的对象” 】(找不到的)。
+2．就是从根部（在JS中就是全局对象）出发定时扫描内存中的对象。
+  凡是能从根部到达的对象，都是还需要使用的。
+3.那些无法由根部出发触及到的对象被标记为不再使用，稍后进行回收。
+（找不到的就回收，能找到的就插个旗子 插旗子的就不会被回收）
+*/
+    </script>
+    <img src="../img/6.垃圾回收-标记清除法.png" alt="">
+    <img src="../img/6.垃圾回收-标记清除法2.png" alt="">上个网页中的题
+</body>
+</html>

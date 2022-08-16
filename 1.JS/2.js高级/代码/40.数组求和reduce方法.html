@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/40reduce求和.png" alt="">
+    <script>
+        //开始Array的方法 之前讲的都是Object的
+
+        // Array 是内置的构造函数 用于创建数组 
+        // 创建数组建议使用字面量创建，不用Array构造函数创建
+        const arr = new Array(3, 5)
+        console.log(arr);//[ 3, 5 ]
+
+        // 数组常见实例方法-核心方法
+        // 方法                       作用                     说明
+        // forEach                   遍历数组            不返回，用于不改变值,经常用于查找打印输出值
+        // filter                    过滤数组            筛选数组元素，并生成新数组
+        // map  (每一项进行处理)      迭代数组            返回新数组，新数组里面的元素是处理之后的值，经常用于处理数据
+        // reduce                    累计器              返回函数累计处理的结果，经常用于求和等  有返回值就离不开return
+
+
+        //数组中的方法
+        // 作用：reduce 返回函数累计处理的结果 经常用于求和等
+        // 语法：arr.reduce(function (){},起始值)  两个参数 回调函数和起始值
+        // 参数：起始值可以省略，如果写就作为第一次累计的起始值 比如写10就从10开始累加
+        //他里面有两个参数 回调函数 起始值
+        // 回调函数里面又分了4个参数 带[]可写可不写
+        // arr.reduce(function (累计值, 当前元素, [索引号], [原数组]) { }, 起始值)
+        //     1.累计值参数:
+        // 1.如果有起始值，则以起始值为准开始累计，累计值=起始值
+        // 2．如果没有起始值，则累计值以数组的第一个数组元素作为起始值开始累计
+        // 3．后面每次遍历就会用后面的数组元素累计到累计值里面（类似求和里面的sum )
+
+
+
+        //reduce执行过程： 累计值像sum 每次都会更新
+        // 先看有没有起始值（起始值可写可不写），如果写了，我们的累计值第一次就以起始值为主
+        // 起始值要是10，那么累计值也是10
+        // 如果最开始没写起始值，以数组的第一个数组元素作为起始值开始累计
+        //每次遍历就会把【当前元素】加到【累计值】里面
+
+
+        //有起始值的情况
+        //求和 // reduce的返回值是 累计处理的结果 有返回值就离不开return
+        const arr1 = [1, 2, 3]
+        // arr.reduce(function (累计值，当前元素) { }, 起始值)
+        let re1 = arr1.reduce(function (prev, item) {
+            // console.log(prev);
+            return prev + item   //累计值+当前元素
+        }, 0)   //起始值0 累计值现在也是0
+        //执行过程，先看起始值有没有，有是0，那么现在累计值也是0，当前元素第一个是1
+        //第一次：0+1=1 此时prev=1
+        //第二次：1+2=3 此时prev=3
+        //第三次：3+3=6 此时prev=6
+        console.log(re1);
+
+        //无起始值的情况（常用）
+        const arr2 = [1, 2, 3]
+        // arr.reduce(function (累计值，当前元素) { })
+        let re2 = arr2.reduce(function (prev, item) {
+            // console.log(prev);
+            //此时已经把第一个值取到了 所以item=1时不用再和prev加一起
+            return prev + item   //累计值+当前元素
+        })
+        console.log(re2);
+
+
+        //第一次：1+2=3  prev+第二个元素
+        //第二次：3+3=6 prev=6
+
+        //简便写法!!!!!!!!!!!!!!!!!!!!!!!!!
+        const arr3 = [1, 2, 3]
+        // arr.reduce(function (累计值，当前元素) { })
+        const re3 = arr3.reduce((prev, item) => prev + item)
+        // console.log(prev);
+        //此时已经把第一个值取到了 所以item=1时不用再和prev加一起
+        //累计值+当前元素
+        console.log(re3);//6
+    </script>
+</body>
+
+</html>

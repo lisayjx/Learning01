@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <script>
+        //获取视口宽度
+        let width = document.documentElement.clientWidth
+        // 随机创建一个气球从页面划过
+
+        function Ballon(id, top, speed) {
+            //存储数据
+            this.id = id
+            //根据索引值获取行列号 算法：行号=id/每列显示个数  ， 列号=id % 每列显示个数
+            this.row = Math.floor(id / 4)
+            //移动速度
+            this.speed = speed
+            this.col = id % 4
+            this.top = top
+            this.left = -125
+            //创建元素
+            this.dom = document.createElement('div')
+            //容器元素
+            let container = document.querySelector('#app')
+            //是否已经移除
+            this.remove = false
+            //让气球移动
+            this.move = function () {
+
+                //边界判断  到了最右侧就给移除
+                if (this.check()) {//如果检测成功
+                    //更改left值
+                    this.left += this.speed
+                    //修改样式
+                    this.dom.style.left = this.left + 'px'
+                }
+
+
+
+
+            }
+            //边界判断
+            this.check = function () {
+                //判断如果超出右边（视口宽度）就删除元素 然后就不能移动她了
+                if (this.left >= width-125) {//减去125是不想出现滚动条
+                    container.removeChild(this.dom)
+                    this.remove = true
+                }
+                return true
+            }
+            //绘制到页面
+            this.init = function () {
+                //设置样式
+                this.dom.style.position = 'absolute'
+                this.dom.style.width = '100px'
+                this.dom.style.height = '133px'
+                this.dom.style.top = this.top + 'px'
+                this.dom.style.backgroundImage = 'url(../img/qiqiu.png)'
+                this.dom.style.backgroundRepeat = 'no-repeat'
+                //设置背景图
+                this.dom.style.backgroundPositionX = -this.col * 100 + 'px'      //100是一个气球宽
+                this.dom.style.backgroundPositionY = -this.row * (400 / 3) + 'px'  //400/3是一个气球高
+                container.appendChild(this.dom)
+            }
+        }
+
+
+        //随机整数
+        let num = Math.floor(Math.random() * 12)
+
+        //随机一个1-3之间的速度
+        let speed = 1 + 2 * Math.random()
+        //实例化
+        let b1 = new Ballon(num, 200, speed)
+        //渲染
+        b1.init()
+        // console.log(b1);//{ id: 0, top: 200, dom: div, init: init() }
+
+        //定时器
+        setInterval(function () {
+            //如果没有移除气球 可以移动
+            if (!b1.remove) //b1.remove===false
+                //让气球动起来
+                b1.move()
+
+        }, 30)
+    </script>
+</body>
+
+</html>

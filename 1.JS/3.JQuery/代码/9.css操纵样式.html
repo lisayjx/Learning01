@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+
+    <script>
+        //css
+
+
+        //1.键值对设置
+        $('选择器').css('样式名', '值')
+        //这种数值类的样式可以不写单位和引号 默认是px
+
+        $('div').css('color', 'red')
+        $('div').css('height', 100)
+        $('div').css('width', 200)
+        //一直这样写很麻烦
+        //可以把这些都写在一个对象中，然后让css调用对象
+        //转换写法
+
+        $('div').css(
+            {
+                color: 'red',
+                height: 100,
+                width: 200
+            }
+        )
+
+        //获取宽度
+        $('div').css('width')
+
+
+
+//   1．设置数值类的样式时省略单位,默认值是什么?
+// px
+// 2.css方法设置的样式在元素什么位置?
+// 行内
+// 3. css方法取值时是否需要传递参数?
+// 需要
+
+    </script>
+
+</body>
+
+</html>

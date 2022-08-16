@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="slider-bar">
+        <span class="goBack">
+            <a href="#toubu">返回顶部</a>
+        </span>
+    </div>
+
+    <div class="header w" id="toubu">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+
+
+    <script>
+        /* 1.原先侧边栏是绝对定位 刚开始回到顶部是隐藏的
+        
+           2.当页面滚动到banner刚开始的位置时，侧边栏改为【固定定位】
+            滚动到某个位置，就是判断页面被卷去的上部值。
+            页面被卷去的头部:可以通过window.pageYoffset 获得如果是被卷去的左侧 window.pageXOffset
+        注意！！元素被卷去的头部是element.scrollTop ,如果是页面被卷去的头部则是window.pageYOffset
+        
+            3.页面继续滚动到主题main位置时，会让返回顶部显示出来*/
+
+
+        let slider_bar = document.querySelector('.slider-bar')
+        let banner = document.querySelector('.banner')
+        let main = document.querySelector('.main')
+        let goBack = document.querySelector('.goBack')
+
+        //侧边栏变化之后侧边栏top值是300,移动时候让他固定在那
+        let slider_bar_top = slider_bar.offsetTop - banner.offsetTop
+        let bannerTop = banner.offsetTop
+        let mainTop = main.offsetTop
+        document.addEventListener('scroll', function () {
+
+            if (document.documentElement.scrollTop >= bannerTop) {
+                slider_bar.style.position = 'fixed'
+                slider_bar.style.top = slider_bar_top + 'px'
+
+            } else {
+                slider_bar.style.position = 'absolute'
+                slider_bar.style.top = 300 + 'px'
+            }
+
+            //当页面滚动到main 就显示goback模块
+            if (document.documentElement.scrollTop >= mainTop) {
+                goBack.style.display = 'block'
+            } else {
+                goBack.style.display = 'none'
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

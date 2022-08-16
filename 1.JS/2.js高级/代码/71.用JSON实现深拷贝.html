@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //比刚才的lodash还简单，都不用引入库
+
+        // JSON.stringify()把对象转成JSON字符串
+        // JSON.parse() 把JSON字符串转成对象
+
+
+
+        //被拷贝的对象
+        const obj = {
+            uname: 'lisa',
+            age: 18,
+            hobby: ['乒乓球', '篮球', '足球'],
+            play: { type: '冒险', name: '双人成行' }
+        }
+        // JSON.stringify(obj)//此时得到字符串 已经没有引用地址复杂类型啥的问题了 就是一大坨字
+        //转换成字符串之后就是个新的 和之前的没有任何关系 变成了简单数据类型
+        //然后把这个新的再转成对象
+        let o = JSON.parse(JSON.stringify(obj))//再把字符串转成对象
+        console.log(o);
+
+// 像是 阳澄湖大闸蟹，外地的螃蟹放到阳澄湖养一阵捞出来就变成了阳澄湖大闸蟹
+
+//  1．实现深拷贝三种方式?
+// 自己利用递归函数书写深拷贝
+// 利用js库 lodash里面的_.cloneDeep()
+// >利用JSON字符串转换
+
+    </script>
+</body>
+
+</html>

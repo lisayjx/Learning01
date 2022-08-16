@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我是大猫</li>
+        <li>我是二毛</li>
+    </ul>
+    <script>
+        //通俗来说就是：
+        // 1.通过js生成一个新标签（节点）
+        // 2.把创建的新节点放入指定元素内部
+
+        //比如我们点击发布按钮，可以新增一条信息
+
+        //1.创建节点方法：
+        document.createElement('标签名')
+
+        //创建div
+        let div = document.createElement('div')
+        //给div 加类名
+        div.className = 'current'
+
+
+        //2.追加节点 插入到父元素的最后一个子元素 父元素.appendChild(要插入的元素)  
+        //创建li，放进ul中
+        let ul = document.querySelector('ul')
+        let li = document.createElement('li')
+
+        li.innerHTML = '我是最后一个li'//在创建时候给li加点内容
+        // 追加节点
+        // 父元素.appendChild(子元素)
+        ul.appendChild(li)//不加引号 因为li是变量， 是这个let li里的li， 
+
+
+        //插入到某个子元素前面
+        // 父元素.insertBefore(要插入的元素，放到谁前面)
+        //插入到大猫前
+        // ul.child[0] 大猫
+
+        ul.insertBefore(li, ul.children[0]).innerHTML='我是插进来的'
+       
+
+    </script>
+</body>
+
+</html>

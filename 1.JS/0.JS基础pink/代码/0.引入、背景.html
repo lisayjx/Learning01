@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+
+<body>
+    <!-- 1.内部 -->
+    <!-- <script>
+        alert('努力');
+    </script> -->
+
+    <!-- 2.外部 -->
+    <script src="./js/0.练习.js"></script>
+
+    <!-- js三大组成：
+   1. ECMA：欧洲电脑网商联合会，用来规定制定js语法规则
+    小型修改 1.1  1.2  大型修改 2.0  3.0 类似这种
+    后来直接叫 ES5  ES6  就是js的规则版本问题
+   2. DOM:文档对象模型 一整套用来操作元素（标签 p，div之类的）和属性的方式方法
+   3. BOM:浏览器对象模型，一整套用来操作浏览器的方式方法 模仿浏览器的效果 前进后退刷新等 功能 -->
+
+    <!-- 
+    js引入方式
+1.行内式（不常用）： （1）a标签       <a href="javascript:alert('弹框')">百度</a>
+                    （2）非a标签,这样写不可以，因为非a标签没有href属性   <div href="javascript:alert('弹框')"></div>
+                         非a标签需要绑定js的事件上才能生效<p onclick="alert('单击事件')"></p>
+
+面试问：    (3) <a href="javascript:alert('弹框')" href="http://www.baidu.com"></a>  属性冲突，前面优先级高 谁在前面谁生效      
+            如果a标签同时有两个href，生效的是前面的
+            如果两个href都是网址呢？ 生效的是前面的
+            如果两个href都是js的呢？ 生效的是前面的  
+        
+        
+ 2.内部式：（不常用，先开始接触js时候我们常用）
+ 可以放在html的任意位置，现阶段建议放在body里的最后边
+<script>js语句</script>
+注意：如果没有绑定事件，打开浏览器自动执行，自上而下执行
+
+
+3.外链式：(建议引入到body下面或者所有标签的下面)
+创建在html外部，新建文件xxx.js
+  <script src="xxx.js"></script>
+
+  注意：如果scrip标签当做外部js引入的方式使用就不能当作内部的js使用
+         <script src="xxx.js">123</script> 123不生效
+           <script src=" ">123</script> 123不生效
+     script一旦有src属性，就不能当作内部js引入的方式去使用
+
+-->
+
+</body>
+
+</html>

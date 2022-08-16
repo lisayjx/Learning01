@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text">
+    <script>
+        //change是当表单里面的值发生变化时候触发，用户若是没输入东西然后鼠标离开也不会触发什么
+       //用户输入的东西之后 鼠标离开 就会触发    和blur不同
+       //input事件只要是输入就会触发 输入一个触发一次，输入好几个字就会触发好几次
+       //change是输入完毕 失去焦点后后会触发
+        let input = document.querySelector('input')
+        input.addEventListener('change', function () {
+            console.log('123');
+        })
+
+
+
+    </script>
+
+
+</body>
+
+</html>

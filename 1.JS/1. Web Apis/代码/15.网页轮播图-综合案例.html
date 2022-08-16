@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img-box {
+            height: 320px;
+            width: 700px;
+            position: relative;
+        }
+
+        .pic {
+            width: 100%;
+        }
+
+        .tip {
+            width: 100%;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .title {
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-box">
+        <img src="../images/b01.jpg" alt="第一张图的描述信息" class="pic">
+        <div class="tip">
+            <h3 class="text">挑战云歌单，欢迎你来</h3>
+        </div>
+    </div>
+
+    <script>
+        //需求：每隔一秒换一个图片和文字
+
+        // 数据
+        let data = [
+            {
+                imgSrc: '../images/b01.jpg',
+                title: '挑战云歌单，欢迎你来'
+            },
+            {
+                imgSrc: '../images/b02.jpg',
+                title: '田园日记，上演上京记'
+            },
+            {
+                imgSrc: '../images/b03.jpg',
+                title: '甜蜜攻势再次回归'
+            },
+            {
+                imgSrc: '../images/b04.jpg',
+                title: '我为歌狂，生为歌王'
+            },
+            {
+                imgSrc: '../images/b05.jpg',
+                title: '年度校园主题活动'
+            },
+            {
+                imgSrc: '../images/b06.jpg',
+                title: 'pink老师新歌发布，5月10号正式推出'
+            },
+            {
+                imgSrc: '../images/b07.jpg',
+                title: '动力火车来到西安'
+            },
+            {
+                imgSrc: '../images/b08.jpg',
+                title: '钢铁侠3，英雄镇东风'
+            },
+            {
+                imgSrc: '../images/b09.jpg',
+                title: '我用整颗心来等你'
+            },
+        ]
+
+        // 分析:
+        // 1:获取元素（图片变和文字变) 
+        // 2:设置定时器函数
+        //         设置一个变量 （让对象变）
+        // 更改图片张数
+        // 更改文字信息
+        // 3:处理图片自动复原从头播放
+        //         如果图片播放到最后一张就是第9张
+        //         则把变量重置为0
+        //         注意逻辑代码写到图片和文字变化的前面
+
+
+        let pic = document.querySelector('.pic')
+        let text = document.querySelector('.text')
+        let i = 0//数组下标为0开始,第一个对象从0开始
+        setInterval(function () {
+            i++//因为打开时是从第二张开始播放 所以索引号是1 所以先加加
+            //修改图片src属性,修改文字的innerHTML属性
+            pic.src = data[i].imgSrc//把数组中的每个对象得名字叫imgSrc属性值给pic.src，//此时的i是索引号是1，是第二个对象
+            text.innerHTML = data[i].title
+            //设置无缝衔接，也可以写成三元表达式
+            if (i === data.length - 1) {//最后的下标是8
+                i = -1//这不能写0 因为定时器每次重头执行 上面有i++ ，要是写0会从第二张开始播放
+            }
+        }, 1000)
+    </script>
+
+</body>
+
+</html>

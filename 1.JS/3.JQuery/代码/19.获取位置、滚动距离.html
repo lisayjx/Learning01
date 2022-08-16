@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //获取位置两个方法
+        $().offset()//返回值   {top：22，left:33}
+        $().position()//返回值   {top：22，left:33}
+
+//         区别：
+// 1.参照物不同
+// offset参照html标签
+// position参照离他最近有定位的祖先元素
+// 2.margin
+// offset会把外边距margin计算进去
+// position以外边距margin为边界（元素本身加上了margin为一体）,不计算margin
+// ---------------------------------------------------------------------------
+
+
+//获取滚动距离  有参数是赋值
+$().scrollLeft()
+$().scrollTop()
+    </script>
+</body>
+</html>

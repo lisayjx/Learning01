@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /* 3.  16进制随机颜色
+                 题目描述：使用Math对象，制作一个16进制的随机颜色
+                 题目提示：16进制包括 “ 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F ” */
+
+        //随机产生一个十六进制的颜色值
+
+        // console.log(res) 
+
+        //定时器
+        setInterval(function () {
+
+            //随机颜色
+            function getColor() {
+                var color = "#";
+                //一个十六进制的值的数组
+                var array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+                //得到6个随机数
+                for (let i = 0; i < 6; i++) {
+                    let num = parseInt(Math.random() * 16);//num 是16个数中的随机数
+                    color += array[num]; //#=#+1,#1=#1+2,#12=#12+3.. #123...类似这样依次类推
+                }
+                return color;
+            }
+            let res = getColor()
+
+            //让body=随机颜色
+            document.body.style.backgroundColor = `${res}`
+
+
+        }, 25)
+
+    </script>
+</body>
+
+</html>

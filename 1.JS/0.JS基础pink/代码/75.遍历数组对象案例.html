@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 600px;
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: gray;
+            height: 30px;
+        }
+
+        tr {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        table tr:not(:first-child):hover {
+            background-color: #eee;
+        }
+
+        caption {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="../代码/75.png" alt="">
+
+
+    <!-- <table>
+        <caption>学生列表</caption>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>家乡</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table> -->
+
+
+
+
+
+
+
+    <script>
+        let students = [
+            { name: '小明', age: 18, gender: '男', hometown: '河北' },//数组下标是 students[0]
+            { name: '小红', age: 19, gender: '女', hometown: '河南' },//数组下标是 students[1]
+            { name: '小刚', age: 17, gender: '男', hometown: '陕西' },//数组下标是 students[2]
+            { name: '小丽', age: 18, gender: '女', hometown: '山西' },//数组下标是 students[3]
+            { name: '小强', age: 16, gender: '男', hometown: ' ' },//数组下标是 students[4]
+            { name: '小灰', age: 20, gender: '女', }//数组下标是 students[4]
+        ]
+
+
+
+        //需求：根据以上数据渲染生成表格
+
+        //分析：
+        // 1.打印表格头部和尾部（用document打印）
+        //先把不需要遍历的打印出来 比如标题和第一行的th
+
+        //头部
+        document.write(`
+                      <table>
+                            <caption>学生列表</caption>
+                            <tr>
+                                <th>序号</th>
+                                <th>姓名</th>
+                                <th>年龄</th>
+                                <th>性别</th>
+                                <th>家乡</th>
+                            </tr>
+ 
+                      `)
+
+        //中间遍历行数，有几条数据就遍历几次
+        // 2.中间的行 遍历数组，然后填充对象数据
+
+        for (i = 0; i < students.length; i++) {//遍历数组，可以得到每一条对象students[i]
+
+            document.write(`
+            <tr>
+                    <td>${i + 1}</td>
+                    <td>${students[i].name}</td>
+                    <td>${students[i].age}</td>
+                    <td>${students[i].gender}</td>
+                    <td>${students[i].hometown}</td>
+           </tr>
+            `)
+        }
+
+        //尾部
+        document.write(` </table> `)
+
+
+    </script>
+</body>
+
+</html>

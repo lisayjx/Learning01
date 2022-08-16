@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="clock">
+
+    </div>
+    <script>
+        // 结合递归函数可以使用setTimeout 实现setInterval一样的功能
+
+        let clock = document.querySelector('.clock')
+        function fn() {
+            let date = new Date()
+            clock.innerHTML = date.toLocaleString()//当前日期事件
+            // 延时任务 自调用 实现了setInterval得功能
+            //这里调用了自己的函数
+            setTimeout(fn, 1000)
+        }
+        //启动定时任务
+        fn()
+
+/*----------------------------------------------
+        //setInterval 写法1
+        let date = new Date()
+        clock.innerHTML = date.toLocaleString()
+
+        let timer = function fn() {
+            let date = new Date()
+            clock.innerHTML = date.toLocaleString()//当前日期事件
+        }
+        setInterval(timer, 1000)
+
+        //setInterval 写法2
+        let date = new Date()
+        clock.innerHTML = date.toLocaleString()//当前日期事件
+
+        setInterval(function () {
+            let date = new Date()
+            clock.innerHTML = date.toLocaleString()//当前日期事件
+        }, 1000)
+        //setInterval 写法3 箭头函数
+        let date = new Date()
+        clock.innerHTML = date.toLocaleString()//当前日期事件
+
+        setInterval(() => {
+            let date = new Date()
+            clock.innerHTML = date.toLocaleString()//当前日期事件
+        }, 1000)
+*/
+    </script>
+</body>
+
+</html>

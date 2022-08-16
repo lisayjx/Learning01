@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            height: 25px;
+            width: 60px;
+            line-height: 25px;
+            margin: 5px;
+            background-color: pink;
+            padding: 0 10px;
+            border: 1px solid hotpink;
+            color: deeppink;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px #f6f6f6;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        div:hover {
+            background-color: #fff;
+            color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 想要多个99乘法表怎么办？？
+        // for (let i = 1; i <= 9; i++) {
+        //     for (let j = 1; j <= i; j++) {
+        //         document.write(`
+        //     <div> ${j}*${i}=${i * j}</div>
+        //         `)
+        //     }
+        //     document.write(`<br>`)
+        // }
+
+        function fn() {//用函数把99乘法表打包起来了 封装
+            for (let i = 1; i <= 9; i++) {
+                for (let j = 1; j <= i; j++) {
+                    document.write(`
+            <div> ${j}*${i}=${i * j}</div>
+                `)
+                }
+                document.write(`<br>`)
+            }
+        }
+        //调用函数
+        //体验了代码的复用 什么时候想用就啥时候调用
+        fn()
+        fn()
+        fn()
+        fn()
+    </script>
+</body>
+
+</html>

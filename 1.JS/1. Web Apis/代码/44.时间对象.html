@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  目标:掌握时间对象，可以让网页显示时间
+        // 时间对象:用来表示时间的对象
+        // 作用:可以得到当前系统时间
+
+
+        // 学习路径:
+        // 1.实例化
+        // 2.时间对象方法
+        // 3.时间戳
+
+
+
+        //1.实例化      这里是为了获得时间
+        // 在代码中发现了new关键字时候，一般将这个操作称为实例化
+        // 创建一个事件对象并获取时间
+
+        //  let date = new Date()//new一下就有对象了
+
+
+        //创建数组
+        let arr = []
+        // let arr=new Array 其实完整写法是这样
+        //创建对象 
+        let obj = {}
+        // let obj = new Object() 其实完整写法是这样
+
+
+        //得到了当前时间
+        //new 实例化 时间对象
+        let date = new Date()
+        console.log(date);
+
+        //获得指定时间  为了做倒计时
+        let last = new Date('2022-8-1 22:00:00') //别忘了引号 因为是字符串
+        console.log(last);
+
+//Date()小括号为空可以获得当前事件 小括号写了时间 可以返回指定时间
+//获得时间 new Date() 一下就行！！！！！！！！！
+
+
+        //原理  js高级的实例化过程
+        // function Date(time) {
+        //     this.time = time
+        // }
+        // const date = new Date('1998-05-07')
+
+
+
+
+    </script>
+</body>
+
+</html>

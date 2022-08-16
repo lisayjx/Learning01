@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 函数传参
+        //函数参数个数
+        //函数传参赋值小技巧
+
+        // 1.封装一个函数，计算两个数的和
+        // function getSum() {
+        //     let a = 10
+        //     let b = 20
+        //     alert(`和是${a + b}`)
+        // }
+        // getSum()
+
+        //思考：这样的函数只能求10+20，函数功能局限性非常大 
+        //解决方法 要把计算的数字传到函数内
+        //若函数完成功能需要调用者传入数据，那么就需要用有参数的函数
+        //这样会极大提高函数的灵活性
+
+        //参数列表里可以有0-多个，多个数据用逗号隔开
+        //现在只写了参数列表 只是接收参数 那么从哪发出来的参数呢？  是下面的调用者往里输入数据
+        function getSum(num1, num2) {//括号里是参数列表
+            document.write(`${num1}+${num2}=${num1 + num2}`)
+        }
+        getSum(45, 55)
+        getSum(1, 1)
+        //调用者输入啥 就把数据传给参数列表，参数列表再传给里面 
+
+
+        //2.求一个数到一个数之间所有数的和
+        function getSum1(start, end) {
+            let he = 0
+            for (let i = start; i <= end; i++) {
+                he += i
+            }
+            document.write(`${start}到${end}的所有累加和是${he}`)
+        }
+        getSum1(10, 50)
+        getSum1(1, 5)
+        //把1送给了start，把2送给了end 像是赋值
+
+
+
+
+
+
+        //函数的参数个数问题！！！！！！！！！！！！！！！！！！！！
+
+        //情况1：实参个数少于形参  输出NaN  人少车多
+        function fn3(x, y) {
+            //相当于
+            // x = 1
+            // y = undefined
+            // x + y = 1 + undefined=NaN
+            console.log(x + y);
+        }
+        fn3(1)
+
+
+        //情况2：实参个数大于形参  人多车少 
+        function fn4(x, y) {
+            //相当于
+            // x = 1
+            // y = 2
+            //3没地方去忽略了
+            // x + y= 1 + 2
+            console.log(x + y);//3
+        }
+        fn4(1, 2, 3)
+
+        //情况3. 他也不知道写几个形参来接实参 用arguments   换了飞机
+        //arguments只在函数内有效，他是伪数组 看上去像数组,伪数组比真数组少了一些pop（） push等方法   但是他有length
+
+        //不知道你有几个实参送过来，干脆形参一个不要，但是我用arguments给你接过来
+        function fn5() {
+            console.log(arguments);//接收实参 [1,2,3]
+            //把接收过来的实参打印出来加一起
+            let sum = 0
+            for (i = 0; i < arguments.length; i++) {
+                sum += arguments[i]
+            }
+            console.log(sum);
+        }
+        fn5(1, 2, 3, 4)
+
+
+
+
+
+
+
+        //函数传参赋值小技巧！！！！！！！！！！！！！！！
+        function fn6(x, y) {
+            x = x || 0 //x要是有值传过来就输出x,没有就用0代替
+            y = y || 0
+        }
+        fn6()//这里没有实参传过去 x和y都得=undefined
+
+
+        //另外一种写法,怕下面没有实参，可以这么写
+        //x和y可以看作是 函数内部的局部变量
+        //如果实参没有值传给形参，就让x = 0, y = 0，有值就x和y=值
+        function fn7(x = 0, y = 0) {
+            console.log(x + y);
+        }
+        fn7()//0
+        fn7(1, 2)//3
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //采取函数封装的形式：输入2个数，计算两者的和，打印到页面中
+
+        // 合理利用逻辑终端
+        //形参如果不被赋值，就是undefined
+
+        // function getSum(x, y) {
+        //     x = x || 0
+        //     y = y || 0
+        //     console.log(x + y);
+        // }
+        // getSum(1, 2)
+
+        // 如果x传过去不是个正常的数，需要进行判断，x要是对的就输出x，要是不正常就是0 然后赋值给x ， y同理
+
+
+
+        //求和函数
+  /*      function getSum1(num1, num2) {
+            document.write(`${num1}+${num2}=${num1 + num2}`)
+        }
+        getSum1(45, 55)
+        getSum1()//若是用户没输入实参咋整？？会输出 undefined+undefined=NaN 
+        // 相当于 声明了num1和2但是没赋值 就是undefined  NaN的意思是:不是个数字
+        //如果调用的时候我们没有传递实参，则默认为0（用 x = x || 0   y = y || 0这种写）
+
+
+*/
+
+        //undefined+10 =NaN
+        //undefined+true=NaN
+        // undefined+undefined=NaN (此题目的)
+        // undefined+null=NaN
+        //undefined+任何东西都=NaN 除了 （undefined+"字符串"=undefined字符串）
+
+
+
+        //求和函数（正确版本）
+        function getSum1(num1, num2) {
+            num1 = num1 || 0
+            num2 = num2 || 0
+            document.write(`${num1}+${num2}=${num1 + num2}`)
+        }
+        getSum1(20,30) //20+30=50
+        getSum1()   //0+0=0
+        //用户调用时候没输入实参，穿到形参那里是udnefined
+        //undefined||0 可以看成 假||0 输出0
+
+        //函数执行顺序：
+        // 先执行调用：（因为不调用就不会执行）
+        // 然后将实参的数据赋值给形参
+
+
+
+
+
+        //什么时候当假看？
+        //0 undefined null ‘’ false NaN
+    </script>
+</body>
+
+</html>

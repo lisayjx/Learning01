@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #721c24;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+
+    }
+
+    table {
+      margin: 0 auto;
+      width: 800px;
+      border-collapse: collapse;
+      color: #004085;
+    }
+
+    th {
+      padding: 10px;
+      background: #cfe5ff;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    td,
+    th {
+      border: 1px solid #b8daff;
+    }
+
+    td {
+      padding: 10px;
+      color: #666;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    tbody tr {
+      background: #fff;
+    }
+
+    tbody tr:hover {
+      background: #e1ecf8;
+    }
+
+    .info {
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .info input {
+      width: 80px;
+      height: 25px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid #b8daff;
+      padding-left: 5px;
+    }
+
+    .info button {
+      width: 60px;
+      height: 25px;
+      background-color: #004085;
+      outline: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .info .age {
+      width: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>新增学员</h1>
+  <div class="info">
+    姓名：<input type="text" class="uname">
+    年龄：<input type="text" class="age">
+    性别: <select name="gender" id="" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    薪资：<input type="text" class="salary">
+    就业城市：<select name="city" id="" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+
+    </select>
+    <button class="add">录入</button>
+  </div>
+
+  <h1>就业榜</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>1001</td>
+        <td>欧阳霸天</td>
+        <td>19</td>
+        <td>男</td>
+
+        <td>15000</td>
+        <td>上海</td>
+        <td>
+          <a href="javascript:"  >删除</a>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+  <script>
+
+    // 需求①：读取本地数据封装成函数
+    // 第一次打开页面 没有数据 然后把三条存进去 第二次打开就已经有数据了
+    function getLocalData() {
+      let data = localStorage.getItem('data') //本地数据
+      if (data) {//如果本来就有本地存的数据，则返回JSON.parse() 之后的对象
+        return JSON.parse(data)
+      } else {//如果原先本地没数据，就把那三条数据存进去
+        let arr = [
+          { stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海' },
+          { stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京' },
+          { stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '2000', city: '北京' },
+        ]
+
+        localStorage.setItem('data', JSON.stringify(arr))
+      }
+    }
+    getLocalData()//先调用一次 因为第一次打开页面没有数据 调用就会有
+
+
+    //  1. 准备好数据后端的数据
+    let arr = [
+      { stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海' },
+      { stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京' },
+      { stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '2000', city: '北京' },
+    ]
+
+    // 获取父元素 tbody
+    let tbody = document.querySelector('tbody')
+    // 添加数据按钮 
+    // 获取录入按钮
+    let add = document.querySelector('.add')
+    // 获取各个表单的元素
+    let uname = document.querySelector('.uname')
+    let age = document.querySelector('.age')
+    let gender = document.querySelector('.gender')
+    let salary = document.querySelector('.salary')
+    let city = document.querySelector('.city')
+
+
+    // 渲染函数  把数组里面的数据渲染到页面中
+    function render() {
+      // 需求②:渲染模块  一打开就要渲染所以
+      //    先读取本地存储数据 调用那个函数，然后渲染
+
+      let arr = getLocalData() //此时数据会一直存在
+
+
+
+
+
+
+      // 先干掉以前的数据  让tbody 里面原来的tr 都没有
+      tbody.innerHTML = ''
+      // 在渲染新的数据
+      // 根据数据的条数来渲染增加 tr  
+      for (let i = 0; i < arr.length; i++) {
+        // 1.创建tr  
+        let tr = document.createElement('tr')
+        // 2.tr 里面放内容
+        tr.innerHTML = `
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>
+          <a href="javascript:" data-id="${i}">删除</a>
+        </td>
+        `
+        // 3.把tr追加给 tobdy  父元素.appendChild(子元素)
+        tbody.appendChild(tr)
+
+
+      }
+    }
+    // 页面加载就调用函数
+    render()
+
+
+
+
+
+
+    //三大步：新增（读取数据-->新增数据-->存储数据-->渲染）
+    add.addEventListener('click', function () {
+      // 需求③:添加模块
+      //     注意，先取的最新的本地存储数据，然后追加
+      //     新增了数据，要把新数据存储到本地存储，别忘记转换
+      // 新增和删除之前都看看有多少存货 再新增
+      //先读取本地数据,然后追加
+
+
+
+      // 一、读取数据
+      //每次读取都是新数据
+      let arr = getLocalData() //为啥叫arr，因为下面遍历的是arr 
+
+
+
+
+
+      //  二、新增数据      增到了页面 一刷新就没了  所以下一步存储
+      // 获得表单里面的值   之后追加给 数组 arr  用 push方法
+      arr.push({
+        // 得到数组最后一条数据的学号 1003    + 1
+        stuId: arr[arr.length - 1].stuId + 1,
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value
+      })
+      // console.log(arr)
+
+
+
+      //三、存储到本地存储
+      localStorage.setItem('data', JSON.stringify(arr))//存的是arr
+
+
+      // 四、渲染
+      // 重新渲染我们的函数
+      render()
+      // 复原所有的表单数据
+      uname.value = age.value = salary.value = ''
+      gender.value = '男'
+      city.value = '北京'
+    })
+
+
+
+
+
+
+    // 删除操作， 删除的也是数组里面的数据 ， 但是我们用事件委托
+    tbody.addEventListener('click', function (e) {
+      // 一、从本地 读取数据
+      let arr = getLocalData()
+
+
+
+      //二、删除操作  
+      // alert(11)
+      // 我们只能点击了链接 a ，才会执行删除操作
+      // 那我们怎么知道你点击了a呢？
+      // 俺们只能点击了链接才能做删除操作
+      // console.dir(e.target.tagName)
+      if (e.target.tagName === 'A') {
+        // alert('你点击了链接')
+        // 删除操作  删除 数组里面的数据  arr.splice(从哪里开始删，1)
+        // 我要得到a的data-id 需要
+        // console.log(e.target.dataset.id)
+        //dataset是获取自定义属性的方法
+
+
+
+        if (e.target.dataset.id === '0') {//保留第一条数据 不能删除     0加引号
+          alert('当前数据不能删除')
+          return///这样下面的代码就不会执行了
+        }
+        arr.splice(e.target.dataset.id, 1)
+
+
+
+
+
+
+        //三、存储
+        localStorage.setItem('data', JSON.stringify(arr))
+
+
+
+
+        //四、渲染
+        // 重新渲染我们的函数
+        render()
+      }
+    })
+
+
+    // 就是将数组数据转换成本地数据，增删都是对本地数据进行的
+    // 新增   ：读取本地数据-->添加的数据-->存储-->渲染
+    // 删除   ：读取本地数据-->删除的数据-->存储-->渲染
+    // 渲染   ：读取本地数据-->渲染
+
+    /*
+        分析:
+    需求①:读取本地存储数据（封装成函数)  因为存、取、删、渲染都需要读取本地存储数据
+          两种情况（当时里面有数据或者没有数据）
+          如果本地存储有数据，则返回JSON.parse()之后的对象（我读取过来的是字符串没办法渲染所以要转换成对象）
+          如果本地存储没有数据，则默认写入三条数据，注意存储的利用JSON.stringify()存储JSON格式的数据
+    需求②:渲染模块
+           先读取本地存储数据，然后渲染
+    需求③:添加模块
+          注意，先取的最新的本地存储数据，然后追加
+          新增了数据，要把新数据存储到本地存储，别忘记转换
+    */
+
+
+
+    // bug1：把数据全在页面中删除会回不来
+    // 因为：全删了之后 数组为空，空数组不是假 是真，然后一直返回空数组
+    //报错：不能设置属性 因为stuId是空的 所以拿不到stuid的上一个id
+    //真正的其实是有几个超级管理员是不能删除的，咱们要保留第一条
+    //我们可以拿自定义的那个 id  data-id
+    // 就是 点击了 data-id 是0 时候 是不允许删除的
+    //在删除之前添加个条件
+
+
+
+
+    // bug2:全删除之后 学号也不知道咋排 其实应该前三条默认不能删除 以后学
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+  <img src="../img/93.png" alt="">
+</body>
+
+</html>

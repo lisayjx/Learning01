@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 50px;
+            width: 400px;
+            line-height: 50px;
+            text-align: center;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        //    页面显示时间
+        // 需求:将当前时间以: YYYY-MM-DD HH:mm形式显示在页面
+        // 分析:
+        // ①:调用时间对象方法进行转换
+        // ②:字符串拼接后，通过innerText给标签
+
+
+
+        /*易错点： 实例化后面的Date() 要大写
+                   getFullYear() 这种方法后面的括号别忘了
+                   月份要加1
+                   实例化也要写在定时器里面 因为每次的时间都是独一无二的 每次都是最新的
+        */
+
+        //放在定时器里面  时间自动在走  一秒一秒走
+        // setInterval(() => {
+
+
+        //     //1.实例化时间对象
+        //     //定时器内是最新的时间 下面每次拿到的都是最新的时间 //你打开页面的时间
+        //     //所以有的网页可以记住你什么时间访问过我的页面 用这个写在外面
+        //     let date = new Date()
+
+
+        //     let year = date.getFullYear()
+        //     let month = date.getMonth() + 1 //别忘了+1
+        //     let date1 = date.getDate()
+        //     let hour = date.getHours()
+        //     let minutes = date.getMinutes()
+        //     let seconds = date.getSeconds()
+        //     let day = date.getDay()
+        //     //星期几 因为 arr的下标和 day的值对应 arr[0]就是星期天 1就是星期一
+        //     let arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        //     let re = `今天是:${year}-${month}-${date1} ${hour}:${minutes}:${seconds} , ${arr[day]} `
+        //     document.querySelector('div').innerHTML = re
+
+        // }, 1000);
+
+        //有bug  页面打开会空白一秒才显示时间 怎么解决 把里面的一大坨放在外面的函数里
+        // 先在定时器外面调用执行这个函数 然后在定时器里面也再执行 因为定时器是回调函数 回头调用 会延迟1000毫秒
+
+        //1.定义个函数
+        function getTime() {
+            let date = new Date()
+            let year = date.getFullYear()
+            let month = date.getMonth() + 1 //别忘了+1
+            let date1 = date.getDate()
+            let hour = date.getHours()
+            let minutes = date.getMinutes()
+            let seconds = date.getSeconds()
+            let day = date.getDay()
+            //星期几 因为 arr的下标和 day的值对应 arr[0]就是星期天 1就是星期一
+            let arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+            let re = `今天是:${year}-${month}-${date1} ${hour}:${minutes}:${seconds} , ${arr[day]} `
+            document.querySelector('div').innerHTML = re
+        }
+        getTime()//页面打开先调用这个函数 再开下面定时器
+
+        //2.写个定时器
+        setInterval(getTime, 1000);
+    </script>
+
+</body>
+
+</html>

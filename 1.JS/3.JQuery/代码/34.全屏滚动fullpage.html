@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./360/assets/fullpage/jquery.fullpage.css">
+    <!-- 自己的样式 -->
+    <style>
+        .one {
+            background-color: pink;
+        }
+
+        .two {
+            background-color: orange;
+        }
+
+        .three {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <img src="../images/34.png" alt=""> -->
+    <div id="fullpage">
+        <div class="section one">第1屏</div>
+        <div class="section two">第2屏</div>
+        <div class="section three">第3屏</div>
+    </div>
+
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="./360/assets/fullpage/jquery.fullpage.js"></script>
+
+    <script>
+        // jQuery的全屏滚动插件fullpage
+
+        // 每个区域必须有section这个类名
+
+
+        // 下包: 把插件下载到本地
+        // 导包: 先导入jQuery，再导入插件，导入css(需要的话)
+        // 用包: 根据文档(说明书)使用
+
+        $("#fullpage").fullpage({
+            navigation: true,//导航点点
+            navigationPosition: 'right', //默认是右侧 可以写左侧
+            anchors: ['one', 'two', 'three'],//锚链接，页面刷新后 是上次打开的那一屏
+            afterLoad(anchors, index) {//可以拿到锚的名字和索引
+                console.log('anchors', anchors);
+                console.log('index', index);
+            }
+        })
+
+
+
+
+// 1. fullpage插件在使用的时候一定要传入配置吗?
+// 不需要
+// 2. fullpage插件的区域容器必须要有什么类名?
+// section
+
+    </script>
+</body>
+
+</html>

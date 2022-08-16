@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            border: 10px solid hotpink;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>2222222222</div>
+    <script>
+        //更改元素样式属性
+        // 例如修改宽高背景啥的
+
+        // 通过Js 设置/修改标签元素的样式属性。
+        // 比如通过轮播图小圆点自动更换颜色样式
+        // 点击按钮可以滚动图片，这是移动的图片的位置left等等
+        // 学三种方式:
+        // 1.通过style属性操作CSS
+        // 2．操作类名(className)操作CSS
+        // 3．通过classList操作类控制CSS
+        /*-----------------------------------------------------------------*/
+        //1.通过style属性操作CSS   对象.style.样式属性=值
+        //这种修改的样式添加的样式都会写在行内
+
+        //获取元素
+        let box = document.querySelector('div')
+        //修改背景颜色 样式 style
+        box.style.background = 'orange'
+        box.style.width = '400px'//别忘了写单位
+        box.style.backgroundColor = 'blue'//样式中带有连接符的比如background-color，需要改成小驼峰命名法
+        box.style.borderTopColor = 'green'
+        box.style.marginTop='100px'
+
+
+   //注意：
+//    修改样式 通过 style 属性引出
+//    样式中带有连接符的比如background-color，需要改成小驼峰命名法
+//    赋值时候别忘了加css的单位
+//style适合修改样式比较少的时候
+    </script>
+</body>
+
+</html>

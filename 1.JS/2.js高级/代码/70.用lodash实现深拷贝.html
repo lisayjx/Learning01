@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 先引用 -->
+    <script src="./lodash.min.js"></script>
+    <script>
+        // 2.js库lodash里面cloneDeep内部实现了深拷贝
+        // 这个库里面还封装了 节流防抖之类的 
+
+        // 所有函数的写法是  _.函数名()
+
+        //被拷贝的对象
+        const obj = {
+            uname: 'lisa',
+            age: 18,
+            hobby: ['乒乓球', '篮球', '足球'],
+            play: { type: '冒险', name: '双人成行' }
+        }
+
+        let o = _.cloneDeep(obj)//拷贝obj对象的意思  他有返回值  用变量接收过来
+
+        //o是接收的对象
+        //改一下新对象  看看旧的有没有跟着新的一起变化   没有就对了 应该独立不受影响
+        o.uname='rose'
+        console.log(o);// { uname: "rose", age: 18, hobby: (3) […], play: {…} }
+        console.log(obj);//{ uname: "lisa", age: 18, hobby: (3) […], play: {…} }
+        
+
+
+
+    </script>
+</body>
+
+</html>

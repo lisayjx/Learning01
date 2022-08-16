@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* background-color: pink; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一张图片始终跟着鼠标走 -->
+    <!-- 鼠标在页面中移动，用到mousemove事件
+不断把鼠标在页面中的坐标位置给图片left和top值即可 -->
+
+
+    <img src="../images/tianshi.gif" alt="">
+    <!-- 不加定位做不了 -->
+
+
+    <script>
+        let pic = document.querySelector('img')
+        //鼠标在页面中不断移动
+        document.addEventListener('mousemove', function (e) {//要获取鼠标得坐标 开启event
+            //   把坐标给图片
+            // pic.style.top = 100px  获取到的鼠标坐标不带单位 所以一定要自己加上！！！！！！
+            // pic.style.top = e.pageY+'px'
+            // pic.style.left = e.pageX+'px'
+            //此时鼠标在图片左上角 因为图片开始都是左上角开始
+            //就让图片往上和左走一走
+            pic.style.top = e.pageY - 40 + 'px'
+            pic.style.left = e.pageX - 40 + 'px'
+        })
+    </script>
+</body>
+
+</html>

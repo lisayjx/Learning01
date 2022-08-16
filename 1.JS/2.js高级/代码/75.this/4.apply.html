@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //函数.apply(this想指向谁，[1,2,..])  也会让函数调用执行
+        //与call区别就是 参数是数组
+//   1. call和apply的区别是?
+// 都是调用函数，都能改变this指向参数不一样，apply传递的必须是数组
+
+
+        function fn(x, y, z) {
+            console.log(this, x, y, z);//指向window
+        }
+        let obj = { name: '阿飞' }
+        //想让this指向uname
+        fn.apply(obj, [1, 2, 3])
+        // ------------------
+        let obj1 = {
+            uname: '张三丰',
+            age: 22,
+            taiji: function () {
+                console.log(this);//想让this指向o
+            }
+        }
+        let o = { uname: '张无忌', age: 18 }
+        obj1.taiji.apply(o)
+        // -------------------------------
+        // 用到的场景 与数组打交道
+        //求最大值
+        let arr = [22, 3, 25, 4, 7]
+        // console.log(Math.max(...arr));   //25  ...arr把数组转成字符串先
+        //apply方法！！！！！
+        Math.max.apply(null, arr)   //用apply把arr数组给max函数方法传进去
+    
+    
+//  返回值就是函数的返回值，因为它就是调用函数
+// 因此 apply主要跟数组有关系，比如使用Math.max()求数组的最大值
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            border: 1px solid #ddd;
+            text-align: center;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    选到的人是：<div> </div>
+    
+    <script>
+        //需求：随机抽取的名字要显示到指定的标签内部，把名字放到div盒子内
+        //分析：
+        // 获取div元素
+        // 得到随机的名字
+        // 通过innerText 或者innerHTML名字写入元素内部
+        //有盒子了 有名字了 就把名字放到盒子
+
+
+        //1.获取元素
+        let box = document.querySelector('div')
+        //2.得到随机名字
+        //随机数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let arr = ['lisa', 'roise', 'jennie', 'zhixiu', 'solar', '文星', 'huiren', '华莎']
+        //生成一个随机数 作为数组的索引号
+        let random = getRandom(0, arr.length - 1)
+
+
+        // 3.写入标签内部
+        box.innerHTML=arr[random]  //将数组中的随机一个下标的名字赋值给box对象的innerHTML属性中
+        //之后删除这个名字
+        arr.splice(random,1)//从第x（随机的）删除，删除一个
+
+
+    </script>
+</body>
+
+</html>

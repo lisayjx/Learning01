@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 穷举法 -->
+    <script>
+        // 一次列出所有可能性，然后通过条件判断得出想要的结果
+
+        //找到一个数的所有约数（能被这个数整除的所有数）
+        let n = +prompt('请输入一个数')
+        for (i = 1; i <= n; i ++) {
+            if (n % i === 0) {
+                console.log(`${i}是${n}的约数`)
+            }
+        }
+    </script>
+</body>
+
+</html>

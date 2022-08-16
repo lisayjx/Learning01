@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //form标签本身具有提交数据的能力，但是现在基本不这么用
+
+        //    点击提交按钮，输入区域点击回车都会触发表单提交
+        //    表单中的button默认就是提交按钮
+
+        // 现在比较流行在表单的submit事件中阻止默认行为，自己获取数据并提交
+
+        $('.form').submit(function (e) {
+            //阻止默认行为
+            e.preventDefault()
+            //阻止默认行为
+            return false
+        })
+
+        // 返回false或者preventDefault都可以阻止默认行为
+
+    </script>
+</body>
+
+</html>

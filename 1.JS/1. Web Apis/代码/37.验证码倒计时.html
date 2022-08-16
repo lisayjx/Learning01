@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习 - 网页时钟</title>
+    <style>
+        body {
+            padding: 40px;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 26px;
+            display: flex;
+        }
+
+        input,
+        button {
+            padding: 0;
+            margin-left: 10px;
+            display: block;
+        }
+
+        input {
+            width: 190px;
+            outline: none;
+        }
+
+        button {
+            width: 120px;
+        }
+
+        .verify {
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            手机号:
+            <input type="text">
+        </li>
+        <li>
+            验证码:
+            <input type="text" class="verify">
+            <button id="btn">获取验证码</button>
+        </li>
+    </ul>
+
+    <script>
+        let btn = document.querySelector('#btn')
+
+        btn.addEventListener('click', function () {
+            //禁用
+            this.disabled = true
+            //数字变化倒计时
+            //计时器
+            let i = 5
+            //这一句是因为点击按钮之后会等待一秒才倒计时（计时器是回调函数 一秒之后执行），所以为了不空着加的这句话
+            btn.innerHTML = `重新获取验证码(${i})`
+
+            let timer = setInterval(function () {
+                i--
+                btn.innerHTML =  `重新获取验证码(${i})`
+
+                //这个别忘了写在定时器里面
+                if (i < 0) {
+                    clearInterval(timer)
+                    btn.innerHTML = '获取验证码'
+                    btn.disabled = false
+                }
+            }, 1000)
+
+
+
+        })
+
+
+         
+
+
+    </script>
+</body>
+
+</html>

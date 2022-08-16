@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="#" target="_blank">百度</a>
+    <script src="../jquery/jquery-3.6.0.js"></script>
+    <script>
+        // jQuery中对属性的操作进行封装，可以设置、获取和删除属性
+        //例如 a标签里的href  img里的src  这些都是元素的属性
+
+        //方法一：
+        //1.给属性赋值
+        $('a').attr('href', 'http://www.baidu.com')
+
+        // 加属性
+        let $aaa = $('a').attr('id', '111')
+        console.log($aaa);
+
+        //2.取值
+        let $a = $('a').attr('href')
+        console.log($a);
+        //3.删除属性
+        let $aa = $('a').removeAttr('target')
+        console.log($aa);
+
+
+
+
+// 1. attr方法赋值操作时需要传递几个参数?
+// 2个参数
+// 2. attr方法传递一个参数的作用是什么?
+// 属性取值
+// 3．删除属性用什么方法?
+// removeAttr
+
+    </script>
+</body>
+
+</html>

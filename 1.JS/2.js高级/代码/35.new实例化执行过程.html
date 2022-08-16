@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/35.png" alt="">
+    <img src="../img/35.1.png" alt="">
+    <script>
+        function Goods(name, price, count) {
+            this.name = name
+            this.price = price
+            this.count = count
+        }
+        let mi = new Goods('小米', 1999, 20)
+        let hw = new Goods('华为', 3999, 59)
+        let vv = new Goods('vivo', 1888, 100)
+
+        //构造函数怎么产生的对象?
+// 构造函数不调用就不执行 其他函数也是
+
+// 之前只是写 函数名()就行，这只是调用 没创建函数
+//但是现在 有 new了 ， new 函数名() 立马创建了个新的空对象
+//this就会指向创建的新的空对象
+
+//   day2 06 4min   
+//实例化执行过程(面试！！！！)
+        // 说明:
+        // 1.创建新对象（new一下就创建了个新的空对象）
+        // 2.构造函数this指向新的空对象
+        // 3.执行构造函数代码，修改this，添加新的属性（给对象添属性）
+        // 4.返回新对象
+
+//构造函数中不用写return！！！！！！！！！！！！！       
+//自己总结的过程
+//1.new出现 就创建了个新的空对象空间
+// 2.this指向这个空对象 下面调用的实参传给上面的形参 形参把值赋给this.属性 【相当于把实参传给你创建的对象的属性中】
+//看上面两个图
+
+    </script>
+</body>
+
+</html>
