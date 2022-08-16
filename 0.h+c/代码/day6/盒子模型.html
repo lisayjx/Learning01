@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .top {
+            width: 200px;
+            background: red;
+            padding: 10px;
+        }
+        .top1 {
+            width: 200px;
+            background: orange;
+            /* padding-left: -10px; 不可以设置负值 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+1.盒子组成 margin padding border content（height width）
+2.margin 外填充 外补丁 外补白
+如果是单独一个小盒子 Margin不会撑大盒子
+如果是一个大盒子里面有一堆小盒子 margin 会影响
+3.padding 内填充 内补白 内补丁
+会撑大盒子
+一个值代表上下左右....
+背景颜色会出现在padding区域 不会出现在margin区域
+padding不可以设置负值，margin设置负值可以
+
+     -->
+    <div class="top">1</div>
+    <div class="top1">11</div>
+</body>
+
+</html>

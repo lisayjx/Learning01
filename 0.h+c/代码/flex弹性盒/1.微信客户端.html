@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+           flex-direction: column;
+        height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            background-color: #ddd;
+        }
+        footer{
+            /* flex: 1; */
+            background:linear-gradient(to top,#f3f3f3,#ccc);
+            height: 60px;
+            display: flex;
+        }
+        footer div{
+            flex: 1;
+            line-height: 3em;
+            text-align: center;
+        }
+        footer div:nth-child(n+2){
+            border-left: 1px solid #ddd;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <main>111</main>
+    <footer>
+        <div>123</div>
+        <div>123</div>
+        <div>123</div>
+        <div>123</div>
+    </footer>
+</body>
+
+</html>

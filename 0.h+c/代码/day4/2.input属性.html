@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        input属性（需要就写 不惜要就不写 除了type属性）
+       
+        type类型 决定input显示的效果
+        name 名称 单选按钮radio必须要使用（一组保持一致） 其他地方随便 （通过name去区分每个东西）
+        disabled 禁用
+        maxlength 最多可以输入的字符数 （可以去用限制手机号）
+        minlength 最少可以输入的字符数 你要是输入的字少于2个，点击提交，会出现提示信息。
+        value 默认值  所有的input都可以写value 需要就写不需要就不写
+        size 长度 （了解）
+        checked 默认选中（单选按钮和复选框） 下拉列表中默认选中是selected 别混了
+        multiple 实现多选
+
+    -->
+
+
+    <form action="">
+        <!--1. 禁用是灰色的 -->
+        <input type="text" name="use" maxlength="5" minlength="2" value="默认值" size="20">
+        <input type="text" disabled>
+        <input type="submit">
+        <!-- name得一样才能从这两个之中选择一个，要是没有name都得能选上（不能用中文数字开头） -->
+        <input type="radio" name="sex" checked>女
+        <input type="radio" name="sex">男
+
+        <!-- <input type="text" value="红米">添加内容在原来基础上添加 -->
+        <!-- <input type="text" placeholder="红米">提示信息，添加内容在原来基础上覆盖（html5新增属性，低版本浏览器不支持 比如ie8） -->
+    </form>
+</body>
+
+</html>

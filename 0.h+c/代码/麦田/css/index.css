@@ -1,0 +1,396 @@
+.banxin {
+    width: 1132px;
+    margin: 0 auto;
+}
+
+/* 1.top */
+.top {
+    box-sizing: border-box;
+    height: 100px;
+    padding-top: 20px;
+}
+
+/* top-logo */
+.top a h1 {
+    float: left;
+    background: url(../img/logo.png) center;
+    width: 260px;
+    height: 58px;
+    text-indent: -999999em;
+}
+
+/* top-biaoyu */
+.top .biaoyu {
+    box-sizing: border-box;
+    float: left;
+    height: 58px;
+    width: 200px;
+    padding-top: 12px;
+    margin-left: 25px;
+}
+
+.top .biaoyu .yinying {
+    height: 24px;
+    width: 1px;
+}
+
+.top .biaoyu P {
+    font-size: 12px;
+    font-style: italic;
+    color: #666;
+    font-family: '宋体';
+    padding-left: 20px;
+    border-left: 1px solid #666;
+}
+
+
+/* top-nav */
+.top .nav {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.top .nav ul {
+    text-align: center;
+    line-height: 70px;
+}
+
+.top .nav ul li {
+    float: left;
+
+}
+
+.top .nav ul li a {
+    display: block;
+    height: 70px;
+    width: 90px;
+    color: #000;
+    font-size: 12px;
+}
+
+.top .nav ul li a:hover {
+    background-color: #f75a53;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+}
+
+/* 2.banner */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 454px;
+}
+
+.banner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.banner .dian {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.banner .dian a {
+    float: left;
+    height: 10px;
+    width: 10px;
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 50%;
+    margin-left: 20px;
+    border: 2px solid transparent;
+    /* 使背景色就到内容 不被压在边框下面 */
+    background-clip: content-box;
+}
+
+.banner .dian .current {
+    border: 3px solid rgba(255, 255, 255, .6);
+    background-color: pink;
+}
+
+.banner .dian a:hover {
+    border: 3px solid rgba(255, 255, 255, .6);
+    background-color: pink;
+}
+
+/* 3.广告ad */
+.ad {
+    height: 388px;
+    background-color: #f7f7f7;
+}
+
+/* 公共 */
+.ad .td,
+.advantages .td,
+.suc .td {
+    padding-top: 20px;
+    height: 122px;
+    text-align: center;
+}
+
+.ad .td h2,
+.advantages .td h2,
+.suc .td h2 {
+    font-family: '微软雅黑';
+    font-weight: normal;
+}
+
+.ad .td p,
+.advantages .td p,
+.suc .td p {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #999;
+}
+
+/*   */
+.ad .bd {
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    height: 206px;
+    background-color: #fff;
+}
+
+.ad .bd ul li {
+    float: left;
+    width: 187px;
+    height: 103px;
+    border-right: 1px solid #eee;
+}
+
+.ad .bd ul li:nth-child(-n+6) {
+    border-bottom: 1px solid #eee;
+}
+
+.ad .bd ul li:nth-child(6n) {
+    border-right: 0;
+}
+
+.ad .bd img {
+    width: 100%;
+
+}
+
+/* 4.优势 advantages */
+.advantages {
+    height: 542px;
+    background-color: #1a1b1f;
+}
+
+.advantages .td h2,
+.advantages .td p {
+    color: #fff;
+}
+
+.advantages .bd {
+    height: 362px;
+
+}
+
+.advantages .bd-box {
+    position: relative;
+    float: left;
+    width: 344px;
+    height: 260px;
+    background-color: #d1d1d1;
+    margin-top: 102px;
+
+}
+
+.advantages .bd-box:nth-child(2) {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.advantages .bd-box .zi {
+    margin-top: 120px;
+    padding: 0 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.advantages .bd-box:nth-child(1) .yuan {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background :url(../img/img01.png) 0 0;
+    text-align: center;
+    line-height: 100px;
+}
+
+.advantages .bd-box:nth-child(2) .yuan{
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background :url(../img/img01.png) 0 130px;
+    text-align: center;
+    line-height: 100px;
+}
+.advantages .bd-box:nth-child(3) .yuan{
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background :url(../img/img01.png) 0 295px;
+    text-align: center;
+    line-height: 100px;
+}
+/* 5.成功 suc */
+.suc {
+    height: 810px;
+}
+
+/* suc-nav */
+.suc-nav {
+    height: 40px;
+    background-color: #666666;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.suc-nav ul li {
+    float: left;
+}
+
+.suc-nav ul li a {
+    position: relative;
+    display: block;
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+}
+
+.suc-nav ul li a::after {
+    display: none;
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -3px;
+    height: 0;
+    width: 0;
+    border: 6px solid transparent;
+    border-top-color: #f75a53;
+}
+
+.suc-nav ul li a:hover {
+    background-color: #f75a53;
+}
+
+.suc-nav ul li a:hover:after {
+    display: block;
+}
+
+.suc .bd {
+    margin-top: 30px;
+    height: 546px;
+}
+
+.suc .bd ul li {
+    float: left;
+
+}
+
+.suc .bd ul li:nth-child(2),
+.suc .bd ul li:nth-child(5) {
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.suc .bd ul li:nth-child(-n+3) {
+    margin-bottom: 30px;
+}
+
+/* 6.新闻news */
+.news {
+    height: 350px;
+    background-color: #f2f2f2;
+}
+
+.news .box {
+    box-sizing: border-box;
+    padding-top: 20px;
+    float: left;
+    height: 350px;
+    width: 360px;
+}
+
+.news .box:nth-child(2) {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.news .box h4 {
+    font-family: '微软雅黑';
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.news .box ul li a {
+    /*这两个是为了给a宽度 然后使得后面的日期对齐*/
+    width: 310px;
+    display: inline-block;
+
+    line-height: 25px;
+    font-size: 12px;
+    color: #666;
+}
+.news .box ul li span{
+    color: #666;
+    font-size: 12px;
+}
+.news .box .btn {
+    display: block;
+    width: 120px;
+    height: 45px;
+    background-color: #fb5956;
+    font-size: 12px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+/* 7.footer */
+.footer{
+    overflow: hidden;/*下面的ul带动它外边距合并*/
+    text-align: center;
+    height: 138px;
+    background-color: #363636;
+   
+}
+.footer ul{
+    width: 560px;
+    margin: 0 auto;
+    height: 20px;
+    margin-top: 30px;
+}
+.footer ul li{
+    float: left;
+}
+.footer ul li a{
+    display: block;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #999;
+    border-right: 1px solid #999;
+}
+.footer p{
+    line-height: 25px;
+    font-size: 12px;
+    color: #999;
+}

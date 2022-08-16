@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          .list1 {
+            background-color: green;
+        }
+        .list2 {
+            background-color: gold;
+        }
+        .box1,.box2,.box3{
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+        .box1{
+            background-color: yellow;
+        }
+        .box2{
+            background-color: skyblue;
+        }
+        .box3{
+            background-color: purple;
+        }
+        .box4{
+            height: 200px;
+            background: pink;
+        }
+        /* 方案7 */
+        .list1::after{
+            /* 设置元素内容为空 */
+            /* content: ""; */
+            /* 清除浮动 */
+            /* clear: both; */
+            /* 设置为块元素 */
+            /* display: block; */
+        }
+        /* 方案8 */
+        .clearfix::after{
+            /* 内容为空 */
+            content: '';
+            /* 设置为块元素 */
+            display: block;
+            /* 清除浮动 */
+            clear: both;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+7.通过伪元素清除浮动∶将伪元素插入到容器元素的最后面，代替内墙法中插入的元素，
+并用伪元素清除浮动。(问题就是不能复用)
+
+8.clearfix类:工作中，我们常常将清除浮动的功能封装在一个clearfix类中，这样为容器元素设
+置该类，就可以清除浮动，这种方式可以复用，因此工作中很常用。(最强王者)
+
+     -->
+
+     <div class="list1 clearfix">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+    <div class="box4"></div>
+</body>
+</html>

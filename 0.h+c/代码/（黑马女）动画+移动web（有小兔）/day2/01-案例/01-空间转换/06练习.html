@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .cube {
+            /* 开启3D */
+            transform-style: preserve-3d;
+
+            position: relative;
+            width: 200px;
+            height: 200px;
+            /* background-color: pink; */
+            margin: 300px auto;
+            transition: all 2s;
+        }
+        .cube:hover{
+            transform-origin: center;
+            transform: rotateX(360deg);
+            /* transform: rotateY(360deg); */
+        }
+        .cube div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 200px;
+            width: 200px;
+        }
+
+        .qian {
+            background-color: red;
+            transform: translateZ(200px);
+           
+        }
+
+        .hou {
+            background-color: orange;
+        }
+        .zuo{
+            background-color: black;
+            transform-origin: right;
+            transform: translateX(-100%) rotateY(90deg);
+        }
+        .you{
+            background-color: pink;
+            transform-origin: left;
+            transform: translateX(100%) rotateY(-90deg);
+        }
+        .shang{
+            background-color: green;
+            transform-origin: bottom;
+            transform: translateY(-100%) rotateX(-90deg);
+        }
+        .xia{
+            background-color: yellow;
+            transform-origin: top;
+            transform: translateY(100%) rotateX(90deg) ;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="cube">
+        <div class="qian">前</div>
+        <div class="hou">后</div>
+        <div class="zuo">左</div>
+        <div class="you">右</div>
+        <div class="shang">上</div>
+        <div class="xia">下</div>
+    </div>
+</body>
+
+</html>

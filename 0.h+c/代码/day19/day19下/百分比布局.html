@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+        }
+        .link{
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+        }
+        .link1{
+            width: 10%;
+            height: 10%;
+            background-color: orange;
+            padding: 10%;
+            margin: 10%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        百分比布局 如果没定位 width margin padding都是父元素width得百分比
+        不受padding border得影响 heigth是父元素高度的百分比
+
+        如果有定位 则会受到padding得影响
+
+
+        rem布局：等比缩放布局
+     -->
+    <div class="link">
+        <div class="link1"></div>
+    </div>
+</body>
+</html>

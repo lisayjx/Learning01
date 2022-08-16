@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 所有超链接都打开新的页面 在这里写 -->
+    <!-- <base target="_blank"> -->
+    <style>
+        .ab{
+            position: fixed;
+            right: 0;
+            top: 300px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top1" style="height:500px ;background:yellow">顶部信息</div>
+
+
+    <!-- 
+        a 超链接  默认蓝色带有下划线    
+     <a >超链接</a> 没啥用 必须写href
+    如果是链接的具体的某个网址 需要添加对应的协议http之类的
+    如果是本地的文件 需要将具体的路径添加正确
+    超链接点击之后变成紫色
+
+   **** download 下载属性 vs编辑器中需要在服务器端打开才能生效，右键open with live server并且是谷歌浏览器
+   
+   锚点
+   作用：实现同一页面的不同位置得跳转
+        href得值="#你要跳转的位置的id名称"
+        你要跳转位置 必须存在id="id名称"
+-->
+
+    <!-- 所有超链接都打开新的页面 在这里写 
+     <base target="_blank">-->
+    <a href="#">空链接</a>
+    <a href="http://www.baidu.com" target="_self">百度</a>
+    <a href="../day1、2/day01、02.html">作业</a>
+    <a href="../day1、2/favicon/favicon.ico">icon</a>
+    <a href="http://www.baidu.com" target="_blank"><img src="../day1、2/favicon/favicon.ico" alt=""></a>
+
+    <!-- 下载 -->
+    <a href="../day1、2/favicon/favicon.ico" download="download">点击下载</a>
+    <a href="../day1、2/favicon/favicon.ico" download>点击下载</a>
+
+<div class="ab">
+    <a href="#top1">顶部</a>
+    <a href="#top2">二层</a>
+    <a href="#top3">三层</a>
+</div>
+
+<div id="top2" style="height:500px ;background:pink">11</div>
+<div id="top3" style="height:500px ;background:green">11</div>
+<div id="top2" style="height:500px ;background:red">11</div>
+<div id="top2" style="height:500px ;background:blue">11</div>
+</body>
+
+</html>

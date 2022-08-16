@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div:nth-child(1) {
+            width: 200px;
+            height: 100px;
+            border: 10px dashed #000;
+            padding: 10px;
+            background: red;
+        }
+        div:nth-child(2) {
+            width: 200px;
+            height: 100px;
+            border: 10px dashed #ff0;
+            padding: 10px;
+            /* background: red; */
+            background: url(./bg.png) no-repeat;
+            background-origin: border-box;
+            background-clip: border-box;
+        }
+
+        div:nth-child(3) {
+            width: 200px;
+            height: 150px;
+            background:#f0f url(./bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+        div:nth-child(4) {
+            width: 200px;
+            height: 150px;
+            background:#00f url(./bg.png) no-repeat;
+            background-size: cover;
+        }
+        div:nth-child(5) {
+            width: 200px;
+            height: 150px;
+            background:#f0f url(./bg.png) no-repeat;
+            background-size: contain;
+        }
+        div:nth-child(6) {
+            width: 200px;
+            height: 100px;
+            background: url(./1.jpg) no-repeat left bottom,url(./1.png) no-repeat right bottom,url(./bg.png);
+        }
+        div:nth-child(7) {
+            width: 200px;
+            height: 100px;
+            background: url(./1.jpg) no-repeat left bottom, url(./1.png) no-repeat right bottom #0ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        background-clip  背景颜色的出现位置 border-box边框  padding-box 内边距  content-box 内容  背景的裁切位置
+        background-origin  背景图片的绘制区域 border-box边框 padding-box 内边距  content-box 内容 背景的绘制起点
+        background-size 背景图片的尺寸
+        一个值代表 设置图片的宽度 等比例缩放
+        两个值 第一个代表宽度 第二个代表高度
+        cover  等比例缩放  宽度高度只要有一个不能缩放就停止
+        contain 等比例缩放  宽度高度都不能缩放停止
+
+        css3.0支持一个元素同时添加多张背景图片,中间用逗号隔开，谁在前边写谁在上边显示，
+        如果背景图片和背景颜色同时出现，并且存在多张背景图片，注意：背景颜色一定要放在最后一张图片的位置
+     -->
+
+     <div>内容</div>
+     <div>内容</div>
+
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .top {
+            width: 100%;
+            /*  float: left;变成行内块与内容一样宽，除非给宽度*/
+            height: 100px;
+            padding: 10px;
+            background: red;
+            /* box-sizing: border-box; */
+        }
+
+        .text {
+            padding: 30%;
+            width: 0;
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- (全屏)这里宽度已经是100%了 但是又加了padding 所以会有滚动条
+    解决？  加box-sizing 就不会撑大出现滚动条 -->
+    <div class="top"></div>
+
+
+
+    <!-- 
+        width得百分比值 取决于父元素得width  
+        height百分比值取决于父元素的height
+        padding得百分比取值 取决于父元素得width
+        margin得百分比值取决于父元素得width
+
+        例子：width：20%
+        这时候父元素宽100
+         width就是 100*20%=20
+
+         body是浏览器窗口： 直接写一个盒子他的父元素是body
+         padding：百分比  随着浏览器变大而变大 变小而变小
+         是响应式的 等比缩放
+         高度是内容撑开的默认是0
+           .text{
+            padding: 30%;
+            width: 0; 此时要是不写width就占全屏 得写
+            background: yellow;
+        }
+     -->
+    <div class="text"></div>
+</body>
+
+</html>

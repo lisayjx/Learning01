@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1:before{
+            content: "哈哈";
+            color: orange;
+            font-size: 20px;
+        }
+        h1:after{
+            display: inline-block;
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        单冒号兼容比较好  双冒号只能兼容高级版本浏览器
+ 伪元素用于创建一些不在文档树中的元素，并为其添加样式。
+ 比如说，我们可以通过:before来在一个元素前增加一些文本，并为这些文本添加样式。
+ 虽然用户可以看到这些文本，但是这些文木实际上不在文档树中
+ CSS2.1中提供了两个伪元素
+    :before  在元素前面插入文本
+    :after  在元素后面插入文本
+注意:伪元素必须设置content样式，否则伪元素不会生效
+
+伪元素默认是行内元素,需要时候需要转换成别的元素
+
+     -->
+
+     <h1>hello</h1>
+</body>
+</html>

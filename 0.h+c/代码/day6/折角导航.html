@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+            background: red;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        p {
+            width: 0;
+            border: 10px solid transparent;
+            border-top-color: white;
+            border-left-color: white;
+            border-right-color: green;
+            border-bottom-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 宽度不同 高度一样 -->
+    <!-- 左上角一个正方形 左侧透明右侧红 -->
+<!-- p和a是盒子里面两个 两行了 然后行高都有 所以会被挤下去 -->
+
+    <div>
+        <p></p>
+        <!-- <a href="#">首页</a> -->
+    </div>
+</body>
+
+</html>

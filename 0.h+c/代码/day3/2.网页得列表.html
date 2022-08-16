@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+列表标签：
+        有序列表ol li：
+            可以通过type属性更改列表符号
+            type="1"默认,阿拉伯数字1    A a I i
+            可以设置从第几个开始用start
+            reversed倒序
+
+        无序列表ul li：
+            disc默认的实心圆，circle空心圆，square实心方块，none没有
+        
+        
+        自定义列表dl dt+dd：
+            默认有缩进
+            用在网页下面的copy里
+
+
+注意：ol与ul只能使用自己的type值，li可以使用所有的type值
+     一个自定义列表dl中一般只有一个dt，可以同时有多个dd
+     -->
+
+    <h1>有序列表ol</h1>
+    <ol type="1">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <ol type="A">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <ol type="a">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <ol type="I">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <ol type="i">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <!-- 从3开始 正序 -->
+    <ol type="1" start="3">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+    <!-- 从3开头，倒序 -->
+    <ol type="1" start="3" reversed>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ol>
+
+    <ul type="disc">
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+    </ul>
+    <ul type="circle">
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+    </ul>
+    <ul type="square">
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+    </ul>
+    <ul type="none">
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+    </ul>
+    <!-- 给ul写一个ol的属性不好使 但是给li写就好使 -->
+    <ul type="1">
+        <li type="1">哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+        <li>哈哈哈哈</li>
+    </ul>
+    <!-- 给ol写了ul的属性不行，在li可以 -->
+    <ol type="circle">
+        <li type="circle">哈哈</li>
+        <li type="square">哈哈</li>
+        <li>哈哈</li>
+    </ol>
+
+    <h1>自定义列表</h1>
+    <dl>
+        <dt>标题问题</dt>
+        <dd >答案1</dd>
+        <dd>答案2</dd>
+        <dd>答案3</dd>
+    </dl>
+</body>
+
+</html>

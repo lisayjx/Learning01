@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /* font-size: 100px; */
+            font-size: 0.3125vw;
+        }
+
+        body {
+            /* font-size: 50px; */
+        }
+
+        header {
+            height: 32px;
+            background-color: red;
+        }
+
+        nav {
+            height: 2em;
+            background-color: yellow;
+        }
+
+        footer {
+            height: 2rem;
+            /**/
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        浏览器解析的文字大小默认是16px 默认情况下1em=1rem=16px
+        px
+        em:根据自身的font-size计算 要是自身没有 就继承跟他最近的父元素进行计算
+        rem:根据html中的fontsize计算 html中的font-size是100，2rem=200px
+    
+    vw是视窗宽度的百分比 1vw=视窗宽度的百分之1
+     vh是视窗高度的百分比 1vh=视窗高度的百分之1
+        100vw就是 百分之百的宽度 沾满视口屏幕
+
+        vmin视窗宽度高度百分比较小的那个
+         vmax视窗宽度高度百分比较大的那个
+
+ 如果html的font-size是一个可以改变的值，那么下面设置的单位都是rem就也会改变
+html的font-size果设置为vw的单位就是可以改变的值能够随之浏览器宽度的改变而改变
+
+如果视窗的宽度是320px，1vw（视窗的百分之一）=3.2px
+
+如果html的fontsize=1px,1px里面有多少个3.2 就是多少vw  px和vw换算通过3.2   1/3.2=0.3125vw
+1px=0.3125vw
+
+如果将html的font-size设置为1px，1px=1rem
+    -->
+    <header>px</header>
+    <nav>em</nav>
+    <footer>rem</footer>
+</body>
+
+</html>

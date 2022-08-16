@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 800px;
+            background-color: pink;
+        }
+        .container div{
+            height: 100px;
+            width: 100px;
+        }
+        .box1{
+            background-color: red;
+            display: none;
+         
+          
+        }
+        .box2 {
+            background-color: blue;
+               opacity: 0;
+        }
+        .box3{
+            background-color: green;
+              visibility: hidden;
+        }
+        .box4{
+            background-color: orange;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        设置元素不可见的方式
+        display:none;设置元素消失不占位 彻底的隐藏 
+        visibility:hidden;设置元素消失占位
+        opcity:0;设置元素的不透明度为0，元素消失占位  0透明 1不透明
+        opcity透明里面得内容也会跟着透明 rgba是你设置谁透明就谁透明 例如你设置背景就对背景透明 
+        
+        
+
+     -->
+      
+     <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+     </div>
+</body>
+</html>

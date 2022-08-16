@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin: 20px auto;
+            width: 800px;
+            background-color: pink;
+            /* 第一种解决方案,给浮动的盒子的父元素加高度 */
+            height: 300px;
+        }
+
+        .container div {
+            height: 100px;
+            width: 100px;
+            float: left;
+
+        }
+
+        .box1 {
+            background: green;
+        }
+
+        .box2 {
+            background: yellow;
+        }
+
+        .box3 {
+            background: red;
+        }
+
+        .box4 {
+            background: purple;
+        }
+
+        .box5 {
+            background: #666;
+        }
+
+        .box6 {
+            background: blue;
+        }
+
+        /* 方案一 */
+        .outer {
+            height: 200px;
+            background-color: yellowgreen;
+        }
+
+        /* 方案2 */
+        .outer-wall {
+            clear: both;
+        }
+
+        /* 方案3 */
+        .inner-wall {
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+浮动特征:
+        浮动可以使元素从左到右紧密排列;
+        浮动的元素具有块级元素的特点(可以设置宽高，margin、padding生效，但是没有换行符);  行内块特性
+        浮动后的元素不存在上下外边距合并问题;!!!!!!!!!!!!!!!!!!!!!!!!
+        浮动的元素脱离了文档流，不再占有原来的位置;
+        一个元素设置浮动后，其它同级的元素都要设置为浮动;
+        元素设置浮动后，原有的自适应占父元素的百分百宽度变为包裹内容的宽度;   (元素要是没设置宽度就是内容的宽度)
+        元素设置浮动后，会影响后面元素的布局，所以设置浮动后一定要及时清除;
+        清除浮动的属性clear:left | right | both(常用);
+
+
+ 上面提到，在父元素不设置宽高的情况下，嵌套的子元素如果都设置了浮动，会呈现出父元素塌陷的效果。
+这个问题，需要解决，否则有可能会影响页面的布局。
+
+解决方案:
+
+1.给父元素设置高度:这种方式在确定宽高的情况下，可以使用;
+但很多时候，容器都是由内容撑起来,所以根据内容的多少，不太好控制这个高度(改动较大)
+
+2.外墙法:在父元素的后面，设置父元素的一个同级空元素(div)，设置清除浮动;
+这种方式需要添加过多的空元素，增加结构代码量;并且我们完全可以在后面那个同级父元素上直接清除浮动。
+没撑开父元素的高度
+
+3.内墙法:在父元素内部后面，添加一个空的子元素(div)，设置清除浮动;
+问题同外墙法类似，但是解决了外墙法不能解决的父元素塌陷问题;
+相对于给父元素设置高度的不确定性，这种方式直接内容撑起父元素的高度。
+     -->
+</body>
+
+<div class="container">
+    <div class="box1">1-1-1</div>
+    <div class="box2">2-2-2</div>
+    <div class="box3">3-3-3</div>
+    <div class="box4">4-4-4</div>
+    <div class="box5">5-5-5</div>
+    <div class="box6">6-6-6</div>
+    <!-- 方案3,内墙法 -->
+    <span class="inner-wall"></span>
+</div>
+<!-- 解决方案2 外墙法 -->
+<div class="outer-wall"></div>
+
+
+
+<!-- 1.解决方案一 -->
+<!-- 外面有个元素,此时container中所有盒子都浮动 外面的元素会被压在浮动的盒子上面 -->
+<div class="outer">
+    外面的元素
+</div>
+
+</html>

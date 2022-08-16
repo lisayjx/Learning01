@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. */
+        .box1 {
+            border: 1px solid #000;
+            height: 200px;
+            width: 200px;
+            /* 水平方向居中 */
+            text-align: center;
+            /* 垂直方向居中 行高=高度 */
+            line-height: 200px;
+        }
+
+        /* 2. */
+        .box2 {
+            border: 1px solid pink;
+            /* height:200px; 先不设置高 */
+            width: 200px;
+            /* line-height: 200px;多行文本不能加行高实现垂直居中,要不每一行文字中间都有好大的空隙 */
+            /* 水平方向居中 */
+            text-align: center;
+            /* 垂直方向居中  通过padding设置高度*/
+            padding: 60px 0;
+        }
+
+        /* 4. */
+        .container {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* 使行内元素span水平居中 */
+            text-align: center;
+            /* 使行内元素span垂直居中 */
+            line-height: 200px;
+        }
+
+        /* 块元素1  确定高度时候 */
+        .container1 {
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+
+        .kuaiyuansu1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 1.高度确定情况下 */
+            /* 块元素水平方向居中 */
+            margin: 0 auto;
+            /* 块元素垂直方向居中 ,计算(父亲高200-自身宽度100)/2=50   或者margin: 50px auto;*/
+            margin-top: 50px;
+            /*此时会出现塌陷,给父亲一个overflow*/
+
+        }
+
+        /* 块元素2 不确定高度时 */
+        .container2 {
+            width: 300px;
+            /* height: 300px; */
+            background: red;
+
+            /* 新加的 */
+            padding: 200px 0;
+        }
+
+        .kuaiyuansu2 {
+            width: 100px;
+            height: 100px;
+            background: green;
+            /* 2.高度不确定情况下 */
+            /* 块元素水平方向居中 */
+            margin: 0 auto;
+            /* 给父元素加padding上下 (此时父元素高度不确定) */
+        }
+
+        /* 行内块元素img */
+        .container3 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        img {
+            width: 100px;
+            height: 80px;
+            vertical-align: middle;
+        }
+
+        /* -----通过表格居中 */
+        .ickt {
+            width: 600px;
+            height: 600px;
+            border: 10px solid pink;
+            /* 模拟表格 */
+            display: table-cell;
+            /* 水平居中 */
+            text-align: center;
+            /* 垂直居中 */
+            vertical-align: middle;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+行内元素和行内块元素 居中时候差不多(img特殊 它基与基线对齐需要修改)
+块元素:水平居中 都是margin 0 auto
+       垂直居中 1.确定父亲高度得(直接计算)
+               2.不确定的 在父亲里给上下padding
+
+
+1.单行文本在盒子里垂直居中。(text-align和line-height=高度 搁装着文本的那个盒子设置)
+2.多行文本在盒子垂直居中。盒子不给高度,用上下padding挤出来。(先不设置高,设置上下padding)
+3.文本水平方向居中。(text-align)
+4.盒子在父盒子内水平居中。
+    行内元素:和单行文本居中一样操作(给装着行内元素得盒子设置)
+    块元素分两种情况:
+        (1)确定父亲的高度,margin0auto,给margin-top:(计算到哪里是中间)
+        (2)不确定父亲高度,margin0auto和垂直居中用在父盒子加padding上下
+        行内块元素:因为有行内得特性 所以水平居中可以用text-align
+                  垂直居中用 line-height (但是上面空和下面空高度不同>>??
+                  因为图片现在基于基线对齐 修改vertical-align: middle;)
+5.盒子在父盒子内垂直居中。
+6.不给父盒子设置高度，用子盒子的高度撑开。给父盒子设置同样的上下边距。
+
+
+7.表格td里的文字默认垂直居中 加align:center 就水平居中了 (此时是单行文本,多行文本也可以)
+ 单行多行文本都可以居中
+ 行内元素,块元素,行内块元素 都能居中
+
+ 8.借助表格特性 模拟表格
+ 我们可以将单行文本 多行文本 行内元素 块元素 行内块元素 都居中
+     -->
+
+
+
+
+    <!-- 1.单行文本在盒子里垂直居中 -->
+    <div class="box1">
+             hello!
+    </div>
+    <br>
+    <!-- 2.多行文本在盒子垂直居中。盒子不给高度,用上下padding挤出来。 -->
+    <div class="box2">
+        hello! <br>hello!hello!
+    </div>
+    <br>
+    <!-- 4.盒子在父盒子内水平居中。 -->
+    <div class="container">
+        <!-- 行内元素 -->
+        <span>行内元素</span>
+    </div>
+    <br>
+
+    <div class="container1">
+        <!-- 块元素1 -->
+        <div class="kuaiyuansu1">块元素1</div>
+    </div>
+    <br>
+    
+    <div class="container2">
+        <!-- 块元素2 -->
+        <div class="kuaiyuansu2">块元素2</div>
+    </div>
+
+
+
+
+    <!-- 行内块元素 -->
+    <div class="container3">
+        <img src="../day7/1.jpg" alt="">
+    </div>
+
+
+    <br>
+
+    <!---------------------------- 表格 ----------------------------->
+    <table border="1" width="300" height="300" cellspacing="0">
+        <tbody>
+            <tr>
+                <!-- 1.单行文本 -->
+
+                <!-- 里面文本默认垂直居中 -->
+                <!-- align="center" 水平居中 -->
+                <td align="center">hello</td>
+            </tr>
+            <tr>
+                <!-- 2.多行文本 -->
+                <td align="center">
+                    hell哈哈哈哈哈哈哈哈哈哈哈哈哈<br>
+                    吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼<br>
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                </td>
+            </tr>
+            <tr>
+                <!-- 行内元素 -->
+                <td align="center">
+                    <span>行内元素</span>
+                </td>
+            </tr>
+            <tr>
+                <!-- 块元素 -->
+                <td align="center">
+                    <div>块元素</div>
+                </td>
+            </tr>
+            <tr>
+                <!-- 行内块元素 -->
+                <td align="center">
+                    <img src="/1.jpg" alt="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- -----------------------通过表格居中----------------- -->
+    <div class="ickt">
+              <!-- 单行文本 -->
+              模拟表格 <br>
+              <!-- 多行文本 -->
+              hello! <br> hello
+              <!-- 行内元素 -->
+              <span>行内元素</span>
+              <!-- 块元素 -->
+              <div>块元素</div>
+              <!-- 行内块元素 -->
+              <img src="./1.jpg" alt="">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            display: flex;
+            width: 600px;
+            height: 600px;
+            background: pink;
+        }
+
+        p {
+            flex-basis: 100px;
+            background: yellow;
+            height: 100px;
+            /* flex-grow: 1; */
+            /* flex: 1; */
+            /* align-self: center; */
+        }
+        p:nth-child(2) {
+            /* flex-shrink: 0;
+            flex-grow: 4; */
+            flex: 6;
+            align-self: center;
+            order: -1;
+        }
+        p:nth-child(3) {
+            align-self: flex-end;
+            order:-2;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        弹性子元素的属性
+        1:flex-basis  设置弹性子元素的宽度或高度 默认值auto  可以用width或height代替
+            如果是自左向右排列 flex-basis代表宽度
+            如果是自上而下排列 flex-basis代表高度
+        2:是否允许弹性子元素进行收缩 flex-shrink
+            默认值是1 允许  0不允许
+        3：flex-grow 分配弹性父元素的剩余空间 （扩展）
+        4: flex  
+            如果是一个值 代表平均分配父元素的宽度或高度
+            如果是自左向右排列分配的是父元素的宽度
+            如果是自上而下排列分配的是父元素的高度
+           flex是 flex-grow flex-shrink flex-basis 缩写  默认值 0 1 auto
+        5：弹性子元素的对齐方式 align-self(用于控制单个弹性子元素)
+           flex-start
+           flex-end
+           center
+        6：弹性子元素的顺序 order
+            值越小越靠前显示  可以为负值 必须是整数 
+     -->
+    <div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+    </div>
+</body>
+</html>

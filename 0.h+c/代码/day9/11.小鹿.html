@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100%;/*浏览器宽*/
+            height: 1000px;
+            overflow: hidden;
+        }
+        .top1{
+            background: url(bg1.png) center fixed;
+        }
+        .top2{
+            background: url(bg2.png) center fixed;
+        }
+        .top3{
+            background: url(bg3.png) center fixed;
+        }
+        p{
+            height: 200px;
+            background: rgba(255,255,255,.5);
+        }
+        .top1 p{
+            margin-top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 内容往上走 背景图片不动 -->
+    <!-- 到top1区域时候 p动 背景图不动
+    到top2区域时候 p动 背景图不动
+    到top3区域时候 p动 背景图不动 -->
+    <div class="top1"><p>1111111</p></div>
+    <div class="top2"><p>2222222</p></div>
+    <div class="top3"><p>3333333</p></div>
+</body>
+</html>

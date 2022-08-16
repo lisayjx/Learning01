@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 600px;
+            background: pink;
+            text-align: justify;
+            vertical-align:bottom;
+            /* letter-spacing:-2px;会叠加一起 */
+            letter-spacing:10px;
+        }
+
+        h1{
+            word-spacing:30px;
+            text-transform:capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- （三角形得感叹号出现 单词/语法写错了）
+
+
+        1.文本的水平对齐方式 text-align : left(默认) center right justify(两端对齐) 针对英文
+        justify后面剩余空间会放到中间去平分
+        2.垂直对齐方式：vertical-align  top  middle bottom baseline(基线)
+      
+        vertical-align为什么不生效？因为目前只对图片生效 其他不生效
+        默认是基线对齐 这个会解决图片下面的缝隙问题
+        让它写 middle或者top 或者bottom 除了baseline
+
+        3.行高=高度 垂直居中
+
+        4.字符间距letter-spacing
+        字母与字母 字和字 之间间距 
+
+        5.词间距
+        word-spacing
+        中间有空格会默认是两个词
+
+        6.英文字母大小写text-transform
+        capitalize首字母大写
+        uppercase全部大写
+        lowercase全部小写
+        none默认  相当于没设置 不是normal
+
+        7.首行缩进text-indent
+        缩进两个字 值是2em
+        没设置文字大小是16px  2em是 32px
+        如果文字大小是50px 2em 就是缩进100px
+        -2em前面两个字往前跑出去
+
+        8.文本修饰text-decoration
+        none 去掉超链接得下划线 没有线
+        underline下划线
+        overline 上划线
+        line-through 删除线 中线
+        可以一起把这个三条线都写上
+         /* 文本不换行 */
+            /* white-space: nowrap; */
+            /* 暴露空白 */
+            /* white-space: pre; */
+            /* 保留空白，正常换行 */
+            /* white-space: pre-wrap; */
+            /* 空白折叠，保留换行符 */
+            /* white-space: pre-line; */
+
+
+
+     -->
+    <div>
+        文字 heightwidth 文字 heightwidth文字 heightwidth文字 heightwidth文字 heightwidth文字 heightwidth
+   
+   <img src="../day2/1.jpg" alt="">文字文字
+<h1>
+    height width height width 文字信息 文字 信息
+</h1>
+   
+    </div>
+</body>
+
+</html>

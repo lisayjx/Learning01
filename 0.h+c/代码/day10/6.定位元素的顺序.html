@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            height: 100px;
+            width: 100px;
+
+        }
+        .link1{
+            position: absolute;
+            background-color: red;
+        }
+        .link2{
+            background-color: yellow;
+        }
+        .link3{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+正常显示顺序是橘黄色在最上面 ，那么怎么让黄色上来呢？ 
+通过z-index 可以更改定位元素的显示顺序 值越大越靠上显示 可以为负值 必须是整数
+    如果没定位 不会叠加在一起 z-index不会生效
+    z-index他必须和定位连用 才能生效
+-->
+     <div class="link1">1</div>
+     <div class="link2">2</div>
+     <div class="link3">3</div>
+</body>
+</html>

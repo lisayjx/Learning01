@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标滑上 会从上面出来覆盖层</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            overflow: hidden;
+            /*不加的话好 几个盒子 上面的盒子 覆盖层 会跑到下层盒子上
+            p会跑到div的外面
+            这样裁切 就不会了
+            */
+        }
+
+        p {
+            width: 400px;
+            height: 200px;
+            background: rgba(255, 255, 255, .5);
+            position: absolute;
+            top: -200px;
+            /*从上面滑下来*/
+            left: 0;
+            transition: 1s;
+        }
+        h1 {
+            width: 400px;
+            height: 200px;
+            background: rgba(255, 255, 255, .5);
+            position: absolute;
+            top:  200px;
+            /*从下面滑下来*/
+            left: 0;
+            transition: 1s;
+        }
+        img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        div:hover p {
+            top: 0;
+        }
+        div:hover h1 {
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        下面有盒子。鼠标滑过就从上面出现一个东西稍微透明的 会覆盖他
+    
+    -->
+    <div>
+        <img src="1.png" alt="">
+        <p>上</p>
+         
+        <h1>下</h1>
+    </div>
+
+    <!-- 
+        一个图片盒子 上面有一个p盒子
+        下面有一个h1盒子 
+        上下都是通过定位实现的
+     -->
+</body>
+
+</html>

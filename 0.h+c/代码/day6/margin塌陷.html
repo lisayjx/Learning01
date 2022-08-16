@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 1px solid blue;
+            width: 800px;
+            height: 800px;
+        }
+
+        .box1,
+        .box2 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .box1 {
+            background: green;
+            margin-bottom: 100px;
+        }
+
+        .box2 {
+            background: orange;
+            margin-top: 50px;
+        }
+
+        .father {
+            height: 200px;
+            background-color: pink;
+
+        }
+
+        .son {
+            height: 100px;
+            background-color: red;
+            margin-left: 50px;
+
+
+        }
+
+        .sunzi {
+            height: 50px;
+            background-color: yellow;
+            margin-left: 50px;
+
+        }
+
+        .ickt{
+            font-size: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+上下塌陷，左右不塌陷
+
+
+
+同级元素分别设置了上下外边距，两个盒子之间的上下外边距会产生合并(塌陷)，之间的距离以设置的
+margin-bottom (上面盒 )或margin-lop (下面盒 ）的值中较大的那个为准。
+存在嵌套关系的元素，父盒子在不设置padding、border、overflow等属性的情况下，会出现外边距合并（塌陷)问题，
+嵌套关系的元素如果同时设置了上下外边距以最大的那个为准
+
+
+     -->
+
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+
+    <br> <br> <br> <br> <br> <br> <br>
+    <!--
+        1.同一个父元素中的两个子元素互为兄弟元素 （兄弟之间的塌陷）
+
+        若是给box1加下外边距100，box2盒子加上外边距50px
+        最后他俩之间的距离是100
+        若是给box1加下外边距100，box2盒子加上外边距150px
+        最后他俩之间的距离是150
+
+        以最大的距离为准
+  -->
+
+
+
+    <!-- 
+        2.父子与后代元素之间的塌陷
+
+        若是给son加一个margin-top: 100px; 此时父亲和儿子都往下100px 上面有空白（给子元素设置上边距 传递到父元素去了，若是父元素也设置上外边距，会与子元素合并）
+        给父亲上外边距100 再给儿子上外边距100 此时 上面空白还是100
+        若是给孙子元素margin-top: 100px; 此时整体也会距离上边100px 
+
+
+        后代元素设置的上边距会一直传递到body
+        父元素的上边距会与后代元素上边距合并 保留大的
+
+        3.解决塌陷问题
+
+        父盒子设置padding，border，overflow等属性的情况下，会出现外边距合并（塌陷）问题，
+        嵌套关系的元素同时设置了闪光下外边距以最大的那个为准
+
+        不想让孙子向上传递，给儿子里设置padding：1px（恩断义绝线）设置padding值得>=1
+        设置border，若是不想让儿子影响父亲，就在父亲加个边框（恩断义绝线）
+        加overflow：hidden
+
+        你想阻止谁就在谁的父亲加这三个其中一个，不是设置了一个就行
+    
+    -->
+    <hr>
+    <div class="father">
+        <!-- 子元素 -->
+        <div class="son">
+            <!-- 后代元素 -->
+            <div class="sunzi"></div>
+        </div>
+    </div>
+
+    <!-- 这么放图片没缝隙 -->
+    <img src="../day2/img/1.jpg" alt=""><img src="../day2/img/1.jpg" alt="">
+    <br>
+
+    <!-- 这么放图片有缝隙 ，因为之前说过好多空格会显示一个空格-->
+    <!-- 1.在ickt中写一个font-size：0 就好了
+    因为img也算是一类文本 他会把中间空白符写出来 
+    2.把img 加display：block 变成块元素 会上下显示 没缝隙
+    -->
+    <div class="ickt">
+        <img src="../day2/img/1.jpg" alt="">
+        <img src="../day2/img/1.jpg" alt="">
+    </div>
+
+
+
+    <!-- 
+
+总结
+1子元素设置了上边距,默认传递给父元素 
+2父元素设置了上边距，会与子元素合并 
+     合并的时候，以大的为准 
+3后代元素设置的上边距会一直传递到body  
+4父元素的上边距会与后代元素上边距合并，保留大的 
+5可以通过padding，overflow，border来阻止margin-top的传递，必须显性设置
+6兄弟元素之间上下外边距会合并，保留大的 
+7左右边距不会合并 
+
+     -->
+</body>
+
+</html>

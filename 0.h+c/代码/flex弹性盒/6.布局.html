@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+           background-color: #ddd;
+            display: flex;
+            height: 100vh;
+            /* padding: 50px; */
+        }
+
+        aside {
+            width: 100px;
+            /* background-color: pink; */
+            border: 1px solid #000;
+        }
+
+        main {
+            flex: 1;
+            /* background-color: orange; */
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        .title {
+            height: 60px;
+            /* background-color: red; */
+            border-bottom: 1px solid #000;
+            border-top: 1px solid #000;
+        }
+
+        section {
+            flex: 1;
+            /* background-color: #f3f3f3; */
+            display: flex;
+            
+        }
+        .you{
+            flex: 1;
+            /* background-color: blue; */
+            display: flex;
+            flex-direction: column;
+        }
+        .you-1{
+            /* background-color: green; */
+            height: 150px;
+        }
+        .you-2{
+            /* background-color: orange; */
+            height: 300px;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .zuo {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #000;
+        }
+        .zuo-1{
+            height:150px ; 
+            /* background-color: yellow; */
+            display: flex;
+        }
+        .zuo-1 div{
+            flex: 1;
+            /* background-color: pink; */
+            border-bottom: 1px solid #000;
+        }
+        .zuo-1 div:nth-child(n+2){
+            border-left: 1px solid #000;
+        }
+        .zuo-2{
+            flex: 1;
+            /* background-color: blue; */
+            display: flex;
+            flex-direction: column;
+        }
+        .zuo-2 div{
+            flex: 1;
+            /* background-color: green; */
+        }
+        .zuo-2 div:nth-child(n+2){
+            border-top: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左侧的 -->
+    <aside></aside>
+    <!-- 右侧 -->
+    <main>
+        <!-- title -->
+        <div class="title"></div>
+        <!-- 内容 -->
+        <section>
+            <!-- 左 -->
+            <div class="zuo">
+                <div class="zuo-1">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="zuo-2">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="you">
+                <div class="you-1"></div>
+                <div class="you-2"></div>
+            </div>
+            <!-- 右 -->
+        </section>
+    </main>
+</body>
+
+</html>

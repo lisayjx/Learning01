@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            margin: 100px auto;
+            height: 10px;
+            width: 200px;
+            border: 1px solid #eee;
+        }
+        .dian{
+            height: 10px;
+            width: 0;
+            background-color: #eee;
+            overflow: hidden;
+            animation: w 5s steps(20) forwards infinite;
+        }
+        @keyframes w{
+            0%{
+                width: 0;
+            }
+            100%{
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 最开始宽度从0开始，直到200 步长是20 说明每一步是10 forwords从头开始 无限循环 -->
+    <div class="box">
+        <div class="dian"></div>
+    </div>
+</body>
+</html>

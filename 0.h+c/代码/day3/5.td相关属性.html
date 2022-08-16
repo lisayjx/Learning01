@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        td相关属性
+        width，height
+        设置td中的一个宽高，就能管一行，以最大的数生效
+        bgcolor生效一个格
+        align 这个单元格内容的水平对齐方式
+        valign  这个单元格内容的垂直对齐方式 top middle bottom
+特有属性
+        合并
+        行合并rowspan
+        列合并colspan
+        合并时候需要把合并的删除 否则会导致多出来一行
+        行不同就是行合并，列不同就是列合并
+
+        加入table和tr和td都写了边框颜色，哪个生效呢？ td生效，离得最近的生效
+     -->
+
+     <table border="1" cellspacing="0">
+        <tr>
+            <td width="100" heigth="150" bgcolor="pink" align="right" valign="bottom">1</td>
+            <td width="200">1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td height="150">1</td>
+            <td>1</td>
+            <td rowspan="2">1</td>
+        </tr>
+        <tr>
+            <td height="300">1</td>
+            <td colspan="2">1</td>
+            <!-- <td>1</td> -->
+        </tr>
+    </table>
+</body>
+</html>

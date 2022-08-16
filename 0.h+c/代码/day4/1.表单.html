@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        作用：收集用户信息
+        表单的组成：表单域form、表单控件input select textarea 提示信息 label
+
+        1.表单控件input  通过type属性更改表单控件
+        文本框 text 你输入啥就显示啥
+        密码框 password：输入的东西都是点
+        单选按钮 radio ：只能选择一个 必须要添加name  一组保持一致 若是没有name="sex"这个就都可以点了 不行
+        复选框 checkbox checked是默认选择的哪个
+        上传文件域 file
+        图像域 image
+        普通按钮 button ,字用value="按钮"写 通过js实现普通跳转
+        重置按钮 reset 会把数据恢复到初始状态 没写的时候
+        提交按钮 submit 页面会刷新一下 只有提交按钮才能起到提交的作用
+        隐藏按钮 hidde 前台界面看不见
+    -->
+    <!-- form表单域 ，要是不被表单域包括，那些按钮得功能都没实现 比如提交也没反应-->
+    <form action="#">
+        <!-- 文本框 -->
+        <input type="text" value="红米">
+        <input type="password">
+        性别：
+        <input type="radio" name="sex">男
+        <input type="radio" name="sex"> 女
+        婚姻状况：
+        <input type="radio" name="marry">未婚
+        <input type="radio" name="marry"> 已婚
+        <input type="radio" name="marry"> 离异
+        爱好：
+        <input type="checkbox" checked>打球
+        <input type="checkbox">篮球
+        <input type="checkbox">足球
+        上传文件域：
+        <input type="file">
+        上传图片域：
+        <input type="image" src="1.jpg">
+        <!-- 有图的时候,此时图像域可以当作提交按钮使用 -->
+        普通按钮：
+        <input type="button" value="普通按钮">
+        重置按钮：
+        <input type="reset" value="重置按钮">
+        提交按钮：
+        <input type="submit" value="提交按钮">
+        隐藏按钮：
+        <input type="hidden" value="隐藏">
+    </form>
+</body>
+
+</html>

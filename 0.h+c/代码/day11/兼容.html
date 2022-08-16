@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background: orange/9;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- 写的代码写的再对都会出现的兼容问题 -->
+    <!-- 最次应该考虑ie8  window7要考虑ie8 -->
+
+    
+        一.html的兼容（针对IE浏览器，IE淘汰了）忽略
+         ctrl+/  ：注释
+例如：
+  这些是注释，但是ie8及以上 不会把他当注释 会解析出来
+     <!-- [if lt IE 9] >
+        <h1>.11111111. </h1>
+        < ![endif] -->
+    lt小于 gt大于
+
+ 
+
+
+
+
+       二.css的兼容
+1.插入的图片会乡下撑大3px（像素）
+<p>
+    <img src="./1.png" alt="">
+</p>
+怎么解决呢？ 
+解决方式一：vertical-alig：会解决
+解决方式二：display：block  （因为图片是行内块 才会出现撑大 基线对齐）
+解决方式三：给父级设置font-size：0   （不建议）
+   
+
+2.使用图片做超链接（图片会出现边框）
+超链接默认存在下划线
+如果给a去掉下划线 ie里还依然存在 下划线在图片外成为边框线
+ie10一下都会出现这种情况  从11开始就不会了
+解决方式： 给img设置border：none  
+
+3.表单行高不一致
+两个表单 在最上顶 距离顶的距离不同
+解决方式：给input设置float属性 
+（做搜索框时候 左边input右边搜索框时候会用到）
+
+4.表单高度不一致
+按钮 默认按照怪异盒解析
+解决方式：按钮和表单不一样高的话 都设置成怪异盒子
+          或者给按钮单独设置高度（边框线要统一）
+
+5.透明度的兼容
+opciaty 值 0~1  其他浏览器支持  IE低版本不支持
+filter：alpha（opciaty=值）  值0-100
+
+6.鼠标哦指针变成小手
+cursor：pointer  都支持
+cursor：hand ie 有的不支持
+help 问号  wait 转圈圈
+
+7.针对ie浏览器生效
+属性前添加*  ie7以下
+属性前加_  ie7一下
+
+在属性值后面添加\9 或者\0
+ background: orange\9; ie10以下支持
+ background: orange\0; ie8以上支持
+
+
+
+
+<input type="text">
+<input type="password">
+<input type="button" value="按钮">
+</html>
+</body>

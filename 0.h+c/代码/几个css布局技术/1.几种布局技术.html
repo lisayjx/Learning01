@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1000px;
+            /* height: 1500px; */
+            margin: 30px auto 0px;
+            border: 2px solid red;
+        }
+
+        /* 左右两列的布局 */
+        .column2 {
+            border: 1px solid #000;
+            /* overflow: hidden; */
+        }
+
+        .column2-1 {
+            float: left;
+            width: 700px;
+            height: 300px;
+            background-color: red;
+        }
+
+        .column2-2 {
+            float: right;
+            width: 280px;
+            height: 300px;
+            background-color: yellow;
+        }
+
+        .clear {
+            /*他前面的只要有浮动就清除*/
+            clear: both;
+        }
+
+        /* 2.一行3列的盒子 */
+        .column3 {
+            margin-top: 20px;
+        }
+
+        .column3-1 {
+            width: 200px;
+            height: 300px;
+            background-color: skyblue;
+            float: left;
+        }
+
+        .column3-2 {
+            width: 400px;
+            height: 300px;
+            background-color: pink;
+            float: left;
+            margin: 0 20px;
+        }
+
+        .column3-3 {
+            float: left;
+            width: 360px;
+            height: 300px;
+            background-color: blueviolet;
+        }
+        .clearfix::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        /* 3.一行多列，多行多列布局 */
+        .column-n{
+            /* border: 2px solid blue; */
+            margin-top: 20px;
+        }
+        .column-n ul{
+            background-color: purple;
+        }
+        .column-n ul li{
+            float: left;
+            list-style: none;
+            /* border: 1px solid #f0f; */
+            width: 190px;
+            height: 200px;
+            margin: 5px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 1.左右两列的布局 -->
+        <div class="column2">
+            <div class="column2-1"></div>
+            <div class="column2-2"></div>
+            <div class="clear"></div>
+        </div>
+        <!-- 2.一行3列的盒子,全部左浮动，或者 前两个左浮动最后一个右浮动 中间的空隙就可以根据情况伸缩 不会盒子掉下来（因为边框有他有可能掉下来） -->
+        <div class="column3 clearfix">
+            <div class="column3-1"></div>
+            <div class="column3-2"></div>
+            <div class="column3-3"></div>
+        </div>
+        <!-- 3.一行多列，多行多列布局 用ul-->
+        <div class="column-n">
+            <ul class="clearfix">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

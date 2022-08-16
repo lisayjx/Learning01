@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            width: 400px;
+            height: 300px;
+            /* background-color: pink; */
+            margin: 200px auto;
+            border: 3px solid #ddd;
+            padding: 20px 0;
+            box-sizing: border-box;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav img {
+            width: 100%;
+            height: 100%;
+        }
+
+        nav div {
+            width: 600px;
+            height: 300px;
+        }
+        nav div:nth-of-type(1){
+            width: 600px;
+            height: 300px;
+            position: absolute;
+            left: -395px;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            transform-origin: left bottom;
+            transform: rotate(-37deg);
+            transition: 1s;
+        }
+        nav div:nth-of-type(2){
+            width: 300px;
+            height: 600px;
+            position: absolute;
+            left:395px; 
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            transform-origin:left bottom;
+            transform: rotate(53deg);
+            transition: 1s;
+        }
+        nav:hover div:nth-of-type(1){
+            left: 0;
+        }
+        nav:hover div:nth-of-type(2){
+            left: 0;
+        }
+        nav:hover .chang{
+            transform: scale(1);
+        }
+        .chang{
+            position: absolute;
+            top: 90px;
+            width: 100%;
+            height: 150px;
+            background-color: rgba(0,0,0,0.5);
+            text-align: center;
+            color: #fff;
+            transform:  scale(0)  skew(90deg);
+            transition: 1s 0.5s;
+        }
+        .chang h3{
+            height: 50px;
+            /* width: 100%; */
+            border-bottom: 1px solid #fff;
+            line-height: 50px;
+        }
+        .chang P{
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 思路：
+    两个定位在nav里的大盒子 都定位在左下角，上边的网上旋转 下边的往下旋转
+    然后两个盒子都left出去 溢出隐藏 鼠标移过来显示
+    
+    nav里再加一个长方形盒子装文字
+    本来是缩放0 就是给他隐藏+倾斜90deg  然后鼠标过去就缩放1（顶算是他本身） 
+    -->
+    <nav>
+        <img src="./tu.jpg" alt="">
+        <div></div>
+        <div></div>
+
+        <!-- 中间长方形 -->
+        <div class="chang">
+            <h3>你好你好</h3>
+            <p>你好你好年号你好</p>
+        </div>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            font-size: 50px;
+            font-family: "楷体";
+            font-weight: bold;
+            font-style: italic;
+            color: red;
+            font-variant: small-caps;
+            line-height: 2;
+            text-align: center;
+            vertical-align: middle;
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-indent: 2em;
+            word-spacing: 30px;
+            letter-spacing: 50px;
+            float: left;
+            overflow: hidden;
+            margin: 50px;
+            padding: 20px;
+            border: 10px solid #000;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 100px;
+            height: 600px;
+            background: palegoldenrod;
+        }
+
+        ul {
+            list-style-type: circle;
+            list-style-image: url(./bg.png);
+            list-style-position: inside;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        继承：子元素拥有父元素的东西叫做继承
+        那些属性可以继承
+        文字的相关设置几乎都可以继承 除vertical-align text-decoration
+        盒子的相关属性都不可以继承（margin padding borderd content）
+        定位属性 溢出属性 都不可以继承
+        列表元素的属性都可以继承
+
+        注意：超链接的文字颜色除外
+     -->
+
+     <div>
+        <p>111111aaaaAAA文字信息 height color</p>
+        <a href="#">超链接</a>
+        <ul>
+            <li>wwww</li>
+        </ul>
+     </div>
+</body>
+</html>

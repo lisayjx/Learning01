@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link {
+            background-color: pink;
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .link1 {
+            background-color: orange;
+            width: 400px;
+            height: 200px;
+            float: left;
+        }
+
+        .link2 {
+            background-color: green;
+            width: 600px;
+            height: 300px;
+            float: left;
+        }
+
+        .nav {
+            height: 100px;
+            background-color: blue;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        产生原因：
+        子元素浮动 父元素没设置高度(内容高)，会造成父元素高度塌陷
+        
+解决方式
+1：外墙法
+在塌陷得div外部添加空div，设置clear：both  这里link塌陷了 就给link加
+可以解决下面的盒子上来的问题，但是塌陷得区域依然没高度
+
+2.内墙法（不利于SEO）
+在浮动的元素后面加一个空div 设置clear：both
+可以解决下面的盒子上来的问题，但是塌陷得区域也可以解决  
+
+3.给塌陷得元素添加overflow属性 值可以为hidden 或者scroll auto 都行
+   hidden内容存在溢出 会被裁切
+   scroll无论是否溢出都会出现滚动条导致排版不正常
+   auto如果内容存在溢出会出现滚动条
+   4.万能清除法
+   父元素：after{
+    content：'';
+    display:block;
+    clear:both;
+    height:0
+    overflow:hidden:
+    visibility:hidden;
+   }
+
+   5.封装万能清除法  哪块塌了放哪
+   .clearfix：after{
+    content：'';
+    display:block;
+    clear:both;
+    height:0
+    overflow:hidden:
+    visibility:hidden;
+   }
+
+   6.给父元素设置高度（严格意义上来讲这个方式不算）
+   因为塌陷是因为没给高度
+   如果把所有高度都定死了 但是不利于维护 而且有的东西需要padding
+-->
+
+    <div class="link clearfix">
+        <div class="link1">1</div>
+        <div class="link2">2</div>
+    </div>
+    <!-- <div class="kong"></div> -->
+    <div class="nav"></div>
+</body>
+
+</html>

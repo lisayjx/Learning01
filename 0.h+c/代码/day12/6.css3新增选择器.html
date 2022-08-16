@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* +兄弟选择器 */
+        div+span {
+            color: red;
+        }
+
+        /* ~兄弟 */
+        div~span {
+            color: blue;
+        }
+
+        /* 属性选择器 */
+        input[value] {
+            /* 所有input带value的都会变色 */
+        }
+
+        input[value='abc'] {
+            /*  input带value的值是abc的 会变色 */
+        }
+
+        input[value='abc'] {
+            /*  input带value的值是abc的 会变色 */
+        }
+
+        input[value|='abc'] {
+            /*  input带value的值必须包含abc，abc必须是独立存在的且以abc开头的 abc或者 abc-aaa.. 会变色 */
+        }
+
+        input[value^='abc'] {
+            /*  input带value的值abc开头  会变色 */
+        }
+
+        input[value$='abc'] {
+            /*  input带value的值abc结尾的  会变色 */
+        }
+
+        input[value*='abc'] {
+            /*  input带value的值存在abc的  会变色 */
+        }
+
+
+        input:enabled {
+            border: 5px solid red;
+        }
+
+        input:disabled {
+            /*用于属性里有禁用的*/
+            border: 5px solid gray;
+        }
+
+        input:checked {
+            background: #000;
+            /*不变*/
+            height: 20px;
+            /*可以变*/
+        }
+
+        :target {
+            /*点击哪个锚点，哪个锚点对应的元素就会变色*/
+            background-color: green;
+        }
+
+        :not(h1)
+
+        /*除了h1以外的元素都变色*/
+            {
+            color: #000;
+        }
+
+        q:lang(no){
+            quoter:'~''~'
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+1.基本选择器 
+标签选择器 id  class  通配符 并集
+2.伪元素选择器
+after before first-line first-letter selection 
+3.关系选择器
+后代 空格
+子代 大于号
+相邻兄弟 + 只找后边紧挨着得第一个兄弟 前边不找
+通用兄弟 波浪线~ 后边得所有兄弟
+4.属性选择器   []
+html的属性
+
+5.伪类选择器
+  （1）link cisited hover active focus
+
+   (2)UI元素状态伪类选择器
+   :enabled
+   :disable
+   :checked
+
+   (3)目标伪类选择器
+   ：target 链接打开方式  超链接锚点所指向的元素
+   :not(你要否定的内容)
+   语言伪类选择器（了解）<q>会给文字加引号</q>
+   :lang(no)
+
+  
+
+
+
+
+     -->
+</body>
+
+
+<span></span>
+<div></div>
+<span>1</span>
+<span>2</span>
+<div></div>
+<h1></h1>
+<span></span>
+<input type="text" value="abc">
+<input type="text" value="abc-a">
+<input type="text" value="abcaa">
+<input type="text" value="aaa-abc-bbb">
+<input type="text" value="aaaabgaabc">
+
+<input type="text" disabled>
+<input type="radio" checked>
+
+<a href="#top"></a>
+<div id="top">123</div>
+
+
+<q lang="no">文字</q>
+</html>

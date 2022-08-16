@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 200px;
+            width: 200px;
+        }
+
+        .top1 {
+            background-color: red;
+            white-space: normal;
+        }
+
+        .top2 {
+            background-color: pink;
+            white-space: pre;
+        }
+
+        .top3 {
+            background-color: blue;
+            white-space: pre-wrap;
+        }
+
+        .top4 {
+            background-color: blueviolet;
+            white-space: pre-line;
+        }
+
+        .top5 {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+空白空间属性：white-space
+normal默认值
+pre 回车换行 缩进都会解析出来 代码里打得什么格式就输出啥格式  遇到边界不会换行，遇到br才会换行
+pre-wrap 内容遇到边界会换行
+pre-line 不会解析缩进，内容和内容中间的空格也不解析 只解析回车换行 内容遇到边界会换行
+nowrap 内容遇到边界不会换行 遇到br会换行 强制在一排显示 忽略所有的回车 换行 缩进 内容遇到边界不会换行 遇到br会
+   ..
+工作中常用nowrap
+
+-->
+    <div class="top1">
+        信息哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+    </div>
+    <div class="top2">信息哈<br> 哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top3">信息哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top4">信息哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top5">信息哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+</body>
+
+</html>

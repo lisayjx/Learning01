@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--
+        表单域form
+    在表单中如果没有form标签 不影响最终显示效果，但是会影响功能
+
+    form属性：
+    name 表单的名称
+    method 表单的提交方式和方法
+    值：
+    get获取 从服务器上得到 安全性低 效率高 （网址上会有名字和密码）
+    post 上传 向服务器上传 安全性高 效率低
+
+    action 表单的提交地址（服务器地址）
+    target 标单在哪里提交 默认当前页面_self 新窗口提交_blank
+      -->
+  <!-- 是get时候 连hidden值都会显示在网址上 -->
+  <!-- <form name="login"  megthod="get" action="#" target="_blank">
+        <input type="text" name="user">
+        <input type="submit" value="提交">
+        <input type="hidden" name="456">
+      </form> -->
+
+  <form name="login" method="post" action="#" target="_blank">
+    <input type="text" name="user">
+    <input type="submit" value="提交">
+    <input type="hidden" name="456">
+  </form>
+
+  <!-- input之类的一定要在form区域内,要不不会好使 -->
+  <!-- form没有不影响显示效果 但是影响功能 -->
+
+
+
+</body>
+
+</html>

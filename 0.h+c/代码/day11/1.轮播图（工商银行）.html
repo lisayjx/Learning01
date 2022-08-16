@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .banner{
+            position: relative;
+            height: 380px;/*img的高度*/
+            background: red;
+            overflow: hidden;/*从最右侧裁切 导致后边内容看不见*/
+        }
+        .banner img{
+            position: absolute;
+            left: calc(50%-950px);/*50% 减去图片宽度一半*/
+        }
+    </style>
+</head>
+
+<body>
+   <!--  
+     <div class="banner">
+        <img src="" alt="">
+        直接插入图片的这种：能达到全屏 随着缩放而变化
+        窗口缩小的话 图片也会跟着变 会出现滚动条
+        -->
+
+        <div class="banner">
+<img src="banner.jpg" alt="">
+        </div>
+
+        <!-- 不想让他出现滚动条 且不会跟着变化 
+          overflow: hidden;/*从最右侧裁切 导致后边内容看不见*/
+          但是银行那个 是左右都会裁切
+          想让他左右同时溢出 怎么办 就让图在正中间去裁切
+          怎么让图在最中间？？？？
+          （定位）水平垂直居中
+            position: absolute;
+？？？？？  left: calc(50%-950px);/*50% 减去图片宽度一半*/  （看那个calc().html）
+            但是这是出现了滚动条（裁切没生效）
+            因为position脱离正常文档流 所以此时相对于浏览器窗口定位
+            要让他根据父级定位 所以要给banner设置相对定位
+
+        -->
+
+        <!-- 写完这个 在写上面那个小盒子 小盒子会被覆盖 因为bannerimg有定位
+        但是不能用z-index
+        这里用相对定位（不脱离文档流） ，否则 用别的定位会 脱离文档流 margin 0 auto不生效了
+       
+        -->
+     </div>
+</body>
+
+</html>

@@ -1,0 +1,718 @@
+.banxin {
+    width: 1175px;
+    margin: 0 auto;
+}
+
+/* 1.header */
+.header {
+    height: 90px;
+    line-height: 90px;
+}
+
+/* logo */
+.header .logo {
+    float: left;
+    margin-right: 70px;
+    margin-top: 10px;
+}
+
+.header .logo h1 {
+    width: 227px;
+    height: 70px;
+    background: url(../img/主页/主页logo.png) no-repeat center;
+    text-indent: -9999em;
+
+}
+
+/* nav */
+.header .nav {
+    float: left;
+    height: 90px;
+}
+
+.header .nav ul li {
+    float: left;
+}
+
+.header .nav ul li a {
+    height: 90px;
+    line-height: 90px;
+    padding: 0 35px;
+    display: block;
+    font-size: 12px;
+    color: #000;
+}
+
+.header .nav ul li a:hover {
+    border-bottom: 3px solid #e4392a;
+}
+
+/* tel */
+.header .tel {
+    float: right;
+    height: 90px;
+}
+
+.header .tel span {
+    font-size: 14px;
+    color: #e4392a;
+}
+
+.header .tel span::before {
+    content: url(../img/主页/tel_bg.png);
+    vertical-align: middle;
+}
+
+/* 2.banner */
+.banner {
+    margin-top: 2px;
+    position: relative;
+    height: 800px;
+}
+
+.banner img {
+    position: relative;
+    position: absolute;
+    left: calc(50%-960px);
+    /* width: 100%; */
+    /* width: 100px; */
+}
+
+.banner .wenzi {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -106px;
+    margin-left: -380px;
+    height: 212px;
+    width: 760px;
+    font-family: '微软雅黑';
+    font-weight: 400;
+}
+
+.banner .wenzi p {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.banner .wenzi h1 {
+    font-size: 65px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.banner .wenzi h6 {
+    font-size: 26px;
+    color: #dd382a;
+    font-weight: 400;
+}
+
+
+
+.banner .gang {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    height: 5px;
+}
+
+.banner .gang a {
+    display: inline-block;
+    height: 5px;
+    padding: 0 30px;
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.banner .gang a:hover {
+    background-color: #e4392a;
+}
+
+/* 3.网思服务main */
+.fuwu {
+    height: 655px;
+    /* background-color: red; */
+}
+
+/* 和下面的td的公共部分 */
+.fuwu .td,
+.anli .td,
+.dongtai .td,
+.contact .td {
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 55px;
+    height: 235px;
+    /* background-color: pink; */
+}
+
+.fuwu .td h1,
+.anli .td h1,
+.dongtai .td h1,
+.contact .td .h1 {
+    font-size: 28px;
+    font-weight: 400;
+    font-family: '微软雅黑';
+
+}
+
+.fuwu .td p,
+.anli .td p,
+.dongtai .td p,
+.contact .td p {
+    margin-top: 22px;
+    margin-bottom: 32px;
+    font-size: 16px;
+    color: #caced1;
+}
+
+.fuwu .td span,
+.anli .td span,
+.dongtai .td span,
+.contact .td span {
+    display: block;
+    height: 1px;
+    width: 40px;
+    background-color: #000;
+    margin: 0 auto;
+}
+
+/*  */
+.fuwu .bd {
+    height: 420px;
+    /* background-color: orange; */
+}
+
+.fuwu .bd .bd-box {
+    box-sizing: border-box;
+    padding: 30px 50px;
+    text-align: center;
+    float: left;
+    height: 420px;
+    width: 292px;
+}
+
+.fuwu .bd .bd-box .yuanyuan {
+    padding: 5px;
+    height: 140px;
+    width: 140px;
+    border: 4px solid #dedede;
+    border-radius: 50%;
+}
+
+.fuwu .bd .bd-box .yuan {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background: #ebecf0 url(../img/主页/m2.png) center;
+    border-radius: 50%;
+
+}
+
+.fuwu .bd .bd-box h5 {
+    margin-top: 60px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    font-weight: normal;
+}
+
+.fuwu .bd .bd-box .xian {
+    width: 6px;
+    height: 6px;
+    background-color: #000;
+}
+
+.fuwu .bd .bd-box span {
+    margin: 0 auto;
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.fuwu .bd .bd-box p {
+    text-align: left;
+    font-size: 12px;
+}
+
+/* 4.网思案例 anli */
+.anli {
+    height: 1000px;
+    background: url(../img/主页/bg_1.png) no-repeat;
+    background-size: 100% 100%;
+    /* background-color: red; */
+}
+
+.anli .bd {
+    height: 652px;
+    /* background-color: orange; */
+}
+ 
+.anli .bd .left,
+.anli .bd .right {
+    float: left;
+    width: 574px;
+    height: 652px;
+}
+
+.anli .bd .left {
+    margin-right: 27px;
+}
+
+.anli .bd img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.anli .bd .left ul,
+.anli .bd .right ul {
+    height: 652px;
+    /* background-color: green; */
+}
+
+
+.anli .bd .left ul li,
+.anli .bd .right ul li {
+    float: left;
+    height: 185px;
+    width: 270px;
+    /* background-color: blue; */
+    margin-bottom: 30px;
+    /* 为了遮罩 */
+    position: relative;
+    overflow: hidden;
+}
+
+.anli .bd .right ul li:nth-child(5),
+.anli .bd .right ul li:nth-child(6) {
+    margin-bottom: 0;
+}
+
+.anli .bd .left ul li:nth-child(2),
+.anli .bd .left ul li:nth-child(3) {
+    margin-bottom: 0px;
+}
+
+.anli .bd .left ul li:nth-child(2) {
+    margin-right: 30px;
+}
+
+.anli .bd .left ul .datu {
+    width: 570px;
+    height: 398px;
+    /* background-color: purple; */
+}
+
+.anli .bd .right ul li:nth-child(odd) {
+    margin-right: 30px;
+}
+/* 遮罩 */
+.anli .bd  li::before{
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: rgba(255,0,0,.5);
+    width: 100%;
+    height: 100%;
+    transition:  all .6s;
+}
+.anli .bd  li:hover::before{
+    top: 0;
+}
+/* 右箭头 */
+.anli .bd .yjt {
+    display: block;
+    margin: 0 auto;
+    height: 70px;
+    width: 70px;
+    background: #000014 url(../img/主页/arr2.png) no-repeat center;
+    clear: both;
+    border-radius: 50%;
+}
+.anli .bd .yjt:hover{
+    background-color: #f00;
+}
+
+/* 5.网思动态 */
+.dongtai {
+    height: 585px;
+    background: url(../img/主页/主页下bg.png) no-repeat center;
+    background-size: 100% 100%;
+    margin-top: -24px;
+    /*正好严丝合缝对上上面的边*/
+}
+
+.dongtai .td {
+    padding-top: 26px;
+    color: #fff;
+    height: 150px;
+}
+
+.dongtai .td span {
+    background-color: #fff;
+}
+
+.dongtai .bd {
+    height: 410px;
+    /* background-color: red; */
+}
+
+.dongtai .bd .bd-box {
+    /* 为了遮罩 */
+    overflow: hidden;
+    position: relative;
+
+    float: left;
+    padding-top: 10px;
+    width: 290px;
+    height: 320px;
+    /* background-color: pink; */
+    margin-right: 5px;
+}
+
+.dongtai .bd .bd-box:nth-child(4) {
+    margin-right: 0px;
+}
+
+.dongtai .bd .bd-box .time {
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 77px;
+    height: 83px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-family: '微软雅黑';
+}
+
+.dongtai .bd .bd-box .time h4 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.dongtai .bd .bd-box .time p {
+    text-align: left;
+    font-size: 12px;
+}
+
+.dongtai .bd .bd-box h5 {
+    font-size: 16px;
+    width: 175px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 23px;
+    margin-bottom: 28px;
+    color: #fff;
+    font-family: '微软雅黑';
+    font-weight: normal;
+}
+
+.dongtai .bd .bd-box p {
+    font-size: 12px;
+    color: #fff;
+    font-family: '微软雅黑';
+
+
+    /* 要想文本过多时,不想让文字超出盒子,必须要设置盒子的宽度 */
+    width: 219px;
+    /* 除了上面一定要设置宽度外,还需要满足下面的条件 */
+    /* 文本显示省略号 */
+    text-overflow: ellipsis;
+    /* 溢出的内容将它隐藏 */
+    overflow: hidden;
+    /* 主要控制父元素容器里面子元素的排列方式 */
+    display: -webkit-box;
+    /* 实现限制文字显示多少行,也就是说要多少行是出现省略号,我这里设置两行就让文本出现省略号 */
+    -webkit-line-clamp: 2;
+    /* 属性规定框的子元素应该被水平或垂直排列 */
+    -webkit-box-orient: vertical;
+}
+
+.dongtai .bd .bd-box .yuan {
+    height: 40px;
+    width: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: url(../img/主页/arr2.png) no-repeat center;
+    margin-top: 40px;
+}
+
+.dongtai .bd .more {
+    display: block;
+    margin: 0 auto;
+    clear: both;
+    width: 180px;
+    height: 50px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    transition: all 0.5s;
+}
+
+.dongtai .bd .more:hover {
+    background-color: rgba(255, 255, 255, .6);
+    color: #000;
+}
+/* 动态上下夹盒子 */
+.dongtai .bd .shang{
+position: absolute;
+top: -50%;
+width: 100%;
+height: 50%;
+background-color: pink;
+}
+.dongtai .bd .xia{
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -50%;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(0,0,34);
+    padding: 20px;
+}
+.dongtai .bd .xia h4{
+    color: #fff;
+    margin-bottom: 30px;
+}
+.dongtai .bd .bd-box:hover .shang{
+    top: 0;
+    transition: all .6s;
+}
+.dongtai .bd .bd-box:hover .xia{
+    bottom: 0;
+    transition: all .6s;
+}
+/* 联系我们 contact */
+.contact {
+    height: 534px;
+    /* background-color: pink; */
+}
+
+.contact .td {
+    height: 200px;
+}
+
+.contact .bd {
+    height: 250px;
+    /* background-color: pink; */
+}
+
+.contact .zuo {
+    float: left;
+    width: 442px;
+    /* height: 2px; */
+    /* background-color: green; */
+}
+
+.contact .you {
+    float: right;
+    width: 729px;
+    /* height: 330px; */
+    /* background: black; */
+}
+
+.contact .bd .zuo ul {
+    height: 80px;
+}
+
+.contact .bd .zuo ul .kuai {
+    float: left;
+    height: 30px;
+    width: 30px;
+    background: url(../img/主页/icon2.png) 0 0;
+    margin-right: 30px;
+}
+
+.contact .bd .zuo ul .zi {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+}
+
+.contact .bd .zuo ul:nth-child(2) .kuai {
+    background: url(../img/主页/icon2.png) 0 -75px;
+}
+
+.contact .bd .zuo ul:nth-child(3) .kuai {
+    background: url(../img/主页/icon2.png) 0 -269px;
+}
+
+.contact .bd .you .biao {
+    padding-top: 20px;
+    padding-left: 10px;
+    width: 720px;
+    height: 217px;
+    /* background-color: red; */
+}
+
+.contact .bd .you .biao input {
+    width: 340px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    outline: none;
+}
+
+.contact .bd .you .biao input:last-child {
+    margin-right: 0;
+}
+
+.contact .bd .you .biao textarea {
+    resize: none;
+    width: 690px;
+    height: 92px;
+    outline: none;
+}
+
+.contact .bd .you .biao a {
+    display: block;
+    width: 695px;
+    height: 30px;
+    background-color: #63637f;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+}
+
+/* footer */
+.footer {
+    padding-top: 100px;
+    height: 240px;
+    /* background-color: red; */
+    background: url(../img/主页/主页下bg2.png) no-repeat;
+}
+
+.footer .banxin {
+    /* height: 220px; */
+}
+
+.footer dl {
+    float: left;
+    margin-right: 120px;
+    color: #fff;
+    font-family: '微软雅黑';
+    margin-bottom: 40px;
+
+}
+
+.footer dl dt {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer dl dd {
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.footer ul {
+    float: right;
+    color: #fff;
+}
+
+.footer ul li span {
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+    background-color: #fff;
+    background: url(../img/主页/wx.png);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.footer ul .tel {
+    font-size: 22px;
+}
+
+.footer .tiao {
+    width: 100%;
+    height: 50px;
+    /* background-color: red; */
+    clear: both;
+    color: #fff;
+    background-color: #000022;
+    line-height: 50px;
+}
+
+
+/* -----右侧一堆----- */
+.qq {
+    /* overflow: hidden; */
+    position: fixed;
+    right: 0;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background: url(../img/主页/qq.png);
+    background-position: 100% ;
+    border-radius: 5px;
+}
+ .qq::before{
+    content: 'xxxxxxx';
+    position: absolute;
+    top: 0;
+    /* 最开始藏右边去 */
+    right: -150px;
+    background-color: red;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    transition: all 1s;
+ }
+ .qq:hover::before{
+    right: 50px;
+ }
+ 
+
+ .r-ewm{
+    padding: 10px;
+    width: 200px;
+    height: 120px;
+    position: fixed;
+    right: 0;
+    top: 70%; 
+    /* background-color: red; */
+   /* 为了 让大二维码 在溢出时候隐藏 */
+    overflow: hidden;
+ }
+ .r-ewm-1{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+ right: 0;
+    background:url(../img/主页/ma.png) no-repeat center;
+    background-color: #000; 
+ }
+ .r-ewm:hover::before{
+bottom: 0;
+transition: all .6s;
+ }
+ /* 鼠标过去出现的二维码 */
+ .r-ewm::before{
+    content: '';
+    position: absolute;
+    right: 60px;
+    bottom: -125px;
+    height: 120px;
+    width: 120px;
+    border: 1px solid #fff;
+    background: url(../img/主页/ma1.png) no-repeat center;
+   background-size: 90%;
+ }
+  

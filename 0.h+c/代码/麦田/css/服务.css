@@ -1,0 +1,14 @@
+/* artical文章 */
+.artical{
+    box-sizing: border-box;
+    height: 750px;
+    padding-top: 40px;
+}
+.artical .box {
+    height: 70px;
+    font-size: 12px;
+}
+
+.artical .box:last-child{
+    color: red;
+}

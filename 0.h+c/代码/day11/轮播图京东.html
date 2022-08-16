@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .img-list {
+            position: relative;
+            /*下面的点盒子要相对于它定位 他就是个参照物*/
+            width: 590px;
+            height: 470px;
+            margin: 0 auto;
+        }
+
+        .img-list li {
+            position: absolute;
+        }
+
+        /* 设置点 */
+
+        /* 给div开定位 */
+        .dian {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            /*确保点那个盒子在最上面没人能盖住*/
+        }
+
+        .dian a {
+            /* 没加定位时候会被 加了定位的图片盖住 */
+            float: left;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            margin-left: 4px;
+            background-color: rgba(255, 255, 255, .6);
+            /* 将背景色设置到内容区，边框下和内边距不会有背景颜色 */
+            background-clip: content-box;
+            border: 2px solid transparent;
+        }
+        .dian   .current{
+            /* 当前点大了 并且位置下移了 怎么办 
+            那么就把所有点都变大 但是又不想要边框 就把边框透明
+            但是其他圆还是变大了 ，因为背景颜色默认延申到边框下面
+             */
+            background-color: #fff;
+            border: 2px solid rgba(255, 255, 255, .6);
+        }
+        .dian a:hover{
+            background-color: #fff;
+            border: 2px solid rgba(255, 255, 255, .6);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 
+        ul>li>a>img
+        让所有图叠在一起，让所有li在文档流脱离（）
+        最后面的 在最上面 一个一个压上面
+     -->
+    <ul class="img-list">
+        <li><a href="#"><img src="q.jpg" alt=""></a></li>
+        <li><a href="#"><img src="q1.jpg" alt=""></a></li>
+
+        <div class="dian">
+            <!-- 4个点 -->
+            <a href="#" class="current"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link {
+            width: 600px;
+            height: 100px;
+            background-color: red;
+            margin: 5px auto;
+        }
+
+        .link div {
+            float: left;
+        }
+
+        .link1 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin-left: 200px;
+            /*2得宽度*/
+        }
+
+        .link2 {
+            width: 200px;
+            height: 100px;
+            background-color: pink;
+            margin-left: -300px;
+            /*1+2得宽度*/
+        }
+
+        .link3 {
+            width: 150px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        .link4 {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 如果想要元素互换位置 需要给后边添加marginleft负值（这个元素宽度+前面元素宽度）
+    此时可以达到互换位置的目的 但是元素会跑到父元素的外部，与其换位置的那个元素像后缩进 用margin-left正值=换到前边的那个元素宽度
+    
+他们是挨着得  12换位置以后 3本来跟着2  现在是3是跟着1
+
+2往左走（此时1没动） 然后1（会带着2）一起往右走
+-->
+    <div class="link">
+        <div class="link1">1</div>
+        <div class="link2">2</div>
+        <div class="link3">3</div>
+        <div class="link4">4</div>
+    </div>
+    <br>
+    <div class="link">
+        <div class="link1"></div>
+        <div class="link2"></div>
+        <div class="link3"></div>
+        <div class="link4"></div>
+    </div>
+
+    <!-- 想让1和2换位置 不动html怎么办， 用margin负值
+    2往前走 1往后退
+    -->
+
+</body>
+
+</html>

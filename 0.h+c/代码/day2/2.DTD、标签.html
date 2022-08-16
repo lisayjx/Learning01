@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: pink;
+        }
+    </style>
+    <!-- 有利于SEO搜索引引擎优化 -->
+     <meta name="keywords" content="关键字">
+     <meta name="description" content="描述信息">
+     <meta name="author" content="作者">
+</head>
+
+<body>
+    <!-- DTD:声明文档类型
+    <!DOCTYPE html>  html5
+    xhtml>html  优先级
+    严格型>过渡型>框架集
+    xhtml的严格型>html的严格型>xhtml的过渡型>html的过渡型>xhtml的框架集>html框架集
+   
+-->
+    <!-- 
+    字符集：
+    UTF-8：国际通用的 包含各国语言 一个汉字代表3个字节  274---280
+    gb2312：  中国  包含汉字繁体字  不包含英文  一个汉字代表2个字节  275--279
+    如果你的网址没有其他语言 只有汉字 想要网站体积小 可以使用gb2312
+注意：
+    下方蓝色条那里的字符集（编辑器的编码格式）和代码字符集不同的话 会乱码，要一致
+
+    只要写出来的代码解析出来乱码 就是编码格式出现了问题
+-->
+    <!-- 
+    head标签
+    head里面可以添加 meta  title link script base 
+    title网页标题  
+    style网页的内部css样式表   
+    link  css的外部样式表，更改网页的页签图标（网页头小标签）
+-->
+    <h1>111</h1>
+
+    <!-- 引入css的外部样式表 -->
+    <link rel="stylesheet" href="xx.css">
+    <!-- 更改网页的页签图标 -->
+    <link rel="icon" href="页签图标路径">
+    <!-- 
+    script  js相关
+    引入内部js语句
+    引入外部js语句
+    -->
+    <!-- 引入内部js语句 -->
+    <script>
+        alert("我是内部js");
+    </script>
+    <!-- 引入外部js -->
+    <script src="xx.js"></script>
+
+    <!-- 
+        base 设置网页超链接 
+        这样的话a里面没给超链接地址，他就跳转到默认的百度
+        base 影响页签图标 
+        href：超链接的跳转地址  当超链接没有具体地址时生效
+        这个属性很少去用 <base href="https://www.baidu.com">
+        
+        target设置超链接打开方式 默认是 _self当前窗口 
+        _blank新窗口打开 
+
+        base一般用于 这个 用什么方式打开窗口
+         <base target="_blank">
+     -->
+
+    <!-- 
+        视口
+        meta
+        <meta http-equiv="refrsh" content="5"> 5秒自动刷新 可以用在刷票网站
+        <meta http-equiv="refrsh" content="5";url=https://www.baidu.com> 5秒跳转到百度
+                手机上打开一个东西 会先出来广告 一会跳转到页面
+        keywords description author 有利于SEO优化   
+            -->
+
+</body>
+
+</html>

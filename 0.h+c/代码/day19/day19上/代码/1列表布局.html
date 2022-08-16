@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0; padding: 0;
+        }
+        .list1 {
+            width: 1000px;
+            margin: 0 auto;
+            height: 300px;
+            background: red;
+        }
+        .list1 ul {
+            height: 200px;
+            margin-right: -20px;
+            background: pink;
+        }
+        .list1 ul li {
+            list-style: none;
+            width: 235px;
+            height: 50px;
+            background: yellow;
+            margin-right: 20px;
+            float: left;
+        }
+
+
+        .list2 {
+            background: orange;
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .list2 ul li {
+            list-style: none;
+            width: 235px;
+            height: 50px;
+            background: yellow;
+            margin-right: 20px;
+            float: left;
+        }
+        .list2 ul li:nth-child(4n) {
+            margin-right: 0;
+        }
+
+        .list3 {
+            background: green;
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .list3 ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .list3 ul li {
+            list-style: none;
+            width: 235px;
+            height: 50px;
+            background: yellow;
+        }
+        .list4 {
+            background: blue;
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .list4 ul {
+            column-count: 4;
+            column-gap: 20px;
+        }
+        .list4 ul li {
+            list-style: none;
+            width: 235px;
+            height: 50px;
+            background: yellow;
+        }
+        li:nth-child(3) {
+            height: 70px !important;
+            background: skyblue !important;
+        }
+
+        .list5 {
+            background: orchid;
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .list5 ul {
+            display: grid;
+            grid-template-columns: repeat(4,235px);
+            grid-template-areas: repeat(2,50px);
+            place-content: flex-start space-between;
+        }
+        .list5 ul li {
+            list-style: none;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        列表布局：
+        一排显示n个 每一个距离右边都有m的距离 最后一个没有
+        实现方式：
+        1：浮动
+            float:left;
+            margin-right:m距离
+            给父元素设置margin-right负值 m的距离
+         满足条件：有一个安全区：有一个父级 自身
+         安全区的宽度=一个的宽度*n个+（n-1）*m距离
+        2: 结构伪类选择器 
+        3: 弹性盒
+        4: 多列布局
+        5：网格布局
+     -->
+
+     <div class="list1">
+         <ul>
+             <li>01</li>
+             <li>02</li>
+             <li>03</li>
+             <li>04</li>
+             <li>05</li>
+             <li>06</li>
+             <li>07</li>
+             <li>08</li>
+         </ul>
+     </div>
+
+    <div class="list2">
+        <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+            <li>06</li>
+            <li>07</li>
+            <li>08</li>
+        </ul>
+    </div>
+    <div class="list3">
+        <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+            <li>06</li>
+            <li>07</li>
+            <li>08</li>
+        </ul>
+    </div>
+    <div class="list4">
+        <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+            <li>06</li>
+            <li>07</li>
+            <li>08</li>
+        </ul>
+    </div>
+
+    <div class="list5">
+        <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+            <li>06</li>
+            <li>07</li>
+            <li>08</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* SEO */
+        h1{
+            width: 143px;
+            height: 59px;
+            background: url(tb.jpg) no-repeat;
+            /* 第一种：把淘宝两个字移走 */
+            text-indent: -999em;
+            /* 第二种：设置行高超级高 然后溢出的给隐藏 */
+            line-height: 10000px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+      <!-- 
+        背景与SEO
+ 一般是logo
+搜索引擎认识语义化标签，所以为了提高网站权重，我们通常将重要的信息写在h1中，有时候这些重要的信息是一些图片。
+那么我们将图片写在h1中搜索引擎不认识，将图片直接写在h1中，是一种错误的方式，因为搜索引擎不会解析图片中的文字，只会识别h1标签内的文字
+通常我们在h1中书写文字，然后用背景来显示这张图片，但是里面还有文字怎么办?
+只需要让文字溢出容器即可
+第一种是通过text-indent让文字溢出
+第二种是通过line-height让文字从盒子中出去，通过overflow: hide溢出隐藏
+
+      -->
+
+      <h1>淘宝</h1>
+</body>
+</html>

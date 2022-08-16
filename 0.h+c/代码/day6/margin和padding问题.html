@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            /* display: inline-block; */
+            background-color: yellow;
+            padding: 20px;
+            /*上面有问题*/
+        }
+        .top{
+            height: 50px;
+            background-color: red;
+            margin-bottom: 50px;
+        }
+        .top1 {
+            height: 50px;
+            background-color: pink;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 
+
+        有些标签得padding  margin 显示不正常(行内元素)
+    1.    上面a有问题
+解决方式:给元素添加display:block或者inline-block
+
+
+     -->
+
+    <a href="#">首页</a>
+    <a href="#">首页</a>
+    <a href="#">首页</a>
+    <a href="#">首页</a>
+    <a href="#">首页</a>
+    <a href="#">首页</a>
+
+    <!-- 
+        2.上下margin发生重叠 取较大值(面试题 让你算中间空隙到底是多少)
+     -->
+    <div class="top"></div>
+    <div class="top1"></div>
+
+    <!-- 
+        3.盒子嵌套时.一个子元素得margin-top与最后一个子元素得margin-bottom会塌陷(中间的子盒子不会发生)
+        (本来是子元素的margin-top/bottom生效给了父元素)
+
+        解决方式:(会问到!!!!!!)
+        1.给父元素添加border
+        2.给父元素添加padding
+        3.给父元素添加overflow:hidden
+        4.给父元素添加float:left(会导致....)
+        5.给元素本身添加float也可以,此时父元素会塌陷 要给父元素个高度
+        6.给子元素设置display:inline-block
+        7.不让其是第一个和最后一个(前后写一个span)
+
+        float会使之变块元素 都有硬边!!!display也是 都会 有恩断义绝边!!
+
+     -->
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div:nth-child(1) {
+            /* 这是有宽高得时候 */
+            height: 100px;
+            width: 100px;
+            background-color: green;
+            border-top: 50px solid red;
+            border-left: 50px solid skyblue;
+            border-bottom: 50px solid purple;
+            border-right: 50px solid pink;
+        }
+
+        .top-left,
+        .top-right,
+        .bottom-left,
+        .bottom-right,
+        .top,
+        .bottom,
+        .left,
+        .right {
+            /* 这是没宽高得时候height: 0;width：0不可以不写 */
+            height: 0;
+            width: 0;
+            border: 100px solid transparent;
+        }
+
+        .top-right {
+            border-top-color: pink;
+            border-right-color: pink;
+        }
+
+        .top-left {
+            border-top-color: red;
+            border-left-color: red;
+
+        }
+
+        .bottom-left {
+            border-bottom-color: purple;
+            border-left-color: purple;
+        }
+
+        .bottom-right {
+            border-bottom-color: black;
+            border-right-color: black;
+
+        }
+/* -------------------------------------- */
+        .top {
+            border-top-color: skyblue;
+        }
+
+        .bottom {
+            border-bottom-color: pink;
+        }
+
+        .left {
+            border-left-color: forestgreen;
+        }
+
+        .right {
+            border-right-color: black;
+        }
+
+        /* --------- */
+        .top1,
+        .bottom1,
+        .left1,
+        .right1 {
+            height: 50px;
+            width: 50px;
+            border: 100px solid transparent;
+            background-color: transparent;
+        }
+
+        .top1 {
+
+            border-top-color: black;
+        }
+
+        .bottom1 {
+            border-bottom-color: pink;
+        }
+
+        .left1 {
+            border-left-color: red;
+        }
+        .right1{
+            border-right-color: green;
+        }
+        .yuan1,.yuan2{
+            height: 0;
+            width: 0;
+            border: 100px solid transparent;
+            border-radius: 50%;
+        }
+        .yuan1{
+            border-top-color:pink;
+        }
+        .yuan2{
+            border-left-color:red;
+        }
+      
+    </style>
+</head>
+
+<body>
+
+<!-- 
+    注意：三角形是各个方向的边框堆积起来的。不能把别的删除 只能透明
+    宽度为0
+    四个边 有粗细 实线 都透明
+    然后分别给每个边颜色
+      .top{
+            width: 0;
+            border: 50px solid transparent;
+            border-top-color: #000;
+        }
+ -->
+
+
+    <div></div>
+    <br>
+    <!-- 上边和后边有颜色 -->
+    <div class="top-right">右上角的三角形</div>
+    <div class="top-left">左上角的三角形</div>
+    <div class="bottom-left">左下角的三角形</div>
+    <div class="bottom-right">右下角的三角形</div>
+    <br>
+    <!-- ------------ -->
+    <div class="top">上</div>
+    <div class="bottom">下</div>
+    <div class="left">左</div>
+    <div class="right">右</div>
+    <br>
+    <!-- ------------- -->
+    <div class="top1"></div>
+    <div class="bottom1"></div>
+    <div class="left1"></div>
+    <div class="right1"></div>
+    <!-- ------------------ -->
+    <div class="yuan1"></div>
+    <div class="yuan2"></div>
+</body>
+
+</html>

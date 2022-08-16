@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        rules:分割线
+        all横向竖向
+        rows cols none(默认)
+        groups 组 与col或者colgroup连用
+        col和colgroup都可以代表一整列 通过span属性可以将相邻列合并成一列
+        colgroup可以显示整向得分割线 col没有
+        col单标签 colgroup双标签
+     -->
+    <table rules="all" height="100" weight="300" cellpadding="20">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <hr>
+    <table rules="rows" height="100" weight="300" cellpadding="20">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <hr>
+    <table rules="cols" height="100" weight="300" cellpadding="20">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <hr>
+   <!-- ----------------group -->
+   <table rules="groups" >
+    <!-- 这6个代表6列，有几列就有几个col，可以控制一整列 |合并两整列-->
+    <col bgcolor="red">
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+</table>
+<hr>
+<table rules="groups" >
+    <!-- 这6个代表6列，有几列就有几个col，可以控制一整列 |合并两整列-->
+    <!-- 这里要是没效果 换成谷歌浏览器 -->
+    <col bgcolor="red" span="3">
+    <!-- <col> -->
+    <col>
+    <col>
+    <col>
+    <col>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+</table>
+<hr>
+    <!-- ------------------------------- -->
+
+    <!-- colgroup有竖着分割线，col没有 -->
+    <!-- 用这个合并希望下面不要有任何的行或者列合并 -->
+    <table rules="all" height="100" weight="300" cellpadding="20">
+        <colgroup bgcolor="pink" span="2"></colgroup>
+        <!-- <colgroup></colgroup> -->
+        <colgroup></colgroup>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <hr>
+    
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+}
+
+/* 版心 */
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* header */
+header .container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: pink; */
+}
+
+header h1 {
+    width: 375px;
+    background: url(./img/logo.png) no-repeat center center;
+    background-size: contain;
+    text-indent: -99999em;
+}
+
+header ul {
+    display: flex;
+}
+
+header ul li {
+    padding: 0 30px;
+}
+
+header ul li a {
+    white-space: nowrap;
+}
+
+header ul li a:hover {
+    display: block;
+    border-bottom: 1px solid red;
+    color: red;
+}
+
+/* banner */
+.banner {}
+
+/* main */
+main ul{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+main ul li{
+    width: 30%;
+    margin-right: 30px;
+    position: relative;
+}
+main ul li:last-child{
+    margin-right: 0px;
+}
+main ul li a::after{
+    content: '你好你好';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+}
+/* 产品推荐 */
+aside {
+    width: 225px;
+    height: 65px;
+    /* background-color: red; */
+    text-align: center;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: red;
+    border: 1px solid  red;
+    margin : 20px auto;
+}
+
+/* section */
+section ul{
+    display: flex;
+    margin-bottom: 10px;
+}
+section ul li{
+    width: 33%;
+}
+section ul li{
+    margin-right: 10px;
+}
+section ul li:last-child{
+    margin-right: 0;
+}
+/* 长图 */
+.chang{
+    width: 100%;
+ 
+}
+/* 各种小地址 */
+.dizhi ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.dizhi ul li{
+    width: 33%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+}
+.dizhi ul li:nth-child(-n+3){
+    border-bottom: 1px solid #000;
+    padding-bottom: 30px;
+ 
+}
+.dizhi ul li .zuo {
+    background: url(./img/5.png) no-repeat center center;
+}
+.dizhi ul li .zuo{
+    height: 100px;
+    width: 100px;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+.dizhi ul li .you h6{
+    margin-left: 10px;
+}
+
+/* footer */
+footer{
+    background-color: #504e4c;
+    padding: 20px 0;
+    color: #fff;
+}
+footer .container{
+    display: flex;
+    flex-direction: column;
+}
+footer .container .shang{
+    display: flex;
+    justify-content: space-between;
+
+}
+footer .container .xia{
+    text-align: center;
+     margin-top: 20px;
+}
+ 
+/* 媒体查询 */
+@media all and (min-width:300px) and (max-width:760px) {
+
+    /* 导航 */
+    header .container {
+        flex-direction: column;
+    }
+    header .container h1{
+        margin-bottom: 20px;
+    }
+    /* main */
+    main ul {
+        justify-content: center;
+    }
+    main ul li{
+        width: 80%;
+        margin-right: 0;
+        margin-top: 20px;
+    }
+    /* section */
+    section ul{
+        flex-wrap: wrap;
+    }
+    section ul li {
+        width: 48%;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    section ul li:nth-child(4){
+        border-bottom: 1px solid #000;
+    }
+/* 各种小地址  */
+.dizhi ul li{
+    width: 50%;
+}
+.dizhi ul li:nth-child(-n+4){
+    border-bottom: 1px solid #000;
+ 
+}
+}

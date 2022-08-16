@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="xx.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- 
+        1.行内样式表（内嵌 内置 行间）
+            写在html标签内部 <h1 style="color:red;"></h1>
+            给谁写谁生效
+            代码冗余度高 不利于后期维护 很少使用 
+            什么时候用？刚到公司。你不确定他的控制范围，让你临时去改东西时候，
+        2.内部样式表
+            写在head标签内部
+            用style包裹 
+            <style>
+            ....
+            </style>
+            解决了部分的代码冗余，但是代码复用率不高，他只针对当前页面生效
+        3.外部样式表 
+            卸载html的外部，新建xxx.css文件 
+            需要引入才能生效  <link rel="stylesheet" href="xx.css"> （常用引入方式）
+            rel="stylesheet" 必须要有 如果没有不能建立文档的关联性
+    
+            导入式（不常用）
+                <style>
+                @important url(路径)  必须在内部样式表的第一行 否则不生效
+                </style>
+            【link与@important的区别】：
+                1.老祖宗不同link是html提供的引入方式，可以引入css文件，也可以引入其他文件
+                @important是css提供的引入方式，只能引入css文件
+                2.加载顺序不同，link和html同时被加载，
+                但是@important是当所有html都加载完成之后在加载对应的css
+                3.兼容性不同：@important必须是ie6以上支持
+                            link没有版本要求
+                4.控制dom（文档对象模型：获取各种元素）：link支持，@important不支持
+            
+
+
+                三种样式表的优先级：
+                行内>内部外部是看就近原则（与书写顺序有关）
+
+
+                【css的层叠】
+            -->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 视频video   行内块
+    支持的格式：mp4  ogg  wemb -->
+
+
+  <video src="" ></video>
+  controls 控制台 会有播放条全屏声音之类的
+  width 宽度
+  height高度 除非是等比例的 要不会多空白啥的 但是不影响视频播放
+  loop 循环播放 
+  poster=‘路径’ 加载等待的画面 没播放时的画面
+  autoplay  打开页面自动播放  ie支持  谷歌浏览器在静音情况下支持自动播放
+  muted 静音
+ <!-- 方式一 -->
+  <video src="" controls>
+    由于你的浏览器版本比较低 视频无法加载 请<a href="视频路径" download="">点击下载</a>观看
+ 对于这句话 支持的浏览器会解析出来 不支持的不会解析出来
+</video>
+<!-- 方式二 -->
+  <video controls>
+    <source src="" type="">
+  </video>
+
+
+
+
+      <!-- 音频audio 
+   支持的格式：mp4 mp3 ogg -->
+<audio src="" controls></audio>
+controls 控制台
+loop循环播放
+poster=‘’加载等待的画面 他不支持 没这个属性
+width height不支持 
+autoplay 自动播放  ie支持
+muted 静音 
+
+
+
+
+
+
+
+<!-- canvas  -->
+画图的标签（画布） 需要大量js支持 可以在这个区域去画图
+</body>
+</html>

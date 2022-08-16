@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:focus{
+            color: red;
+            /* outline:none;去掉获取焦点的默认黑色框 */
+            border: 1px solid yellow;/*点击时候框会变黄*/
+        }
+
+        .container{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+        .container:hover input{
+            color: yellow;
+        }
+
+        .container::before .demo{/*这种写法错误 伪元素只能添加在最后一个简单的选择器上*/
+
+        }
+        .container .demo:before{/*这样写*/
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+怎么让input 得框框点击时候不变色
+outline：none
+
+         状态！！！！1
+ 伪类用于当已有元素处于的某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的。
+ 
+比如说，当用户悬停在指定的元素时，我们可以通过:hover来描述这个元素的状态。虽然它和普通的css
+类相似，可以为已有的元素添加样式，但是它只有处于dom树无法描述的状态下才能为元素添加样式，所以将其称为伪类。
+ 
+如: :focus{样式:样式值;}输入框获取焦点;表单控件中使用
+ 
+获取焦点时后字是红色得  平常时候是默认颜色
+     -->
+     <input type="text" placeholder="哈哈">
+
+
+     <!-- 
+
+        伪元素与伪类的特点:
+伪元素和伪类都不会出现在源文档或者文档树中（html中看不见 都是在css中添加的）
+伪类允许出现在选择器的任何位置，而一个伪元素只能跟在选择器的最后一个简单选择器后面伪元素名和伪类名都是大小写不敏感的
+有些伪类是互斥的，而其它的可以同时用在一个元素上。
+伪元素和伪类的区别:
+伪类的操作对象是文档树中已有的元素，而伪元素则创建了一个文档数外的元素(有没有创建一个文档树之外的元素)。
+伪类是类，伪元素是元素，因此它们的权值是不同的。
+
+      -->
+
+      <!-- 鼠标滑过div就让input变成黄色 -->
+      <div class="container">
+        <input type="text" placeholder="你好">
+      </div>
+
+
+
+      <!-- 
+         a标签可以定义四个伪类:
+:link{样式:样式值;}初始状态;必须是第一次访问或者清除历史记录的访问
+:visited{样式:样式值;}访问后的状态
+:hover{样式:样式值;}鼠标悬停;鼠标滑过效果
+:active{样式:样式值;}激活状态（点击没抬起的时候）
+上面四个的使用顺序l-v-h-a(love hate 爱恨准则) LV好
+
+工作中常用 hover
+
+（面试题）生效过一次为什么就不生效了？顺序问题
+       -->
+
+       
+</body>
+</html>

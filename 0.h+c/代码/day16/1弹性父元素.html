@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0; padding: 0
+        }
+        div {
+            background: red;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            /* flex-flow: row wrap; */
+            /* align-content: space-around; */
+            justify-content: flex-start; 
+            align-items: baseline;
+        }
+        p {
+            background: yellow;
+            width: 100px;
+            height: 100px;
+        }
+
+        p:nth-child(2) {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        弹性布局：
+        1:设置弹性盒 display:flex/inline-flex
+        2:弹性子元素的排列方式 flex-direction
+            row 默认值 自左向右在一排显示
+            row-reverse 在一排显示并且翻转
+            column 自上而下排列
+            column-reverse 自上而下翻转
+        3：是否允许弹性子元素换行显示 flex-wrap
+            nowrap默认值不允许
+            wrap 允许
+            wrap-reverse 允许换行并且翻转
+        4：flex-flow:flex-direction flex-wrap
+        5: 弹性子元素行的对齐方式 align-content（注意：必须存在换行）
+            flex-start 上
+            flex-end 下
+            center 中
+            space-between 两端对齐
+            space-around 中间是两端的倍数
+            space-evenly 平均分配
+        6: 弹性子元素的主轴对齐方式 justify-content
+            主轴：如果是自左向右排列 x轴是主轴  
+                  如果是自上而下排列 y轴是主轴
+            flex-start 上
+            flex-end 下
+            center 中
+            space-between 两端对齐
+            space-around 中间是两端的倍数
+            space-evenly 平均分配
+        7：弹性子元素的侧轴对齐方式（交叉轴） align-items 
+            侧轴：如果是自左向右排列 y轴是侧轴
+                  如果是自上而下排列 x轴是侧轴
+            flex-start 上
+            flex-end 下
+            center 中
+            baseline 基线对齐
+
+        注意：弹性子元素 如果没有设置宽度高度
+              如果是自左向右排列 宽度是内容的宽度 高度是父元素的高度
+              如果是自上而下排列 宽度是父元素的宽度 高度是内容的高度
+              默认情况下弹性子元素都会在一排显示 如果弹性子元素的宽度或高度超过了父元素的宽高 那么弹性子元素会收缩
+     -->
+     span
+     <div>
+         <p>1</p>
+         <p>2</p>
+         <p>3</p>
+         <p>4</p>
+         <p>5</p>
+     </div>
+     span
+</body>
+</html>

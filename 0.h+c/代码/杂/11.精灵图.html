@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 120px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            list-style: none;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #000;
+            margin-left: -1px;
+            text-align: center;
+            line-height: 25px;
+            background: url(./img/jinglingtu.jpg) no-repeat;
+
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+          
+        }
+
+        /* 不行 因为a外面有li
+        a:nth-child(1){
+            background-position: 0 0;
+        }*/
+        li:nth-child(1){
+            background-position-y: 0;
+        }
+
+        li:nth-child(2){
+            background-position-y:-44px;
+        }
+        li:nth-child(3){
+            background-position-y:-132px;
+        }
+        li:nth-child(4){
+            background-position-y:-176px;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <!-- 
+        css sprites:网页上有很多小的碎图片，不管图片大小，一个图片就会发起一次http请求。
+        很多碎图片就会发起很多http请求。降低网页的加载速度。我们将这些碎图片整合在一张图片上，
+        只会发起一次http请求。提高网页的加载速度。这就是精灵图技术。
+应用:
+①通过盒子的宽高限制精灵图
+②通过background-position得到具体的精灵图小图片。精灵图的制作:
+①所有的小碎图片必须是png.
+②精灵图大小不要太大，能保证所有的小碎图可以盛放。
+③小精灵图摆放:从上到下摆放。最好颜色相近的放在一起
+
+     -->
+
+
+    <!-- 
+精灵图分类
+
+水平精灵图:我们可以将所有的图片打包在一行
+l容器宽度是受约束的，宽度不能超过:后一张图片起始位置-前一张图片的终止位置
+2容器高度是自由的，高度任意，因为后面没有其他图片了，图片可以在垂直方向平铺，实现渐变效果3调整精灵图的位置，就是调整背景图片的横坐标位置
+垂直精灵图:我们将图片，在垂血方向合并
+1容器的高度受限制:后一张图片的结束位置-前一张图片的起始位置2修改图片位置，就是修改垂直方向的位置
+3通常不会平铺
+定点精灵图:是工作中最常用的一种精灵图，特点就是在一个图片中，随意放置图片，使用的时要找准位置
+1宽度和高度都是受限制的，受到周围图片的限制，常将容器的宽高设置成icon图片的宽高
+2不论是水平方向还是垂直方向，通常是不能平铺的
+
+
+      -->
+
+    <div class="box">
+        <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

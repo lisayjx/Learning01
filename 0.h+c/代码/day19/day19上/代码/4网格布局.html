@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            /* width: 600px; */
+            /* height: 400px; */
+            background: red;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6,100px);
+            /* grid-template-columns: 100px 200px 300px; */
+            /* grid-template-columns: 1fr 1fr 2fr; */
+            grid-template-rows: repeat(4,100px);
+            grid-gap: 10px 20px;
+            /* 划分网格区域 */
+            grid-template-areas: 
+                "a1 a1 a1 a2 a2 a3"
+                "a4 a5 a6 a2 a2 a7"
+                "a8 a9 a9 a2 a2 a7"
+                "a8 a9 a9 a10 a11 a7"
+        }
+        p:nth-child(1) {
+            background: gold;
+            grid-area: a1;
+        }
+        p:nth-child(2) {
+            background: pink;
+            grid-area: a2;
+        }
+        p:nth-child(3) {
+            background: lawngreen;
+            grid-area: a3;
+        }
+        p:nth-child(4) {
+            background: purple;
+            grid-area: a4;
+        }
+        p:nth-child(5) {
+            background: plum;
+            grid-area: a5;
+        }
+        p:nth-child(6) {
+            background: lightcoral;
+            grid-area: a6;
+        }
+        p:nth-child(7) {
+            background: orange;
+            grid-area: a7;
+        }
+        p:nth-child(8) {
+            background: lightseagreen;
+            grid-area: a8;
+        }
+        p:nth-child(9) {
+            background: yellowgreen;
+            grid-area: a9;
+        }
+        p:nth-child(10) {
+            background: skyblue;
+            grid-area: a10;
+        }
+        p:nth-child(11) {
+            background: orchid;
+            grid-area: a11;
+        }
+
+
+        ul {
+            width: 500px;
+            height: 500px;
+            background: yellow;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2,100px);
+            grid-template-rows: repeat(2,100px);
+            /* place-content: center space-between; */
+            place-items: center flex-end;
+        }
+
+        li {
+            background: olive;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        网格属性
+        1：设置为网格 display:grid/inline-grid
+        2: 设置网格列的宽度 grid-template-columns:
+            如果每一个列的宽度都是一致的 可以用 repeat(列数，宽度值)
+            如果不一样可以单独设置 设置几个值代表右几列  
+            fr代表区片 分配总宽度所占份数
+        3: 设置网格行的高度 grid-template-rows:
+            如果每一个列的宽度都是一致的 可以用 repeat(列数，宽度值)
+            如果不一样可以单独设置 设置几个值代表右几列  
+            fr代表区片 分配总宽度所占份数
+        4： 划分网格区域 grid-template-areas
+        5: 设置空隙 grid-gap 
+            一个值代表水平垂直都是
+            两个值 第一个代表水平  第二个代表垂直
+        6: 设置网格元素的对齐方式 place-content:align-content justify-content
+        7: 设置网格元素的内容的对齐方式 place-items：align-items justify-items 
+
+        指定网格区域grid-area
+     -->
+     span
+    <div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
+        <p>10</p>
+        <p>11</p>
+    </div>
+    span
+
+
+    <ul>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+    </ul>
+</body>
+</html>

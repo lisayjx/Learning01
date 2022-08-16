@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+
+        表格的数据行分组：表头thead 表体tbody 表尾tfoot
+        表格组成 表格table  行tr  列td
+table相关属性：
+        border边框
+        width宽度
+        height高度
+       ** cellspacing单元格与单元格的空隙
+       ** cellpadding 内容和边界之间的距离
+        bgcolor 背景颜色
+        bordercolor边框颜色
+        **align 水平对齐方式 有 left（默认） center right   表格位置 不是内容位置
+tr相关属性：
+        bgcolor 这一行的背景颜色
+        width不可以设置
+        height可以设置 这一行的单元格高度
+        **align 在这里表示这一行的内容水平对齐方式
+        
+        valign 这一行内容的垂直对齐方式，table都没有 :top上 middle中 bottom下
+
+
+注意：默认情况下 表格如果有宽高表格的单元格是水平垂直平分的，  无宽高是内容撑开的
+                如果内容的字符数相同 默认水平垂直平分， 如果不同 则不平分
+     align在table中管整个表格在浏览器的位置，在tr中管一行内内容的位置 
+                      
+     -->
+
+    <table border="1" width="300" height="200" cellspacing="0" cellpadding="20" bgcolor="pink" bordercolor="yellow" align="center">
+        <tr>
+            <td>111111111</td>
+            <td>111</td>
+            <td>111</td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>111</td>
+            <td>111</td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>111</td>
+            <td>111</td>
+        </tr>
+    </table>
+    <hr>
+    <table border="1" cellpadding="10">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <hr>
+    <!-- tr相关属性 -->
+    <table border="1" width="500" >
+        <tr bgcolor="pink" height="100" align="center" valign="top">
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr bgcolor="green" height="200" valign="bottom">
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr height="150">
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>     
+    </table>
+</body>
+
+</html>

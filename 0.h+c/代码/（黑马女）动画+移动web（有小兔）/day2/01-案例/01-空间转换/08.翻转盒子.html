@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            /* background-color: red; */
+            transform-style: preserve-3d;
+            transition: all 1s;
+        }
+
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+
+        .box div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .qian {
+            background-color: pink;
+            /* z-index: 1; */
+            transform: translateZ(1px);
+        }
+
+        .hou {
+            background-color: green;
+            /* 后面盒子翻转180° 背靠背了 */
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        思路：
+        1.两个盒子在一个大盒子里
+       2. 两个小盒子定位层叠，让前面盒子往你视线近点 给平移Z 1px这样两个盒子不会紧挨着
+    3.鼠标到box时候就旋转box，是让包裹小盒子的大盒子翻转
+    -->
+    <div class="box">
+        <div class="qian">前</div>
+        <div class="hou">后</div>
+    </div>
+</body>
+
+</html>

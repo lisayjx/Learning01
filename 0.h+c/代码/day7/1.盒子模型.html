@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            padding: 10px;
+            border: 10px solid green;
+        }
+        .top1{
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+        }
+        .top2{
+            box-sizing: border-box;/**/
+            width: 200px;
+            height: 100px;
+            background-color: pink;
+            padding: 10px;
+            border: 10px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="top"></div>
+    <div class="top1"></div>
+
+    <!-- 
+        1.标准盒（外扩盒子）
+        box-sizing：content-box  默认值 不写就是他
+        盒子模型实际高度宽度得算法（margin会影响得时候）
+        宽度=margin+border+padding+content（width）
+        高度=margin+border+padding+content（height）
+
+        2.怪异盒模型（内缩盒子）
+       box-sizing: border-box
+       宽度=margin+width（border padding）
+       高度=margin+height（border padding）
+     -->
+</body>
+</html>

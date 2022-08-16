@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        input的type属性的button可以直接当作标签使用
+          <button>按钮</button>
+        这时候可以当作提交按钮（会刷新页面）
+        image图像域也可以当作提交按钮使用（会刷新）  有src后有图的时候
+
+        他俩区别：
+        input里不能添加其他标签，button当作标签时候可以添加其他标签
+          
+
+        file 默认只能传一个文件
+        想多选文件怎么办 加mutiple属性可以实现多选
+     -->
+
+     <!-- 两种方式效果一样，功能不一样 -->
+     <button>按钮</button>
+     
+     <input type="button" value="按钮">
+
+     <input type="image" src="1.jpg">
+
+     <!-- button如果当作标签使用<>  与input的区别 -->
+      <!-- 这个按钮里显示的字是 <a href='http://www.baidu.com'>百度</a>-->
+     <input type="button" value="<a href='http://www.baidu.com'>百度</a>">
+     <!-- 这个按钮里显示的字是 百度 </a>-->
+     <button><a href='http://www.baidu.com'>百度</a></button>
+
+     <input type="file" mutiple>
+
+</body>
+</html>

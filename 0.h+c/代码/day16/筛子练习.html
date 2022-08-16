@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            position: relative;
+            left: 50%;
+            /* transform: translateX(-50%); */
+            top: 100px;
+            width: 400px;
+            height: 400px;
+            /* border: 1px solid #000; */
+
+            transform-style: preserve-3d;
+            animation: zhuan 2s infinite;
+        }
+
+        /* 设置点 */
+        span {
+            display: block;
+            height: 50px;
+            width: 50px;
+            background-color: purple;
+            border-radius: 50%;
+        }
+
+        /* 设置每个面 */
+        section div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 200px;
+            width: 200px;
+            padding: 20px;
+            display: flex;
+
+            /* 不加这个 padding就会出现问题 */
+            box-sizing: border-box;
+
+            opacity: .5;
+            border-radius: 50%;
+        }
+
+        .box1 {
+            background-color: pink;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box2 {
+            background-color: red;
+            justify-content: space-between;
+        }
+
+        .box2 span:nth-child(1) {
+            display: flex;
+            align-self: flex-end;
+        }
+
+        .box3 {
+            background-color: blue;
+            justify-content: space-between;
+        }
+
+        .box3 span:nth-child(1) {
+            display: flex;
+            align-self: flex-end;
+        }
+
+        .box3 span:nth-child(2) {
+            display: flex;
+            align-self: center;
+        }
+
+        .box4 {
+            background-color: orange;
+            justify-content: space-between;
+        }
+
+        .box4 nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* background-color: black; */
+        }
+
+
+        .box5 {
+            background-color: black;
+            justify-content: space-between;
+        }
+
+        .box5 nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* background-color: orange; */
+        }
+
+        .box5 nav:nth-child(2) {
+            justify-content: center;
+        }
+
+        .box6 {
+            background-color: green;
+            justify-content: space-between;
+        }
+
+        .box6 nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            /* background-color: orange; */
+        }
+
+        /* 设置立方体 */
+        .box1 {
+            transform: translateZ(100px);
+        }
+
+        .box2 {
+            transform: translateZ(-100px);
+        }
+
+        .box3 {
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+
+        .box4 {
+            transform: translateX(100px) rotateY(90deg);
+        }
+
+        .box5 {
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        .box6 {
+            transform: translateY(100px) rotateX(-90deg);
+        }
+
+        @keyframes zhuan {
+            to {
+                /* transform-origin: center; */
+                transform: rotate3d(1, 1, 1, 360deg);
+            }
+        }
+
+
+        section:hover div:nth-child(1) {
+            transform: translatez(300px)
+        }
+
+        section:hover div:nth-child(2) {
+            transform: translatez(-300px)
+        }
+
+        section:hover div:nth-child(3) {
+            transform: rotateY(90deg) translateX(-300px)
+        }
+
+        section:hover div:nth-child(4) {
+            transform: rotateY(90deg) translateX(300px)
+        }
+
+        section:hover div:nth-child(5) {
+            transform: rotateX(90deg) translateY(-300px)
+        }
+
+        section:hover div:nth-child(6) {
+            transform: rotateX(-90deg) translateY(300px)
+        }
+
+        /* 里面的 */
+        p {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            background: green;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 40px;
+            line-height: 100px;
+        }
+        p:nth-of-type(1) {
+            transform: translatez(50px);
+        }
+        p:nth-of-type(2) {
+            transform: translatez(-50px);
+        }
+        p:nth-of-type(3) {
+            transform:rotatex(90deg) translatez(50px);
+        }
+        p:nth-of-type(4) {
+            transform:rotatex(90deg) translatez(-50px);
+        }
+        p:nth-of-type(5) {
+            transform:rotatey(90deg) translatez(50px);
+        }
+        p:nth-of-type(6) {
+            transform:rotatey(90deg) translatez(-50px);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box1">
+            <span></span>
+        </div>
+        <div class="box2">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="box3">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="box4">
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+        <div class="box5">
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+        <div class="box6">
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+
+        <!-- 里面的 -->
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+    </section>
+</body>
+
+</html>

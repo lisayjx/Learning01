@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            background-color: pink;
+            border-bottom: 5px solid #000;
+
+            /* 有宽度 */
+            width: 200px;
+            /* 不换行 */
+            white-space: nowrap;
+            /* 超出的内容 溢出裁切 */
+            overflow: hidden;
+            /* 省略号 */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        单行文本显示省略号必要条件：
+ text-overflow: ellipsis; 显示省略号
+1.需要有宽度，
+2.先让他不换行 强制在一排显示
+3.溢出裁切
+4.加省略号
+
+
+     -->
+    <p>新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息新闻信息</p>
+</body>
+
+</html>

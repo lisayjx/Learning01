@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          *{
+            margin: 0;
+            padding: 0;
+        }
+        .miaosha{
+            height: 50px;
+            width: 200px;
+            margin: 100px auto;
+            border: 1px solid red;
+            
+        }
+        .zuo{
+            float: left;
+            position: relative;
+            width: 110px;
+            height: 50px;
+            background-color: red;
+            line-height: 50px;
+            text-align: center;
+        }
+        .sanjiaoxing{
+            position: absolute;
+            right: 0;
+            top: 0px;
+         
+            width: 0;
+            height: 0;
+            border-top:51px solid transparent;
+            border-right:25px solid #fff;
+            border-bottom: 0 solid transparent;
+            border-left:0 solid transparent;
+           /* 做一个窄长方形  把上面边框和盒子一样高 右边框差不多看你想多窄了 别的都是透明 就右边框是白色 */
+
+        }
+        .you{
+            line-height: 50px;
+            text-align: center;
+            float: left;
+            width: 90px;
+            height: 50px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="miaosha">
+         <span class="zuo">
+            ￥198
+            <i class="sanjiaoxing"></i>
+         </span>
+
+
+         <span class="you">￥998</span>
+    </div>
+</body>
+</html>

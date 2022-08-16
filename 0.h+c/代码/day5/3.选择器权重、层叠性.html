@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            color: red;
+        }
+
+        .main {
+            color: pink;
+        }
+
+        .top {
+            color: orange;
+        }
+
+        #nav {
+            color: blue;
+        }
+
+        h1 {
+            color: aqua;
+        }
+
+        em {
+            color: bisque;
+        }
+
+        /* 这个权重高于上面那个 */
+        h1 em {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        当给同一个标签使用多个选择器，设置了相同的属性但是不同时会产生权重，到底生效谁，取决于权重
+        权值排序
+        继承的权重0
+        通配符的权重:0.1
+        标签选择器的权重:1
+        class选择器的权重:10
+        id选择器的权重:100
+        行内样式表的权重:1000
+        !important:无穷大
+
+        后代选择器的权重是选择器的权重之和
+        并集选择器的权重是选择器本身（以逗号分隔）
+        交集选择器 选择器的权重+标签的权重
+
+        css层叠性：多组选择器的样式可以同时作用在一个元素上（给同一个标签使用多个样式表或者使选择最终生效的是谁）
+        css层叠规则：
+        权重不同：看权重值，谁的权重大谁生效
+        权重相同：看就近原则
+        如果存在！important这个是无穷大，让如果每个选择器都存在！important，比较权重，值相等，采用就近原则
+        自身的>继承的
+
+        如果自身没设置css选择器样式 会从父元素中向下继承（也得选最近的父元素继承）
+        若是自身设置了，那就是自身的
+
+        计算权重的时候我们的关系选择器是选择器本身的和
+     -->
+    <div class=" top main" id="nav" style="color:yellow">盒子</div>
+    <div class="main">11</div>
+    <!-- 这个类名 top 和main 看在style中谁的样式离得最近 -->
+    <div class="top main">22</div>
+    <div class="top">33</div>
+
+    <h1>
+        111
+        <span>
+            222
+            <em>333</em>
+        </span>
+    </h1>
+
+</body>
+
+</html>

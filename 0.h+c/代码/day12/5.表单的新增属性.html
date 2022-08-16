@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    以前如果不写form会影响提交按钮的时候
+
+  （不建议）  H5支持 不需要把input都写在form里面 但是还得有 form ,给form写id，只要是属于这个form标签的内容就添加form=id名
+
+
+    <form action="" id="login"></form>
+
+
+
+必填项required
+<input type="text" required>
+
+自动聚焦 打开时候光标就自动定位
+<input type="text" autofocus>
+
+提示信息 但不是值，到时候提交得还是value值
+<input type="text" placeholder="">
+
+pattern正则验证
+<input type="text" pattern="\d{3}">  按照正则里的格式填
+
+表单不进行验证 可以直接提交 一路绿灯（里面即使有必填项都没事）
+<form novalidate></form>
+
+autocomplete="off" 关闭历史记录
+<form autocomplete="off"></form>
+
+
+value和中间的值 只写一个就行         历史记录  像假的 咱们自己手写的
+
+<form action="" id="biao"></form>
+<datalist id="biao">
+    <option value="123">456</option>
+    <option value="456">456</option>
+</datalist>
+
+</body>
+</html>

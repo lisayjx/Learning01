@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- 
+        结构伪类选择器
+
+
+      div:first-child 这个结构中的第一个 会受其他同级的元素影响 比如p
+      div:first-of-type这个不会受同级的元素影响 这个元素类型的第一个
+   
+   :nth-child(n) n可以是阿拉伯数字 从1开始 如果是2n 那么n从0开始
+   2n或者even是偶数，2n+1或者2n-1或者odd是奇数
+   也会受同级其他元素影响
+
+   ：nth-of-type()不受影响
+   ：nth-last-child(2)倒数第2个
+   ：nth-last-of-type() 倒数第几个
+
+
+   带of的 先看前面数据类型 再在这个数据类型里数
+   不带of的先看后面数，然后再看前面数据类型  要是数对应位置的类型 和你在前面写的类型不一致 就不生效
+   
+   h1:only-child 整个页面别的元素都没有 只有一个h1才生效
+   p:only-of-type这个元素类型只有一个 例如 有2个p不生效
+   
+
+   :empty当内容为空时 会用在论坛上
+
+   html的上级是
+   ：root 
+   
+    -->
+
+
+    <p></p>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

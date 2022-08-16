@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 200px;
+            height: 50px;
+            background: red;
+            margin-bottom: 5px;
+            
+        }
+        div:nth-child(1) {
+            display: none;
+            transition: 1s;
+        }
+        div:nth-child(2) {
+            opacity: 0;
+            transition: 1s;
+        }
+        body:hover div:nth-child(1){
+            display: block;
+        }
+        body:hover div:nth-child(2) {
+            opacity: 1;
+        }
+        div:nth-child(3) {
+            transition: 1s;
+        }
+        div:nth-child(4) {
+            transition: 2s 1s;
+        }
+        div:nth-child(5) {
+            transition: 2s 1s background;
+        }
+        div:nth-child(6) {
+            transition: 1s ease;
+        }
+        div:nth-child(7) {
+            transition: 1s ease-in;
+        }
+        div:nth-child(8) {
+            transition: 1s ease-out;
+        }
+        div:nth-child(9) {
+            transition: 1s ease-in-out;
+        }
+        div:nth-child(10) {
+            transition: 1s linear;
+        }
+        div:nth-child(11) {
+            transition: 1s steps(5);
+        }
+        div:nth-child(12) {
+            transition: width 1s 1s linear;
+        }
+        div:nth-child(13) {
+            /* 哪个属性存在过渡 */
+            transition-property: width;
+            /* 过渡的延迟时间 */
+            transition-delay: 1s;
+            /* 过渡的执行时间 */
+            transition-duration: 1s;
+            /* 过渡的运动形式 */
+            transition-timing-function: linear;
+        }
+
+        div:nth-child(14) {
+            transition: 1s;
+        }
+        div:nth-child(15) {
+            transition: width 1s,background 1s 1s;
+        }
+        body:hover div {
+            width: 400px;
+            background: yellow;
+        }
+
+        nav {
+            width: 68px;
+            height: 111px;
+            background: url(./pic.jpg);
+            border: 10px solid #000;
+            
+        }
+
+        nav:hover {
+            background-position-x:-340px; 
+            transition: 1s steps(5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        过渡属性：transition
+        作用：可以让我们看到从一个状态到另一个状态的变化过程
+        注意：不支持display:none  display:block
+        过渡的时间  单位是s秒
+        延迟执行时间  单位是s秒
+        哪个属性存在过渡  默认是all
+        运动曲线 ease 默认  ease-in ease-out ease-in-out linear steps(步骤)
+     -->
+     <div>1</div>
+     <div>2</div>
+     <div>3</div>
+     <div>4</div>
+     <div>5</div>
+     <div>6</div>
+     <div>7</div>
+     <div>8</div>
+     <div>9</div>
+     <div>10</div>
+     <div>11</div>
+     <div>12</div>
+     <div>13</div>
+     <div>14</div>
+     <div>15</div>
+     <nav></nav>
+</body>
+</html>

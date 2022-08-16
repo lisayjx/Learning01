@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            /* 这个不设置会有默认的格式 */
+            margin: 0;
+            padding: 0;
+        }
+        .nav {
+           font-size: 14px;
+            border-top: 2px solid orange;
+            height: 50px;
+            line-height: 50px;
+        }
+        ul li{
+            list-style: none ;
+           float: left;
+        }
+        ul li a {
+            /* 给a上下padding量不准确 所以给高 然后给行高让他垂直居中 左右用padding */
+            height: 50px;
+            /* 行内块别忘了 要不设置宽高padding不准确 */
+            display: inline-block;
+            /* padding: 0 15px; */
+            text-decoration: none;
+            color: #000;
+            padding: 0 15px;
+        }
+        a:hover{
+            background-color: orange;
+            color: #ffd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">手机新浪网</a></li>
+            <li><a href="#">手机浪网</a></li>
+            <li><a href="#">新浪网</a></li>
+            <li><a href="#">手机</a></li>
+            <li><a href="#">手机新浪网</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .link{
+            width: 500px;
+            height: 300px;
+            background: red;
+            margin: 0 auto;
+         
+        }
+        .link div{
+            height: 50px;
+            background-color: orange;
+            /* margin-left: 50px;
+            margin-right: -100px; */
+        }
+
+        .list{
+            width: 1000px;
+            height: 500px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+        .list ul li {
+            float: left;
+            width: 227px;
+            height: 50px;
+            border: 1px solid red;
+            margin-right: 28px;
+        }
+        .list ul {
+            height: 200px;
+            background: yellow;
+            margin-right: -28px;/*加了这个盒子就不会掉下去了*/
+            /* 必须是三层 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        margin负值
+        1.如果元素本身没有设置宽度
+        设置margin正值 会缩小元素宽度
+
+        设置margin负值会增大元素宽度
+
+        如果元素设置了宽度
+        margin得正值负值不会影响盒子的宽度 会影响盒子的位置
+     -->
+     <div class="link">
+        <div></div>
+     </div>
+
+     <!--  /* 必须是三层 */ -->
+    
+     <div class="list">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+     </div>
+</body>
+</html>

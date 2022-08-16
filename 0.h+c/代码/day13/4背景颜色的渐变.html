@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div:nth-child(1) {
+            width: 200px;
+            height: 100px;
+            /* background: -webkit-linear-gradient(left top,from(red),to(yellow)); */
+            background: -webkit-linear-gradient(left top,red,yellow);
+        }
+        div:nth-child(2) {
+            width: 200px;
+            height: 100px;
+            background: -webkit-gradient(linear,0 0,100% 100%,from(red),to(yellow));
+        }
+
+        div:nth-child(3) {
+            width: 200px;
+            height: 100px;
+            background-image: -webkit-linear-gradient(top,red,yellow,#00f);
+        }
+        div:nth-child(4) {
+            width: 200px;
+            height: 100px;
+            background: -webkit-linear-gradient(45deg,red,yellow,#00f);
+        }
+        div:nth-child(5) {
+            width: 200px;
+            height: 100px;
+            background: -webkit-linear-gradient(left bottom,red,yellow,#00f);
+        }
+        div:nth-child(6) {
+            width: 200px;
+            height: 100px;
+            background: -webkit-linear-gradient(left bottom,red 40%,yellow 60%,#00f 80%);;
+        }
+        div:nth-child(7) {
+            width: 200px;
+            height: 100px;
+            background: repeating-linear-gradient(45deg,red 0px, red 10px, yellow 10px,yellow 20px);
+            padding: 10px;
+        }
+        p {
+            height: 100%;
+            background: #fff;
+        }
+
+        nav:nth-of-type(1) {
+            width: 200px;
+            height: 100px;
+            background: radial-gradient(red,yellow,blue);
+        }
+        nav:nth-of-type(2) {
+            width: 200px;
+            height: 100px;
+            background: radial-gradient(circle,red,yellow,blue);
+        }
+        nav:nth-of-type(3) {
+            width: 200px;
+            height: 100px;
+            background: repeating-radial-gradient(circle,red 0px,red 10px, yellow 10px,yellow 20px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        兼容前缀  
+        -webkit- 谷歌 苹果
+        -ms- ie
+        -moz- 火狐
+        -o- 欧朋
+
+
+
+        渐变 background-image  
+        线性渐变
+         -webkit-linear-gradient(位置，颜色) 位置默认不写是top  可以是角度  xxdeg
+         重复线性渐变
+         repeating-linear-gradient（位置，颜色1 初始位置，颜色1 结束位置，颜色2 初始位置是颜色1的结束位置，颜色2 结束位置）
+        径向渐变
+        radial-gradient（形状，颜色） 形状默认是椭圆 ellipsis  circle 原型
+        重复径向渐变
+        repeating-radial-gradient（形状,颜色1 初始位置，颜色1 结束位置，颜色2 初始位置是颜色1的结束位置，颜色2 结束位置）
+     -->
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div><p></p></div>
+
+
+     <nav></nav>
+     <nav></nav>
+     <nav></nav>
+     <nav></nav>
+     <nav></nav>
+</body>
+</html>

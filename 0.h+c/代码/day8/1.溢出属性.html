@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .top1 {
+            background-color: pink;
+        }
+
+        .top2 {
+            background-color: red;
+        }
+
+        .top3 {
+            background-color: blue;
+        }
+
+        .top4 {
+            background-color: green;
+        }
+
+        .top6 {
+            background-color: orange;
+            overflow: auto;
+        }
+
+
+
+
+
+
+
+        ul{
+            height: 200px;
+            width: 400px;
+            background-color: orange;
+            margin: 0 auto;
+        }
+
+li{
+    margin-right: -2px;/*溢出*/
+    overflow: hidden;/*裁切*/
+}
+
+        P{
+            float: left;
+            width: 100px;
+            background-color: red;
+            border-bottom: 1px solid blue;
+            height: 50px;
+            border-right: 1px solid #000;/*加了边框放不下盒子了*/
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+内容盒子装不下了 跑出去了 
+溢出属性overflow
+hidden溢出内容裁切
+scroll滚动条 无论有无溢出 都有滚动条
+auto 看情况 无溢出就没滚动条 有溢出就有滚动条 哪个方向存在溢出就存在哪个方向得滚动条
+    visible默认值
+    inherit继承父元素的overflow属性值
+
+    
+
+阿拉伯数字 不会换行 英文也不会（没空格的情况下）
+-->
+    <div class="top1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top2">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top3">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="to4p">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top5">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+    <div class="top6">
+        11111111111111111111111111111111111111111111111111111111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+<br>
+<br>
+<br>
+
+
+
+
+<!-- 做中间有线下边有框 四周没框 -->
+<!-- 中间线怎么办！！！！！！ -->
+
+<ul>
+    <li>
+        <p>1</p>
+        <p>2</p>
+    </li>
+    <li>
+        <p>1</p>
+        <p>2</p>
+    </li>
+    <li>
+        <p>1</p>
+        <p>2</p>
+    </li>
+</ul>
+
+
+
+    </body>
+
+</html>

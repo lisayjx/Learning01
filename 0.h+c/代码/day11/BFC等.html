@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        FC：格式化上下文：页面如何渲染（布局形式，浏览器如何解析）
+        BFC块级格式化上下文
+        IFC行内格式化上下文
+        FFC弹性格式化上下文
+        GFC网格格式化上下文
+
+       一、 BFC
+    解析规则：
+        1.每个BFC默认情况下独占一行
+        2.两个独立的BFC区域 上下margin会发生重叠 取较大值（外边距合并）
+        3.浮动的BFC区域上下margin不会发生重叠 （两个都浮动 不会发生外边距合并）
+        4.BFC区域与包含块（父级）的左边相接触  一个大盒子装一个小盒子（左上角）
+        5.BFC区域计算高度时 浮动的元素也会参与计算
+     可以触发BFC的条件 ：
+        根标签 html（独立的BFC）
+        元素的position属性值为absolute fixed
+        元素添加float
+        元素添加overflow：hidden auto scroll
+        元素添加display：inline-block flex inline-flex grid table-caption
+
+        面试问题？
+        为什么给元素添加overflow：hidden就会解决塌陷？
+        因为它可以触发BFC BFC是浏览器如何解析标签样式 解析规则 因为BFC第五条 
+        因为 他触犯了法律第几条（...）
+        
+        
+        二、IFC
+        解析规则：
+        1.每个IFC默认情况下自左向右在一排显示
+        2.IFC区域默认是基线对齐 (如果都设置了vertical-alignmiddle 属性 那么根据最高的那个元素垂直方向居中)
+        如果一行放不下 会换行 （浮动的几个高度不一样的盒子 放不下的盒子换行后会到高度低且紧挨着的那个盒子）
+        3.IFC区域如果中间有了块元素那么IFC就会被分成两个ifc
+     -->
+</body>
+</html>

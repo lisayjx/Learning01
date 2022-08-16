@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            height: 500px;
+            background-color: #0ff;
+
+            padding-left: 200px;
+            padding-right: 200px;
+            box-sizing: border-box;
+        }
+
+        .center {
+            width: 100%;
+            height: 400px;
+            background-color: yellow;
+            float: left;
+
+
+            /* padding-left: 200px;
+            padding-right: 200px;
+            box-sizing: border-box; */
+        }
+
+        .left {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            float: left;
+            margin-left: -100%;/*没有这个 盒子就会下来*/
+
+            position: relative;
+            left: -200px;
+        }
+
+        .right {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+            margin-left: -200px;
+
+            position: relative;
+           right: -200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        先加载中间，在加载左右两端
+
+        如果2有背景颜色 随着内容增加 他的高度也会增加 
+        如果不想让黄色背景出现在红色和蓝色那里
+     -->
+    <div class="main">
+
+        <div class="center">2</div>
+        <div class="left">1</div>
+        <div class="right">3</div>
+
+    </div>
+
+
+</body>
+
+</html>

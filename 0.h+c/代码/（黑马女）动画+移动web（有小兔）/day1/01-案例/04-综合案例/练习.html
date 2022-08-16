@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: middle;
+            transition: all .6s;
+        }
+
+        .box {
+            width: 1110px;
+            height: 247px;
+            margin: 20px auto;
+            /* background-color: pink; */
+        }
+
+        .box li {
+            position: relative;
+            float: left;
+            width: 350px;
+            height: 247px;
+            margin-right: 30px;
+            /*为了隐藏 跑出去下面的文字盒子和缩放以后得盒子  */
+            overflow: hidden;
+        }
+
+        .box li:last-child {
+            margin-right: 0;
+        }
+
+        .box .txt {
+            position: absolute;
+            left: 0;
+            bottom: -50px;
+            width: 350px;
+            /* height: auto; */
+            padding: 20px 30px;
+            z-index: 1;
+            color: #fff;
+            /* 只让tran变 是因为 让all边的话会把padding也当成内容去变，会导致文字左右乱窜 */
+            transition: transform .5s;
+            /* transition: all .5s; */
+            /* background: red; */
+        }
+
+        .box .txt h4 {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 2em;
+            color: #fff;
+        }
+
+        .box .txt h5 {
+            margin-bottom: 40px;
+            font-size: 18px;
+            line-height: 1.5em;
+            color: #fff;
+        }
+
+        .box .txt p {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .box .txt p .iconfont {
+            color: #c7000b;
+            vertical-align: middle;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* 渐变的盒子 */
+        .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(transparent,
+                    rgba(0, 0, 0, .6));
+            opacity: 0;
+            transition: all .6s;
+        }
+
+        li:hover .mask {
+            opacity: 1;
+        }
+
+        /* 文字盒子上移 */
+        li:hover .txt {
+            transform: translateY(-50px);
+        }
+
+        /* 图片放大 */
+        li:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <a href="#">
+                    <!-- 图 -->
+                    <div class="pic">
+                        <img src="./images/product.jpeg" alt="">
+                    </div>
+                    <!-- 字 -->
+                    <div class="txt">
+                        <h4>产品</h4>
+                        <h5>OceanStor Pacific 海量存储斩获2021 Interop金奖</h5>
+                        <p>
+                            <span>了解更多</span>
+                            <i class="iconfont icon-arrow-right"></i>
+                        </p>
+                    </div>
+
+                    <!-- 添加渐变背景（写在a中） -->
+                    <div class="mask"></div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <!-- 图 -->
+                    <div class="pic">
+                        <img src="./images/huawei1.jpeg" alt="">
+                    </div>
+                    <!-- 字 -->
+                    <div class="txt">
+                        <h4>产品</h4>
+                        <h5>OceanStor Pacific 海量存储斩获2021 Interop金奖</h5>
+                        <p>
+                            <span>了解更多</span>
+                            <i class="iconfont icon-arrow-right"></i>
+                        </p>
+                    </div>
+
+                    <!-- 添加渐变背景 -->
+                    <div class="mask"></div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <!-- 图 -->
+                    <div class="pic">
+                        <img src="./images/huawei2.jpeg" alt="">
+                    </div>
+                    <!-- 字 -->
+                    <div class="txt">
+                        <h4>产品</h4>
+                        <h5>OceanStor Pacific 海量存储斩获2021 Interop金奖</h5>
+                        <p>
+                            <span>了解更多</span>
+                            <i class="iconfont icon-arrow-right"></i>
+                        </p>
+                    </div>
+
+                    <!-- 添加渐变背景 -->
+                    <div class="mask"></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

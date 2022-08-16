@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        a {
+            display: block;
+            padding: 10px;
+            background-color: #eee;
+        }
+        a:link{/*默认的时候 啥都没点的时候*/
+            color: aqua;
+        }
+        a:visited{/*点完一次得时候*/
+            color: purple;
+        }
+        a:hover{/*鼠标经过*/
+            color: yellow;
+        }
+        a:active{/*鼠标点击的时候*/
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        a标签可以定义四个伪类:
+:link{样式:样式值;}初始状态;必须是第一次访问或者清除历史记录的访问
+:visited{样式:样式值;}访问后的状态
+:hover{样式:样式值;}鼠标悬停;鼠标滑过效果
+:active{样式:样式值;}激活状态（点击的时候）
+上面四个的使用顺序l-v-h-a(love hate 爱恨准则) LV好
+
+     -->
+     <a href="#">链接</a>
+     <br>
+     <a href="#">链接</a>
+     <br>
+     <a href="#">链接</a>
+     <br>
+     <a href="#">链接</a>
+     <br>
+
+</body>
+</html>

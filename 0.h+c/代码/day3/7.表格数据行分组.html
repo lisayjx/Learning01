@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        表格按照数据分组 ： 
+      顺序：  thead（1个） tbody（可以有多个） tfoot（1个）
+
+        注意：thead tbody tfoot 要用就要一起使用，要么就都不用
+        一个表格只能有一个thead 一个tfoot tbody可以多个
+        tfoot也可以放到前面 但是不影响页面观看顺序
+        相当于 页眉 内容 页脚
+     -->
+     <table>
+        <!-- thead -->
+        <thead>
+            <tr>
+                <th>列标题</th>
+                <th>列标题</th>
+                <th>列标题</th>
+                <th>列标题</th>
+                <th>列标题</th>
+                <th>列标题</th>
+            </tr>
+        </thead>
+       <!-- tbody -->
+       <tbody>
+        <tr>
+            <td>01</td>
+            <td>02</td>
+            <td>03</td>
+            <td>04</td>
+            <td>05</td>
+            <td>06</td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>02</td>
+            <td>03</td>
+            <td>04</td>
+            <td>05</td>
+            <td>06</td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>02</td>
+            <td>03</td>
+            <td>04</td>
+            <td>05</td>
+            <td>06</td>
+        </tr>
+    </tbody>
+    <!-- tfoot -->
+    <tfoot>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </tfoot>
+     </table>
+</body>
+</html>

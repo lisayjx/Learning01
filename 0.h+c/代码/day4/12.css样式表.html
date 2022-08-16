@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- 
+        1.行内样式表（内嵌）
+        写在html标签内部 <div style="color:red">111</div>
+        2.内部样式表
+        卸载head之间 用style包裹
+        3.外部样式表
+        <link rel="stylesheet" href="1.css">
+        导入式引用：必须是内部样式表的第一行代码
+        <style>
+             @import url(1.css);
+        </style>
+        link和@important区别：
+        1.老祖宗不同 link式html提供的引入方式，不仅可以引入css文件还可以引入其他文件
+        @important式css提供的引入方式 只能引入css文件
+        2.加载顺序不同：link和html同时被加载
+          @important是当所有html加载完成之后在加载css
+        3.兼容不同：@important在ie6以上支持  link没版本要求
+        4.控制dom（文档对象模型）：link支持，@important不支持
+
+
+        样式表优先级：
+        内部和外部与书写顺序有关，是就近原则，谁在后边谁生效！！！！
+        行内的最强
+     -->
+</body>
+
+</html>

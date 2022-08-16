@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 通配符选择器 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+       /* 标签选择器 */
+       div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid pink;
+       }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.通配符选择器
+        作用：清空网页的默认样式（因为每个浏览器的默认值不一样）
+         *{
+            margin: 0;
+            padding: 0;
+        }
+
+        2.标签选择器：
+        作用：同一同一页面中某一类标签的默认样式
+        注意：body中必须存在这个标签，必须是html的标签
+         html标签 {
+            属性：属性值；
+        }
+        3.id和class选择器：可以区分标签
+        #box {
+            。。
+        } 
+        需要引入才能生效 <div id="box">11</div>
+        .box1 {
+            。。
+        }
+        需要引入才能生效<div id="box1">11</div>
+
+        注意：
+        一个标签可以存在一个id，一个标签可以存在多个class名称
+        id类似身份证号，class类似姓名（有重复的）
+        id和class起名不要用汉字数字开头 不要用关键字（html标签）
+        最好起名要结构化 语义化 .header .center  看到就会知道啥含义
+        可以使用驼峰命名法：userName或者 use_name  大驼峰和小驼峰
+        能用class尽量不要用id（具有唯一性）：从团队合作方面来看
+      
+        id选择器作用：用来搭建网页的外围结构
+       （ 锚点、label for 这两个必须用到id）
+
+       class选择器作用：统一网页中所有引入class名称的样式
+     -->
+
+     <div>
+        11
+     </div>
+</body>
+
+</html>

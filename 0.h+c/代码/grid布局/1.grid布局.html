@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+
+            /* width: 600px;
+            height: 600px; */
+            border: 10px solid pink;
+
+
+            /* 1.grid-template-  行列 */
+            display: grid;
+            /* 三列 每一列是100px */
+            grid-template-columns: 100px 100px 100px;
+            /* 4行 每一行是100px */
+            grid-template-rows: 100px 100px 100px 100px;
+            /* 三列 每一列是100px,3是重复的次数 */
+            grid-template-columns: repeat(3, 100px);
+            /* 单元格有大小，容器宽高不确定 这个属性会自动填充 */
+            grid-template-columns: repeat(auto-fill, 100px);
+            /* 平分成3份，每一份占一份 */
+            grid-template-columns: repeat(3, 1fr);
+            /* 分成6份，第一个占1份，第二个占2份，第三个占3份 */
+            grid-template-columns: repeat(1fr, 2fr, 3fr);
+            /* 就是说，正常情况按1fr来分配大小，但是如果1fr小于150，那就取消1fr分配，变为固定150px */
+            grid-template-columns: 1fr minmax(150px, 1fr);
+            /* 第一列100 中间自动 第三列100 */
+            grid-template-columns: 100px auto 100px;
+
+
+            /*2.gap*/
+            /* 行中间的间距 */
+            row-gap: 20px;
+            /* 列中间的间距 */
+            column-gap: 10px;
+            /* 他俩可以集合写成 */
+            gap: 20px 10px;
+            /*两个都是10*/
+            gap: 10px;
+
+
+
+            /* 3.grid-template-areas 定义模板区域 自己划分区域 */
+            grid-template-areas: 'a b c'
+                'd e f'
+                'g h i';
+            /* 说明第一行是一个区域 第二行是一个区域 第三行是一个区域 */
+            grid-template-areas: 'a a a''b b b''c c c';
+            /* 区域不需要就用点表示 */
+            grid-template-areas: 'a · c''d · f''g · i';
+
+
+            /*4.横着排还是竖着排*/
+            grid-auto-flow: column;
+            grid-auto-flow: row;
+            grid-auto-flow: dense;
+        }
+
+        .item {
+            font-size: 50px;
+            background-color: #ddd;
+            color: #000;
+        }
+
+        .item-1 {
+            background-color: yellowgreen;
+        }
+
+        .item-2 {
+            background-color: orange;
+        }
+
+        .item-3 {
+            background-color: #4ba946;
+        }
+
+        .item-4 {
+            background-color: #0376c2;
+        }
+
+        .item-5 {
+            background-color: #c077af;
+        }
+
+        .item-6 {
+            background-color: red;
+        }
+
+        .item-7 {
+            background-color: blue;
+        }
+
+        .item-8 {
+            background-color: blueviolet;
+        }
+
+        .item-9 {
+            background-color: black;
+        }
+
+        .item-10 {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- .main>.item.item-${$}*10 -->
+    <div class="main">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+        <div class="item item-10">10</div>
+    </div>
+</body>
+
+</html>

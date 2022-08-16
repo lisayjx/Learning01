@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            list-style: none;
+        }
+        li:before{
+            content: '';
+            padding: 13px;
+            background-color: yellow;
+            font-size: 0;
+            vertical-align: middle;
+            background: url(./icon.jpg) no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+background-position用于背景定位，属性值分别表示:x方向坐标y方向坐标
+是从padding开始(border以内)进行定位的（注: css中坐标轴是倒置的坐标轴)﹐左手大拇指冲下 那个坐标轴 下面和右面是正 
+有三种使用方式
+数值法:如:向右平移100像素，向下平移100像素
+特殊变量:水平方向left right center，垂直方向top bottom center，工作中，常用的是top center百分比数值∶(盒子宽度|盒子高度＋盒子padding*2-背景图片的宽度|背景图片的高度)*百分比
+单独设置: background-position也是复合属性，因此水平方向，和垂直方向可以单独设置
+background-position-x设置水半方向
+background posilion y设置乖白方法background-attachment用来固定背景，
+scroll滚动页面，位置不变，柑对窗口位置变化.(默认值)Fixed滚动页面，位置变化，相对于窗口位置不变（滚动都不变）
+
+
+
+背景复合属性
+
+background是一个复合属性，
+可以设置背景色，背景图片，背景图片位置，背景图片平铺，
+在css3中还可以设置背景图片尺寸，背景图片起始位置，背景图片的截取，背景图片的定位等等
+设置顺序: background背景色，背景图片，背景平铺，背景定位，背景固定
+应用:
+制作渐变背景:设置一个渐变单元，然后水平平铺设置渐变背景
+汁意: linear-gradient屈性可以设置渐变，但这显css3屈性，低版本浏览器不支持，我们可以使用
+背景平铺来解决
+背景居中，设置banner图片
+伪元,素设詈背景∶使用行内元素设置背景，i改变了原有的dom结构，因为我们新增了行内元素span
+为了避免插入新元素，我们可以使用伪元素，步骤:
+l设置伪元素，2设置content属性，让伪元素显示，.3设置padding撑起宽高，4修改字号，5居中对齐设置vertical-alinc: middlc;6调整外边距
+
+     -->
+
+     <ul>
+        <li>衣服</li>
+        <li>衣服</li>
+        <li>衣服</li>
+     </ul>
+
+
+   
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div:nth-child(1) {
+            width: 200px;
+            height: 100px;
+            background: red;
+            /* box-shadow: 0px 0px 0px 0px #00f inset; */
+            box-shadow: 0px 0px 0px 2px #000,0px 6px 0px #0ff,6px 0px 0px #ff0;
+            margin: 50px auto
+        }
+        div:nth-child(2) {
+            width: 200px;
+            height: 100px;
+            background: red;
+            margin: 0 auto;
+            /* box-shadow:4px 4px 0px #999; */
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 2px 0px 0px #f00,0px 3px 0px #00f,0px 0px 10px #0ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        1：盒子的阴影 box-shadow
+            水平偏移值   正值默认向右 负值向左
+            垂直偏移值  正值默认向下  负值向上
+            阴影的模糊程度  只能为正值
+            阴影的缩放  正值放大 负值缩小 (不需要可以省略)
+            阴影的颜色  
+            阴影的位置  默认是外阴影  inset内阴影 (不需要可以省略)
+
+            注意：阴影不占据空间
+                可以同时为一个元素设置多个阴影，中间用逗号隔开
+        2：文本的阴影  text-shadow
+            水平偏移值
+            垂直偏移值
+            阴影模糊程度 
+            阴影的颜色
+             注意：阴影不占据空间
+                可以同时为一个元素设置多个阴影，中间用逗号隔开
+     -->
+
+     <div></div>
+     <div></div>
+     <h1>文字的阴影</h1>
+</body>
+</html>

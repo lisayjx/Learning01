@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .table{
+            height: 300px;
+            width: 300px;
+            background-color: pink;
+          /*  */
+            text-align: center;
+            vertical-align: middle;
+            display: table-cell;/*表格模式*/
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+a标签里面放块级元素 说不定会溢出，但是转换成块（行内块）元素就好了
+
+          水平垂直居中
+1.单行文字（有固定高度的） ： text-align（水平） line-height（垂直）
+  单行文字（无固定高度的） ： text-align（水平） padding上下
+
+2.多行文字 （有固定高度的）： text-align（水平） margin-top自己算  使用怪异盒（因为使用了padding可能会撑大盒子）           line-height（垂直）也行 但是但是字会往下
+  多行文字 （无固定高度的）： text-align（水平） padding上下
+
+          行内元素得居中
+1.单行行内元素  和单行文本那个一样 写给父元素
+2.多行行内元素  和多行文本那个一样 写给父元素
+
+
+          块元素
+1.块元素（有固定高度）  ：margin：0 auto（水平）   计算margin或者padding 写给元素本身
+  块元素 （无固定高度的）:margin：0 auto（水平）   计算margin或者padding 写给元素本身
+  
+  
+
+          行内块元素
+1.text-align（水平） padding（垂直）父元素         {但是比如img或者input里要加入vertical-align：middle}
+     3写三样东西
+
+     
+  块元素水平居中都是margin0auto 垂直居中都是padding或者margin
+  行内元素水平text-align 垂直一行的就行高，多行的就是padding要不就自己算margintop
+  行内块就是跟行内差不多就是多了个vertical-align：middle
+
+
+  有一个东西都可以实现居中：表格（仅限于一行）
+表格文字默认垂直居中,加align="center" 就居中了
+使用表格元素可以很方便的实现水平垂直居中但是这个仅限于一行
+
+
+
+
+-->
+</body>
+<table border="1" width="300" height="300">
+    <tr>
+        <td align="center"> 在这里的各种东西都能居中</td>
+    </tr>
+
+</table>
+
+
+<!-- 模拟表格 -->
+<!--
+text-align: center;
+vertical-align: middle;
+display: table-cell;表格模式-->
+<div class="table">
+    在这里随便放都是居中得 
+    （要是多行的不建议用table）
+</div>
+</html>

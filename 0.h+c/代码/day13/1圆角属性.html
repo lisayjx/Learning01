@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+        div:nth-child(1) {
+            background: red;
+            border-radius: 5px;
+        }
+        div:nth-child(2) {
+            background: yellow;
+            border-radius: 5px 10px;
+        }
+        div:nth-child(3) {
+            background: pink;
+            border-radius: 5px 10px 15px;
+        }
+        div:nth-child(4) {
+            background: orange;
+            border-radius: 5px 10px 15px 20px;
+        }
+        div:nth-child(5) {
+            background: yellow url(./1.jpg) no-repeat left bottom;
+        }
+        div:nth-child(5) span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: url(./1.png) no-repeat right bottom;
+        }
+        div:nth-child(6) {
+            background: gray;
+            border-radius: 5px/10px;
+        }
+        div:nth-child(7) {
+            background: blue;
+            border-radius: 5px 10px/10px 15px;
+        }
+        div:nth-child(8) {
+            background: purple;
+            border-radius: 5px 10px 15px/10px 15px 20px;
+        }
+        div:nth-child(9) {
+            background: salmon;
+            border-radius: 5px 10px 15px 20px/10px 15px 20px 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        圆角属性：border-radius：值（圆角的弧度）
+        注意：如何元素的宽度高度是相同的 圆角的值大于或等于宽度高度的一半或者是写50% 可以形成一个圆形
+     -->
+     
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div>
+        <span></span>
+     </div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+</body>
+</html>

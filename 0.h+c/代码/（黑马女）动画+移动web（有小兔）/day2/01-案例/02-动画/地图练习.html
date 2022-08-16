@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            position: absolute;
+            left: 50%;
+            top: 100px;
+        }
+        .box1{
+         animation: play 4s linear infinite;
+        }
+        .box2{
+         animation: play 4s 1s linear infinite;
+        }
+        .box3{
+         animation: play 4s 1s linear infinite;
+        }
+        .box4{
+         animation: play 4s 1s linear infinite;
+        }
+        @keyframes play{
+            0%{
+                transform: scale(1);
+                opacity: 0;
+            }
+            25%{
+                transform: scale(2);
+                opacity:0.5;
+            }
+            50%{
+                transform: scale(3);
+                opacity:1;
+            }
+            75%{
+                transform: scale(4);
+                opacity:0.5;
+            }
+            100%{
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</body>
+
+</html>

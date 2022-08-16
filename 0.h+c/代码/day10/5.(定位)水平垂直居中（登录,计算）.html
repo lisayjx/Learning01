@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 方法一 */
+        div {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+
+            position: absolute;
+            /*或者固定定位*/
+            left: 50%;
+            top: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+        }
+
+        /* 方法二 */
+        div {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+
+            position: absolute;
+            /*或者固定定位*/
+            left: calc(50%-150px);
+            top: calc(50%-100px);
+            margin-top: -100px;
+            margin-left: -150px;
+        }
+
+        /* 方法三 */
+        div {
+            width: 300px;
+            height: 200px;
+            background-color: red;
+
+            /* 四个方向清0 */
+            margin: 0 auto;
+            /*水平居中 因为body是浏览器的宽 高度是内容的高*/
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+        }
+
+        p {
+            background: orange;
+            height: 100px;
+            /*没给宽度 占整个屏幕的宽*/
+
+            /* 左右抛出去 自动在中间了 有宽度了 */
+            position: relative;
+            left: 100px;
+            right: 100px;
+        }
+
+        p {
+            background: black;
+            height: 100px;
+            /*没给宽度 占整个屏幕的宽*/
+            width: 100px;
+            /* 左右抛出去 自动在中间了 有宽度了 */
+            position: relative;
+            left: 100px;
+            right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+让盒子走50%，然后往回走自身宽度的一半
+
+
+四则运算函数 calc（）  +-/*  四则运算符前后必须有空格
+
+left优先级大于right
+top优先级大于botom
+     -->
+    <div class="div"></div>
+</body>
+
+</html>

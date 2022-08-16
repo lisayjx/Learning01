@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0; padding: 0;
+        }
+        section {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transform-style: preserve-3d;
+            animation: play 3s infinite linear;
+            background: olive;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            display: flex;
+            padding: 20px;
+            position: absolute;
+            transition: 1s;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: rebeccapurple;
+            border-radius: 50%;
+        }
+
+        div:nth-child(1) {
+            background: pink;
+            /* 主轴对齐方式和侧轴对齐方式 都是center */
+            justify-content: center;
+            align-items: center;
+            transform: translatez(100px);
+        }
+
+        div:nth-child(2) {
+            justify-content: space-between;
+            background: hotpink;
+            transform: translatez(-100px);
+        }
+        div:nth-child(2) span:nth-child(1) {
+            align-self:flex-end;/*其中一个下来*/
+        }
+
+
+        div:nth-child(3) {
+            justify-content: space-between;
+            background: lightcoral;
+            transform: rotatex(90deg) translatez(100px);
+        }
+        div:nth-child(3) span:nth-child(1) {
+            align-self:flex-end;/*第一个在最下面*/
+        }
+        div:nth-child(3) span:nth-child(2) {
+            align-self:center;/*第二个在中间*/
+        }
+
+
+        div:nth-child(4) {
+            background: greenyellow;
+            /* 歪头看 最上面一行 最下面一行 */
+            flex-direction: column;
+            justify-content: space-between;
+            transform: rotatex(90deg) translatez(-100px);
+        }
+        div:nth-child(4) nav {
+            background: yellow;
+            display: flex;
+            /* 让2个点分开 */
+            justify-content: space-between;
+        }
+
+        div:nth-child(5) {
+            background: lightblue;
+            /* 三竖趟 */
+            justify-content: space-between;
+            transform: rotatey(90deg) translatez(100px);
+        }
+        div:nth-child(5) nav {
+            background: yellow;
+            display: flex;
+            /* 让点也竖着排 */
+            flex-direction: column;
+            /* 点分开 */
+            justify-content: space-between;
+        }
+        div:nth-child(5) nav:nth-child(2) {
+            /* 中间竖趟得点放中间 */
+            justify-content: center;
+        }
+
+        div:nth-child(6) {
+            background: orange;
+            flex-wrap: wrap;
+            /* 主轴是x,让竖着分三排分开放 */
+            align-content: space-between;
+            transform: rotatey(90deg) translatez(-100px);
+        }
+        div:nth-child(6) nav {
+            width: 100%;
+            background: yellow;
+            display: flex;
+            /* 上下的俩点分开 */
+            justify-content: space-between;
+        }
+
+        p {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            background: green;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 40px;
+            line-height: 100px;
+        }
+        p:nth-of-type(1) {
+            transform: translatez(50px);
+        }
+        p:nth-of-type(2) {
+            transform: translatez(-50px);
+        }
+        p:nth-of-type(3) {
+            transform:rotatex(90deg) translatez(50px);
+        }
+        p:nth-of-type(4) {
+            transform:rotatex(90deg) translatez(-50px);
+        }
+        p:nth-of-type(5) {
+            transform:rotatey(90deg) translatez(50px);
+        }
+        p:nth-of-type(6) {
+            transform:rotatey(90deg) translatez(-50px);
+        }
+
+
+
+        section:hover div:nth-child(1){
+            transform: translatez(200px)
+        }
+        section:hover div:nth-child(2){
+            transform: translatez(-200px)
+        }
+        section:hover div:nth-child(3) {
+            transform:  translatez(200px) rotatex(90deg);
+        }
+        section:hover div:nth-child(4) {
+            transform: translatez(-200px) rotatex(90deg) ;
+        }
+        section:hover div:nth-child(5) {
+            transform: translatez(200px) rotatey(90deg) ;
+        }
+        section:hover div:nth-child(6) {
+            transform:  translatez(-200px) rotatey(90deg);
+        }
+        @keyframes play {
+            to {
+                transform: rotate3d(1,1,1,360deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+        <div>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+        <div>
+            <nav>
+                <span></span>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav>
+                <span></span>
+                <span></span>
+                <span></span>
+            </nav>
+        </div>
+
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+    </section>
+</body>
+</html>

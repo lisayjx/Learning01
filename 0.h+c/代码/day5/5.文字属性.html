@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            font-family: "楷体", 'Times New Roman', Arial;
+            font-weight: bolder;
+        }
+
+        h2 {
+            /* 不加粗 */
+            font-style: normal;
+        }
+
+        em {
+            /* 不倾斜 */
+            font-style: normal;
+        }
+        .top {
+            font-variant: small-caps;/*小型的大写字母*/
+            /* font: 16px/2;    2倍行距 ==36px */
+        }
+        .h{
+            font: 16px / 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+    1.  文字大小 font-size  
+        单位px像素(常用)  em  rem  pt（磅 打印时候） 
+        默认情况下16px=1em=rem 因为浏览器默认文字大小是16px 默认情况9pt=12px
+        使用具体单词表示文字大小 xx-large xx-small 一般不用 他们一般是奇数
+        但是网页中常用大小得是偶数 12（网页中最小的像素） 14 16
+
+        2.文字颜色 color：颜色色值
+
+        3.文字字体 font-family  （有时候会影响页面显示的文字数）
+        如果是中文的字体需要加引号""
+        如果是由一个英文单词组成的字体，直接写
+        一组英文单词组成的一个字体'Times New Roman'  单双引号都可以
+        
+        可以给同一个标签同时设置多个字体 中间用逗号隔开
+        浏览器会优先解析第一个字体，如果第一个字体在你电脑系统不存在，则继续向后查找第二个字体
+        以此类推往后，如果都不存在，则按照系统默认字体去解析 （现在一般是微软雅黑） 
+ 
+        4.文字的粗细
+        font-weight 
+        bold加粗
+        bolder更粗 （加粗和更粗一样）
+        lighter 细体（比默认的要细一些）
+        可以用100-900 九个等级来表示加粗  100-300细体 400-500正常 600-900加粗
+        normal 不加粗
+
+
+        5.文字倾斜
+        font-style
+        italic oblique 倾斜 后边倾斜度大 但是浏览器区分不出来
+        normal 不倾斜
+ 
+       6.将小写字母换成小型的大写字母   font-variant
+       small-caps小型的大写
+       normal默认值正常
+
+       7.行高line-height
+       相当与word中，文字行与行之间的空隙
+       值如果不写单位 代表的是文字大小的倍数 比如word中单倍行距1 多倍行距2
+       如果写单位 px就是具体数值
+       文字行高=实际元素得高度 会实现单行文字垂直居中！！！！！！！（仅限于一行 多行不好使）
+    
+
+       缩写
+       font:font-style font-weight font-variant font-size/line-height font-family
+       工作中常用 font：font-size/line-height font-family
+    -->
+    <p>哈哈哈哈</p>
+
+    <h2>22</h2>
+    <em>22</em>
+
+    <div class="top">AAAaaaa1111</div>
+
+    <p class="h">你好</p>
+</body>
+
+</html>

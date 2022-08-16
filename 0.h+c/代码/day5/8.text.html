@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+div{
+    height: 100px;
+    background:orange;
+    text-align: center;
+    line-height: 100px;
+    word-spacing: 50px;/*词间距*/
+    /* color: red; */
+}
+a{
+    /* a自身有蓝色 就永远不会被父亲继承得颜色覆盖 父级权力再大（即使有!important）对于我来说也是继承的 */
+    color: black;
+    text-decoration: none;
+}
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="#">首页</a>
+        <a href="#">首页</a>
+        <a href="#">首页</a>
+        <a href="#">首页</a>
+    </div>
+</body>
+
+</html>

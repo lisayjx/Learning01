@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: pink;
+        }
+        div span {
+            color: green;
+        }
+        div>span {
+            color: red;
+        }
+        div,p,span,#top,.nav,ul li a,p.nav {
+           
+            color: red;
+        }
+
+
+        /* 注意这里没有空格！！！！！！！！！！！ */
+        /* 只针对p标签里的类名叫top的，像是绑在这里了，写反了不行 */
+        p.top {
+            color: blue;
+        }
+        h1#link{
+            color: orange;
+        }
+      
+    </style>
+</head>
+<body>
+    <!-- 
+        1.关系选择器：
+
+        后代选择器：（管他下面的所有的符合的标签）
+        选择器1 选择器2{属性：属性值}
+
+        子代选择器：(只管他的下一级所有的符合的标签)
+         选择器1>选择器2{属性：属性值}
+     -->
+     <div>
+     <p>ppp <span>ppp</span> pppp</p>
+    </div>
+
+    <span>oooooo</sp>
+
+    <div>
+        div 
+        <span>kkk</span>
+    </div>
+
+    <!-- 
+        2.并集选择器 
+        .box,p,header {}
+      
+      
+        3. 交集选择器(绑定选择器) 中间没空格  没有包含关系（有两个标签，但是类名相同，想选择其中一个）
+         标签名选择器（id或者class）
+         注意：标签名一定要放在选择器的前面 不能改变顺序  p.nav
+    -->
+    <div class="top">111</div>
+    <p class="top">222</p>
+
+    <div id="link">555</div>
+    <h1 id="link">666</h1>
+</body>
+</html>

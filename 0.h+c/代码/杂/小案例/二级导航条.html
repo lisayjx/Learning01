@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #000;
+            height: 50px;
+            padding: 0 20px;
+
+        }
+
+        .nav {
+            border-top: 3px solid orange;
+            margin: 0 auto;
+            width: 600px;
+            height: 50px;
+            background-color: pink;
+            line-height: 50px;
+        }
+
+        .nav .yi {
+            display: flex;
+
+        }
+
+        .nav .yi li {
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav .yi li:hover {
+            background-color: #eee;
+            color: #000;
+        }
+
+        .nav .yi li:hover .er {
+            display: block;
+        }
+
+        .nav .er {
+            display: none;
+            position: absolute;
+            top: 50px;
+            width: 150px;
+        }
+        .nav .er li a {
+            width: 100%;
+            margin-left: -20px;
+        }
+        .nav .er li:hover {
+            background-color: orange;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="yi">
+            <li><a href="#">首页</a></li>
+            <li> 一级菜单
+                <ul class="er">
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

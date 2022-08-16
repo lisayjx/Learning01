@@ -1,0 +1,54 @@
+/* 块级元素 除了div以外都有默认值 */
+/*行内元素 除了input img textarea select之外都没有 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 或者 
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+dt,
+form,
+input,
+img,
+textarea,
+select {
+    margin: 0;
+    padding: 0;
+}
+*/
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+    border: none;
+    /*防止a里包含图片 会出现边框（因为a默认有下划线）*/
+}
+
+/* 万能清除法 ：解决高度塌陷*/
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}

@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* html默认高度是不跟浏览器一边大得，所以要自己设置 */
+    height: 100%;
+}
+
+body {
+    /* 这样body才能继承html 得高 */
+    height: 100%;
+    background: url(../images/f1_1.jpg) no-repeat center 0;
+    /* 缩放背景图用的 现在出不来图 因为body高度0*/
+    /* contain等比例缩放，当宽或者高有一边和盒子一样了 就不再缩放了 */
+    /*cover等比例缩放，当宽和高都到盒子得边 就不再缩放了 可能会导致盒子图显示不全*/
+    /* background-size: contain; */
+    background-size: cover;
+}
+
+/*1.img引图,控制位置*/
+/*定义动画 使用动画*/
+.cloud img {
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+
+.cloud img:nth-child(1) {
+    margin-left: -300px;
+    animation: cloud 1s infinite alternate;
+}
+
+.cloud img:nth-child(2) {
+    margin-left: 400px;
+    top: 200px;
+    animation: cloud 1s .2s infinite alternate;
+}
+
+.cloud img:nth-child(3) {
+    margin-left: -550px;
+    top: 200px;
+    animation: cloud 1s .4s infinite alternate;
+}
+
+/* 云彩动画 */
+@keyframes cloud {
+    to {
+        transform: translateX(20px);
+    }
+}
+
+/* 四小个 */
+.four img {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+}
+.four img:nth-child(1){
+    margin-left: -300px;
+    animation: four 1s infinite alternate;
+}
+.four img:nth-child(2){
+    margin-left: -150px;
+    animation: four 1s .2s infinite alternate;
+}
+.four img:nth-child(3){
+    margin-left: 10px;
+    animation: four 1s .4s infinite alternate;
+}
+.four img:nth-child(4){
+    margin-left: 200px;
+    animation: four 1s .5s infinite alternate;
+}
+@keyframes four{
+    to{
+        transform: translateY(5px);
+    }
+}
+
+/* 鹿 */
+.lu img {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    animation: lu 1s infinite alternate;
+}
+@keyframes lu{
+    to{
+        transform: translateX(6px);
+    }
+}

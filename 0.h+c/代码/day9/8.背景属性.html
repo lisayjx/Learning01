@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            padding: 100px;
+            border: 50px dotted orange;
+            margin: 100px;
+            background: url(xiaoxin.jpg)  ;
+         
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+ background-color背景色，属性值表示颜色，16进制的，特殊名称，rgb模式等等
+在标准盒模型中，背景色会应用给整个内容区域~(会应用到边框上) : width + padding*2 + border*2background-image背景图片，
+属性值url(地址)，可以是绝对地址，也可以是相对地址，地址建议带双引号
+设置的图片是从padding (包含〕开始渲染的，并且从border开始平铺渲染
+对于一个盒子设置背景色和背景图片
+背景色从border开始渲染背景图片从padding开始渲染
+background-repeat 设置背景平铺，注意:X特指水平方向，Y特指垂直方向
+no-repeat 不重复平铺，repeat重复平铺〔(默认值) ，repeat-×水平方向平铺，repeat-y垂直方向平铺
+
+            background-repeat: ; 北京重复方式
+            repeat默认值 no-repeat不平铺  repeat-x水平平铺 repeat-y垂直平铺
+            background-position: ;背景图片位置
+            默认是元素的左上角 值可以是方向left center right top center bottom
+            background-position：center top；  两个值 如果水平垂直都是center可以写一个
+            也可以是具体数值  这个坐标轴是 右下方向 左上是负值
+            百分比值：（元素的宽度或者高度-图片的宽高）*百分比
+           
+            background-attachment: ;背景图片是否固定  当墙上壁纸 上面可以有东西动 只有内容动 背景图不动
+            background-color: ;
+            background-image: url();
+            如果背景图比元素的宽高小，那么会平铺满整个区域
+            如果大于宽高，那么只显示宽高大小的图片（一部分）
+     -->
+
+     <div class="demo"></div>
+</body>
+</html>

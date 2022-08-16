@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            float: left;/*目的让他俩跟上面的行高一致 中间空隙也没了*/
+        height: 50px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        outline: none;
+        }
+        input[type='text']{
+            border-right: none;
+        }
+        input:focus{
+            border-color: orange;
+        }
+        input:focus+input{/*点击谁谁变+相邻的兄弟*/
+            border-color: orange;
+        }
+        input[type='submit']:hover{
+            background-color: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="请输入">
+    <input type="submit" value="搜索">
+</body>
+</html>

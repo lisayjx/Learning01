@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 50px;
+            background-color: red;
+            min-width: 1000px;
+        }
+
+        section {
+            background-color: yellow;
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+            /*缩小屏幕时候会自适应的缩小 限制一下最小宽度就是缩到了800就不缩了*/
+            min-width: 800px;
+        }
+
+        article {
+            float: left;
+            height: 500px;
+            background-color: gold;
+            width: 300px;
+        }
+
+        .slider {
+            margin-left: 310px;
+            /*被压在了左边盒子 左边盒子300且浮动*/
+            height: 300px;
+            background-color: green;
+        }
+
+        footer {
+            height: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <section>
+        <article></article>
+        <div class="slider"></div>
+    </section>
+</body>
+
+</html>

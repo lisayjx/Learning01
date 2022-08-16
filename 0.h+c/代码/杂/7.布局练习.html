@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .main {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            height: 103px;
+        }
+
+        .header .zuo {
+            float: left;
+            height: 103px;
+            width: 217px;
+            background-color: red;
+        }
+
+        .header .you {
+            float: right;
+            width: 679px;
+        }
+
+        .header .you .td {
+            height: 49px;
+            width: 137px;
+            background-color: green;
+            margin-bottom: 8px;
+            float: right;
+        }
+
+        .header .you .bd {
+            height: 46px;
+            width: 679px;
+            background-color: green;
+
+        }
+
+        /* body */
+        .body {
+            margin-top: 10px;
+            height: 435px;
+        }
+
+        .body .zuo {
+            float: left;
+            height: 435px;
+            width: 300px;
+            background-color: orange;
+        }
+
+        .body .you {
+            float: right;
+            width: 650px;
+            height: 435px;            
+        }
+        .body-you-top {
+            width: 650px;
+            height: 401px;
+        }
+        .body-you-top .lan {
+            float: left;
+            height: 400px;
+            width: 450px;
+            background-color: skyblue;
+        }
+        .zi{
+            float: right;
+            height: 401px;
+            width: 190px;
+            margin-left: 10px;
+            background-color: purple;
+        }
+
+        .body-you-bottom{
+           margin-top: 10px;
+            height: 25px;
+            width: 650px;
+            background-color: green;
+        }
+        .footer{
+            margin-top: 10px;
+            width: 960px;
+            height: 35px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- 上中下分三块header body footer -->
+        <div class="header">
+            <!-- header分成左右两部分 -->
+            <div class="zuo"></div>
+            <div class="you">
+                <!-- 右面分上下 -->
+                <div class="td"></div>
+                <div class="bd clearfix"></div>
+            </div>
+        </div>
+        <div class="body">
+            <!-- body分为左右 -->
+            <div class="zuo"></div>
+            <div class="you">
+                <!-- 右侧分上下两部分 -->
+                <div class="body-you-top">
+                    <div class="lan">
+                        <div class="lan-1"></div>
+                        <div class="lan-2"></div>
+                        <div class="lan-3"></div>
+                    </div>
+                    <div class="zi"></div>
+                </div>
+                <div class="body-you-bottom clearfix"></div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>

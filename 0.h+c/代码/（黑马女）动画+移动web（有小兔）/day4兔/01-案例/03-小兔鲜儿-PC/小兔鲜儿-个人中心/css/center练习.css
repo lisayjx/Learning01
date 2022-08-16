@@ -1,0 +1,317 @@
+/*这里版心叫wrapper */
+
+/* 内容 xtx_body */
+.xtx_body {
+    background-color: #f6f6f6;
+    padding: 30px 0 85px;
+
+}
+
+.xtx_body .wrapper {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+/* 侧边栏 */
+.xtx_body aside {
+    width: 227px;
+    min-height: 500px;
+    background-color: #fff;
+    margin-right: 18px;
+    /* padding: 52px 0 0 36px; */
+
+    display: flex;
+    flex-direction: column;
+}
+
+.xtx_body aside>div {
+    border-bottom: 1px solid #ddd;
+}
+
+.xtx_body aside>div:last-child {
+    border-bottom: 0;
+}
+
+/* 人物资料 */
+.rwzl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 33px 0 38px;
+}
+
+.rwzl .pic {
+    width: 85px;
+    height: 85px;
+}
+
+.rwzl a {
+   padding: 0 10px;
+    height: 20px;
+    background-color: orange;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 10px;
+    position: relative;
+    line-height: 20px;
+}
+.rwzl a img{
+    height: 15px;
+    width: 15px;
+}
+/* 公共 */
+.list{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.list dt{
+    font-size: 18px;
+}
+.list dl{
+line-height: 40px;
+}
+.list dd a:hover{
+color: #5eb69c;
+}
+.list dd a:hover::before{
+    content: '';
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #5eb69c;
+    margin-right: 5px;
+}
+/*-------*/
+
+
+
+
+
+
+
+/* 主体内容 */
+.xtx_body main {
+    flex: 1;
+    min-height: 500px;
+    /* background-color: red; */
+ 
+}
+
+/* 用户账户概览 */
+.overview {
+    height: 132px;
+    background-color: #fff;
+    margin-bottom: 18px;
+    padding: 20px 0;
+    display: flex;
+}
+
+.overview>div {
+    flex: 1;
+
+    /* 让 a（用户账户概览里的a） 在一行显示 */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    text-align: center;
+
+}
+
+.overview div:first-child {
+    border-right: 1px solid #f4f4f4;
+}
+
+.overview div a img {
+    width: 25px;
+    margin-bottom: 10px;
+}
+
+.overview div a p {
+    font-size: 16px;
+    color: #333333;
+}
+
+.overview div:nth-child(1) a:last-child img {
+    /* 地址坐标那个图比别的图细长 会影响和下面距离 */
+    width: 18px;
+}
+
+.overview div:nth-child(2) a span {
+    color: #e05e30;
+    font-size: 25px;
+}
+
+
+/* 公共样式：我的订单，收藏的商品，我的足迹 */
+.pannel {
+    padding: 28px 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.pannel_title {
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f4f4f4;
+
+}
+
+.pannel_title h4 {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.pannel_title a {
+    font-size: 16px;
+    color: #999;
+    margin-top: 8px;
+}
+
+/* 订单区域的 内容 */
+.orders .content ul li {
+    height: 137px;
+    width: 100%;
+    border: 1px solid #f4f4f4;
+    margin-top: -1px;
+    margin-bottom: 20px;
+}
+
+.orders .content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.orders .content ul li {
+    display: flex;
+}
+
+.orders .content ul li .goods {
+    flex: 1;
+}
+
+.orders .content ul li .status {
+    width: 120px;
+}
+
+.orders .content ul li .pay {
+    width: 200px;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+}
+
+.orders .content ul li .action {
+    width: 180px;
+}
+
+.orders .content .goods {
+    display: flex;
+    align-items: center;
+    padding: 17px 0 14px 12px;
+}
+
+.orders .content .goods .pic {
+    width: 107px;
+    height: 107px;
+}
+
+.orders .content .goods .txt h5 {
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+    line-height: 26px;
+
+    /* 单行文字溢出 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*或者给他的父级 txt 一个flex：1 width：0 */
+    width: 200px;
+}
+
+.orders .content .goods .txt p {
+    font-size: 14px;
+    color: #999;
+}
+
+.orders .content .status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orders .content .status a {
+    color: #e05e30;
+    font-size: 14px;
+}
+
+.orders .content .pay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.orders .content .pay p:first-child {
+    color: #9a2e1f;
+}
+
+.orders .content .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.orders .content .action a:first-child {
+    /* display: block; */
+    width: 100px;
+    height: 30px;
+    background-color: #5eb69c;
+    border-radius: 2px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+/* 收藏的商品,我的足迹 */
+.shangpin .content,
+.zuji .content {
+    padding: 22px 23px 0 14px;
+    /* background-color:red; */
+}
+
+.shangpin .content ul,
+.zuji .content ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shangpin .content ul li,
+.zuji .content ul li {
+    margin-right: 88px;
+}
+
+.shangpin .content ul li:last-child,
+.zuji .content ul li:last-child {
+    margin-right: 0;
+}
+
+.shangpin .content ul li a img,
+.zuji .content ul li a img {
+    width: 160px;
+    height: 160px;
+}
+
+.shangpin .content ul li a i,
+.zuji .content ul li a i {
+    color: #9a2e1f;
+}
+
+/* 我的足迹 */

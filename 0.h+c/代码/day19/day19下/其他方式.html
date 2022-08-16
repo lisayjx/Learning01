@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        .center {
+
+            height: 400px;
+            background-color: yellow;
+
+            /*-------------------------------------*/
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+
+        .left {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+
+        }
+
+        .right {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- 先加载中间 再加载左右
+     -->
+    <div class="center">2</div>
+    <div class="left">1</div>
+    <div class="right">3</div>
+</body>
+
+</html>
