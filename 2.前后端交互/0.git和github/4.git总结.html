@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<!-- 
+
+    本地仓库的操作：
+
+        1， 初始化仓库  git init   (了解)
+
+        2， 将文件添加到 git 的缓存区   (掌握) 
+            添加单个文件： git add 文件名称
+            批量添加：    git add .
+
+        3，将缓存区的文件添加到git仓库   （掌握）
+            git commit -m '提交说明'   (提交说明要写清楚，有意义).
+
+        
+    远程仓库操作：
+
+        1，将远程仓库克隆到本地：
+            git clone 远程仓库地址    （练习时，一定要选ssh地址，不然 https 每次都要写用户名和密码）
+
+        2，将本地内容提交到远程仓库：
+
+            git push   (第一次提交，会要求填写远程仓库的名称，根据终端提示复制粘贴即可。  还需要进行安全确认，输入 yes 即可)
+
+        3，从远程拉取新的内容到本地：
+            git pull    
+            
+            
+        (一定是先执行 git pull, 再执行 git push)
+
+    分支操作：
+
+        查看已有分支：   git branch   （名称前面有 * 的是当前分支）
+
+        根据已有分支创建新分支：  git checkout -b 新分支名称 (实际工作中都是从主分支创建新分支进行开发)
+
+        切换分支  ：      git checkout 分支名称
+
+
+    查看仓库状态：  git status    
+
+    查看提交记录：  git log
+
+    回退提交：
+        hard 可以换成 soft ，区别在于：
+            hard 是完全退回（撤销 git commit 和 git add 操作），
+            soft 是回退到缓存区（只撤销 git commit 操作）
+
+        git reset --hard HEAD^    回退一步
+        git reset --hard HEAD^^    回退两步
+        git reset --hard HEAD~3    回退三步
+        git reset --hard ad1432a   根据commit id来回退
+
+ -->
+
+
+
+
+</body>
+</html>
