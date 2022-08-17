@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./jquery/jquery-3.6.0.js"></script>
+
+</head>
+
+<body>
+    <button class="btnGET">发起不带参数的get请求</button>
+    <script>
+        //-----------$.get发起不带参数的请求----------------------
+        //    使用$.get(函数发起不带参数的请求时，
+        //    直接提供请求的URL地址和请求成功之后的回调函数即可，示例代码如下:
+        //所有的Ajax请求都可以在XHR查看
+        // $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+        //     console.log(res);//这里的res是服务器返回的数据
+        // })
+
+        //点击按钮就要发起请求
+        $(function () {//JQ的入口函数
+
+
+
+            $('.btnGET').click(function () {
+                $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+                    console.log(res);//这里的res是服务器返回的数据
+                })
+            })
+
+
+//XHR是监听所有Ajax请求
+// header是能看到URL 和什么方式 Preview里的status要是200就是获取成功了
+
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>

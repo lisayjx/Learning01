@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <button class="btnG">get</button>
+    <button class="btnP">post</button>
+    <script>
+        $(function () {
+
+
+            // 相比于$.get()和$.post()函数，
+            // jQuery 中提供的$.ajax()函数，
+            // 是一个功能比较综合的函数(又能post又能get)，
+            // 它允许我们对Ajax请求进行更详细的配置。
+
+            // $.ajax()函数的基本语法：
+            // $.ajax({
+            //     type: '',//请求的方式，例如GET或者POST
+            //     url: '',//请求的URL地址
+            //     data: {},//这次请求要携带的数据
+            //     success: function (res) { }//请求成功之后的回调函数
+            // })
+
+            //----------使用ajax发起get请求---------------------
+            $('.btnG').click(function () {
+
+
+                $.ajax({
+                    type: 'GET',//大小写都行 建议大写
+                    url: 'http://www.liulongbin.top:3006/api/getbooks',
+                    data: { id: 2 },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+
+            })
+            //----------使用ajax发起post请求---------------------
+            $('.btnP').click(function () {
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

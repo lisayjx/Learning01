@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <button class="btnGET">post向服务器提交数据</button>
+    <script>
+        //$.post()函数功能单一。专门用来发起post请求，从而向服务器提交数据
+
+        // $.post(url, [data], [callback])
+        // url:提交数据的地址         string
+        // [data]:要提交的数据     可选      object
+        // [callback]:数据提交成功时的回调函数    可选    function
+
+
+        //---------------------$.post向服务器提交数据----------------------------
+        $(function () {//JQ的入口函数
+
+
+            $('.btnGET').click(function () {
+
+
+                $.post('http://www.liulongbin.top:3006/api/addbook',//提交数据的地址(地址变了)
+                    { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' },//要提交的数据
+                    function (res) {//提交成功时的回调函数
+                        console.log(res);
+                    }
+                )
+
+            })
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./bootstrap.css">
+    <script src="./jquery/jquery-3.6.0.js"></script>
+
+</head>
+
+<body style="padding:15px">
+    <!-- 找bs3-panel:primary -->
+
+    <!-- 添加图书的panel面板 -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加新图书</h3>
+        </div>
+        <div class="panel-body form-inline">
+            <!-- bs3-input-group: addon:text -->
+
+            <div class="input-group">
+                <div class="input-group-addon">书名</div>
+                <input type="text" class="form-control" id="iptBookname" placeholder="请输入书名">
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">作者</div>
+                <input type="text" class="form-control" id="iptAuthor" placeholder="请输入作者">
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">出版社</div>
+                <input type="text" class="form-control" id="iptPublisher" placeholder="请输入出版社">
+            </div>
+
+            <button id="btnAdd" class="btn btn-primary">添加</button>
+        </div>
+    </div>
+
+    <!-- 图书的表格 -->
+    <!-- bs3-table:bordered -->
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody class="tb">
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>  
+            </tr> -->
+        </tbody>
+    </table>
+
+
+    <script>
+        $(function () {
+
+
+            // 渲染图书列表
+            // 1.发起ajax请求，获取图书列表数据
+            // 2.获取列表数据是否成功
+            // 3.渲染页面结构
+            // 4.循环拼接字符串（每次循环拼出tr出来 放到rows数组里）
+            // 5.渲染表格结构
+            //注意：接口文档中的url是：根路径+接口URL
+
+
+            // 获取过来的res是对象，里面装着  { status: 200, msg: "获取图书列表成功", data: (3) […] }
+            // 而 res.data就是我们要的数据 数组
+
+
+
+
+            function getBookList() {//获取图书列表的函数
+                $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+                    // console.log(res);//返回来的数据
+                    //2.判断获取列表数据是否成功
+                    if (res.status !== 200) {
+                        return alert('获取数据失败')
+                    }
+                    //如果获取成功，就把获取过来数据进行循环，每次循环都得到一个图书对象添加成tr行
+                    //然后把tr行追加到tbody
+                    let rows = []  //装tr行
+                    //$0each是JQ提供的循环数组的方法   res.data是获取过来的对象中的数组
+                    $.each(res.data, function (i, item) {//i是当前循环项目的索引，item是当前循环项，每次循环都会执行这个函数
+                        //把tr追加到tbody中，一个tr几个td？td和th数量一样  5个
+                        rows.push(`
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.bookname}</td>
+                            <td>${item.author}</td>
+                            <td>${item.publisher}</td>
+                            <td><a href="javascript:;" class='del' data-id='${item.id}'>删除</a></td>
+                       </tr>
+                        `)
+                    })
+                    $('.tb').empty().append(rows.join(''))
+
+                })
+
+            }
+            getBookList()
+
+
+
+            //-------------点击删除会删除对应行------------------------------------------
+            //先获取a链接
+            // $('.del').on('click', function () {
+            //     console.log('ok');
+            // })
+            //这样并不会删除，因为数据不是本来就在页面的 是获取过来的
+            //a链接是动态创建的
+            //a链接是后期append进去的，记住这种后期被append进去的不能这样绑定事件
+            //需要代理的方式为a绑定事件，为a的父亲tbody绑定事件
+            $('tbody').on('click', '.del', function () {
+                //点击a时候要获取对应行的id     原生是dom.dataset.index
+                let id = $(this).attr('data-id')
+
+
+                //删除图书    获取GET请求 去查看图书删除的接口文档
+                $.get('http://www.liulongbin.top:3006/api/delbook', { id: id }, function (res) {
+                    if (res.status !== 200) return alert('删除失败')
+                    //删除成功之后重新刷新列表 重新调用一下getBookList()
+                    getBookList()
+                })
+
+
+            })
+
+            //-----添加图书----------------------------------
+
+
+
+            $('#btnAdd').click(function () {
+                let bookname = $('#iptBookname').val().trim()
+                let author = $('#iptAuthor').val().trim()
+                let publisher = $('#iptPublisher').val().trim()
+                if (bookname.length <= 0 || author.length <= 0 || publisher.length <= 0) {
+                    return alert('输入不能为空')
+                }
+
+                $.post('http://www.liulongbin.top:3006/api/addbook',
+                    {
+                        bookname: bookname,
+                        author: author,
+                        publisher: publisher
+
+                    }, function (res) {
+                        //注意看接口文档里 成功是多少号 这回不是200了
+                        if (res.status !== 201) return alert('添加失败')
+
+                        //重新渲染图书列表
+                        getBookList()
+
+                        //最后将输入框清空
+                        $('#iptBookname').val('')
+                        $('#iptAuthor').val('')
+                        $('#iptPublisher').val('')
+                    })
+
+
+
+
+
+
+
+            })
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
