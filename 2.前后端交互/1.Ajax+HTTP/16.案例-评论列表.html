@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap.css" />
+    <script src="./lib/jquery.js"></script>
+    <!-- <script src="./js/cmt.js"></script> -->
+</head>
+
+<body style="padding: 15px;">
+
+    <!-- 评论面板  bs3-panel primary-->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">发表评论</h3>
+        </div>
+        <form class="panel-body" id="formAddCmt">
+            <div>评论人：</div>
+            <input type="text" class="form-control" name="username" autocomplete="off" />
+            <div>评论内容：</div>
+            <textarea class="form-control" name="content"></textarea>
+
+            <button type="submit" class="btn btn-primary">发表评论</button>
+        </form>
+    </div>
+
+
+    <!-- 评论列表  bs3-list-group badges-->
+    <ul class="list-group" id="cmt-list">
+        <li class="list-group-item">
+            <span class="badge" style="background-color: #F0AD4E;">评论时间：</span>
+            <span class="badge" style="background-color: #5BC0DE;">评论人：</span>
+            评论内容
+        </li>
+    </ul>
+
+
+    <script>
+
+
+
+        //获取评论列表函数
+        function getCommentList() {
+            $.ajax({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/cmtlist',
+                // data:{},//因为写着参数格式无 就不用写
+                success: function (res) {
+                    // console.log(res);
+                    if (res.status !== 200) {
+                        return alert('获取评论失败')
+                    }
+
+                    //如果获取成功
+                    //渲染评论列表   
+                    //定义一个新数组接收 拿回来的数据字符串 循环拼接字符串到数组里。然后把数组添加到ul中
+                    let rows = []
+                    $.each(res.data, function (i, item) {   // 评论时间啥的在接口文档中 
+                        let str = `
+                       <li class="list-group-item">
+            <span class="badge" style="background-color: #F0AD4E;">评论时间：${item.time}</span>
+            <span class="badge" style="background-color: #5BC0DE;">评论人：${item.username}</span>
+                       ${item.content}   </li>  
+                       `
+                        rows.push(str)
+                    })
+                    //把数组加入到ul中
+                    $('#cmt-list').empty().append(rows.join(''))
+                }
+            })
+        }
+        getCommentList()
+
+
+        //发表评论   把本来是div 的变成 .panel-body 表单 收集数据 然后发表
+        //因为手机表单的所有数据，给加name属性 跟接口里面名字一样
+
+        $('.panel-body').submit(function (e) {
+            e.preventDefault()//阻止表单的默认提交事件 不用表单提交数据 用ajax
+            //获取表单所有信息
+            let data = $(this).serialize()
+            // console.log(data);//username=aaaa&content=aa
+
+            //提交评论到服务器
+            $.ajax({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/addcmt',
+                data,//这个data就是刚才获取过来的
+                success: function (res) {
+                    console.log(res);
+                    if (res.status !== 201) {
+                        return alert('向服务器送数据失败')
+                    }
+                    //如果发送成功 就刷新评论列表
+                    getCommentList()//调用这个是因为getCommentList是从服务器取数据，
+                    //我们已经把自己写的评论发送到服务器了 所以 取回来用这个就行
+
+                    //发表完清空表单  JQ方式本来的想法是给input都起个id 然后挨个获取val()
+                    //但是很麻烦，所以用表单 原生的reset()属性
+                    //  $('.panel-body') 这个是表单的JQ对象 要是想把它转成DOM对象咋转？$('.panel-body')[0]就可以了
+                    $('.panel-body')[0].reset()
+                }
+            })
+        })
+
+
+
+
+    </script>
+
+</body>
+
+</html>
