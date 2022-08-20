@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 一.定义UI结构 -->
+    <!-- 1.文件选择框 -->
+    <input type="file" id="file1">
+    <!-- 2.上传按钮 -->
+    <button id="btnUpload">上传文件</button>
+    <!-- 3.显示上传到服务器上的图片 -->
+    <img src="" alt="" id="img" width="800">
+
+    <!-- 文件选择框和上传文件不是一个东西   先验证是否选择了 才能点击上传 -->
+    <!-- 把文件传到服务器上时候，为了验证传上去成功了，就把图片显示到网页上 -->
+
+
+    <script>
+        // 新版XMLHttpRequest对象，不仅可以发送文本信息，还可以上传文件。
+        // 1.定义UI结构
+        // 2.验证是否选择了文件
+        // 3.向FormData中追加文件
+        // 4.使用xhr 发起上传文件的请求
+        // 5.监听onreadystatechange 事件
+
+
+
+        let btnUpload = document.querySelector('#btnUpload')
+        let img = document.querySelector('#img')
+
+
+        btnUpload.addEventListener('click', function () {
+            // 2.验证是否选择了文件      
+            // 获取用户选择文件的列表file1.files 就是一个属性 是个伪数组 里面装着文件
+            let files = document.querySelector('#file1').files
+            // 如果点击了上传按钮 获取文件的数组长度是否小于0  小于0提示 要上传文件！
+            if (files.length <= 0) {
+                return alert('请选择文件之后再点击上传！')
+            }
+            // console.log('选了');
+            //如果有选择的文件 就把他传到ForData对象中 
+            let fd = new FormData()
+            //像FormData中追加文件
+            fd.append('avatar', files[0])   //avatar头像
+            let xhr = new XMLHttpRequest()
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/upload/avatar')  //必须是post
+            xhr.send(fd)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    //把服务器响应回来的转成对象
+                    let data = JSON.parse(xhr.responseText)
+                    //如果收到的数据对象状态 ===200上传文件成功
+                    // console.log(data);// Object { message: "上传文件成功！", status: 200, url: "/uploads/1660984851697_85b805294f3445e78b6f72444f3cdcbe.jpg" }
+                    if (data.status === 200) {//吧响应回来的数据渲染到页面
+                        img.src = `http://www.liulongbin.top:3006${data.url}`  //注意杠杠问题
+                    } else {//上传文件失败
+                        console.log(data.message + '图片上传失败');
+                    }
+                }
+            }
+
+        })
+        // 老师讲过，你最开始判断的那个xhr.status===200是服务器响应的状态，而你data里面的status是响应回来数据中的一个属性而已，不是一个东东喔，
+        // xml返回200，是xhr完成通讯了，不代表后端数据库就真的保存你的图了，如果没有存储，你请求图片时依然报错
+  //所以需要在判断一下 数据的状态
+
+    </script>
+</body>
+
+</html>

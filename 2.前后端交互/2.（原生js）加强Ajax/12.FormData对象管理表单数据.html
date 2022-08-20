@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- autocapitalize="off" 阻止自动填充行为  就是鼠标一点可能有几个可选择项-->
+    <form action="/login">
+        <input type="text" name="user_name" autocapitalize="off"/>
+        <input type="password" name="password" />
+        <button type="submit">提交</button>
+    </form>
+    <script>
+        // 上一个是往FormData对象中加表单数据然后向服务器发送
+        //这个是 不用添加数据 直接获取网页中的表单值 然后像服务器发送
+        // FormData对象也可以用来获取网页表单的值，示例代码如下:
+        // serialize()属于jquery里面的方法呀，这里老师讲的是如何用原生js实现表单数据的获取及上传
+        // 对的serialize是jq是封装好了的函数，这是原生js,没有serialize一键获取表单元素的方法，
+       
+       
+        let form = document.querySelector('form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()//阻止表单默认提交事件 因为要用ajax的xhr对象提交
+
+            let fd = new FormData(form)//就是把form传到FormData对象中
+            let xhr = new XMLHttpRequest()
+
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata')
+            xhr.send(fd) //把装着form表单信息的FormData对象传过去
+
+            xhr.onreadystatechange = function () {
+                console.log(JSON.parse(xhr.responseText));//把服务器响应过来的字符串转成对象
+            }
+        })
+    </script>
+</body>
+
+</html>

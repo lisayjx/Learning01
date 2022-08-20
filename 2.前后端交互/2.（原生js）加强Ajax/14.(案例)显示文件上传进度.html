@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <!-- <link rel="stylesheet" href="./lib/jquery.js">   大错特错-->
+    <script src="./lib/jquery.js"></script>
+    <style>
+        .progress {
+            width: 300px;
+            margin: 15px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.选择文件 -->
+    <input type="file" id="file1">
+    <!-- 2.上传按钮 -->
+    <button id="btnUpload">上传文件</button>
+    <!-- 3.显示上传到服务器上的图片 -->
+    <img src="" alt="" id="img" width="800">
+
+
+    <!-- 进度条 -- bootstrap框架-->
+    <div class="progress">
+        <div id="percent" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45"
+            aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            0%
+        </div>
+    </div>
+    <!-- 本来45%有span包裹
+    这里是因为span被隐藏了，你进度条其实也是一个盒子，你让文字居中就好了，进度条为零时隐藏文字 -->
+
+    <script>
+        // 新版本的XMLHttpRequest对象中，可以通过监听xhr.upload.onprogress事件，
+        // 来获取到文件的上传进度。语法格式如下:
+        // e.lengthComputable 是布尔值 表示当前上传的资源是否具有可计算的长度
+        // e.loaded已经传输的字节
+        // e.total需要传输的总字节
+
+        //1.创建XHR对象
+        // let xhr = new XMLHttpRequest()
+        // // 2.监听 xhr.upload的onprogress事件
+        // xhr.upload.onprogress = function (e) {
+        //     if (e.lengthComputable) {//如果有可计算的长度
+        //         // 已经传输的字节/需要传输的总字节  得到百分比的进度
+        //         let percentComplete = Math.ceil((e.loaded / e.total) * 100)
+        //     }
+        // }
+
+
+        //-------------------------------------------------
+        let btnUpload = document.querySelector('#btnUpload')
+        let img = document.querySelector('#img')
+        let percent = document.querySelector('.progress-bar')
+
+        btnUpload.addEventListener('click', function () {
+            //判断是否选择了文件
+            let file1 = document.querySelector('#file1')
+            let files = file1.files  //上传的哪些文件 是个伪数组
+            if (files.length <= 0) {
+                return alert('请先选择文件')
+            }
+            //上传  用FormData()
+            let xhr = new XMLHttpRequest()
+            let fd = new FormData()
+            //把传上来的文件放到 FormData()中
+            fd.append('avatar', files[0])
+
+            //-----监听文件上传进度-------------------------------------------------
+            // 要先设置监听事件才到创建和发起请求啊，不然放后面 请求都进行完了 还有进度条吗？
+            xhr.upload.onprogress = function (e) {
+                if (e.lengthComputable) {//判断上传的长度是否可以计算
+                    let percentComplete = Math.ceil((e.loaded / e.total) * 100)//上取整
+                    // console.log(`上传的进度是${percentComplete}`);
+                    //显示到页面 如果进度条要增长是percent的宽度变了 文字也变了
+                    percent.style.width = `${percentComplete}%`
+                    percent.innerHTML = `${percentComplete}%`
+                    //  JQ方法  $('#percent').attr('style',`width:${percentComplete}%`).html(`${percentComplete}%`)
+                }
+            }
+            //若是进度100%了 要把进度条清0 动画也去除
+            //------------------------------------------------------------------
+            // 所以要监听----------上传完成事件 -------------------------
+            xhr.upload.onload = function () { //上传完成事件
+                // percent.classList.remove('progress-bar-striped')//移除上传中的类样式
+                // percent.classList.add('progress-bar progress-bar-success')//添加上传完成的类样式
+                $('#percent').removeClass().addClass('progress-bar progress-bar-success')
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+            //------------------------------------------------------
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/upload/avatar')
+            xhr.send(fd)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let data = JSON.parse(xhr.responseText)
+
+                    if (data.status === 200) {//如果数据状态是200 就把图片地址给页面上的img标签
+                        img.src = `http://www.liulongbin.top:3006${data.url}`
+                    } else {
+                        return ('图片上传失败' + data.message)
+                    }
+                }
+            }
+        })
+
+
+        //network中online可以控制网络的快慢
+    </script>
+</body>
+
+</html>

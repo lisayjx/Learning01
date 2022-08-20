@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // JSON是JS对象的字符串表示法，它使用文本表示一个JS对象的信息，本质是一个字符串。例如:
+
+        //对象
+        let object1 = {
+            a: 'hello',
+            b: 20
+        }
+
+        //JSON  本质是字符串  
+
+        let json = '{ "a": "hello", "b": 20}'
+
+        //------互转
+         let obj=JSON.parse(json)
+         console.log(obj);//{ a: "hello", b: 20 }对象
+
+        console.log( JSON.stringify(object1));//{"a":"hello","b":20} 字符串
+
+
+
+        6.序列化和反序列化
+把数据对象转换为字符串的过程，叫做序列化，例如:调用JSON.stringify()函数的操作，叫做JSON序列化。
+把字符串转换为数据对象的过程，叫做反序列化，例如:调用JSON.parse()函数的操作，叫做JSON反序列化。
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

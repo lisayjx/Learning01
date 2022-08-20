@@ -20,7 +20,7 @@
         $('form').submit(function (e) {    //注意看是给form绑定submit事件  不是给button绑定点击事件
             e.preventDefault()//不让他跳转
             let re = $(this).serialize()
-            console.log(re);//user_name=aaaa&password=123456
+            console.log(re);//user_name=aaaa&password=123456    字符串
         })
 
         //注意：在使用serialize()函数快速获取表单数据时，必须为每个表单元素添加name属性!

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 步骤:
+        // 1.创建xhr对象
+        // 2.调用xhr.open()函数
+        // 3.调用xhr.send()函数
+        // 4.监听xhr.onreadystatechange事件
+
+
+        //使用xhr发起不带参数的get请求-------------------------------------------
+        // 1.创建xhr对象
+        // let xhr = new XMLHttpRequest()
+        // // 2.调用xhr.open()函数  指定请求方式和URL地址
+        // xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks')
+        // // 3.调用xhr.send()函数  发起ajax请求
+        // xhr.send()
+        // // 4.监听xhr.onreadystatechange事件
+        // xhr.onreadystatechange = function () {
+        //     //监听xhr对象的  【请求状态readyState】和服务器 【响应状态status】
+        //     //4表示响应结束，200是http状态码，表示成功
+        //     // 这里的意思就是响应已经完成，且响应是正常的   固定写法
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         //打印服务器响应回来的数据
+        //         console.log(xhr.responseText);
+        //     }
+
+        // }
+        // 出现的错：xhr.status单词写错了   new忘了
+        //注意：响应回来的数据里面也有 status属性 但是和我们xhr.status===200这个status不是一个
+        // 他是http请求状态的一部分
+
+        //--------------------------------------------------
+        //使用xhr发起带参数的get请求 
+        // xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?id=1')
+        // ?id=1     这种在URL地址后面拼接的参数，叫做【查询字符串】
+        //查询多个条件 可以用&连接
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?id=1&bookname=西游记')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+        //输出字符串
+        // {"status":200,"msg":"获取图书列表成功","data":[{"id":1,"bookname":"西游记","author":"吴承恩","publisher":"北京图书出版社"}]}
+            //查询字符串 相当于携带的数据（条件）
+            //注意！！！！！！！西游记不加引号
+
+//---------get请求携带参数的本质-------------------------
+// 2.GET请求携带参数的本质
+// 无论使用$.ajax()，还是使用$.get)，又或者直接使用xhr对象发起GET请求，
+// 当需要携带参数的时候，本质上，都是直接将参数以查询字符串的形式，
+// 追加到URL地址的后面，发送到服务器的。
+// $.get ( 'url', fname : 'zs', age: 20),function ( ) { })
+// //等价于
+// s.get ( "url?name=zs&age=20',function ( ) { }
+
+//  $.ajax({ method: 'GET',
+//  url: 'http://www.liulongbin.top:3006/api/getbooks',
+//  data: {name: 'za',age: 20},//这个相当于 原生?后面的
+//  success: function() {} })
+// // //等价于
+// $.ajax({ method: 'GET',
+//  url: 'http://www.liulongbin.top:3006/api/getbooks?name=zs&age=20',
+//  success: function (){} })
+// 注意：
+// 原生里？后面的 都不用加引号     JQ方式 携带参数在对象中 需要有的加引号
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

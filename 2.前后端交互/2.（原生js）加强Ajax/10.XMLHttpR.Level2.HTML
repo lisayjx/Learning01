@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  XMLHttpRequest Level2的新功能
+        //      可以设置HTTP请求的时限
+        //      可以使用FormData对象管理表单数据
+        //      可以上传文件
+        //      可以获得数据传输的进度信息
+
+
+        //---1.设置HTTP请求的时限---------------------------------
+        // 有时，Ajax操作很耗时，而且无法预知要花多少时间。
+        // 如果网速很慢，用户可能要等很久。
+        // 新版本的XMLHttpRequest对象，增加了timeout 属性，
+        // 可以设置HTTP请求的时限:
+        // xhr.timeout = 3000 //我们希望等到时间为3s
+        // // 上面的语句，将最长等待时间设为3000毫秒。过了这个时限，就自动停止HTTP请求。
+        // // 与之配套的还有一个timeout事件，超时后用来指定回调函数:
+        // xhr.ontimeout = function (event) {
+        //     alert('请求超时')
+        // }
+
+
+        //------------------------------------------------
+        let xhr = new XMLHttpRequest()
+
+        //定义完xhr对象之后就可以设置请求时限
+        xhr.timeout = 3000
+        xhr.ontimeout = function () {
+            alert('请求超时')
+        }
+
+        xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+
+</html>

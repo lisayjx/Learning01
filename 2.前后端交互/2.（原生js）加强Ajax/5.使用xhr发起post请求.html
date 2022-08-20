@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 步骤
+        // 1.创建xhr对象
+        // 2.调用xhr.open()函数
+        // 3.【设置Content-Type属性(固定写法)】 放在open和send中间
+        // 4.调用xhr.send()函数，【同时指定要发送的数据】
+        // 5.监听xhr.onreadystatechange事件
+       
+        //3和4与get有区别
+
+        // 请求头中的content-type，就是 B端发给S端的数据类型描述 。
+        // 即告诉服务器端，我给你传的数据是某种类型的，服务器端针对不同类型的数据，
+        // 做法当时是不相同的。就像，我们平时面对，人，猪，狗等不同
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', 'http://www.liulongbin.top:3006/api/addbook')
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded') //固定写法
+        xhr.send('bookname=水浒传&author=施耐庵&publisher=上海图书出版社')
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+        //错误：url复制成了 获取图书列表的接口
+
+
+   
+    </script>
+</body>
+
+</html>

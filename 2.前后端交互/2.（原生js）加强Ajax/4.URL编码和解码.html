@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 1.什么是URL编码
+// URL地址中，只允许出现英文相关的字母、标点符号、数字，
+// 因此，在URL地址中不允许出现中文字符。
+// 如果URL中需要包含中文这样的字符，则必须对中文字符进行编码(转义)。
+
+// URL编码的原则:
+// 使用安全的字符(没有特殊用途或者特殊意义的可打印字符）去表示那些不安全的字符。
+// URL编码原则的通俗理解:使用【英文字符】去表示【非英文字符】。
+ 
+// xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?id=1&bookname=西游记')
+// 控制台的XHR中把西游记三个字变成了安全字符%E8%A5%BF%E6%B8%B8%E8%AE%B0
+// 西 %E8%A5%BF    游 %E6%B8%B8  记 %E8%AE%B0
+// Request URL: http://www.liulongbin.top:3006/api/getbooks?id=1&bookname=%E8%A5%BF%E6%B8%B8%E8%AE%B0
+ 
+
+
+
+// 2.如何对URL进行编码与解码
+// 浏览器提供了URL编码与解码的API，分别是:
+// encodeURI()编码的函数    把文字变成英文
+// decodeURI()解码的函数    把英文变成中文
+
+// encodeURI('西游记')
+// //输出字符串 %E8%A5%BF%E6%B8%B8%E8%AE%B0
+// decodeURL('%E8%A5%BF%E6%B8%B8%E8%AE%B0')
+//输出字符串 西游记
+
+let str='你好'
+console.log(encodeURI(str));//%E4%BD%A0%E5%A5%BD
+    </script>
+</body>
+</html>

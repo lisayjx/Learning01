@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 以前我们要采集用户的数据需要表单 现在可以用js里的FormData对象
+        // Ajax.操作往往用来提交表单数据。为了方便表单处理，
+        // HTML5新增了一个FormData对象，可以模拟表单操作:采集用户数据
+
+
+        //JQ方法
+        //以前用JQ获取表单数据时
+        // $('form').submit(function (e) {    //注意看是给form绑定submit事件  不是给button绑定点击事件
+        //     e.preventDefault()//不让他跳转
+        //     let re = $(this).serialize()
+        //     console.log(re);//user_name=aaaa&password=123456
+        // })
+        //  使用form标签，获取数据用的是serialize()方法，返回的是查询字符串的形式
+        // 之前的 serialize() 函数是 jQuery 封装的 ,   formDate() 是原生js写的
+        //------------------------------------------------------------------------------------
+        //原生js方法
+        //现在
+        // 那个是获取表单的，这里帮你省去了写json字符串，还帮你随时追加，其实就是将前面的方法再封装
+        // 在使用formdata之前，传数据要自己写成。=。&。。。的格式，有了这个后不用自己写了
+        // 不指定Content-type时，此处是默认值，你还可以指定特殊的请求头
+        // 发送不同类型的文本，要指定不同的请求头，这里是纯文本，请求头是默认值，这是刚好，所以没出错
+        // formdata可以直接取出form标签的输入值，好方便
+        // content-type是请求头里面的一个属性，与与之对应的是send的数据格式，如果是采用key=value&的形式，则需要修改请求头的这个属性，form获取的数据格式不是key=value&形式
+        // data在get请求写在open里，post请求的话写在send       get的数据是明文的，所以在open里
+        // 因为使用FormData（）构造函数浏览器会自动识别并添加请求头
+
+        //1.新建FromData对象
+        let fd = new FormData()
+        //2.为FromData添加表单项  像FromData中追加数据
+        fd.append('uname', 'zs')
+        fd.append('upwd', '123456')
+        //3.创建XHR对象      然后把数据发送给服务器
+        let xhr = new XMLHttpRequest()
+        //4.指定请求类型和 url
+         xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata')
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded') //固定写法
+        xhr.send(fd)
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(JSON.parse(xhr.responseText));//把服务器响应回来的文本格式的转成对象
+            }//Object { message: "测试FormData表单提交成功！", data: {…} }
+        }
+
+    </script>
+</body>
+
+</html>
