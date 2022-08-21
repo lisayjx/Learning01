@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入库 -->
+    <script src="./lib/axios.js"></script>
+</head>
+
+<body>
+    <button id="btn1">发起GET请求</button>
+    <button id="btn2">发起POST请求</button>
+    <button id="btn3">直接使用axios发起GET请求</button>
+    <button id="btn4">直接使用axios发起POST请求</button>
+    <script>
+        // Axios是专注于 网络数据请求的 库
+        // 相比于原生的XMLHttpRequest对象，axios简单易用。
+        // 相比于jQuery，axios更加轻量化，只专注于网络数据请求,没有做动画啥的效果
+        // then(callback)成功之后的回调函数
+
+
+        //1.发起get
+        //axios.get('url', { params:  发给服务器的参数  }).then(callback)
+        //2.发起post
+        //axios.get('url', 发给服务器的参数).then(callback)
+
+
+
+
+
+
+
+
+        //-----------1.通过axios发起get请求-------------------
+        let btn1 = document.querySelector('#btn1')
+        btn1.addEventListener('click', function () {
+            let url = 'http://www.liulongbin.top:3006/api/get'
+            let paramsObj = { name: 'lisa', age: 18 }
+            axios.get(url, { params: paramsObj }).then(function (res) {
+                // res.data才是服务器真正返回来的数据
+                console.log(res);//对象{data: {…}, status: 200, statusText: 'OK', headers: {…}, config: {…}, …}
+                console.log(res.data);//对象{message: 'GET请求测试成功', query: {…}}
+                console.log(res.data.query);//对象{name: 'lisa', age: '18'}
+            })
+        })
+
+        //-----------2.通过axios发起post请求-------------------
+        let btn2 = document.querySelector('#btn2')
+        btn2.addEventListener('click', function () {
+            let url = 'http://www.liulongbin.top:3006/api/post'
+            let dataObj = { address: '大连', location: '高新区' }
+            axios.post(url, dataObj).then(function (res) {
+                console.log(res);//是axios封装的方法
+                console.log(res.data);//发送给服务器的数据
+                console.log(res.data.query)
+            })
+        })
+
+
+        //------------------------------------------------------------------------------------------
+        // axios也提供了类似于jQuery中 $.ajax0的函数，语法如下:
+
+        // axios({
+        //     method: '请求类型',
+        //     url: '请求的url地址',
+        //     data: {/*POST数据*/ },
+        //     params: {/*GET参数*/ }
+        // }).then(callback)
+
+        //---------3.直接使用axios发起get请求-------------
+        let btn3 = document.querySelector('#btn3')
+        btn3.addEventListener('click', function () {
+            axios({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/get',
+                params: {
+                    name: 'za',
+                    age: 20
+                }
+            }).then(function (res) {
+                console.log(res.data);
+            })
+        })
+
+        //---------4.直接使用axios发起post请求-------------
+        let btn4 = document.querySelector('#btn4')
+        btn4.addEventListener('click', function () {
+            let dataObj = {address: '大连',location: '高新区'}
+            axios({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/post',
+                data: dataObj
+            }).then(function (res) {
+                console.log(res.data);
+            })
+        })
+    </script>
+
+</body> axios+promise 
+</html>

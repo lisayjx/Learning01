@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="img/同源跨域.png" alt="">
+    <script>
+        //1.什么是同源？
+        //如果两个页面的【协议，域名和端口】都相同，则两个页面具有相同的源。
+        // 就像是怎么判断你的老乡 通过口音和吃的东西
+        //例如，下表给出了相对于http://www.test.com/index.html页面的同源检测:
+        // 这个中间没有写:80 端口号默认是80
+        // http协议
+        // www.test.com域名 
+        // 80端口号没写 默认是
+
+
+        //                  URL                        是否同源                         原因
+        // http://www.test.com/other.html                是                  同源(协议、域名、端口相同)
+
+
+        // https://www.test.com/about.html               否                  协议不同(http 与https)
+
+
+        // http://blog.test.com/movie.html               否                  域名不同(www.test.com 与blog.test.com)
+
+
+        // http://www.test.com:7001/home.html            否                  端口不同(默认的8O端口与7001端口)
+
+
+        // http://www.test.com:80/main.html              是                  同源（协议、域名、端口相同)
+
+
+        //---------------------------------------------------
+        // 2.什么是同源策略
+        // 同源策略(英文全称Same origin policy)）是【浏览器】提供的一个【安全功能】。
+        // MDN官方给定的概念:同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。
+        //                  这是一个用于隔离潜在恶意文件的重要安全机制。
+        // 通俗的理解:浏览器规定，A网站的JavaScript，不允许和非同源的网站C之间，进行资源的交互，
+        // 例如:
+        // 无法读取非同源网页的Cookie、LocalStorage 和 IndexedDB
+        // 无法接触非同源网页的DOM  无法用A的js去操作C的dom元素
+        // 无法向非同源地址发送Ajax请求。   无法用A的去给C发送ajax请求
+
+        //------------------------------------------------------------------------------------------------
+        // 1.什么是跨域
+        // 同源指的是两个URL的协议、域名、端口一致，反之，则是跨域.
+        //     其中有一项或者多项不一样就是跨域
+
+
+        // 出现跨域的根本原因: 浏览器的同源策略不允许非同源的URL之间进行资源的交互。
+        // 我们希望在这个网页中发起ajax请求接口的数据
+
+        // 网页: http://www.test.com/index.html
+        // 接口：http://www.api.com/userlist
+        // // 但是他俩域名不同  所以请求会失败
+
+        // 2.浏览器对跨域请求的拦截 
+        注意: 浏览器允许发起跨域请求，但是，跨域请求回来的数据，会被浏览器拦截，无法被页面获取到!
+        // 1.客户端可以正常像服务器发起请求
+        // 2.服务器把数据响应回客户端
+        // 3.但是同源策略像是保安，把相应回来的数据拦在门外了
+        // // <img src="img/同源跨域.png" alt="">
+
+
+        //-----怎么实现跨域请求？--------------------------------
+        // 现如今，实现跨域数据请求，最主要的两种解决方案，分别是    JSONP和CORS.
+        //jsonp 通过script 的src属性实现, 因为src属性在引入外部数据时不受同源策略的约束
+
+// JSONP:出现的早，兼容性好(兼容低版本IE)。是前端程序员为了解决跨域问题，被迫想出来的一种临时解决方案。
+//         缺点是只支持GET请求，不支持POST请求。
+// CORS:出现的较晚，它是W3C标准，属于跨域Ajax请求的根本解决方案|、支持GET和POST请求。
+//         缺点是不兼容某些低版本的浏览器。
+
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

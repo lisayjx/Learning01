@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+  //-----怎么实现跨域请求？--------------------------------
+        // 现如今，实现跨域数据请求，最主要的两种解决方案，分别是    JSONP和CORS.
+        //jsonp 通过script 的src属性实现, 因为src属性在引入外部数据时不受同源策略的约束
+
+// JSONP:出现的早，兼容性好(兼容低版本IE)。是前端程序员为了解决跨域问题，被迫想出来的一种临时解决方案。
+//         缺点是只支持GET请求，不支持POST请求。
+// CORS:出现的较晚，它是W3C标准，属于跨域Ajax请求的根本解决方案|、支持GET和POST请求。
+//         缺点是不兼容某些低版本的浏览器。
+
+
+由于浏览器同源策略的限制，网页中无法通过Ajax请求非同源的接口数据。
+但是<script>标签不受浏览器同源策略的影响，可以通过src属性，请求非同源的js 脚本。
+因此，JSONP的实现原理，就是通过<script>标签的src属性，请求跨域的数据接口，
+并通过【函数调用】的形式,接收跨域接口响应回来的数据。
+
+    </script>
+
+
+</body>
+
+</html>

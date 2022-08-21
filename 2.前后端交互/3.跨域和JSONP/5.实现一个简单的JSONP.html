@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!-- 1.定义一个success回调函数 -->
+    <script>
+        function success(data) {//这个名字起啥都行 下面和他等同就行
+            console.log('JSONP响应回来的数据');
+            console.log(data);  //data就是通过JSONP请求回来的数据
+            //对象{message: 'JSONP 请求测试成功！您指定的回调函数名称是 success', data: {…}}
+        }
+    </script>
+
+    <!-- 2.通过script标签 请求接口数据 -->
+    <script src="http://www.liulongbin.top:3006/api/jsonp?callback=success&name=ls&age=30"></script>
+    http://ajax.frontend.itheima.net:3006 请求的根路径
+    api/jsonp?callback=abc&name=ls&age=30 具体的接口地址
+    callback=abc&name=ls&age=30 告诉服务器你需要调用什么函数需要返回一个什么样的函数调用 同时向JSONP的接口里传了一些数据
+
+    实际上是你自己写的函数名，让服务器来调用，你写的数据要服务器有才能返回
+    这里看清楚了，这个函数名只跟你本地定义的有关，跟服务器没有关系的，服务器会根据函数名生成对应函数调用，并携带data参数返回到你的页面上，然后调用对应方法
+    你写什么这里是这样的，你函数名可以随便写，但是你自己页面要有这个函数，服务器会返回你发过去的函数名的调用，并携带你请求的数据过来
+
+    //此时我们还没有发起ajax请求 因为 控制台哪个XHR没有东西 在all中找JSONP?那个 <img src="img/jsonp.png" alt="">
+    JSONP并不属于Ajax请求 他就是ajax服务器返回数据时候的一个门禁卡
+    <img src="img/同源跨域.png" alt=""> 在步骤3那需要JSONP
+
+
+    注意: JSONP和 Ajax之间没有任何关系，不能把JSONP请求数据的方式叫做Ajax，
+    因为JSONP没有用到xMLHhtpRequest这个对象。
+
+
+
+
+</body>
+
+</html>

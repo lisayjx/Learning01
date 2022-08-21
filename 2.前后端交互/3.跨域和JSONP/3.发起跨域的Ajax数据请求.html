@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        // 用JQ方式请求ajax数据
+        $.ajax({
+            method: 'GET',
+            url: 'http://ajax.frontend.itheima.net:3006/api/jsonp',
+            data: {
+                name: 'zs',
+                age: 20
+            },
+            success: function (res) {
+                console.log(res);
+            }
+        })
+        //报错Failed to load resource: net::ERR_CONNECTION_REFUSED 拒绝连接
+        //因为你抬头看看你打开网页上面的网址 协议是file 属于跨域了
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- 导入页面的基本样式 -->
+  <link rel="stylesheet" href="./css/search.css" />
+  <!-- 导入 jQuery -->
+  <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="./images/taobao_logo.png" alt="" class="logo" />
+
+    <div class="box">
+      <!-- tab 栏 -->
+      <div class="tabs">
+        <div class="tab-active">宝贝</div>
+        <div>店铺</div>
+      </div>
+      <!-- 搜索区域（搜索框和搜索按钮） -->
+      <div class="search-box">
+        <input type="text" class="ipt" placeholder="请输入要搜索的内容" /><button class="btnSearch">
+          搜索
+        </button>
+      </div>
+      <!-- 搜索建议列表 -->
+      <div class="suggest-list">
+        <ul>
+          <!-- <li></li>
+          <li></li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    //1.定义一个全局的缓存对象
+    let cacheObj = {}
+    // ------------------防抖的函数-------------------------------------------
+    //1.防抖的timer
+    let timer = null
+    //2.防抖函数
+    function debounceSearch(kw) {//kw形参接收是用户输入的内容keywords
+      timer = setTimeout(function () {//不是立即发起jsonp请求，是通过延时器
+        //发起JSONP请求
+        getSuggestList(kw)
+      }, 500)
+    }
+    //------------------------主要！！！！--------------------------------------------------------------
+    // 用jsonp解决跨域问题
+    //每当在输入框按下键盘时候 就要获取用户所输入的内容的相关搜索建议列表
+    $('.ipt').keyup(function () {
+
+      //3.在触发keyup事件时，立即清空timer，------------
+      clearTimeout(timer)
+
+      //获取用户输入的信息
+      let keywords = $(this).val().trim()
+      //判断输入的是否为空
+      if (keywords.length <= 0) {
+        return $('.suggest-list').css('display', 'none')//把建议框隐藏
+
+      }
+      // //如果不为空 获取搜索建议列表
+      // getSuggestList(keywords)   //这个直接在防抖函数里了 所以可以注释
+
+
+
+      //优先从缓存中获取搜索建议
+      if (cacheObj[keywords]) {
+        return renderSuggestList(cacheObj[keywords])
+      }
+       
+        //获取搜索列表建议
+        debounceSearch(keywords)  //这里面有renderSuggestList()这个函数
+   
+    })
+
+
+    //-----------------获取搜索建议列表的函数----------------------------------------------------------------------
+    // 将获取搜索建议列表的代码，封装到getSuggestList函数中，示例代码如下:
+    function getSuggestList(kw) {
+      $.ajax({
+        //q是用户输入的关键字
+        url: `https://suggest.taobao.com/sug?q=${kw}`,
+        dataType: 'jsonp',
+        //成功的回调函数
+        success: function (res) {//用res接受服务器响应回来的数据
+      
+
+          //渲染列表
+          renderSuggestList(res)//这里的实参是待渲染的数据
+        }
+      })
+    }
+    //  jsonp默认是get方式
+
+    //-------------渲染模板结构的函数-------------------------------------------------------------------
+  
+    function renderSuggestList(res) {//res就是待渲染的数据
+      if (res.result.length <= 0) {//如果没有待渲染的数据
+        //清空搜索建议列表
+        return $('suggest-list').empty().hide()
+      }
+      //如果有待渲染的数据
+
+      $('.suggest-list').css('display', 'block')
+
+      let arr = res.result
+      arr.forEach(function (item, index) {//数组元素 数组下标
+
+        console.log(item[0]);//每个数组的第一项 item是动态的
+        let str = ''
+        str = `
+          <li>${item[0]}</li>
+        `
+        document.querySelector('.suggest-list ul').innerHTML = str
+        // 这有bug！！！！！！！！！
+      })
+
+      //-----缓存-------------------
+      let k = $('.ipt').val().trim()
+      cacheObj[k] = res
+
+    }
+
+ 
+
+  </script>
+
+</body>
+
+</html>

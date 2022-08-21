@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- JSONP只能请求GET -->
+
+    <!-- 1.定义 -->
+    <script>
+
+        function success(data) {
+            console.log('拿到了data数据');
+            console.log(data);
+        }
+
+    </script>
+
+    <!-- 2.调用 -->
+    <!-- <script>
+        //在这里调用上面定义的函数
+        // 所有的script标签里的代码都是共享的 所以可以在这里调用
+        success({ name: 'zs', age: 20 })
+
+    </script> -->
+
+    <!-- 3.或者用单独的js页面调用函数（在本地电脑中） -->
+    <!-- <script src="./js/1.调用页面4函数.js"></script> -->
+
+    <!-- 4.单独的js页面调用函数（服务器中） -->
+    脚本存在在别人的服务器上
+    怎么保证 我这里有success函数 让服务器那里就调用success函数呢？
+    解决：用查询字符串，在请求时候告诉他应该调用的函数名
+    callback=success就可以让别人的服务器上知道应该被调用的函数名了
+    <script src="./js/1.调用页面4函数.js?callback=success"></script>
+    加问号就是判断的意思
+
+    函数使用分为定义和调用两部分。在本地定义这个函数，在服务器调用函数通过参数传递实现数据的跨域传递
+    调用函数才是接口，只是他把这个查询字符串的方式告诉了他他要被调用的函数是什么，后端也可以从这个，查询字符串中获取要调用的函数拼接上就能用
+
+//-------JSONP原理----------------------------------------------
+1.在本地定义一个函数
+2.通过script标签 来请求一个函数的调用 同时告诉服务器要调用的函数名（通过查询字符串）
+2.服务器就会返回一个函数调用    里面把数据传进来  我们就能拿到 JSONP返回的数据了
+
+
+
+JSONP解决在保安或者防火墙那里的问题
+是客户端通过ajax请求服务器资源时候 服务器返回来的时候被浏览器的同源策略挡住了不让进
+JSONP相当于在这里有作用  相当于有了门禁卡
+</body>
+
+</html>

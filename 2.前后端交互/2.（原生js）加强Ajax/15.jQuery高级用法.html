@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+    <style>
+        .load {
+            display: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一.定义UI结构 -->
+    <!-- 1.文件选择框 -->
+    <input type="file" id="file1">
+    <!-- 2.上传按钮 -->
+    <button id="btnUpload">上传文件</button>
+    <!-- 3.显示上传到服务器上的图片 -->
+    <img src="" alt="" id="img" width="800">
+    <!-- load图 只要监听到有ajax发起了就显示它 -->
+    <img src="./images/loading.gif" alt="" class="load">
+    <script>
+        $(function () {
+            //这回用JQ方法上传文件    之前学的是原生的
+
+            //--------监听ajax开始--------------------------------------------
+            // load图 只要监听到有ajax发起了就显示它  请求发起时候
+            $(document).ajaxStart(function () {
+                $('.load').show()
+            })
+            //监听ajax结束 请求回来的时候
+            $(document).ajaxStop(function () {
+                $('.load').hide()
+            })
+            //----------------------------------------------------
+
+
+
+            $("#btnUpload").click(function () {
+                let files = $('#file1')[0].files//这里加[0]是因为要给$('#file1')转成DOM对象 因为files属性是原生的
+                //判断是否选择了文件
+                if (files.length <= 0) {
+                    return alert('请选择文件后在上传')
+                }
+                //若是选择了文件 使用FormData()
+                let fd = new FormData()
+                fd.append('avatar', files[0])
+
+                //用JQ发起ajax请求
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/upload/avatar',
+                    data: fd,//把fd里的数据上传到服务器
+                    // ContentType属性指定响应的 HTTP内容类型。如果未指定 ContentType，默认为TEXT/HTML
+                    //不修改content-Type属性，使用FormData 默认的content-Type值
+                    contentType: false,
+                    //不对FormData中的数据进行_url编码，而是将 FormData数据原样发送到服务器
+                    processData: false,
+                    success: function (res) {
+                        console.log(res);
+                        $('#img').attr('src', `http://www.liulongbin.top:3006${res.url}`)
+                    }
+
+                })
+            })
+
+        })
+
+        // 用JQ上传文件一定要加 contentType: false,processData: false,这两个属性 固定写法
+        // contentType默认编码是“urlencodeed”，processData默认是‘true‘’，将数据转换为对象，
+        // 上传是文件时不对数据做处理所以两个都设置成false’
+        // H5支持multiple属性，即可能会添加multiple属性并赋值：multiple="multiple"，这样一次性可同时上传多张图片，file[0]是什么自己猜吧！
+
+
+
+
+        //----JQ实现loading效果-------------------------------------------------------
+        // Ajax请求开始时，执行ajaxStart 函数。可以在 ajaxStart的callback中显示 loading效果，示例代码如下:
+        // 自jQuery版本1.8起，该方法只能被附加到文档document上
+        // $(document).ajaxStart() 当我们发起ajax请求时候呢 要进行什么操作
+        // $(document).ajaxStart()//会监听当前文档内所有的ajax请求
+        $(document).ajaxStart(function () {
+            $('#loading').show()
+        })
+        // 还有一个$(document).ajaxStop()当ajax结束时后执行
+
+        //-----------------------------------------------------
+        // 犯错：原生DOM和JQ方式总混 比如修改图片地址 原生直接=  JQ是 需要attr('src','url')
+    </script>
+
+</body>
+
+</html>
