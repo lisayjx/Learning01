@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        // 1.在 ES6中类没有变量提升，所以必须先定义类，才能通过类实例化对象
+        // 2．类里面的【共有】的属性和方法一定要加this使用.
+       
+
+        //错误情况一：
+        // let ldh = new Star('刘德华')  //位置应该在下面
+        // ldh.sing()
+
+        // class Star {
+        //     constructor(uname) {
+        //         this.uname = uname
+        //     }
+
+        //     sing() {
+        //         console.log('啊啊啊~');
+        //     }
+        // }
+
+
+        // //错误情况二：
+        // class Star {
+        //     constructor(uname) {
+        //         this.uname = uname
+
+        //     }
+
+        //     sing() {
+        //         console.log(uname + '啊啊啊~');
+        //         //没加this不行
+        //         //下面的实例对象就用不了这个属性 因为得用this 指向下面的实例对象zxy
+        //     }
+        // }
+        // let zxy = new Star('张学友')
+        // ldh.sing()
+
+        //错误情况3：
+        //前提：我们知道 只要new就会自动有constructor方法，不用调用直接执行
+        //所以我们要调用sing这个方法就不用再外面写了 直接写在constructor里
+        class Star {
+            constructor(uname) {
+                this.uname = uname
+                this.sing()//辣丽萨啊啊啊~
+                // 忘了加this就错了,你得让人直到谁调用了sing()，this指向实例对象lisa
+            }
+
+            sing() {
+                console.log(this.uname + '啊啊啊~');
+            }
+        }
+        let lisa = new Star('辣丽萨')
+
+        //----例子：点击了按钮就调用sing()---------------------------------------------
+        class Star {
+            constructor(uname) {
+                //constructor里面的this指向的是创建的实例对象 比如rose  ldh zxy
+                this.uname = uname
+                this.sing()
+                //rose.btn
+                this.btn = document.querySelector('button')
+                //rose的按钮点击了执行sing()方法，所以 还得写this
+                //sing方法又属于实例对象 所以sing前面也要有this
+                this.btn.addEventListener('click', this.sing)
+                //sing没加爱小括号是因为，加了就会立即调用者执行，我们想是按了按钮在执行
+                //因为sing是函数名，村的就是sing()函数
+            }
+
+            sing() {
+                //btn调用了它 所以这里的this 指向btn  详情请看5.类得this指向
+                console.log(this.uname + '啊啊啊~');
+            }
+        }
+        let rose = new Star('玫瑰')
+        // 在constructor写获取btn，因为new一下就会执行 constructor，就会把他获取过来
+        // 又因为btn属于实例对象rose，this指向rose
+    </script>
+</body>
+
+</html>

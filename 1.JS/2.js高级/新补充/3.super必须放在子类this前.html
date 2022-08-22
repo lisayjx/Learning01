@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 利用super调用父类的构造函数super 必须在子类this之前调用
+        //若是想用父亲的东西 必须在构造哦函数中 先父（super）后子（this）
+
+
+        class Father {
+            //属性
+            constructor(x, y) {//构造函数
+                this.x = x
+                this.y = y
+            }
+            //方法
+            sum() {
+                console.log(this.x + this.y);
+            }
+        }
+
+        //子类继承父类假发方法 同时 拓展 减法方法
+        class Son extends Father {
+            constructor(x, y) {
+
+                super(x, y)//调用了父类中的构造函数  就可以实现sum方法了
+                //----------------------
+                this.x = x
+                this.y = y
+            }
+            //子类独有的
+            reduce() {
+                console.log(this.x - this.y);
+            }
+        }
+        let son = new Son(5, 2)
+        son.reduce()//3
+        son.sum()//7 子类中没有super(x, y)这句话就不能用父类的加法方法
+    </script>
+</body>
+
+</html>

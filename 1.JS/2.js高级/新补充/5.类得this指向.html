@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+
+        // 1.constructor里面的this指向的是创建的实例对象 比如rose  ldh zxy
+        //2.类中得方法函数中得this指向他的象调用者 哪个点它 它就指向谁
+        //3.偶尔函数中的this指向里没有我们想要的属性，但是在constructor中有我们想要得this指向那个属性
+        //就可以在全局声明个that 然后在constructor中让this赋值给that 然后这样
+        //函数（方法）中的this改成that 就可以用constructor中的this指向得属性了
+
+
+        //----例子：点击了按钮就调用sing()---------------------------------------------
+        let that
+        let that1
+
+        class Star {
+            constructor(uname) {
+                //constructor里面的this指向的是创建的实例对象 比如rose  ldh zxy
+                that = this
+
+                this.uname = uname
+                this.sing()
+                //rose.btn
+                this.btn = document.querySelector('button')
+                //rose的按钮点击了执行sing()方法，所以 还得写this
+                //sing方法又属于实例对象 所以sing前面也要有this
+                this.btn.addEventListener('click', this.sing)
+                //sing没加爱小括号是因为，加了就会立即调用者执行，我们想是按了按钮在执行
+                //因为sing是函数名，村的就是sing()函数
+            }
+            //方法
+            sing() {
+                //sing被btn调用了，这里的this指向btn按钮！！！！！！！！！
+                //但是btn中没有uname这个属性怎么办呢？
+                //我们想让点击按钮就输出 刘德华啊啊啊~怎么办？
+                //也就是说我们这里想使用constructor中得this，因为那里得this有uname
+                //因为刚才把this赋值给了that（全局），that里存的就是constructor中得this
+                //所以把这里的this改成that 就可以点击按钮后输出刘德华
+                // console.log(this.uname + '啊啊啊~');
+                console.log(that.uname + '啊啊啊~');
+            }
+            dance() {
+                //这个dance里面的this指向的是实例对象 ldh因为ldh 调用了这个函数
+                that1 = this
+                console.log(this);//函数的this指向调用者ldh
+            }
+        }
+        let rose = new Star('玫瑰')
+        let ldh = new Star('刘德华')
+        // 在constructor写获取btn，因为new一下就会执行 constructor，就会把他获取过来
+        // 又因为btn属于实例对象rose，this指向rose
+        console.log(that === rose);//true   说明和constructor中的this就是指向rose实例对象
+        ldh.dance()
+        console.log(that1 === ldh)//true    说明和dance()中的this就是指向ldh实例对象调用者
+
+
+
+
+
+
+   //三个注意点:
+// 1．在ES6中类没有变量提升，所以必须先定义类，才能通过类实例化对象.
+// 2．类里面的共有属性和方法一定要加this使用.
+// 3．类里面的this指向问题.
+// 4. constructor里面的this指向实例对象,方法里面的this指向这个方法的调用者
+
+    </script>
+</body>
+
+</html>
