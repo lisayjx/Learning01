@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //es6允许直接写入变量和函数，作为对象的属性和方法
+        // const name = 'lisa'
+        // const age = 18
+        // const person = {
+        //     name: name,
+        //     age: age,
+        //     sayName: function () {
+
+        //     }
+        // }
+        //es6简写方式：
+        const name = 'lisa'
+        const age = 18
+        const person = {
+            name,//等价于 name:name  名字一样可以省略 不一样还是不能省略
+            age,
+            sayName() {
+                console.log(this.name);
+            }
+        }
+        person.sayName() //lisa
+
+        //函数保存两个参数，返回个对象 保存这两个参数
+        function fn(x, y) {
+            return { x: x, y: y }
+        }
+        fn(10, 20)
+        //es6写法
+        function fn(x, y) {
+            return { x, y }
+        }
+        console.log(fn(10, 20)); //{x: 10, y: 20}
+
+        //------改属性名 方法名----------------------
+        const obj = {}
+        obj.isShow = true
+
+        const uname = 'a'//把属性名a改成abc
+        obj[uname + 'bc'] = 123
+
+        console.log(obj);
+        // { isShow: true, abc: 123 }
+        obj['f' + 'bj'] = function () {
+            console.log(this);
+        }
+        console.log(obj);//fbj: ƒ ()
+        //---------------
+        const name1 = 'a'
+        const obj1 = {
+            isShow: true,
+            [name1 + 'bc']: 123,
+            ['f' + name1]() {
+                console.log(this);//指向obj1
+            }
+        }
+        console.log(obj1);
+        // { isShow: true, abc: 123,fa:123 }
+
+       
+    </script>
+
+
+</body>
+
+</html>

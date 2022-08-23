@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 尽量不用arguments   用剩余参数
+        // 在非严格模式中，如果对函数的参数增加了默认值，会自动形成严格模式
+
+        "use strict"
+        function fun(a, b) {
+            console.log("arguments", arguments[0], arguments[1]);
+            console.log("a:", a, "b:", b);
+            a = 3
+            console.log("arguments", arguments[0], arguments[1]);
+            console.log("a:", a, "b:", b);
+        }
+        fun(1, 2)
+        // arguments 1 2              // arguments 1 2         
+        // a: 1 b: 2                  // a: 1 b: 2
+        // arguments 3 2               // arguments 1 2           
+        // a: 3 b: 2                  // a: 3 b: 2
+
+        // 普通模式下                 严格模式下:arguments和形参脱离 他接收的就是第一次传进来的
+
+
+
+        function test(a, b = a) {
+            console.log(a, b);
+        }
+        test(1)//此时给a传值1 b=a b也等于1 ,输出1 1
+
+
+        function test(a = b, b) {
+            console.log(a, b);
+        }
+        test(undefined, 2345)
+        // 给a传值undefined,此时b还没有值 所以会报错
+
+        
+        // 就说提醒 用let时候 不能和参数同名
+        function test(a, b) {
+            let a = 1// 'a' has already been declared
+            console.log(a, b);
+        }
+        test(1,2)
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES6中提供的API
+        // 这些都是实例方法 放在原型上的        
+        // [,i] 可写可不写
+
+        //  1.includes("关键字"[, i])------返回布尔值---------------
+        //判断字符串中是否包含指定的子字符串
+        // 注意:如果第二个参数省略则表示从e位置开始查找。
+        //  如果给定第二个参数，会从指定的位置开始查找-
+        const t = '你好啊lisa'
+        const re = t.includes('好')//true
+
+
+        // 2.startsWith("关键字"[, i])-----------------------
+        // 判断字符串中是否以指定字符开始
+        t.includes('你')//true
+
+        // 他俩如果有第二个参数就表示从i位置开始的开头
+
+        //3.endWith("关键字"[, i])--------------------------
+        // 判断字符串中是否以指定字符结束
+        t.includes('a')//true
+
+
+        // 4.repeat(num)----------------------------------
+        // 将字符串重复指定的次数，返回新字符串
+        t.repeat(4) //你好啊lisa你好啊lisa你好啊lisa你好啊lisa 
+
+
+    </script>
+
+</body>
+
+</html>

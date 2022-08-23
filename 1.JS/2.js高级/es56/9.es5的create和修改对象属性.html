@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用object create法  创建新的实例对象
+        // .object.create是 ECMAScript5新增的一个静态方法,用来定义一个实例对象。
+        // ·该方法可以指定对象的原型和对象特性，使用现有的对象来提供新创建的对象的proto。具体用法如下
+        // object.create(prototype, descriptors)  新对象的原型对象 原型指向谁，{ 属性和值 }
+        // prototype: 必须参数, 指定原型对象, 可以为null
+        // descriptors可选参数包含一个或多个属性描述符的JavaScript对象。属性描述符包含数据特性和访问器特性, 其中数据特性说明如下
+        // value:指定属性值
+        // writable:默认为 false,设置属性值是否可写
+        // enumerable:默认为false,设置属性是杏可枚举( for/in)  是否能被遍历出来
+        // configurable:默认为false,设置是否可修改属性特性和删除属性
+
+
+        //例子
+        //创建个对象 第一个参数可以传一个原型对象进去也可以不传 让null占位置
+        let obj = Object.create({ key: 'key' }, {
+            name: {//name是个属性  里面是对这个属性的描述
+                value: 'xiaowang',
+                writable: true,//默认值是false  是否可设置
+                enumerable: true,//默认值是false  是否可枚举 遍历
+                configurable: true//是否可删除
+            },
+            sex: {//sex是个属性 
+                value: '女'
+            }
+        })
+        console.log(obj);
+        //修改一下name
+        // obj.name = 'lisa'//可以修改
+        // delete obj.name//可以删除这个属性
+
+        // null时候
+        console.log(obj.__proto__);//访问一下 没传进去值时候原型指向谁 undefined 没有原型
+        //{key:key}随便写个对象传进去 看看原型指向谁  { key: "key" }
+        //第一个参数你写啥 原型就指向啥
+
+
+        // object.create的作用,用来创建一个对象
+        //两个参数:
+        //第一个参数:创建出来的实例的原型对象可以写null .如果写null,实例的原型就是undefined
+        //第二个参数:是对象中属性的一些描述信息;
+
+        //---------------第二个参数可以不传
+        let obj1 = { key: 'key' }
+        let obj2 = Object.create(obj1) //obj2的原型指向obj1  第二个参数可以不写
+        console.log(obj2);//空对象 但是继承了obj1
+        console.log(obj2.name);//自己没有没关系 他爹有
+
+        //他俩一样
+        let o = {}
+        let o = Object.create(Object.prototype)
+
+        //-------------------------------------------------
+        //    Object.defineProperty 
+        //    使用Object.defineProperty函数可以为对象添加属性,或者修改现有属性。
+        //    如果指定的属性名在对象中不存在,则执行添加操作:
+        //    如果在对象中存在同名属性,则执行修改操作
+        // writable:默认为 false,设置属性值是否可写
+        // enumerable:默认为false,设置属性是杏可枚举( for/in)  是否能被遍历出来
+        // configurable:默认为false,设置是否可修改属性特性和删除属性
+
+
+
+
+        // 修改原有的实例对象
+        let obj3 = {
+            name: 'lisa'
+        }
+        //第一个参数是你要修改的对象名，修改的属性名，属性值修改成啥用{value：}
+        Object.defineProperty(obj3, 'name', { value: 'rose', writable: true })
+        //这样写 原先没有的属性 就是添加新属性
+        Object.defineProperty(obj3, 'sex',
+            {
+                value: 18,
+                enumerable: true
+            })
+
+
+        // 遍历这个对象
+        for (k in obj3) {
+            console.log(k);
+        }
+        //此时里面只有name??因为你没有让sex加可以遍历的属性
+        //遍历之后就有name和sex了
+
+        //----------------------------------------------------
+        //         Object.defineProperties
+        //  ·可以一次定义多个属性
+        // Object.defineProperties(object,description)
+        //  object:对其添加或修改属性的对象,可以是本地对象或DOM对象
+        //   description:包含一个或多个描述符对象,每个描述符对象描述一个数据属性或访问器属性
+        let obj4 = {
+            name: 'lisa'
+        }
+        Object.defineProperties(obj4, {
+            color: {
+                value: 'pink',
+                enumerable: true
+            },
+            length:{
+                value:'100m'
+            }
+        })
+    </script>
+</body>
+
+</html>

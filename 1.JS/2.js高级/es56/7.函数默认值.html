@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //1.带参数的默认值-------------------
+        function add(a = 10, b = 20) {
+            return a + b
+        }
+        console.log(add()); //30
+        //没有实参传过去的情况，给个默认值
+
+        function add(a, b = 20) {
+            return a + b
+        }
+        console.log(add(30));  //50  这个实参赋值给a
+
+        //2.默认的表达式也可以是一个函数
+
+        function add(a, b = getVal(5)) {
+            return a + b      //a=10  b=getVal（val）=getVal（5）=10   //10+10=20
+        }
+        function getVal(val) {
+            return val + 5//  val=5   return 10 函数getVal（val）=10
+        }
+        add(10)
+        // 第一个表达式里的是实参，第二个表达式里的val是形参，通过形参调用实参，形参名字是自定义的
+    </script>
+</body>
+
+</html>

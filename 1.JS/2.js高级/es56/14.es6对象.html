@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 语法糖:用更简练的写法让你写的舒服
+        // 对象字面量:
+
+        //---------------------- 1. 成员速写:
+        // 如果对象字面量初始化是来自于一个变量，并且该变量与对象的属性同名，则可简写为一个值
+
+        //以前
+        function fn(name, age) {
+            return {
+                name: name,
+                age: age,
+            }
+        }
+        // 如果对象字面量初始化,他的初始化的值来自变量,并且他和变量值一样就可以省略
+        // 他一个就表示了 属性名和属性值
+        //es6
+        function fn(name, age) {
+            return {
+                name,
+                age
+            }
+        }
+
+
+        //---------------------- 2. 方法速写:
+        //以前
+        function fn(name, age) {
+            const say = function () {
+                console.log(this.name, this.age);
+            }
+            return {
+                name,
+                age,
+                say: function () { }
+            }
+        }
+        //es6
+        function fn(name, age) {
+            const say = function () {
+                console.log(this.name, this.age);
+            }
+            return {
+                name,
+                age,
+                say() {
+                    console.log('你好');
+                }
+            }
+        }
+
+        //---------------------- 3.计算属性名:
+        //做了功能的改进
+        // 有时候初始化对象是 某些属性名可能来自于某个表达式的值
+        // 可以使用{ }表示,表示该属性名是通过计算得到的
+
+        const p1 = 'name'
+        const p2 = 'age'
+        const p3 = 'say'
+
+        const obj = {}
+        //之前
+        obj[p1] = 'name1'
+        obj.say = function () { }
+        //es6
+        const obj = {
+            [p1]: 'lisa',
+            [p2]: '18',
+            [p3]() {
+                console.log(this[p1], this[p2]);
+            }
+        }
+        //相当于
+        const obj = {
+            name: 'lisa',
+            age: '18',
+            say() {
+                console.log(this[p1], this[p2]);
+                // console.log(this.name, this.age);
+            }
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

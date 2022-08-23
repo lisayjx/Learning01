@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //const声明常量 一旦被声明无法修改
+        const a = 40
+        a = 30//报错
+
+        const obj = {
+            name: 'lisa'
+        }
+        obj.name = 'rose'//这样修改可以
+        obj = {
+            name: 'rose'//这样修改不可以
+        }
+
+        //-----let---作用1  for循环是个经典例子--------------------
+        var arr = []
+        var i
+        for (var i = 0; i < 10; i++) {
+            arr[i] = function () {
+                return i
+            }
+        }
+        //循环十次，每一次都保存了一个函数
+        arr[5]()//找到第六个函数 然后调用  10
+        //因为变量提升了，每次循环的时候，i赋值都在最外面，i一直变化
+        // 你们可以理解在for循环之前有一句var i (变量提升引起的);循环结束之后i=10了 所以打印i就是10
+        // 因为var声明的变量有变量提升 循环完成数组完成了保存了十个函数 i已经变成10了
+        // 在执行这个结果 返回的i就是10
+        //用let声明就会只在这个当前作用域有效  就会保存当前变量 就会输出5
+
+        //    let---作用2 不会污染全局变量-----
+        let RegExp = 10
+        console.log(RegExp);
+        console.log(window.RegExp);
+
+        ///总结：
+        // 在默认情况下用const,而只有在你知道变量值需要被修改的情况下使用let
+
+    </script>
+
+</body>
+
+</html>

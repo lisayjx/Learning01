@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象的方法 
+        //-------- is()--***********************--------
+        // 1.is()  和===一样  比较两个值是否严格相等, 不仅会比较值，还会比较类型
+        // 但是他又和===不太一样,比如 NaN===NaN, false  nan不等于它本身 别的都正常
+        //在比较NaN时候不一样
+        Object.is(NaN, NaN)//true
+        Object.is(0, -0)//false
+
+        //  2.assign()对象的合并  把后面的对象123..中的属性合并到目标对象中
+        //浅拷贝   返回合并后的新对象
+        // Object.assign(目标对象, 对象1, 对象2..)
+        let newObj = Object.assign({}, { a: 1 }, { b: 2 })
+        console.log(newObj);//{a:1,b:2}
+
+        //-----------------用2覆盖1 相同的覆盖不同的拿过去
+        const obj1 = {
+            a: 123,
+            b: 56,
+            c: 3456
+        }
+        const obj2 = {
+            a: 3456,
+            d: 'asdf'
+        }
+        //es7
+        const obj = {
+            ...obj1,
+            ...obj2
+        }
+        console.log(obj);
+        // a: 3456
+        // b: 56
+        // c: 3456
+        // d: "asdf"
+        //es6
+        Object.assign(obj1, obj2)
+        //和上面一样 ,返回的是obj1 因为2覆盖1
+        Object.assign({}, obj1, obj2)
+        //把2覆盖1然后覆盖最前面的 意思就是 最前面的装着混合结果
+
+        //面试
+        Object.getOwnPropertyNames()
+        //得到一个对象的所有属性
+        //es6规定
+        //1.先排数字 在按照其他排序  数组自动按照升序排列
+        Object.setOwnPropertyNames()//设置某个原型 (继承)
+
+
+        //目前仅仅用于不用构造函数时候用在继承那里修改原型
+        Object.setOwnPropertyNames(obj1, obj2)
+        // 相当于
+        obj1.__proto__ = obj2
+
+
+
+    </script>
+</body>
+
+</html>

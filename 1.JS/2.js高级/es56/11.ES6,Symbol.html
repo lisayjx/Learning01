@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原始数据类型 symbol  他表示独一无二
+        const name = Symbol('name')
+        const name1 = Symbol('name')
+        //他俩看起来一样但是内存地址不一样
+        console.log(name == name1);//false
+        console.log(name === name1);//false
+
+        //最大的用途:用来定义对象的私有变量
+        let s1 = Symbol('s1')
+        let obj = {}
+        obj[s1] = 'lisa'
+        console.log(obj[s1]);///lisa
+        //如果用symbol定义的对象中的变量，取值时一定要用[变量名]
+
+    </script>
+</body>
+
+</html>

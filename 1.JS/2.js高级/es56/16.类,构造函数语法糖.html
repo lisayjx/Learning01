@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  类: 构造函数的语法糖
+
+        //面向对象: 思想  整体操作中有哪些对象,每个对象有哪些自己的属性和功能
+        // 大象和冰箱      大象有眼睛鼻子会走路     冰箱有温度 开关门
+        //面向过程:功能 步骤 每一步干啥
+        // 大象走路,冰箱开门,大象进去,冰箱关门
+
+        //以前面向对象写法  
+        function Animal(type, name, age, sex) {
+            this.type = type
+            this.name = name
+            this.age = age
+            this.sex = sex
+        }
+        Animal.prototype.print = function () {
+            console.log('类型', this.type);
+            console.log('名字', this.name);
+            console.log('年龄', this.age);
+            console.log('性别', this.sex);
+        }
+        let dog = new Animal('狗', '豆豆', 10, '男')
+        dog.print()//调用print方法
+
+        // 容易出现问题1:--------------
+        // 1.属性和原型中的方法是分开的  解决方法 :类:构造函数和原型对象成为一个类
+        //类的写法
+        // constructor构造器 相当于构造函数 里边放构造函数得属性
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+            print() {//原型方法名
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        //容易出现的问题2:-----------------------
+        // 原型对象中的成员是可以被遍历(枚举)到的  for in
+        //可以把属性和方法全都遍历到       
+        for (let p in dog) {
+            console.log(p); //type name age sex print
+        }
+
+        //实际上 大部分遍历时候是不希望遍历到它的原型上的
+        //比如
+        const obj = {
+            name: 'lisa',
+            age: 18
+        }
+        for (let t in obj) {
+            console.log(t); //  name age  
+        }
+        // obj原型上有好多方法 为啥遍历不出来 ? 因为实际情况下原型上的方法就不应该被遍历到
+        // 所以for in没法控制遍历到原型
+        // 变成类得方法写 就不会遍历到原型上的print了
+
+
+
+        //容易出现的问题3:-----------------------
+        // 默认情况下构造函数也可以被误认为是普通函数
+        let cat = Animal('猫', '豆', 10, '女')  //不管以前还是现在类都得有new 
+        dog.print()
+
+
+
+        // 以上三种问题 解决方法是 :类
+
+//         总结:
+// 1、类的声明不会被提升，与let和 const一样都会被存到暂时性死区中。强调:类一定要先定义在使用
+// 2、类中的所有代码均在严格模式下执行
+// 3、类的所有方法均不可被遍历
+// 4、类的所有方法都无法被当作构造函数直接使用   let n= dog.print()  n() 不行 
+// 5、类的构造函数必须使用构造器
+
+    </script>
+</body>
+
+</html>

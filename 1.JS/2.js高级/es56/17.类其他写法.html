@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //es6 7 语法
+        //1.可计算的成员名(将成员名用计算属性方式使用)
+        const printName = 'print'
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+            [printName]() {//原型方法名    //这里不懂看14得计算属性
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        //假如方法名不确定,有可能来自一个变量
+        //此时方法名就是变量名 那么怎么调用呢
+        let dog = new Animal('狗', '豆豆', 10, '男')
+        // dog.print()  以前这么调
+        dog[printName]()  //现在这么调用
+
+        //2.getter setter----------------------------
+
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+
+            get age() {//读取你多少岁
+                return this._age + '岁'
+            }
+            set age(age) {//设置你多少岁
+                if (age < 0) {
+                    age = 0
+                } else if (age > 100) {
+                    age = 100
+                } else {
+                    this._age = age
+                }
+            }
+            print() {//原型方法名    //这里不懂 看14的计算属性
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        let cat = new Animal('猫', '豆豆', 10, '男')
+        cat.print()
+
+        // 如果想要限制一下年龄这个属性
+        // get读取 set设置 使用不在原型上  而是在实例上
+        //这样就多了个_age属性 就当成age来用 给age赋值 赋值时候运行set
+
+        //3.静态成员------------------------------------
+        //    有时候希望给构造函数（对象）本身加上一些成员  
+
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+
+            print() {//原型方法名    //这里不懂 看14的计算属性
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        let fish = new Animal('猫', '豆豆', 10, '男')
+        //加静态成员
+        Animal.abc = 123  //构造函数本身的成员是静态成员
+        fish.abc//找不到这个东西
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //是数据更安全   得用我的方式进行获取和修改
+        //  存取器属性getter和setter的实现. get propertyName()}用来得到当前属性值的回调函数. 
+        //  set propertyName0用来监视当前属性值变化的回调函数
+        //  getter负责查询值，它不带任何参数，setter则负责设置键值，
+        //  值是以参数的形式传递，在他的函数体中，一切的return都是无效的。
+        //   比如我有一百块钱,你管我要我可以给你,但是你不能自己去拿 
+
+        let person = {
+            firstName: 'li',
+            lastName: 'lichao',
+            //访问描述符/元属性
+            //获取全名
+            get fullName() {//定义fullName属性的读取得方法
+                return this.firstName + '' + this.lastName
+                //this就是当前对象person
+            },
+            set fullName(val) {
+                let arr = val.split('')
+                let firstName = arr[0]
+                let lastName = arr[1]
+                this.firstName = firstName
+                this.lastName = lastName
+            }
+        } 
+        console.log(person.fullName);//读取
+        //person.fullName 看起来是把fullName当成属性去使用,但是没有这个属性
+        //但是有get fullName函数 其实调用得是这个函数 本来写成fullName()就可以调用
+        //get 是 fullName后面不用写括号也可以调用了
+        person.fullName='jack Li'//修改 /写
+        //修改的时候 set 的fullName会被调用  读取的时候get的fullName会被调用
+        console.log(person);
+   
+   //总结:
+// 注意:利用getter/setter，其实是在对象中添加了一个新的属性，这个新的属性，
+// 在修改或获取时,按照我们自己定义的方式去访问(fullName)，其实跟firstName和
+// lastName没有太大的关系,firstName和lastName依然可以随意的访问．
+// 如果对象中每一个属性要都按照自己的要求去访问,那就把所有的属性,
+// 都改成getter和setter
+
+   
+ //注意:设置了setter,属性可以赋值，设置了getter,属性可以访问．但是缺少一个,就失去了对应的功能
+// 和普通属性不同的是，存储器属性在只声明了get或set时，
+// 对于读和写是两者不可兼得的，当它只拥有了getter方法，
+// 那么它仅仅只读，同样的，半它只有setter方法，那么读到的永远都是undefined
+
+   let oo={
+    name:'lili',
+    get sex(){
+        return 'man'
+    },
+    set age(a){},
+   }
+   oo.sex='women'
+   console.log(oo.sex);//man
+   console.log(oo.age);//undefined
+   </script>
+
+
+</body>
+
+</html>

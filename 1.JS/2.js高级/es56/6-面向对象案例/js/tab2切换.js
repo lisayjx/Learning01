@@ -24,6 +24,7 @@
 
 //----------------------------------------------------------------
 let that  //想让函数方法中的this 能不指向他的调用者 而去指向constructor中的this调用者
+// that 是constructor里面的this 记住这一点就行
 class Tab {
     //构造函数，用户接收实例对象传来的实参
     constructor(id) {
@@ -34,6 +35,9 @@ class Tab {
         //1.实现切换功能要把小选项卡和下面跟着变化的内容获取过来 tab中的li和section
         this.lis = this.main.querySelectorAll('li')//获取大盒子#tab中的所有li
         this.sections = this.main.querySelectorAll('section')//获取大盒子#tab中的所有section
+        //为了添加功能获取+元素和 fisrstnav的第一个ul也就是li 的父亲
+        this.add = this.main.querySelector('.tabadd')
+        this.ul = this.main.querySelector('.firstnav ul:first-child')
 
         // 2.初始化---------------绑定元素
         //别忘了写this  让页面加载就自动执行init()里得东西（绑定事件）
@@ -52,14 +56,14 @@ class Tab {
             //因为点击小li就执行切换函数 所以把切换的函数名放这里
             //别加()要不就直接调用了 想点击完调用
             this.lis[i].addEventListener('click', this.toggleTab)
-
-
         }
+        //2.给添加按钮绑定事件
+        this.add.addEventListener('click', this.addTab)
     }
     //1.切换
     toggleTab() {
         that.clearClass()//that指向constrouctor中
-        
+
         //这个this指向函数调用者this.lis[i]
         // console.log(this.index);//拿到了当前索引号
         //点击完以后就让当前li添加样式 去边框的liactive类，其余兄弟移除这个类
@@ -69,12 +73,25 @@ class Tab {
         that.sections[this.index].className = 'conactive'
         //此时会报错！！！！！因为this.sections[this.index]，this指向li，li没有sections这个属性
         //这个this要是constructor中的this就好了 在上面声明一个全局变量that
-      
+
 
 
     }
     //2.添加
-    addTab() { }
+    // 点击＋可以实现添加新的选项卡和内容
+    // 第一步:创建新的选项卡li和新的内容section
+    // 第二步:把创建的两个元素追加到对应的父元素中.
+    addTab() {
+        //  1.创建li和section 
+        let li = '<li class="liactive"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>'
+        //  2.把这两个元素追加到对应父元素 以前的做法:动态创建元素createElement，但是元素里面内容较多,需要innerHTML赋值在appendChild追加到父元素里 
+        //  现在高级做法:利用insertAdjacentHTML()可以直接把字符串格式元素添加到父元素中 插入相邻的
+        // 不是模版字符串的问题，这一步是省掉了创建元素，跟追加元素，是三合一
+        // appendChild不支持追加字符串的子元素, insertAdjacentHTMIL支持追加字符串的元素
+        // 追加到li的父元素中，就是fisrstnav的ul，要去上面先获取一下
+        that.ul.insertAdjacentHTML('before', li)//把li这个字符串追加到父元素ul中的最后
+        //这里的this指向调用者add按钮，但是这个按钮中没有ul，所以变成that
+    }
     //3.删除
     removeTab() { }
     //4.修改
