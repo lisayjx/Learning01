@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- promise的串联：当后续的Promise需要用到之前的Promisee的处理结果
+    promise中无论是then还是catch方法都是会有返回值的 返回一个新的promise对象  可以用变量存放
+就是一个promise结束后下一个promise启动
+then()方法返回的对象状态：
+如果当前的Promise是挂起状态，则得到的新Promise也是挂起状态
+如果当前的Promise是已决状态，则运行相应的后续处理函数，将后续的处理函数结果作为resolved状态的数据 应用到新的promise中
+如果后续的处理函数发生错误，则将返回值作为rejected状态的数据，应用到新的Promise中
+
+就是前一个promise的执行结果，作为后一个promise的数据进行传递
+如果成功的就作为resolve这个数据
+
+强调：后续的Promise一定要等到前一个Promise执行完成才会变成已决状态 -->
+
+
+    <script>
+
+        function snackPro(snackName, callback) {
+            let p = new Promise((resolve, reject) => {
+                console.log('商家准备' + snackName);
+                let alertFood = {
+                    foodName: snackName
+                }
+                console.log("商家完成" + snackName);
+                callback(alertFood)
+            })
+            return p
+        }
+        snackPro('烤冷面').then((data) => {
+            console.log('你拿到' + food.foodName);
+            console.log('你吃' + food.foodName);
+            return snackPro('烤腰子')
+        }).then((data) => {
+            console.log('你拿到' + food.foodName);
+            console.log('你吃' + food.foodName);
+            return snackPro('臭豆腐')
+        }).then((data) => {
+            console.log('你拿到' + food.foodName);
+            console.log('你吃' + food.foodName);
+        })
+
+//串联   就是前一个promise的执行结果，作为后一个promise的数据进行传递
+
+
+
+
+    </script>
+</body>
+
+</html>

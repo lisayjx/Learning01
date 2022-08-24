@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="/img/20.png" alt="">
+    <button class="btn1">点击按钮1：给2注册点击事件</button>
+    <button class="btn2">点击按钮2：给3注册点击事件</button>
+    <button class="btn3">点击按钮3：弹出成功</button>
+    <script>
+
+//同步：前一个任务执行完成后才能执行下一个
+//异步：不同等待 同一时间可以做好几个任务
+        // 异步：  例如定时器 等一会再做，例如 事件注册和触发是两个东西 ，你不点击永远不会触发  
+        //宏任务：
+        //微任务：      
+
+
+        // 异步处理的问题：  函数无限嵌套
+        // 回调地狱：某个异步操作需要等到之前的异步操作完成，都会陷入一个不断嵌套的过程
+        const btn1 = document.querySelector('.btn1')
+        const btn2 = document.querySelector('.btn2')
+        const btn3 = document.querySelector('.btn3')
+        btn1.addEventListener('click', function () {
+            btn2.addEventListener('click', function () {
+                btn3.addEventListener('click', function () {
+                    alert('操作成功')
+                })
+            })
+        })
+        //如果btn1还有其它操作怎么办？
+        // 假如 小李 心中有3个女神
+        // 小李像第一个女神表白，如果女生拒绝则向第二个女神表白，如果所有女神都拒绝，或者有一个同意 就结束
+        //等待女神回复需要时间
+        function biaobai(god, callback) {
+            console.log(`小李向女神${god}发出了短信`);
+            setTimeout(() => {
+                if (Math.random() < 0.1) {//小于0.1就表白
+                    callback(true)//true就表白成功了
+                } else {
+                    callback(false)
+                }
+            })
+        }
+        biaobai('女神1', function (re) {
+            if (re) {
+                console.log('答应了');
+            } else {
+                console.log('女神1没答应，继续下一个');
+
+                biaobai('女神2', function (re) {
+                    if (re) {
+                        console.log('答应了');
+                    } else {
+                        console.log('女神2没答应，继续下一个');
+                        biaobai('女神3', function (re) {
+                            if (re) {
+                                console.log('答应了');
+                            } else {
+                                console.log('女神3答应了');
+                            }
+                        })
+                    }
+                })
+            }
+        })
+        // 问题：你不知道女神什么时候回复你 然后一堆别的问题 所以ES6出来了一个异步处理模式
+    //   回调地狱问题：
+    //     解决代码嵌套问题
+    //     函数处理需要等待
+    //     返回结果可能需要收集
+
+    //-------------------------------异步处理的通用模型-------------------------------------------------
+
+// 一、.ES6将某一件可能发生异步的操作分为两个阶段  
+// unsettled  未决阶段：表示当前操作还在进行前期处理 未执行，并没有发生通向结果的事  还没收到服务器返回的结果前
+// settled 已决阶段：表示当前操作已经有了一个结果，无论好坏，整个操作无法逆转
+
+// 任何的操作总是从未决阶段逐步发展到-->已决阶段，
+// 并且未决阶段拥有控制何时通向返回结果（已决）的能力
+
+// 二、ES6将从 未决-->已决 这个过程分为了三个状态
+// 1.pending：挂起  你把这个函数写完了没操作没调用  没得到结果前都可以算是pending  （未决）
+
+// 2.resolved： 已处理，整个操作已经出现结果，结果对，该结果可以按照正常的逻辑进行后续操作，能拿到你想要的东西（已决）
+ //     将操作状态 从pending-->resolved 叫做 resolve，同时从挂起到已处理状态肯定会传递一些数据
+
+ // 3.rejected:已拒绝（服务器拒绝这个请求），整个操作已经出现结果，该结果不可按照正常的逻辑进行后续操作，通常表示一个错误（已决）
+ //      将操作状态从 resolved-->rejected叫做 reject ，同时也会传递一些数据，通常是一些错误信息
+
+ // 未决阶段会决定整体的操作走向 就可以决定整体最终状态
+
+
+//三、当操作从未决到已决阶段后，通常进行后续操作
+// 已决有2种状态 resolved 正常已决状态，后续处理了需要使用thenable
+//              rejected 非正常的已决状态，后续处理需要使用catchable
+//         后续处理可能存在多个，因此会形成作业队列，后续处理按顺序执行
+
+// 以上三步称为 Promise的承诺
+
+// 总结：Promise干了两件事    答应你了干啥事    不答应你干啥事
+
+    </script>
+</body>
+
+</html>

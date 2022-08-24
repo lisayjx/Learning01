@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //1.-----------------------继承--------------------------
+        //ES5
+        //父亲
+        function Animal(type, name, age, sex) {
+            this.type = type
+            this.name = name
+            this.age = age
+            this.sex = sex
+        }
+        Animal.prototype.print = function () {
+            console.log('类型', this.type);
+            console.log('名字', this.name);
+            console.log('年龄', this.age);
+            console.log('性别', this.sex);
+        }
+        //儿子
+        function Dog(name, age, sex) {
+            Animal.call(this, '犬类', name, age, sex)
+        }
+        //继承
+        Object.setPrototypeOf(Dog.prototype, Animal.prototype)
+        const d = new Dog('旺财', 3, '男')
+        //----------------------
+        //ES6写法
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+            print() {//原型方法名
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        class Son extends Animal {
+            constructor(name, age, sex) {
+                super('犬类', 18, '男')//直接当作函数调用 表示父类构造函数 这里的super就是Animal
+            }
+        }
+        const s = new Dog('旺财', 3, '男')
+        s.print()//子类调用父类的方法  成功  不写super就不成功了
+
+        //1. super() 直接当作函数调用 表示父类构造函数
+        //2.如果super被当作对象使用，则表示父类的原型
+        //3.ES6要求如果定义了constructor并且该类是子类，必须在constructor中的第一行手动调用父类构造函数
+        // 就是你在子类写了constructor, 要是继承父亲 必须在constructor中第一行写super
+
+        //情况2  子类和父类中有一个同名的方法  那就有先调用就近的
+        //   子类中的方法中有和父类重复的而且子类的自己也有自己的  那么重复部分用super代替
+        class Animal {
+            constructor(type, name, age, sex) {//构造函数
+                this.type = type
+                this.name = name
+                this.age = age
+                this.sex = sex
+            }
+            print() {//原型方法名
+                console.log('类型', this.type);
+                console.log('名字', this.name);
+                console.log('年龄', this.age);
+                console.log('性别', this.sex);
+            }
+        }
+        class Son extends Animal {
+            constructor(name, age, sex) {
+                super('犬类', 18, '男')//这一句话相当于  this.type = type  this.name = name....
+
+                this.loves = '吃骨头'
+            }
+            print() {//原型方法名
+                // console.log('类型', this.type);
+                // console.log('名字', this.name);
+                // console.log('年龄', this.age);
+                // console.log('性别', this.sex);
+                super.print()//此时super===Animal
+                console.log('爱好', this.loves);
+            }
+        }
+        const s = new Dog('旺财', 3, '男')
+        s.print()
+
+        //如果你想在其它方法中调用父类的方法 就用super
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="/img/21.png" alt="">
+    <script>
+        // Promise基本使用：  她不能消除回调 只能减轻 让回调变得可控！!!!!
+
+        // 从pending-- > resolved 叫做 resolve
+        // resolved-- > rejected叫做 reject
+
+        //promise里放的是回调函数，回调函数放两个参数 resolve和reject
+        // 创建promise时候就是未决阶段
+        let pro = new Promise(function (resolve, reject) {
+            //1.未决阶段的处理
+            //通过调用resolve函数将promise推向已决阶段的resolve状态
+            //通过调用reject函数将promise推向已决阶段的reject状态
+            //resolve和reject这两个函数均可以传递一个参数
+        })
+        //成功的话，如果你现在的未决阶段已经通向了resolve状态的话，子对象调用thenable函数
+        pro.then(function (data) {
+            //这是thenable函数，如果当前的promise已经是resolve状态，就会立刻执行then函数
+            //如果你当前还是处于未决阶段的话，会等待你上边的决定（data状态数据）
+        })
+        //否则失败的话调用
+        pro.catch(function (err) {
+            //这是catchable函数，如果当前的promise已经是reject状态，就会立刻执行catch函数
+            //如果你当前还是处于未决阶段的话，会等待你上边的决定（err状态数据）
+        })
+
+        //------------简便写法---------
+        let pro = new Promise((resolve, reject) => {
+
+        })
+        pro.then((data) => {
+
+        }), err => {
+
+        }
+        // 这整个过程叫promise承诺
+
+        // 未决阶段处理，如果你希望成功你就调用resolve这个函数 会执行then
+        //              如果你希望失败你就调用reject这个函数 会执行 catch
+
+
+
+
+
+        let pro1 = new Promise((resolve, reject) => {
+            //1.未决阶段
+            //通过调用resolve函数将promise推向已决阶段的resolve状态
+            //通过调用reject函数将promise推向已决阶段的reject状态
+            //resolve和reject这两个函数均可以传递一个参数
+            console.log('小李给女神1发短信');//此时是pending挂起 只是发了短信 还没回复
+            //推向不同的状态
+            setTimeout(() => {
+                if (Math.random() < 0.1) {//如果成功就执行resolve
+                    resolve(true)//传递的数据是true
+                } else {
+                    reject(false)
+                }
+            }, 3000);
+        })
+        pro.then((data) => {//then里面放的函数 上面成功了执行它
+            console.log(data);//true
+        }), err => {//catch里放的函数 上面失败了执行它
+            console.log(err);
+        }
+        // 如果执行的是resolve就执行data  如果执行的是reject就执行err
+
+
+        // 如果现在是未决阶段，后边的操作会排队放到队列里等你的执行状态成功才会继续执行
+
+
+
+        function biaobai(god) {
+            return new Promise((resolve, reject) => {
+                console.log(`小李向女神${god}发出表白短信`);
+                setTimeout(() => {
+                    if (Math.random() < 0.1) {
+                        resolve(true)
+                    } else {
+                        reject(false)
+                    }
+                }, 1000)
+            })//以上是未决阶段
+        }
+        const pr = biaobai('lisa')
+        pr.then((result) => {
+            console.log(result);
+        }), err => {
+            console.log(err);
+        }
+// 这样不会消除回调地狱 但是会减轻 会容易理解
+
+
+//细节：1.未决阶段的处理是同步的。会立即执行
+        // 2.thenable和catchable函数是异步的，就算是立即执行，也会加入到事件队列中等待执行，并且加入的队列是微队列 微任务
+        //3.pro.then可以只添加thenable函数，  pro.catch可以单独添加catchable函数
+        //4.在未决阶段处理函数中，如果发生未捕获的错误，会自动将状态推向rejected并且被catchable捕获
+        // 5.一旦推向已决状态，无法在对状态做任何改变
+    </script>
+</body>
+
+</html>

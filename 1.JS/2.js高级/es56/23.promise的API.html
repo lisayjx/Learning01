@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   1.原型成员：
+        // then()  注册一个Promise处理resolve状态
+        // catch()  注册一个Promise处理reject状态
+        // finally() 【es2018】注册一个后续处理函数，当Promise为已决状态时运行该函数
+        // 强调：只要是已决状态，无论成功失败，一定执行
+
+
+        new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                // resolve('成功的数据')
+                reject('失败的数据')
+            }, 1000);
+        }).then(data => {
+            console.log('onResolved()', data);
+        }).catch(err => {
+            console.log('onReject()', data);
+        }).finally(() => {
+            console.log('finally');
+        })
+        // finally里没有数据，因为你写了数据就分不清数据到底从哪里来的了
+
+        // 2.实例成员
+
+        // resolve(data): 当Promise执行成功了要执行resolve操作
+        // reject(err): 放错误数据
+
+
+        // all(iterable): 返回一个新的Promise对象
+        // iterable是数组，每一项都放的是的promise，装着所有的promise对象
+        // 只有iterable当中的所有对象都执行成功才会触发整体成功
+        // 一旦有任何一个对象失败 则整体返回失败
+
+
+
+        function snackPro(snackName, callback) {
+            let p = new Promise((resolve, reject) => {
+
+                let alertFood = {
+                    foodName: snackName
+                }
+
+                resolve(alertFood)  //如果这里是reject下面就执行不了
+            })
+            return p
+        }// 以上返回一个Promise对象
+        // 如果promise对象推向成功了，意味下面三个都成功了都是resolve状态
+        // 都是resolve状态才会去执行后续的then函数
+        let snack1 = snackPromise('烤冷面')
+        let snack2 = snackPromise('烤腰子')
+        // let snack3 = snackPromise('臭豆腐')
+        let snack4 = Promise.reject('烤坏了')//或者是这里随便改一个reject也执行不了
+
+        Promise.all([snack1, snack2, snack3]).then(data => {
+            console.log(data);
+        })
+
+        // 只有iterable中的数组的每一项promise都执行成功resolve才能执行all 
+
+
+
+//race(iterable)  这个数组里放的任意一个Promise成功或者失败后
+// 父promise马上会用子promise的结果作为参数调用父promise绑定相应的结果返回该promise对象
+// 哪个先执行完就输出哪个结果
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.普通符号
+        // 2.共享符号
+        // 3.知名符号
+
+        // 1.普通符号-----------------------------------------------
+        //Symbol(符号描述)：ES6当中新增的数据类型  通过调用Symbol这个函数得到
+        //最初用在 给对象设置私有属性 某个函数的属性不让别人用只能自己用
+        //注意：1.对象中的符号属性不能被遍历枚举（for in读取不了这个符号属性）
+        // Object.getOwnPropertyNames虽然能得到没办法遍历的属性，但是还是读取不到符号属性
+        //万一真的需要读取符号属性咋整？用 Object.getOwnPropertySymbols()
+        //2.读取对象中的符号属性，返回值是符号属性的数组
+        Object.getOwnPropertySymbols(对象)
+        //3.符号属性无法被隐式转换  无法用在数学计算 字符串拼接之类的..
+        //4.符号可以强制转换成字符串 通过 String()
+
+        const sb1 = Symbol()//sb1就是你给数据类型起的名字
+        const sb2 = Symbol("abc")//abc就是符号描述
+        //特点：
+        // 1.没有字面量 只能通过调用Symbol() 创建
+        // 2.使用typeof得到的类型就是Symbol
+        // 3.每一次调用Symbol函数得到的符号永远都不一样，无论符号名是否相等
+        // 4.符号可以作为对象的属性名存在，以前对象名必须是字符串
+        // 例如：
+        const obj = {
+            name: 'lisa',
+            a: 1,
+            [sb2]: 3 //[sb2]就是符号
+        }
+        // 他只能看 不能在外边用 只能内部用  私有属性  比如你有个方法名是符号类型的
+
+
+        //2.共享符号--------不想做私有属性时------------------------------------------------
+        // 解决什么问题：
+        // 在函数里创建了一个外面不能访问的符号，但是有时候又希望外面能访问到  怎么办
+        // 根据某个符号名称（符号描述）得到同一个符号
+
+        const s1 = Symbol("abc")//s1是符号名，abc是符号描述
+        const s11 = Symbol.for("abc")
+        const s22 = Symbol.for("abc")
+        const s33 = Symbol.for("abc")
+        const obj1 = {
+            name: 'lisa',
+            a: 1,
+            [s11]: 3//用的属性 s1
+        }
+        const obj2 = {
+            name: 1,
+            a: 2,
+            [s22]: 'c'//用的属性 s1
+        }
+        const obj3 = {
+            name: 2,
+            a: 1,
+            [s33]: 'd'//用的属性 s1
+        }
+        // 不同对象中每一个中都有符号[s1] 那么影响不到 各用各的
+        // 如果一个对象中没有，但是想用另外的那个对象的符号？
+        //共享符号 ：根据某个符号名称（符号描述）得到同一个符号
+        Symbol.for('符号描述')
+
+
+        //3.知名符号-------------------------------------
+        //    一些具有特殊含义的共享符号，通过Symbol静态属性得到
+        //如何得到知名符号？知名符号是已经创建好的不用你自己创建的
+        //系统创建的好的 你直接用
+        //         Symbol.hasInstance用于定义构造函数的静态成员，影响instanceof的判断
+        //    instanceof是判断原型链的 那我能不能改呢 A instanceof obj，有没有原型是属于A的 A是不是原型的子对象
+        //    现在我能参与到他的判断中 可以用别的方式判断 不一定用原型链方式判断
+        //         怎么参与？通过 A[Symbol.hasInstance](obj)
+
+        function A() {
+
+        }
+        const obj4 = new A()
+        console.log(obj4 instanceof A);//true
+        //obj4是不是通过A创建的  是
+        console.log(A[Symbol.hasInstance](obj4));
+    </script>
+</body>
+
+</html>

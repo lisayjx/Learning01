@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise有三种状态
+        // pending
+        // resolve
+        // reject
+
+        //-----------一、如何在三种状态切换---------------
+        // 过程 pending-- > resolved
+        // 过程 pending-- > rejected
+
+        //创建Promise
+        const p1 = new Promise((resolve, reject) => {
+
+        })
+        console.log(p1);
+        //Promise { <state>: "pending" } 此时promise对象是pending状态
+
+
+        // 1.过程 pending状态-- 变成> resolved --------------------------
+        //    怎么让状态pending到resolved方法呢？
+        //使用我们传入的resolved参数
+        const p2 = new Promise((resolve, reject) => {
+            resolve()
+        })
+        console.log(p2);// 状态为fulfilled等同于 resolved状态
+
+
+
+        // 2.过程 pending状态-- 变成> rejected --------------------
+        const p3 = new Promise((resolve, reject) => {
+            reject()
+        })
+        console.log(p3);//变成了 "rejected"
+
+
+        // 过程 pending-- > resolved
+        // 过程 pending-- > rejected
+        // 不是马上能确定是 上边还是下边  是要经过异步任务之后才能决定promise状态
+
+        const p4 = new Promise((resolve, reject) => {
+            setTimeout(() => {// 异步任务  后执行
+                resolve()//在一段时间后变成功的状态
+            }, 1000);
+        })
+        console.log(p4);//同步任务 先执行
+        // 最开始是pending  一秒后是fulfilled===resolved
+        // Promise { <state>: "pending" }
+        // <state>: "fulfilled"
+        // <value>: undefined
+        // <prototype>: Promise.prototype { … }
+
+        // new Promise(函数作为参数传了进去)，传的这个函数会立即执行
+        // 定时器会立即执行，但是并不意味着resolve会立即执行
+        // 他会把resolve放到1000后再执行
+        // 整个settimeout是个异步任务
+        // js先执行同步任务 再执行异步任务
+        // 所以先执行函数的参数 new Promise（） 括号里的的一堆
+        // 就会先设置settimeout 把resolve 1000后再执行
+        // 但是这时  当他把resolve放到一个1秒的定时器 之后
+        // settimeout就是执行完毕了  我们就会执行下一个同步任务 也就是 console.log(p4)
+        // 这时候我们打印p4时候还没执行resolve，所以状态是pending
+        // 但是1秒后我们打开看 就是 "fulfilled"===resolved了
+
+        //若是想让打开看和打印时候都是fulfilled（resolved）呢 ，把打印也加一个定时器
+        //   这样 resolve（）和打印都是将来时态的都是一秒后执行的异步任务 
+
+        const p5 = new Promise((resolve, reject) => {
+            setTimeout(() => {// 异步任务  后执行
+                resolve()//在一段时间后变成功的状态
+            }, 1000);
+        })
+        setTimeout(() => {
+            console.log(p5);
+        }, 1000)
+
+        // 就是看 谁先执行 打印若是先执行 就是先pedding  若是resolve()先执行就是 resolved
+
+        //-------------二、promise不同状态的表现---------------------------
+        // promise有三种状态
+        // pending
+        // resolve
+        // reject
+
+        // 1.pending状态
+        const p6 = new Promise((resolve, reject) => {
+
+        })
+        console.log(p6);//pending
+
+        p6.then(() => {
+            console.log('p6的then会执行吗');
+        }).catch(() => {
+            console.log('p6的catch会执行吗');
+        })
+        //都不会执行   
+        // 说明 promise在pending状态时候不会触发后面的then和catch
+
+
+
+        //2.resolve状态
+        // const p7 = new Promise((resolve, reject) => {
+        //     resolve()
+        // })
+        // console.log(p7);
+
+        // p7.then(() => {
+        //     console.log('p7的then会执行吗');//会输出这个
+        // }).catch(() => {
+        //     console.log('p7的catch会执行吗');
+        // })
+
+        //创建一个resolve状态的promise   快捷方式
+        const p8 = Promise.resolve()
+        console.log('p8', p8);
+        p8.then(() => {
+            console.log('p8的then会执行吗');//会输出这个
+        }).catch(() => {
+            console.log('p8的catch会执行吗');
+        })
+
+
+        //3. reject      创建个reject状态的promise
+
+        const p9 = Promise.resolve()
+        console.log('p9', p9);
+        p9.then(() => {
+            console.log('p9的then会执行吗');
+        }).catch(() => {
+            console.log('p9的catch会执行吗');//会输出这个
+        })
+
+
+        // 总结：  pending状态 不会触发 then和catch的函数
+        //         resolve会触发 then 的函数
+        //         reject会触发 catch的函数
+
+
+
+
+
+        //----------三、then catch 对于状态的影响---------------------
+
+        const t1 = Promise.resolve()//创建一个resolve状态的promise
+        // console.log('t1', t1);//会得到成功状态的t1
+        // t1.then(()=>{
+        //     console.log('t1 then成功触发');
+        // })
+        // 那么t1.then返回的是啥呢？？
+        const re = t1.then(() => {
+            console.log('t1 then成功触发');
+        })
+        // console.log(re); 
+        // Promise { <state>: "pending", <value>: undefined }
+        // <state>: "fulfilled"
+        // <value>: undefined
+        // <prototype>: Promise.prototype { … }
+        // 因为我们再打印re时候呢，后面整个promise结果是异步的
+        // 如果我们想看到re状态的话可以settimeout
+        setTimeout(() => {
+            console.log(re);
+        })
+        // Promise { <state>: "fulfilled", <value>: undefined }
+        // <state>: "fulfilled"
+        // <value>: undefined
+        // <prototype>: Promise.prototype { … }
+
+        //此时一样了 
+        //如果我们在then里什么都不做不报错 re返回结果就是resolve状态的promise
+
+        //---------------
+        const t2 = Promise.resolve()
+        let re2 = t2.then(() => {
+            throw new Error('err')//抛出异常
+        })
+        setTimeout(() => {
+            console.log(re2);
+        })
+        //如果我们在then里 报错了， re返回结果就是 rejectd状态
+
+
+        //总结
+        // 如果resolve状态的promise 点then时候，里面没有报错 整个t1.then(..)都会返回resolved状态的promise
+        // 如果resolve状态的promise 点then时候，里面报错了，................就会返回rejected状态的promise
+
+        // 同样的道理也适用于catch当中
+
+        const k1 = Promise.reject()//定义一个reject状态的promise
+        const re3 = k1.catch(() => {
+            console.log('成功');
+        })
+        setTimeout(() => {
+            console.log(re3);//是resolved状态的promise
+        });
+        //---------
+        const k2 = Promise.reject()//定义一个reject状态的promise
+        const re4 = k2.catch(() => {
+            throw new Error('err')//抛出异常
+        })
+        setTimeout(() => {
+            console.log(re4);//是rejected状态的promise
+        });
+
+        // 如果reject状态的promise 点catch时候，里面没有报错 整个k1.then(..)都会返回resolved状态的promise
+        // 如果reject状态的promise 点catch时候，里面报错了，................就会返回rejected状态的promise
+
+        //大总结：
+        // 无论是 then还是 catch 只要里面没抛出异常 返回的都是 resolved状态的promise，否则rejected
+
+
+        //---------------------------4.promise小测试---------------------------------
+        const q1 = Promise.resolve()//创建一个resolve状态的promise
+        q1.then(() => {
+            console.log(1);
+        }).catch(() => {
+            console.log(2);
+        }).then(() => {
+            console.log(3);
+        })
+        //结果是1  3 
+        // 因为resolved状态的promise会触发then里的函数而且then里没有发生异常 会返回resolved状态的promise
+        // 接下来遇到了catch  他不会触发catch  然后下面遇到了 then 触发then 并且then没有异常
+
+        const q2 = Promise.resolve()//创建一个resolve状态的promise
+        q2.then(() => {
+            console.log(1);
+            throw new Error()//抛出异常
+        }).catch(() => {
+            console.log(2);
+        }).then(() => {
+            console.log(3);
+        })
+        //因为resolved状态的promise会触发then里的函数 先输出1，但是then中出现了异常 此时状态变成了rejected的promise
+        // 然后 rejected状态的promise遇到了catch 会触发 2 没有异常，变成了resolved状态的promise
+        //接下来遇到then，resolved状态的promise遇到then会触发
+        //1 2  3
+
+
+        const q3 = Promise.resolve()//创建一个resolve状态的promise
+        q3.then(() => {
+            console.log(1);
+            throw new Error()//抛出异常
+        }).catch(() => {
+            console.log(2);
+            throw new Error()//抛出异常
+        }).then(() => {
+            console.log(3);
+        })
+        //1 2
+
+        const q4 = Promise.resolve()//创建一个resolve状态的promise
+        q4.then(() => {
+            console.log(1);
+            throw new Error()//抛出异常
+        }).catch(() => {
+            console.log(2);
+            throw new Error()//抛出异常
+        }).catch(() => {
+            console.log(3);
+        })
+        //1 2 3
+
+
+
+
+        //------------------------5.async、await--------------------------------
+        //1.执行async函数，返回的都是Promise对象
+        //以前创建promise对象
+        const q3 = Promise.resolve()
+        //现在
+        async function test1() {
+            return 1
+        }
+
+        async function test2() {
+            return Promise.resolve(2)
+        }
+        const re1 = test1()
+        const re2 = test2()
+        console.log('re1', re1)//是个promise对象
+        console.log('re2', re2)//是个promise对象
+
+        //如果你返回的是普通值，他会帮你封装成promise对象
+
+
+
+        //2.Promise.then 成功的情况对应await
+        //不用点then了
+        async function test3() {
+            const p3 = Promise.resolve(3)
+            // p3.then(() => {
+            //     console.log('data', data);
+            // })
+            //await p3可以代替上面一堆 
+            const data = await p3
+            console.log('data', data);
+        } test3()//3
+
+        //----------------
+        // 这个不仅不用点then 连创建promise函数都不用了
+        async function test4() {
+            //const p4 = Promise.resolve(4)
+            // p3.then(() => {
+            //     console.log('data', data);
+            // })
+            //await p4可以代替上面一堆 
+            const data = await 4
+            console.log('data', data);
+        } test4()//4
+
+        // await 4相当于 await Promise.resolve(4) 内部会帮我们把4封装成promise对象
+        //又 await又相当于帮我们执行了 点then 
+
+        //总结
+        //以前：先创建promise对象，然后点then
+        function test4() {
+            const q4 = Promise.resolve()//创建一个resolve状态的promise
+            q4.then(() => {
+                console.log(1);//1
+            })
+        } test4()
+
+        //现在async 后的东西都自动返回promise对象
+        // 直接await代替了点then 并且因为async后的东西会自动返回promise对象
+        async function test4() {
+            const re = await 4
+            console.log(re);//4
+        } test4()
+
+
+
+        //--------------await后跟异步函数
+        async function test1() {
+            return 1
+        }
+
+        async function test4() {
+            const re = await test1()
+            console.log(re);//1
+        } test4()
+
+        //test1执行结果返回数字1，然后因为async，1变成了promise对象
+        // 所以此时 await后面是promise对象，然后执行test4 ，结果还是1
+
+
+        //几种情况  总结
+        const p3 = Promise.resolve(3) 跟promise对象
+        const data = await p3  跟promise对象
+
+        const data = await 4   跟普通值
+
+        const re = await test1()  跟一个异步函数
+
+
+
+        //3.Promise.catch 异常的情况 对应 try...catch
+
+        async function test3() {
+            try {//如果成功
+                const p3 = Promise.reject(3)//定义个reject状态的promise对象
+                const data = await p3
+            } catch (e) {//如果捕获异常
+                console.error(e)//6
+            }
+        } test3()
+
+        //因为是reject状态的promise 要执行catch 异常
+
+        //-----------6.如何正确使用promise-------------------------------
+        //promise是解决回调地狱的
+        // 写异步代码执行结果需要回调函数来接收，如果异步任务很多，一个异步任务依赖于另外一个异步任务的话
+        // 会出现回调地狱
+        // <img src="/img/25.png" alt="">
+        // 如果有三个请求 只有第一个请求完了才能请求第二个..
+        // <img src="/img/26错误写法.png" alt="">
+
+
+        created(){
+
+            //正确写法
+            this.getTodos()
+                .then(res => {
+                    console.log('todos', res.data);
+                    return this.getComments()
+                })
+                .then(res => {
+                    console.log('comments', res.data);
+                    return this.getAlbums()
+                })
+                .then(res => {
+                    console.log('Albums', res.data);
+                })
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+    <img src="/img/25.png" alt="">
+    <img src="/img/26错误写法.png" alt="">
+
+</body>
+
+</html>
