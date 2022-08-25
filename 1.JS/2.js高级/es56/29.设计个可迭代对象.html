@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //对象本身不可迭代，我们要把它变成可迭代的
+        //可迭代对象的特征，有next(),next怎么来的通过 xx[Symbol.iterator]()来的
+        //此时我们都没有，所以需要创建
+        let classes = {
+            stus: ['小明', '小红', '小强', '小刚'],
+            //1.创建[Symbol.iterator]()方法
+            //这个方法能够创建一个对象(返回出一个对象)，这个对象内部还要有next()方法
+            //一般调用完next会返回出 value和 done ，有数据时候value：数据 没有就undefined
+            //done要么是true要么是false
+            [Symbol.iterator]() {
+                //创建当前元素的索引
+                let index = 0
+                //因为要用到外面的stus 
+                let that = this
+                return {//返回个对象
+                    next() { //next方法
+                        if (index < that.stus.length) {//如果还有元素  如果当前这个元素的索引<数组长度
+                            // { value: 当前元素, done: false }
+                            const ret = { value: that.stus[index], done: false }
+                            index++//索引每次next就加加
+
+                            return ret
+                        } else {
+                            return { value: undefined, done: true }
+                        }
+                    }
+                }
+            }
+        }
+
+        //怎么判断还有没有元素？看stus数组的长度和索引
+        // 如果当前这个元素的索引<数组长度
+        //试试成功没
+        for (let val of classes) {
+            console.log(val);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

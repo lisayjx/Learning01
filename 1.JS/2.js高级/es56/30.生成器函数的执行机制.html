@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 生成器：可以用来创建迭代器，之前我们是自己手写创建的
+        // 一步一步生成数据，它内部会有yield
+
+        //书写一个生成器函数 但是和函数不同
+        //与函数不同的地方  
+        // 1.有*号，内部有yield关键字
+        // 2.调用方法 和普通函数不一样
+        //3.生成器函数() 并不是调用执行里面的代码，而是创建了一个迭代器
+        //    我们给他赋值到一个变量里
+
+        // function* genFunc() {
+        //     console.log('看看没调用情况下能执行吗');////发现调不调用都没执行呢？？？
+        //     yield 1
+        //     yield 2
+        //     yield 3
+        // }
+        // genFunc()
+
+
+        function* genFunc() {
+            console.log('执行了genFunc()')
+            yield 1//停下第一次
+            console.log('执行了genFunc()2222')
+            yield 2//停下第二次
+            yield 3
+        }
+        let iter = genFunc() //创建迭代器，通过生成器创建迭代器，此时iter有next方法
+
+        console.log(iter.next());
+        //此时输出了
+        // 执行了genFunc()
+        // Object { value: 1, done: false }
+        //！！！！！！第一次调用next才开始去执行生成器函数genFunc()里的代码
+        //当执行遇到了yield时候就会返回出来 停下来跳出这个函数 返回yield后面的值
+        //   所以不会打印出执行了genFunc()2222
+        //遇到了yield时候 把1加工之后返回回到iter.next()，
+        //因为得到的不是1，而是加工后的对象 { value: 1, done: false }给调用.next()的地方
+        //此时函数暂停了，什么时候再次运行？当我下次next时候
+        console.log(iter.next());//再次调用next再次进入genFunc里面执行
+        //执行了genFunc()2222
+        //Object { value: 2, done: false }
+        console.log(iter.next())//Object { value: 3, done: false }
+        console.log(iter.next())//Object { value: undefined, done: true }
+
+        //总结 生成器函数的执行机制
+        //通过调用生成器函数去创建迭代器（此时生成器的代码不会执行）
+        //通过迭代器调用next执行生成器函数内部的代码
+        //执行到yield暂时跳出函数，并且把yield后面的值加工成对象，返回到调用next的人身上
+
+        for (let val of iter) {
+            console.log(val);
+        }//遍历时候把上面的next先注释
+
+ 
+
+    </script>
+</body>
+
+</html>

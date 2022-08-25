@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //手写用async await来模拟迭代器
+        https://www.bilibili.com/video/BV13e4y1D7ni?spm_id_from=333.999.0.0&vd_source=2fd18316f23162e685d8dbdadd9417f1
+
+
+
+        function XxxxAPI(x) {//我传过来一个参数
+            //模拟一秒后处理完这个请求
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(++x)//经过我这次请求我能得到x+1的结果
+                }, 1000)
+            })
+        }
+
+
+        // 生成器创建迭代器的写法
+        function* genFunc(x) {
+            //等到他第一次请求成功后再往下执行 所以用yield 因为yield会暂停
+            let result1 = yield XxxxAPI(x)
+            console.log(`第一次请求结果为：${result1}`)
+            let result2 = yield XxxxAPI(result1)
+            console.log(`第二次请求结果为：${result2}`)
+            let result3 = yield XxxxAPI(result2)
+            console.log(`第三次请求结果为：${result3}`)
+        }
+        let iter = genFunc(0)//用生成器创建迭代器  //此时还没执行
+        // iter.next()//第一次执行 得到加工过后的对象  { value: 1, done: false }
+        // iter.next().value//这才是promise对象 1
+        // iter.next().value.then(result1=>{
+        //     return  iter.next(result1).value
+        // }).then(result2=>{
+        //     return  iter.next(result2).value
+        // }).then(result3=>{
+        //     return  iter.next(result3).value
+        // })
+        //换一种写法再去封装
+        iter.next().value.then(result1 => {
+            iter.next(result1).value.then(result2 => {
+                iter.next(result2).value.then(result3 => {
+                    iter.next(result3)
+                })
+            })
+        })
+        //---------------------------------------------------------------
+        function XxxxAPI(x) {//我传过来一个参数
+            //模拟一秒后处理完这个请求
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(++x)//经过我这次请求我能得到x+1的结果
+                }, 1000)
+            })
+        }
+        // 生成器创建迭代器的写法
+        function* genFunc(x) {
+            //等到他第一次请求成功后再往下执行 所以用yield 因为yield会暂停
+            let result1 = yield XxxxAPI(x)
+            console.log(`第一次请求结果为：${result1}`)
+            let result2 = yield XxxxAPI(result1)
+            console.log(`第二次请求结果为：${result2}`)
+            let result3 = yield XxxxAPI(result2)
+            console.log(`第三次请求结果为：${result3}`)
+        }
+        //--
+        //要对上面的代码进行封装，达到调用函数就能直接自动执行生成器函数
+        //相当于手动得模拟了一下async await做的东西 
+        //想一下这个函数将来要传什么东西进来
+        function asyncFunc(genFn, ...params) {//genFn是我们传进来的genFunc 
+            let iter = genFn(...params)
+            //不断在调用next
+            const next = x => {
+                //这里的next做什么？看你有没有下一个值 如果没有就return
+                //怎么知道有没有下一个值 done要是false就是有
+                //如果有值 就value
+
+                let { value, done } = iter.next(x)
+                if (done) {
+                    return
+                }
+                value.then(next)
+
+                next()
+            }
+        }
+        asyncFunc(genFunc, 0)//把生成器函数传了进去 ，...params接收形参得
+
+
+        //使用思想：
+
+        //--------------精简版---------------------
+        function XxxxAPI(x) {//我传过来一个参数
+            //模拟一秒后处理完这个请求
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(++x)//经过我这次请求我能得到x+1的结果
+                }, 1000)
+            })
+        }
+        function asyncFunc(genFn, ...params) {//genFn是我们传进来的genFunc 
+            let iter = genFn(...params)
+            const next = x => {
+
+                let { value, done } = iter.next(x)
+                if (done) {
+                    return
+                }
+                value.then(next)
+
+                next()
+            }
+        }
+
+        //达到了模拟async await得原理
+        asyncFunc(function* (x) {
+            //等到他第一次请求成功后再往下执行 所以用yield 因为yield会暂停
+            let result1 = yield XxxxAPI(x)
+            console.log(`第一次请求结果为：${result1}`)
+            let result2 = yield XxxxAPI(result1)
+            console.log(`第二次请求结果为：${result2}`)
+            let result3 = yield XxxxAPI(result2)
+            console.log(`第三次请求结果为：${result3}`)
+        }, 0)
+
+    </script>
+
+
+
+</body>
+
+</html>

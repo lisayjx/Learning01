@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //异步函数test1
+        async function test1() {
+            console.log('test1 开始');//2
+            const result = await test2()
+            //把这句话分成两部，先执行test2，然后执行完再去await test2的执行结果
+
+
+            //在await之后的代码可以看成是异步的代码，相当于把他们装到延时器中了
+            //   setTimeout(()=>{
+            //     console.log('result', result); 
+            //     console.log('test1 结束');
+            //   },1000)
+            console.log('result', result);//4//result是 await test2的结果 undefined是个promise对象
+            console.log('test1 结束');
+        }
+
+        //异步函数test2
+        async function test2() {//async后的会返回promise对象
+            console.log('输出test2');//3
+            // return undefined 没写return 相当于这句话
+            //若是这里有返回值 result值就不会是undefined而是你好
+            // return Promise.resolve('你好')
+        }
+        //到这里为止若是没有下面的调用 上面的啥都不会输出 所以第一个输出的是('script开始');
+        console.log('script开始');//1
+        test1()
+        console.log('script结束');
+
+
+        // 1.('script开始');
+        // 2.执行test1()
+        //     ('test1 开始')
+        // 3.  先执行test2 ：('输出test2')
+        //     再执行test2的执行结果：因为test2 也是promise对象
+        //                     又因为 test2前面有 await，就相当于test2.then(),
+        //     就可以拿到promise成功时的值 也就是 undefined
+        // 4.('script结束')
+        //--------以上同步的代码都执行完了-------------------
+        // 5.('undefined')
+        // 6.('test1 结束')     
+        
+        
+
+
+
+
+
+
+
+
+        async function test1() {
+            console.log('test1 开始'); 
+            const result = await test2()
+          //----------await下面当成异步函数--------------------
+            console.log('result', result);  
+            console.log('test1 结束');
+        }
+
+      
+        async function test2() {
+            console.log('输出test2');
+        //    return undefined 
+        }
+
+        console.log('script开始');//1
+        test1()
+        console.log('script结束');
+    </script>
+    <img src="/img/26.png" alt="">
+</body>
+
+</html>

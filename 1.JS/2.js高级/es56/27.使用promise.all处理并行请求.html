@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        //假如我有三条数据 还有一个图标 再没获取到数据前显示
+        // 获取到数据之后这个图标隐藏
+        // all([里面是数组])
+
+        // 之前不用all时候这个隐藏说不行会出现在执行哪步的时候
+
+        Promise.all([todoPromise, commentsPromise, albumPromise]).then((res) => {
+            console.log(res);
+            this.hideLoad()//隐藏
+        })
+        // all是得全部promise都执行成功之后再运行别的
+    </script>
+</body>
+
+</html>

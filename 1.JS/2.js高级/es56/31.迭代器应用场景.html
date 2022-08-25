@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //应用场景：有几个异步请求，第一请求成功之后才能去执行第二个请求....
+        // 一般是第一个请求的值可以给下一个请求去用，下一次请求需要用到上一次得结果时候
+        //应用场景:第一个异步请求成功后再去发送第二个请求，第二个请求成功后，再去发送第三个请求。
+        // （每一个请求基于前面一次请求之后才发送请求，因为要拿到上一次得数据）
+
+
+        function XxxxAPI(x) {//我传过来一个参数
+            //模拟一秒后处理完这个请求
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(++x)//经过我这次请求我能得到x+1的结果
+                }, 1000)
+            })
+        }
+
+        //基于Promise得写法
+        // XxxxAPI(x)//现在相当于Promise对象
+        //0是我自己传得，一秒后你要给我一个值
+        XxxxAPI(0).then(result1 => {
+            console.log(`第一次请求结果为：${result1}`);//0+1=1
+            //将来我return出去得还是XxxxAPI(result1)但是参数变成了result1
+            return XxxxAPI(result1)
+        }).then(result2 => {
+            console.log(`第二次请求结果为：${result2}`);//1+1=2
+            return XxxxAPI(result2)
+        }).then(result3 => {
+            console.log(`第三次请求结果为：${result3}`);//2+1=3
+            return XxxxAPI(result3)
+        })
+        //第一次请求结果为：1
+        //一秒后
+        //第一次请求结果为：2
+        //一秒后
+        //第一次请求结果为：3
+
+        //-----------------------------------------------
+        // 生成器创建迭代器的写法
+        function XxxxAPI(x) {//我传过来一个参数
+            //模拟一秒后处理完这个请求
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(++x)//经过我这次请求我能得到x+1的结果
+                }, 1000)
+            })
+        }
+        function* genFunc(x) {
+            //等到他第一次请求成功后再往下执行 所以用yield 因为yield会暂停
+            let result1 = yield XxxxAPI(x)
+            console.log(`第一次请求结果为：${result1}`)
+            let result2 = yield XxxxAPI(result1)
+            console.log(`第二次请求结果为：${result2}`)
+            let result3 = yield XxxxAPI(result2)
+            console.log(`第三次请求结果为：${result3}`)
+        }
+        let iter = genFunc(0)//用生成器创建迭代器  //此时还没执行
+        // iter.next()//第一次执行 得到加工过后的对象  { value: 1, done: false }
+        // iter.next().value//这才是promise对象 1
+        iter.next().value.then(result1=>{
+            return  iter.next(result1).value
+        }).then(result2=>{
+            return  iter.next(result2).value
+        }).then(result3=>{
+            return  iter.next(result3).value
+        })
+         //第一次请求结果为：1
+        //一秒后
+        //第一次请求结果为：2
+        //一秒后
+        //第一次请求结果为：3
+    
+    
+    
+        // function* genFunc(x){}格式很像 async+await 格式 只是长得像
+        // 生成器调用不会执行 是创建迭代器，需要next才会执行，而async+await 时候来才出现的语法糖
+    
+    //语法糖
+        // async function genFunc(x) {
+        //     let result1 = await XxxxAPI(x)
+        //     console.log(`第一次请求结果为：${result1}`)
+        //     let result2 = await XxxxAPI(x)
+        //     console.log(`第二次请求结果为：${result2}`)
+        //     let result3 = await XxxxAPI(x)
+        //     console.log(`第三次请求结果为：${result3}`)
+        // }
+        // genFunc(x)
+
+
+
+
+    </script>
+</body>
+
+</html>

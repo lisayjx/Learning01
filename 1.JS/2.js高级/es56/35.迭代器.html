@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 迭代器(Iterator)是一种接口, 为各种不同的数据结构提供统一的访问机制。
+        // 任何数据结构只要部署Iterator接口(对象里一个属性Symbol.iterator)，就可以用for of完成遍历操作。
+        // 1) ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供 for...of消费
+        // 2) 原生具备iterator接口的数据(可用for of遍历)
+        // Array
+        // Arguments 
+        // Set
+        // Map 
+        // String 
+        // TypedArray 
+        // NodeList
+        // 字符串
+        // 数组
+        // 映射
+        // 集合
+        // arguments
+        // DOM集合
+        // map 对象
+        // 都支持 for of !!!!!!!
+        // ！！！！！对象不支持
+        //面试问哪些可以被for of遍历---------------
+
+        // 3) 工作原理
+        // a) 创建一个指针对象，指向当前数据结构的起始位置
+        // b) 第一次调用对象的next方法，指针自动指向数据结构的第一个成员
+        // c) 接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员
+
+        //面试-----for of  for  in---------------问你区别
+        //声明一个数组
+        const team = ['小李', '小王', '小强']
+        //使用for of遍历这个数组
+        for (let val of team) {
+            console.log(val);
+        }//小李 小王 小强
+        for (let val in team) {
+            console.log(val);
+        }//0 1 2
+
+        //for of保存键名   for in 保存键值
+        //为啥数组能用for of遍历呢 因为数组有 Symbol.iterator属性,值是函数
+        // <img src="/img/symbol.iterator.png" alt="">
+        console.log(team);
+
+
+        //-------------
+        // a) 由(Symbol.iterator属性:函数)得函数创建一个指针对象，指向当前数据结构的起始位置
+        // b) 第一次调用对象的next方法，指针自动指向数据结构的第一个成员
+        // c) 接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员
+        // d)每调用next方法返回一个包含value 和 done 属性的对象
+
+
+        // a)---------------
+        //获取一下team对象身上的Symbol.iterator方法  里面有next
+        let iterator = team[Symbol.iterator]()
+        console.log(iterator);
+        // <img src="/img/next.png" alt="">
+
+        // b)--------------
+        console.log(iterator.next());
+        //Object { value: "小李", done: false }  false还没遍历结束
+
+        // c) ----------------------
+        console.log(iterator.next());//{ value: "小王", done: false }
+        console.log(iterator.next());//{ value: "小强", done: false }
+        console.log(iterator.next());//Object { value: undefined, done: true }
+        // 注:需要自定义遍历数据的时候，要想到迭代器。
+ 
+  
+  </script>
+</body>
+
+</html>

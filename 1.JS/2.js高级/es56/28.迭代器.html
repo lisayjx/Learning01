@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 每一个迭代器有一个方法 .next()用于生成下一个迭代的值
+        // 返回一个对象 包含 {value:下一个迭代值,done:是否终止(迭代结束没有)}  done为true就是执行完了
+
+        //         每个可迭代数据类型都有一个属性'Symbol.iterator`属性 通过这个函数生成新的迭代器 用作迭代
+        //  for of 就是通过迭代器执行迭代
+        //面试问你哪些可以用for of遍历,和for in的区别
+        // 字符串
+        // 数组
+        // 映射
+        // 集合
+        // arguments
+        // DOM集合
+       // map 对象
+        // 都支持 for of 
+        // ！！！！！对象不支持
+        // js规定如果有一个对象具有next方法，并且该方法返回一个对象
+
+
+ 
+
+
+ 
+        //1.迭代：从一个数据集合当中按照一定的顺序，不断取出数据
+        //  数组可以迭代，数组是一个可以迭代的对象，通过迭代器进行迭代
+        let arr = [1, 2, 3]//数组是可迭代对象，可以用数组创建出一个迭代对象
+        // 可以迭代的东西都有一个方法
+        // 创建迭代器  一个一个取数据
+        let iter = arr[Symbol.iterator]()
+        console.log(iter.next());//Object { value: 1, done: false }
+        console.log(iter.next())//Object { value: 2, done: false }
+        console.log(iter.next())//Object { value: 3, done: false }
+        console.log(iter.next())//Object { value: undefined, done: true }
+
+        //迭代和遍历的区别?
+        //【过程】迭代强调的依次取出，不能确定可以取出的值有多少，也不能保证去把数据全部取完
+        //【结果】遍历必须保证数据的长度，循环不断的全部取出，针对于数据量过大的情况下使用遍历，需要时间过长
+
+
+        //2.那些是可迭代对象？
+        let arr1 = [1, 2, 3]//数组是可迭代对象，可以用数组创建出一个迭代对象
+        let iter1 = arr[Symbol.iterator]()
+
+        //辨认是否可以迭代，看看是否能用for of遍历
+        //可以用for of来循环   所以数组可以迭代 
+        for (let val of arr1) {
+            console.log(val);
+        }
+
+        let obj = { a: 1, b: 2 }
+        for (let val of obj) {
+            console.log(val);
+        }//obj is not iterable 会报错  所以对象不能迭代 因为迭代是按照一定顺序
+
+        let map1=new Map([['name','v'],['age',27]])
+        for (let val of map1) {
+            console.log(val);
+        }
+ 
+       
+
+    </script>
+</body>
+
+</html>

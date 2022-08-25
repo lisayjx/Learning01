@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //1.---------------------拓展运算符可以合并数组
+        ///方法一
+
+        let arr1 = [1, 2, 3]
+        let arr2 = [3, 4, 5]
+        let newArr = [...arr1, ...arr2]
+
+        //方法二
+        arr1.push(...arr2)
+
+        //------------------------2.将伪数组变成真数组
+        //方法1
+        let divs = document.querySelectorAll('div')//一堆盒子
+        divs = [...divs]
+        // ...divs参数序列
+
+        //方法2
+        // Array.from() 将类数组或可遍历对象转换为真正的数组
+        let arrL = {
+            '0': 'a',
+            '1': 'b',
+            length: 2
+        }
+        let arr3 = Array.from(arrL)
+        console.log(arr3);//[ "a", "b" ]
+    </script>
+
+</body>
+
+</html>
