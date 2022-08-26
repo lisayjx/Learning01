@@ -22,6 +22,13 @@
 // 函数方法中的this指向他的调用者 谁调用这个函数 里面的this就指向谁
 // constructor中的this指向调用它的实例对象
 
+//删除功能
+// 1．点击×可以删除当前的li选项卡和当前的section
+// 2．X是没有索引号的,但是它的父亲li有索引号,这个索引号正是我们想要的索引号
+
+
+
+
 //----------------------------------------------------------------
 let that  //想让函数方法中的this 能不指向他的调用者 而去指向constructor中的this调用者
 // that 是constructor里面的this 记住这一点就行
@@ -77,15 +84,10 @@ class Tab {
     toggleTab() {
         that.clearClass()//that指向constrouctor中
 
-        //这个this指向函数调用者this.lis[i]
-        // console.log(this.index);//拿到了当前索引号
-        //点击完以后就让当前li添加样式 去边框的liactive类，其余兄弟移除这个类
-        //点击完以后就让当前li对应的section添加conactive类，其余兄弟移除这个类
-        //记住这个函数里的li指向调用者 this.lis[i]！！！！
+      
         this.className = 'liactive'   // this.className('liactive')不对
         that.sections[this.index].className = 'conactive'
-        //此时会报错！！！！！因为this.sections[this.index]，this指向li，li没有sections这个属性
-        //这个this要是constructor中的this就好了 在上面声明一个全局变量that
+      
 
 
 
@@ -102,19 +104,10 @@ class Tab {
         //  1.创建li和section 
         let li = '<li class="liactive"><span>新选项卡</span><span class="iconfont icon-guanbi"></span></li>'
         let section = ' <section class="conactive">测试1</section>'
-        //  2.把这两个元素追加到对应父元素 以前的做法:动态创建元素createElement，但是元素里面内容较多,需要innerHTML赋值在appendChild追加到父元素里 
-        //  现在高级做法:利用insertAdjacentHTML()可以直接把字符串格式元素添加到父元素中 插入相邻的
-        // 不是模版字符串的问题，这一步是省掉了创建元素，跟追加元素，是三合一
-        // appendChild不支持追加字符串的子元素, insertAdjacentHTML支持追加字符串的元素
-        // 追加到li的父元素中，就是firstnav的ul，要去上面先获取一下
-        that.ul.insertAdjacentHTML('beforeend', li)//把li这个字符串追加到父元素ul中的最后
+        that.ul.insertAdjacentHTML('beforeend', li)
         //这里的this指向调用者add按钮，但是这个按钮中没有ul，所以变成that
         that.tabscon.insertAdjacentHTML('beforeend', section)
-
-        //解决后添加的li和section绑定不上事件的问题
-        // 还要再addTab()的最后在 this.init()一下，
-        // 因为init（）函数中第一步是获取新的li，然后为所有li和section绑定事件
-        // 点击添加按钮先创建好li和section然后再init === 获取到新的元素就要为元素绑定事件
+ 
         that.init()
     }
     //3.删除

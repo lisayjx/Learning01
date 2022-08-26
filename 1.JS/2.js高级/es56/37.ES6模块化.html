@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- // 1.模块化
+        // 模块化是指将一个大的程序文件, 拆分成许多小的文件, 然后将小文件组合起来。
+        // 2.模块化的好处
+        // 模块化的优势有以下几点:
+        //      1) 防止命名冲突
+        //      2) 代码复用
+        //      3) 高维护性
+        // 3.模块化规范产品
+
+        // ES6之前的模块化规范有:前面是规范 后面是用这个规范的产品
+        // 1) CommonJs =>  Node.js、Browserify
+        // 2) AMD =>       requireJs
+        // 3) CMD =>       seaJs
+
+        // 4.ES6模块化语法：
+        // 模块功能主要由两个命令构成:
+        // 出口export 和 进口import。
+        // export命令用于规定模块的对外接口
+        // import命令用于输入其他模块提供的功能
+
+ type="module"别忘记写！！！！！！！！！！！！！！！！！！！
+
+
+// 例子：需要暴露的数据前面加export 
+// 我的模块需要用到你的功能，就在我的模块前加inport 导入你的功能
+
+//-----------------暴露语法汇总------------------------------------
+//引入‘测试模块化.js’中暴露的功能 -->
+    <!-- 1.分别暴露 -->
+    <script type="module">
+        //引入 'm1.js' 中暴露的功能
+        //引入所有（起名）从...
+        import * as m1 from "./m1.js"
+        console.log(m1);//用live server打开
+        //Object { name: "lisa", sing: sing(), … }
+        m1.sing()
+
+        //  2.统一暴露 
+
+        //引入 'm2.js' 中暴露的功能
+        import * as m2 from "./m2.js"
+        console.log(m2);
+        // Object { name: "rose", sing: sing(), … }
+        // 在下面集体写 export{你要暴露的数据}
+        m2.sing()//唱歌
+
+        //  3.默认暴露 
+
+        import * as m3 from "./m3.js"
+        console.log(m3);//跳舞
+        // Object { name: "rose", sing: sing(), … }
+        // export default {
+        //     name: 'lisa',
+        //     sing: function () {
+        //         console.log('唱歌');
+        //     }
+        // }
+        //这个调用需要多加一层
+        m3.default.sing()//唱歌
+    </script>
+
+
+
+    <script type="module">
+
+        //--------------------引入语法汇总------------------------------
+        //1.通用的导入方式  无论什么暴露方式都能导入进来
+        import * as m3 from "./m3.js"//这种
+
+        // 2.解构赋值形式
+        import { name, sing } from "./m1.js"
+        console.log(name);//lisa
+        console.log(sing);
+        // *是所有  {}可以选择
+        // 和上面同名和可以起别名
+        import { name as uname, sing as sing1 } from "./m2.js"
+        console.log(uname, sing1);
+
+        // 默认暴露的怎么引入进来
+        import { default as m3 } from "./m3.js"
+        //因为默认的返回输出个外边用default对象包裹
+        //所以引入时候给default起别名
+        console.log(m3);
+        // console.log(m3.name);
+        // console.log(m3.sing);
+
+
+        //3.简便形式      只能针对默认暴露
+        import  m3 from "./m3.js" 
+ 
+    </script>
+
+
+<!-- --------ES6浏览器使用模块化方式二------------- -->
+<script src="./app.js" type="module">
+// ES6浏览器使用模块化方式二，去创建一个app.js 是我们js的入口
+// 去app里面写 引入 然后在前端页面 也就是这个里引入app就行
+
+
+</script>
+
+
+
+<!-- 因为有的浏览器有的es6语法不能识别
+    所以我们使用babel来把新语法转成旧语法
+    然后把文件打包，然后引入 -->
+
+    <!-- 安装 -- 转化 -- 打包
+        1.安装工具
+        babel-cli  命令行工具
+        babel-preset-env  预设包  把最新特性转换成es5语法
+        browserify 打包工具  （项目中用webpack打包）
+
+        2.npx babel ./src -d dist/js --presets=babel-preset-env   是等号不是-
+        3.打包
+   
+    -->
+
+    <!-- 以后学webpack就行 -->
+
+</body>
+
+</html>

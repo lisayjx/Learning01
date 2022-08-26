@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //面试0
+        //0.Number.EPSILO是 JavaScript表示的最小精度（主要用在浮点数运算）
+        //EPSILON属性的值接近于2.2204460492503130808472633361816E-16
+        console.log(0.1 + 0.2 === 0.3);//false
+        //判断两个数值是否相等
+        function equal(a, b) {
+            //他俩差的绝对值<最小精度值
+            if (Math.abs(a - b) < Number.EPSILON) {
+                return true
+            } else {
+                return false
+            }
+        }
+        let re = equal(0.1 + 0.2, 0.3)
+        console.log(re);
+
+        //1．二进制和八进制
+        let b = 0b1010  //二进制
+        let o = 0o777   //八进制
+        let d = 100     //十进制
+        let x = 0xff    //十六进制
+
+//2. Number.isFinite检测一个数值是否为有限数
+console.log(Number.isFinite(100));
+console.log(Number.isFinite(100/0));//false
+console.log(Number.isFinite(Infinity))//false
+
+//3. Number.isNaN检测一个数值是否为NaN
+console.log(Number.isNaN(123));//false
+console.log(Number.isNaN(NaN))//true
+
+//4. Number.parseInt Number.parseFloat字符串转整数
+
+
+//5. Number.isInteger判断一个数是否为整数
+//6. Math.trunc将数字的小数部分抹掉
+//7. Math.sign 判断一个数到底为正数负数还是零
+// 正数返回1 负数返回-1 0返回0
+
+
+
+
+    </script>
+</body>
+
+</html>

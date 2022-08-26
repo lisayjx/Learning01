@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         聚合数据
+        // 在ES5中的聚合数据有:对象和数组
+        // 在ES6中又添加了四种聚合数据: Set、WeakSet、Map;WeakMap
+        // 所以在ES6中共有六种聚合数据:对象、数组、Set、WeakSet、Map、WeakMap
+
+
+        //--------1.set---------------------------
+        //数据不能重复
+        //创建set对象     参数是数组叫做set数据
+        //必须用new创建
+        //他只有值 没有索引  没有办法获它里面的某个值 
+        let s1 = new Set([1, 2, 3, 3])
+        console.log(s1);//Set(3) [ 1, 2, 3 ]
+        console.log(s1[0]);//获取值不是通过下标方式获取  undefined
+
+        // 他是迭代器接口(能用for of遍历) 所以用特定接口获取数据
+        // size: 获取数据的长度（属性)
+        // has: 判断是否包含某个属性
+        // add: 添加数据   添加在尾部 可以是任何类型 也可以存set类型
+        // delete: 删除某项数据
+        // clear: 清空数据
+        // forEach: 用于遍历数据
+        // keys、values、entries是用于获取迭代器接口
+
+
+        //-------------应用场景：数组去重------------------
+        let arr = [1, 1, 2, 2, 3, 3]
+        let re = new Set(arr)
+        console.log(re);//Set(3) [ 1, 2, 3 ]
+        //去重之后转化成数组
+        let newA = [...re]
+        console.log(newA);//Array(3) [ 1, 2, 3 ]
+        //-----------------------------------------------
+        s1.forEach((...args) => {
+            console.log(args);
+        })
+        //Array(3) [ 1, 1, Set(3) ]
+        //Array(3) [ 2, 2, Set(3) ]
+        //Array(3) [ 3, 3, Set(3) ]
+        //第一个参数是它本身，第二个是下标从1开始
+        s1.forEach((val, index, set) => {
+            console.log(val, index, set);
+        })
+        // 1 1  Set(3) [ 1, 2, 3 ]
+        // 2 2  Set(3) [ 1, 2, 3 ]
+        // 3 3  Set(3) [ 1, 2, 3 ]
+
+        //获取所有下标的迭代器对象
+        console.log(s1.keys()); //保存set所有的索引
+        console.log(s1.keys().next());
+        console.log(s1.keys().next());
+        console.log(s1.keys().next());
+
+        //获取set所有属性得值
+        s1.values()
+        s1.values().next().value
+        s1.values().next()
+        s1.values().next()
+        s1.values().next()
+
+        //获取set整体
+        s1.entries()
+        s1.entries().next()
+        s1.entries().next()
+        s1.entries().next()
+        s1.entries().next()
+
+        // 他的下标和值是一样 值是a下标也是a 和数组并不同
+
+        typeof s1  //object对象类型的值
+        //------------------------------------------------------------------
+        //1.set必须用new创建，参数必须是可迭代的对象
+        //2.怎么区分是不是可以迭代 可以去原型上有没有symbol.iterator或者能不能用for of
+        //3.对象不能迭代
+        // set  和  weakSet
+        let arr = [1, 2, 3, 4]
+        let set = new Set([1, 2, 3, 4])
+
+        let obj = {//对象上没有可以迭代的对象 所以不能用for of 只能给他加了迭代器iterator后才可以
+            a: 123,
+            b: 'a'
+        }
+
+        let ws = new WeakSet([{ a: 123 }, { b: 'a' }])
+        //看看weakset中有没有指定的值
+        wa.add(obj)
+        console.log(ws.has(obj));//true
+        console.log(ws.has({ a: 123 }));//直接这么存就不行
+
+        add()
+        has()
+        delete ()
+        // weakset只有三个方法
+
+        // 与set对象不一样的是weakSet对象只能存放对象类型的数据
+        // 由于 WeakSet对象内部的属性极不稳定，随时有可能被垃圾回收机制回收，因此，WeakSet不能进行遍历。
+
+
+
+
+
+        //----------------------map---------------------------------------------
+        // map对象是有属性名称的，和数组里的map不是一回事
+        //map里的参数 必须是可迭代的对象 还得是键值对形式的
+        //1.创建一个空的map对象
+        let map1 = new Map()
+
+        //它里面的参数必须是可迭代的
+        // 属性名，属性值
+        //只会去[[],[]]取里面的前两个值作为键值对
+        let map2 = new Map([
+            ['name', 'lisa'], ['age', 18]
+        ])
+
+
+        // size: 获取数据的长度（属性)
+        // has: 判断是否包含某个属性
+        // set: 添加数据 *****与set不同
+        // get 获取数据  *****与set不同
+        // delete: 删除某项数据
+        // clear: 清空数据
+        // forEach: 用于遍历数据
+        // keys、values、entries是用于获取迭代器接口
+
+        let attr = { a: 123 }
+        //普通对象的属性名称只能是字符串类型和symbol类型
+        //
+        let obj = {
+            a: 123,//字符串类型
+            [attr]: 100//symbol类型
+        }
+        //map的属性名是任意数据类型-*-*-*-*-*-*-*-*-*-*
+        map3.set(attr, '1234')//以对象作为属性名称
+        map3.get(attr)//1234
+
+        //遍历map对象
+        map2.forEach((val, index, set) => {
+            console.log(val, index, set);
+        })
+
+        //-------------------- weakmap
+        let wm = new WeakMap()
+
+        // / / weakmap 对象的属性名称必须是复杂数据类型
+        let arr-[1, 2]
+        let obj = { c: true }
+
+        wm.se(arr, 123)
+        wm.set(obj, 'a')
+
+         // has: 判断是否包含某个属性
+        // set: 添加数据
+        // get 获取数据
+        // delete: 删除某项数据
+
+        // WeakMap对象由于是一个弱引用对象，内部的值随时有可能被垃圾回收机制回收，因此不能进行遍历。
+        // 弱引用:是指在引用一个复尔数据类励的值时，不会被垃圾回收机制监控
+        // 只要其它位置不需要需要被引用的复杂数据类型，垃圾回收机制就会直接回收，不会考虑弱引用对象内部的引用关系。
+
+    </script>
+</body>
+
+</html>
