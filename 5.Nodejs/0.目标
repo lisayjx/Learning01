@@ -1,0 +1,13 @@
+https://brucecai55520.gitee.io/bruceblog/notes/nodejs/node.html  笔记
+
+能够知道什么是 Node.js能够知道Node.js 可以做什么
+能够说出Node.js 中的JavaScript的组成部分
+能够使用fs模块读写操作文件
+能够使用path模块处理路径
+能够使用http模块写一个基本的 web 服务器
+
+
+初识Node.js
+fs 文件系统模块 
+path路径模块
+http模块
