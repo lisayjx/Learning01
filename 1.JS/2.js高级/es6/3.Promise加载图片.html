@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 900px;
+            height: 900px;
+        }
+
+        .box img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">等待加载</div>
+    <script>
+        //  所谓Promise ，简单说就是一个【容器】
+        // 里面保存着某个未来才会结束的事件(通常是一个异步操作)的结果。
+        // 从语法上说，Promise是一个对象，从它可以获取异步操作的消息。
+        // Promise提供统一的API，各种异步操作都可以用同样的方法进行处理
+        // 有了Promise对象，就可以将异步操作以同步操作的流程表达出来，
+        // 避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易
+        // 有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易
+        //  promise是构造函数  所以要通过new来创建实例
+        // (resolve, reject)这两个参数也是函数不要修改 是固定的！！！！！
+        // const pro = new Promise((resolve, reject) => {
+        //     if (操作成功) {
+        //         resolve(value)
+        //     } else {
+        //         reject(error)
+        //     }
+        // })
+        // //无论成功还是失败的结果就可以返回给promise对象把结果读出来
+        // //那么如何能用promise对象读出成功或者失败的值呢？
+        // //用.then()
+        // Pro.then(
+        //     (value) => {
+        //         /*success*/
+        //     },
+        //     (error) => {
+        //         /*failure*/
+        //     }
+        // )
+        //---------------------------------------------------------------------
+
+
+        //获取盒子 因为要把图片放入盒中
+        let box = document.querySelector('.box')
+
+
+
+        // onload是个事件，一旦执行了代表资源已经加载完成
+
+        //加载图片的函数  url是掉用这个方法会传入图片的地址,在函数里就可以把图片读取出来
+        function loadImageAsync(url) {
+            //通过promise处理 不消耗性能
+            let promise = new Promise((resolve, reject) => {
+                //异步处理：消耗时间的代码
+                const image = new Image()  //图片的实例对象 创建image对象
+                //把地址给图片，下面才能进行监听资源
+                image.src = url
+                //用onload和onerror监听它成功和失败
+                //用onload监听资源成功的结果         
+                image.onload = function () {          //----------成功要做的事情
+                    resolve(image)//成功的话把image结果返回去给promise对象
+                }
+                //用onerror监听资源失败的结果  比如地址或者加载失败
+                //new Error()里的就是字会变红而已
+                image.onerror = function () {         //----------失败要做的事情
+                    reject(new Error('Could not load image at+url'))
+                }
+            })
+            //把promise给return出去，因为我们的成功或者失败的结果值最终是给到了promise对象身上的
+            //把promise  return给loadImageAsync()函数
+            return promise
+        }
+        //loadImageAsync('')返回来的是个promise对象
+        const prom = loadImageAsync('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp09%2F21031FKU44S6-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1664453209&t=c17bd0895f7f41b9ef7511ddd129ed56')
+        //用promise对象读出成功或者失败的值
+        prom.then(
+            //图片加载成功了要干啥  data是返回过来的img标签（通过image对象建的）
+            (data) => {
+                box.appendChild(data)
+            }
+        )
+            .catch((error) => { //图片加载失败了要干啥
+                box.innerHTML = '图片加载失败'
+                //下面这个打印是给开发者看的 出现了什么问题
+                console.log(error);
+            })
+
+
+
+    </script>
+</body>
+
+</html>

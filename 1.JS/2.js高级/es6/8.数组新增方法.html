@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+
+        // 1.Array.from() 方法用于将类数组转为真正的数组   可以使用数组的方法了
+
+        // 常见的类数组有三类:
+        // arguments
+        // 元素集合 
+        // 类似数组的对象
+
+/*
+        //arguments
+        function add() {
+            console.log(arguments); //读取10 20 30
+            let re = Array.from(arguments)   //此时变成了真数组  
+            console.log(re);   //[ 10, 20, 30 ]
+            console.log(re.push(40));  //[ 10, 20, 30, 40]
+        }
+        add(10, 20, 30)
+
+        //元素集合
+        let lis = document.querySelectorAll('ul li')
+        console.log(Array.from(lis));
+
+        // 类似数组的对象
+        let user = {
+            "0": 'lisa',
+            "1": 18,
+            "2": '女',
+            length: 3
+        }
+        //因为我们读下标读0 1 2 会得到后面的值
+        console.log(user["0"]);//lisa
+        console.log(user["1"]);//18
+        console.log(user["2"]);//女
+        console.log(user.length);//3
+        console.log(Array.from(user));//[ "lisa", 18, "女" ]
+
+
+*/
+
+        //---------------------------------------------------
+
+        // Array.of()方法用于将—组值 转换为数组
+
+        let re = Array.of(3, 1, 8, 9, 5)
+        console.log(re);//[ 3, 1, 8, 9, 5 ]
+
+        //思考 他俩输出什么
+        let re1 = Array.of(3)
+        let re2 = Array(3)
+
+        console.log(re1);//[ 3 ]
+        console.log(re2);//长度为3的空数组
+
+    </script>
+</body>
+
+</html>

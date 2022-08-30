@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 属性名和属性值是同样的变量名称就可以省略
+        let uname = 'lisa'
+        let user = {
+            uname: uname,
+            age: 20,
+            getName: function () {
+                console.log(this.name);
+            }
+        }
+        //改
+        let uname = 'lisa'
+        let user = {
+            uname,
+            age: 20,
+            getName() {
+                console.log(this.name);
+            }
+        }
+        //----------
+        function getPoint() {
+            let x = 10.12
+            let y = 11.21
+            return {
+                x: x,
+                y: y
+            }
+
+        }
+        // 改
+        function getPoint() {
+            let x = 10.12
+            let y = 11.21
+            return { x, y }
+        }
+        console.log(getPoint().x);
+
+        ///计算值属性名
+        //对象的拓展运算符
+
+
+
+    </script>
+</body>
+
+</html>

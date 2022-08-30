@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Promise封装Ajax，让网络请求的异步操作变得更简单
+        //promise用在网络请求居多！！！！！！！！
+        //promise是个容器，他不能替代网络请求，他只是包裹了网络请求，让我们读取数据更方便，通过promise对象拿数据
+
+        // 工作中不需要写原生的ajax，框架里都有，没有的话也有JQ的方法用  这里是写的原生的ajax
+
+
+        //你给我传个url，我给你返回个网络请求的数据
+        function getJSON(url) {
+            const promise = new Promise((resolve, reject) => {
+                //做异步操作：网络请求的代码
+
+                const handler = function () {
+                    if (this.readyState !== 4) {//4是完成
+                        return
+                    }
+                    if (this.status === 200) {//如果成功了返回数据
+                        resolve(this.response) //获取到响应结果-------------返回成功的数据
+                    } else {//如果失败了把失败的文本状态信息发送过去
+                        reject(new Error(this.statusText))//-----------------返回失败的数据
+                    }
+                }
+
+
+                const client = new XMLHttpRequest()
+                client.open('GET', url)  //打开请求，把url给后台服务器发过去
+                //接受整个前后端交互的状态  单独写出来了 handler函数
+                client.onreadystatechange = handler
+                client.responseType = 'json'   //希望我们读取的数据格式是json格式
+                client.setRequestHeader('Accept', 'application/json')//请求头
+                client.send()//发送
+            })
+            //因为不管成功还是失败的数据都会送给promise对象 所以把它return出去
+            //把promise  return给了 getJSON这个函数
+            return promise
+        }
+        //通过.then读出成功或者失败的值
+        getJSON('http://www.liulongbin.top:3006/api/getbooks')
+            .then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            })
+
+
+        //--------------
+        // 以后只需要写下面的东西
+        // 因为上面的东西已经有人帮你封装好了
+        // 以后就把下面东西用起来就行
+        // 下面的东西是基于promise的
+        // 然后你用.then把数据读取出来就可以了
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

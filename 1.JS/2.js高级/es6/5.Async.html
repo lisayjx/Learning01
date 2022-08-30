@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES2017标准引入了async函数，使得异步操作变得更加方便
+        // Generator函数的语法糖
+        // async函数可以将 异步操作变为---------->同步操作
+        //从一边扫地一边烧水变成了----->做核酸
+        //用在网络请求！！！！！！！！！！！！因为网络请求有依赖关系
+
+
+        //延时3秒打印的函数
+        function print() {
+
+            setTimeout(() => {
+                console.log('hello world');
+            }, 3000);
+            console.log('hello');
+        }
+        print()
+        //我们的意愿是先打印定时器hello world，再输出hello
+        //但是结果却是   先输出hello  然后3s结束输出 hello world
+        //因为定时器是异步得，执行到定时器不管有没有拿到结果，会继续往下执行
+
+        //有没有办法让hello world 异步的定时器得先打印出来呢？？
+        //用Async
+        //把异步得变成同步得！！！！！！！！！！！！！！！
+
+
+        //先用promise函数把定时器包裹起来  promise是个容器 能让我们读取数据容易
+
+        function timeout(ms) {
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('hello world');
+                    resolve()  //没有这个的话promise就没有返回值 就return不出去啥东西
+                }, ms)
+            })
+            return p
+        }
+        // asyncPrint函数 是来用定时器得
+        async function asyncPrint(ms, value) {
+            //timeout是异步代码，所以在她前面加await
+            //意思就是让timeout(ms)完全执行完成后再继续执行下面的打印
+            await timeout(ms)
+            console.log(value);
+        }
+        asyncPrint(3000, 'hello')
+        //然后怎么把异步代码变成同步的？？在函数前加async 然后在你异步代码前加await
+        // async好像是外面放风得，await就像是异步代码得经纪人，让他艺人先做核酸，别人都等着
+
+        //这样就可以等定时器3s打印出hello world之后再执行hello了
+
+    </script>
+</body>
+
+</html>

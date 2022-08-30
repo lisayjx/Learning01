@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            background: yellow;
+        }
+
+        .btn.loading {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn">点击按钮</button>
+    <script>
+        // 学习promise发生改变时会触发的方法，是个实例方法 then
+        // 为promise实例添加状态发生改变时的回调函数
+
+        // pending->fulfilled  () => { }then的第一个参数
+        // pending->rejected   () => { }then的第二个参数
+
+        // then的返回值是一个新的promise实例
+
+        /*
+        
+                const p = new Promise((resolve, reject) => {
+                    resolve()
+                })
+        
+                // 为promise实例添加状态发生改变时的回调函数,因为promise会有两种转变状态
+                p.then(
+                    () => { console.log('实例p的成功回调') },
+                    () => { console.log('实例p的失败回调') }
+                )
+                //会输出实例p的成功回调
+        
+                //-----------
+                const p1 = new Promise((resolve, reject) => {
+                    reject()
+                })
+        
+                p1.then(
+                    () => { console.log('实例p的成功回调') },
+                    () => { console.log('实例p的失败回调') }
+                )
+                //会输出实例p的失败回调
+        
+        
+                //--------------------------
+        
+                // 怎么在then中获取resolve（）中的成功的返回值呢？
+                // 在then的第一个参数中(value) => { }
+                const p2 = new Promise((resolve, reject) => {
+                    resolve(123)
+                    //123是成功的返回值
+                })
+        
+                // 为promise实例添加状态发生改变时的回调函数,因为promise会有两种转变状态
+                p2.then(
+                    (value) => { console.log(value, '实例p的成功回调') },
+                    () => { console.log('实例p的失败回调') }
+                )
+                //会输出 123 实例p的成功回调
+        
+                const p3 = new Promise((resolve, reject) => {
+                    resolve('失败的原因')
+                    //123是成功的返回值
+                })
+        
+                // 为promise实例添加状态发生改变时的回调函数,因为promise会有两种转变状态
+                p3.then(
+                    (value) => { console.log(value, '实例p的成功回调') },
+                    (err) => { console.log(err, '实例p的失败回调') }
+                )
+                //会输出 失败的原因 实例p的成功回调
+        
+                //------------------------------
+                // then的返回值是一个新的promise实例，就可以在then后再接着then
+                const p4 = new Promise((resolve, reject) => {
+                    resolve(123)
+                    //123是成功的返回值
+                })
+        
+                p4.then(
+                    (value) => { console.log(value, '实例p的成功回调') },
+                    () => { console.log('实例p的失败回调') }
+                )
+                    .then(
+                        () => { console.log('新的实例的成功回调'); },
+                        () => { }
+                    )
+                //会输出
+                // 123 实例p的成功回调
+                // 新的实力的成功回调
+        
+                //-------------------------------------
+                // 之前我们说resolve()或者reject()会改变promise的状态
+                //它里面发生错误也会改变promise状态
+                const p5 = new Promise((resolve, reject) => {
+                    // resolve(123)
+                    console.log(a + 1);//输入一个未定义的值  会出现错误
+                })
+        
+                p4.then(
+                    (val) => { console.log(val, '实例p的成功回调') },
+                    (err) => { console.log(err, '实例p的失败回调') })
+                //会输出实例p的失败回调 
+        
+                //------------------------------------------
+                //之前说resolve里的值可以传到下面第一个then中第一个参数中输出
+                // 那第二个then的第一个参数可以输出resolve中的值吗？
+                //拿不到，所以我们在第一个then成功回调的里面手动执行resolve()
+                const p6 = new Promise((resolve, reject) => {
+                    resolve(123)
+                })
+        
+                p6.then(
+                    (val) => { console.log(val, '实例p的成功回调') },
+                    (err) => { console.log(err, '实例p的失败回调') })
+                    .then(
+                        (val2) => { console.log(val2, '实例p的成功回调') },
+                        (err) => { console.log(err, '实例p的失败回调') })
+        
+                // 123 '实例p的成功回调'
+                // undefined '实例p的成功回调'
+        
+                //----------------------------------------------         
+                // 我们在第一个then成功回调的里面手动执行resolve()让第二个then能接收到resolve值
+                const p7 = new Promise((resolve, reject) => {
+                    resolve(123)
+                })
+        
+                p7.then(
+                    (val) => { console.log(val, '实例p的成功回调'); resolve(234) },
+                    (err) => { console.log(err, '实例p的失败回调') })
+                    .then(
+                        (val2) => { console.log(val2, '实例p的成功回调') },
+                        (err) => { console.log(err, '实例p的失败回调') })
+                //123 '实例p的成功回调'
+                //resolve is not defined   '实例p的失败回调'       为啥出错了呢？
+                //因为resolve（234）不存在，那么解决方式是啥？
+                //想让val2拿到成功的返回值怎么办呢？
+        
+                //--------------------------------------------
+                //想让val2拿到成功的返回值怎么办呢？
+                // resolve(234)改成 return234
+        
+                const p8 = new Promise((resolve, reject) => {
+                    resolve(123)
+                })
+        
+                p8.then(
+                    (val) => { console.log(val, '实例p的成功回调'); return 234 },
+                    (err) => { console.log(err, '实例p的失败回调') })
+                    .then(
+                        (val2) => { console.log(val2, '实例p的成功回调') },
+                        (err) => { console.log(err, '实例p的失败回调') })
+                //123 '实例p的成功回调'
+                // 234 '实例p的成功回调'
+                //---------------------------------------------------------
+                const p9 = new Promise((resolve, reject) => {
+                    reject(456)
+                })
+        
+                p9.then(
+                    (val) => { console.log(val, '实例p的成功回调'); return 234 },
+                    (err) => { console.log(err, '实例p的失败回调'); return '失败的回调' })
+                    .then(
+                        (val2) => { console.log(val2, '实例p的成功回调') },
+                        (err2) => { console.log(err2, '实例p的失败回调') })
+        
+                //456 '实例p的失败回调'
+                //失败的回调 实例p的成功回调
+                //    <img src="./img/2.png" alt="">
+                // reject(456)之后直接到了then的第二个参数 456 '实例p的失败回调'
+                // 然后'失败的回调'这个结果到了下一个then 的第一个参数中 
+       
+        //-------------promise的2个实例方法-----catch ----finally-------------------------------------------------------------
+        //1.catch  用于指定发生错误时的回调函数
+        //会捕获reject传来的信息，或者是错误的表达式的错误
+        //catch就是代替then的第二个参数，之前我们写好几个then的时候需要写好几个then都有第二个参数
+        //现在只需要在最后一个then下面.catch
+        //    catch===then方法的第二个参数
+        const p10 = new Promise((resolve, reject) => {
+            //写点错误去验证catch
+            console.log(b + 1);//b没定义 一定会错
+        })
+        p10.catch((err) => {
+            console.log(err);//b is not defined
+        })
+        //------------
+        // const p11 = new Promise((resolve, reject) => {
+        //     reject()
+        // })
+        // p11.catch((err) => {
+        //     console.log(err);//undefined
+        // })
+        const p11 = new Promise((resolve, reject) => {
+            reject('失败了')
+        })
+        p11.catch((err) => {
+            console.log(err);//失败了
+        })
+        
+        //----------------------------------
+        const p12 = new Promise((resolve, reject) => {
+            reject('失败了')
+        })
+        p12.then(() => { console.log('成功的回调函数'); })
+            .catch((err) => { console.log(err, '失败的回调函数'); })
+        // 这里then只写了一个参数就是成功的回调函数，失败的用catch代替了
+        //失败了 失败的回调函数
+        //原理:
+        // reject()之后会让promise对象从pending-->rejected-->调用then里第二个参数失败回调
+        //但是她发现没找到第二个参数 会抛出错误，既然他抛出了错误，就用catch捕获错误
+        //所以catch不是实例p12的调用方法，是p12调用完then返回的一个新的实例的catch方法
+        //所以搞清楚catch到底属于谁，到底是谁的错误
+
+
+        //-------------------------------------------
+        // catch有返回值，返回的是promise对象
+        const p13 = new Promise((resolve, reject) => {
+            resolve('成功了')
+        })
+        p13.catch((err) => { console.log('失败回调'); })
+            .then((val) => { console.log('成功回调'); })
+        // resolve('成功了')-->直接到then第一个参数 会忽略catch
+        //--------------------------------------------------------
+
+        // 如果在catch下面的then中发生了错误
+        const p14 = new Promise((resolve, reject) => {
+            resolve('成功了')
+        })
+        p14.catch((err) => { console.log('失败回调'); })
+            .then((val) => { console.log('成功回调'); console.log(c + 1); })
+        // resolve('成功了')-->忽略catch-->then第一个参数 但是这里有错误
+        //   但是不会被它前面的catch捕获到，那么会被谁捕获到呢，还得往下写catch
+
+        //------------------------------------------------------
+        const p15 = new Promise((resolve, reject) => {
+            resolve('成功了')
+        })
+        p15.catch((err) => { console.log('失败回调'); })
+            .then((val) => { console.log('成功回调'); console.log(c + 1); })
+            .catch((err) => { console.log('失败回调！！！！'); })
+            //输出  成功回调    失败回调！！！！
+            // resolve('成功了')-->忽略第一个catch-->then第一个参数  :成功回调
+            // then中有错误-->catch捕获then中错误 :失败回调！！！！
+    
+        //---------------------finally实例方法------------------------------------
+        //    作用：不管promise状态是啥,只要状态结束了就会调用finally函数
+        //    不管是从pending变成rejected还是从pending变成fulfilled都会执行一次finally
+
+        const p16 = new Promise((resolve, reject) => {
+            resolve(123)
+        })
+        p16.then((val) => { console.log(val, '成功的回调'); })
+            .finally(() => { console.log('finally调用了'); })
+        //123 成功的回调
+        //finally调用了
+       
+        //-----------------------------------------------------
+        const p17 = new Promise((resolve, reject) => {
+            console.log(d + 1);//错误的代码
+        })
+        p17.then((val) => { console.log(val, '成功的回调'); })
+            .catch((err) => { console.log('失败的回调'); })
+            .finally(() => { console.log('finally调用了'); })
+
+            //失败的回调         finally调用了
+        // console.log(d + 1)-->catch-->finally
+
+        ///--------finally应用场景---开始----------------------
+        // 比如有一个发起请求的按钮，当我们点击后，按钮就要变成loading状态
+        // 不管是请求过来的结果是正确还是错误，loading状态都要取消，变回正常状态，能够重新点击
+        //获取按钮
+        let btn = document.querySelector('.btn')
+        //请求的方法   返回来得就是promise
+        const request = function (type) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {//当状态为真时候执行resolve
+                    if (type) {
+                        resolve()
+                    } else {//当状态为假时候执行reject
+                        reject()
+                    }
+                }, 1000)
+            })
+        }
+
+
+        // btn.addEventListener('click',function(){
+        //     this.className='btn loading'
+        //     //点击时候执行request方法   不管成功失败都把按钮变回黄色
+        //     request().then(()=>{console.log('成功');btn.className='btn'})
+        //     .catch(()=>{console.log('失败');btn.className='btn'})
+        // })
+        //此时都是输出的失败，在request（true）就会成功 
+        //不管输出成功还是失败一秒后都回变回黄色
+        //此时有简便方法 用finally
+        btn.addEventListener('click', function () {
+            this.className = 'btn loading'
+            //点击时候执行request方法   不管成功失败都把按钮变回黄色
+            request().then(() => { console.log('成功') })
+                .catch(() => { console.log('失败') })
+                .finally(() => { btn.className = 'btn' })
+        })
+
+        */
+        //-------------------------结束--------------------------------------------
+
+
+
+        //-------------all---race方法------------------------------------------
+        // all和race与 then catch finally不一样
+        // 他三个是实例方法，需要先new一个promise 然后点他们 p.then p.catch p.finally
+        //all和race是promise的静态方法 直接Promise.all()  Promise.race()  
+
+        // Promise.all()  接收可迭代对象作为参数 可迭代对象中的每一项都要是promise实例
+        // 作用：将多个prmise实例包装成一个promise实例
+        //Promise.all()  返回值是一个新的promise实例
+        //只有当（）中的所有子promise对象都是成功的状态时候他的状态才会变成fullfiled
+        // 如果有任何一个子状态是reject的 那么all的状态就是rejected
+
+        // 可迭代对象：数组之类的 可以被 for of 循环的  除了对象
+
+
+        //    要求：把这三个ajax请求封装成promise实例
+        // $.ajax({
+        //     url: 'http://localhost:3000/category',
+        //     type: 'GET',
+        //     success: function (res) {
+        //         console.log(res);
+        //     },
+        //     error: function (err) {
+        //         console.log(err.status);
+        //     }
+        // })
+        // $.ajax({
+        //     url: 'http://localhost:3000/products',
+        //     type: 'GET',
+        //     success: function (res) {
+        //         console.log(res);
+        //     },
+        //     error: function (err) {
+        //         console.log(err.status);
+        //     }
+        // })
+        // $.ajax({
+        url: 'http://localhost:3000/users',
+            type: 'GET',
+                success: function (res) {
+                    console.log(res);
+                },
+        error: function (err) {
+            console.log(err.status);
+        }
+        })
+
+        //这样就封装好了一个promise的ajax
+        function _ajax(url, method = 'get') {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url,
+                    method,
+                    success: function (res) {
+                        resolve(res)
+                    },
+                    error: function (err) {
+                        console.log(err.status);//404
+                    }
+                })
+            })
+        }
+        const p1 = _ajax('http://localhost:3000/category')
+        const p2 = _ajax('http://localhost:3000/products')
+        const p3 = _ajax('http://localhost:3000/users')
+
+        // 因为上面return返回的是promise，所以p123都是promise实例
+        //看一下什么情况promise会走到成功的回调里面，什么情况会走到失败的情况里面
+        Promise.all([p1, p2, p3])
+            .then((res) => { console.log(res,'成功'); })
+            .catch((err) => { console.log(err,'失败'); })
+         //    **************************************************************** 
+            // promise.all的使用场景：当好多异步任务同时返回结果之后才能进行下一步时
+            // 我们就可以用promise.all将多个异步任务给他组合成一个新的promise实例，
+            // 如果成功的话呢，在then第一个参数里写成功之后要执行的代码，否则就走catch或者第二个参数中
+    //    **************************************************************** 
+
+
+    //-----------------------promise.race()----------------------
+    // Promise.race()  接收可迭代对象作为参数    
+        // race的状态改变是跟随第一个promise对象的状态  谁最先执行完了的状态
+//   比如上面的例子，他就会返回成功状态 值是categorg的返回值
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+
+</html>

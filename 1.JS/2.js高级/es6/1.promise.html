@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./jquery/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <script>
+        //.为什么要引入promise？
+        /*
+        需求:
+        要通过用户id请求这个用户的订单，那获取到订单后，还要通过订单的id获取订单的详细信息。
+        获取用户:localhost:3000/user         get请求      不需要参数
+        获取订单: localhost : 3000/order     post请求     需要参数userid
+        获取订单详情:localhost:3000/detail   post请求     需要参数orderid
+        */
+
+        // let userid
+        //获取用户
+        // $.ajax({
+        //     url: 'http://localhost:3000/user',
+        //     type: 'GET',
+        //     success: function (res) {
+        //         console.log(res);//请求的结果
+        //         userid = res.user.userid
+
+
+        //         //--------------------
+        //         //获取订单，需要用到刚才获取过来的用户信息里的userid
+        //         $.ajax({
+        //             url: 'http://localhost:3000/order',
+        //             type: 'POST',
+        //             data: { userid: userid },
+        //             success: function (res) {
+        //                 console.log(res);//请求的结果
+
+
+
+        //                 //--------------------------
+        //                 $.ajax({
+        //                     url: 'http://localhost:3000/detail',
+        //                     type: 'POST',
+        //                     data: { orderid: orderid },
+        //                     success: function (res) {
+        //                         console.log(res);//请求的结果
+        //                     }
+        //                 })
+        //             }
+        //         })
+        //     }
+        // })
+
+        //回调地狱
+
+        //promise很好的异步编程解决方案
+        // promise是个构造函数，就可以用new对他实例化
+
+        const p1 = new Promise((resolve, reject) => { })
+        console.log(p1);//Promise { <state>: "pending" }
+
+        // promise是个容器，保存着某个未来才会结束的事件的结果
+        // promise能够捕获到 【成功的返回值】 或者 【失败的原因】
+        // 当结果回来后，promise的状态会发生对应的改变
+        // pending    初始化
+        // fulfilled  成功  兑现
+        // rejected   失败 拒绝
+
+        //--------------
+        const p2 = new Promise((resolve, reject) => {
+            resolve()
+        })
+        console.log(p2); //状态从pending-->fulfilled
+        // Promise { <state>: "fulfilled", <value>: undefined }
+
+        const p3 = new Promise((resolve, reject) => {
+            reject()
+        })
+        console.log(p3); //状态从pending-->rejected
+        // Promise { <state>: "rejected", <reason>: undefined }
+        // 他俩都是undefined是因为我们没给括号里传值
+        //----------------
+        const p4 = new Promise((resolve, reject) => {
+            resolve('返回来的成功的值')
+        })
+        console.log(p4); //状态从pending-->fulfilled
+        // Promise { <state>: "fulfilled", <value>: "返回来的成功的值" }  
+
+        const p5 = new Promise((resolve, reject) => {
+            reject(new Error('失败了'))//抛出了个失败的原因
+        })
+        console.log(p5); //状态从pending-->rejected
+        // Promise { <state>: "rejected", <reason>: Error }
+        //-----------状态的改变是一次性的----------------------------
+        promise状态的改变是一次性的, 改变了之后就不能被再改变了
+        const p6 = new Promise((resolve, reject) => {
+            resolve(123)
+            reject(456)
+        })
+        console.log(p6);
+        //Promise { <state>: "fulfilled", <value>: 123 }
+
+
+        //---------------------------------------------------------------------
+        //  所谓Promise ，简单说就是一个【容器】
+        // 里面保存着某个未来才会结束的事件(通常是一个异步操作)的结果。
+        // 从语法上说，Promise是一个对象，从它可以获取异步操作的消息。
+        // Promise提供统一的API，各种异步操作都可以用同样的方法进行处理
+        // 有了Promise对象，就可以将异步操作以同步操作的流程表达出来，
+        // 避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易
+        // 有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易
+        //  promise是构造函数  所以要通过new来创建实例
+        // (resolve, reject)这两个参数也是函数不要修改 是固定的！！！！！
+        const pro = new Promise((resolve, reject) => {
+            //在这里做异步的操作
+            if (操作成功) {
+                resolve(value)
+            } else {
+                reject(error)
+            }
+        })
+        //无论成功还是失败的结果就可以返回给promise对象把结果读出来
+        //那么如何能用promise对象读出成功或者失败的值呢？
+        //用.then()
+        Pro.then(
+            (value) => {
+                /*success*/
+            },
+            (error) => {
+                /*failure*/
+            }
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

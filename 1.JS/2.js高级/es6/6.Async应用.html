@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <script>
+        // async函数可以将 异步操作变为---------->同步操作
+        //从一边扫地一边烧水变成了----->做核酸
+        //直接把promise结果拿出来，不用再用then拿出来了
+        //用在网络请求！！！！！！！！！！！！因为网络请求有依赖关系 很多接口可能要依赖遇上一个接口的数据才能执行
+        //所以必须先执行第一个再执行第二个再执行第三个！！！！！！！！！
+
+
+        // 网络请求的函数
+        function ajax(url) {
+            const p = new Promise((resolve, reject) => {
+                $.getJSON(url, () => {
+                    resolve(result)//成功返回成功的数据
+                }, (error) => {
+                    reject(error)//失败返回失败的数据
+                })
+            })
+            return p
+        }
+
+
+        // 得到数据的函数，在这个函数中调用ajax
+        // 第二个接口依赖于接口一得id，接口三依赖接口二得name
+        async function getInfo() {
+            let id = await ajax('接口地址1')
+            //id[0]是接口地址1中得第一条数据也就是id值
+            let info = await ajax('接口地址2' + id[0])
+            let result = await ajax('接口地址3' + info.name)
+
+            console.log(result);
+
+            // //因为返回过来的值都是promise得，读取promise得值需要用then
+            // result.then(
+            //     (data) => {
+            //         console.log(data);
+            //     },
+            //     (error) => {
+            //         console.log(error);
+            //     }
+            // )
+        }
+        //此时不是我们想象的顺序执行得   所以要用到async配合await
+        //给函数前面加async，给每个异步操作得网络请求都加await
+        //此时才能依赖着执行
+        //加了async  then也不用了   直接console.log(result);
+        //async方法会把promise得结果直接读取出来 不需要通过then读取出来了
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
