@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // iterator是遍历器（迭代器）
+
+        //寻找iterator
+        console.log([1, 2]);
+        //它的原型链上有Symbol(Symbol.iterator): function values()
+        let it = [1, 2][Symbol.iterator]()
+        console.log(it);
+
+        // Symbol.iterator:可遍历对象的生成方法，调用它之后会生成可遍历对象
+
+
+        //使用iterator遍历的过程
+        console.log(it.next());//Object { value: 1, done: false }
+        console.log(it.next())//Object { value: 2, done: false }
+        console.log(it.next())//Object { value: undefined, done: true }
+
+        //返回值是对象
+        // iterator是可便利对象（可迭代对象）：
+        // 迭代对象的标准：有next方法，而且调用next方法后返回一个对象，对象里有value和done两个属性
+        // value：值，done：是否遍历完成
+
+        //什么是iterator：遍历的过程
+        //  Symbol.iterator (可遍历对象的生成方法)-> 
+        //  it (可遍历对象)-> it.next() -> it.next() -> ...(直到done为true)
+
+
+        // 为什么需要iterator遍历器?
+        // Iterator遍历器是一个统一的遍历方式
+        //数组天生带 [][[Symbol.iterator]()]所以可遍历
+        //但是对象天生不带这个，就没办法直接使用iterator，可以添加
+
+
+        //    ⒉ 如何更方便的 使用lterator
+        // 我们一般不会直接使用lterator去遍历
+        //而是去使用用Iterator封装好的for of
+
+        //------------for  of ---------------------------------------
+        let arr = [1, 2, 3]
+        for (let item of arr) {
+            console.log(item);
+        }
+        // 1
+        // 2
+        // 3
+        // l/ for...of循环只会遍历出那些done为false时，对应的value值
+
+        //与break和continue一起使用
+        for (let item of arr) {
+            if (item === 2) {
+                continue
+            }
+            console.log(item);
+        }
+        // 1
+        // 3
+        for (let item of arr) {
+            if (item === 2) {
+                break
+            }
+            console.log(item);
+        }//1
+
+        //------------------------
+        // 3.在for...of 中取得数组的索引
+        let arr1 = [1, 2, 3]
+        console.log(arr1.keys());
+        for (const key of arr1.keys()) {
+            console.log(key);//0 1 2
+        }
+
+        console.log(arr1.values());//数组得值
+        for (const val of arr1.values()) {
+            console.log(val);//1 2 3
+        }
+
+        //    entries() 得到的是索引+值组成的数组的可遍历对象
+        console.log(arr1.entries());//数组得值
+        for (const v of arr1.entries()) {
+            console.log(v);
+        }
+        // [ 0, 1 ]
+        // [ 1, 2 ]
+        // [ 2, 3 ]
+        //解构出来
+        console.log(arr1.entries());//数组得值
+        for (const [index, value] of arr1.entries()) {
+            console.log(index, value);
+        }
+        // 0 1
+        // 1 2
+        // 2 3
+
+
+        //原生可遍历 天生具有promise.iterator方法的有
+        // 数组，字符串，Set，Map,arguments,NodeList 
+        //对象不是原生得
+        // 应用场景：
+        // 数组的展开运算符
+        // 数组的解构赋值
+        // Set和Map的构造函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

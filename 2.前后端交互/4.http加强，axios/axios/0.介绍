@@ -1,0 +1,51 @@
+axios是异步请求工具 
+他是基于promise对ajax的一种封装  
+就像是JQ实现了ajax一样
+ajax（对网页局部进行刷新 异步）
+ajax：比如在网页加载更多时候，网页没有刷新，只是新加载了一些数据 （节省资源）
+ajax:mvc模式   model  view  controller
+@CrossOrigin这个出现在后端代码上意思就是允许前端请求跨域
+
+
+axios,也是对原生XHR的1种封装。不过是 Promise实现版本。
+是1个用于浏览器和nodejs HTTP客户端,符合最新ES规范·
+
+axios：mvvm模式  model view view model
+
+
+实现ajax的方式有多种，如jQuery封装的ajax，原生的XMLHttpRequest，以及axios。但各种方式都有利弊
+
+ 原生的XMLHttpRequest的配置和调用方式都很繁琐，实现异步请求十分麻烦
+ jQuery的ajax相对于原生的ajax是非常好用的，但是没有必要因为要用ajax异步网络请求而引用jQuery框架
+ 
+
+ Axios，可以理解为ajax i/o system，这不是一种新技术，本质上还是对原生XMLHttpRequest的封装，可用于浏览器和nodejs的HTTP客户端，只不过它是基于Promise的，符合最新的ES规范。具备以下特点：
+
+    在浏览器中创建XMLHttpRequest请求
+    在node.js中发送http请求
+    支持Promise API
+    拦截请求和响应
+    转换请求和响应数据
+    取消要求
+    自动转换JSON数据
+    客户端支持防止CSRF/XSRF(跨域请求伪造)
+ //-------------------------------------
+ axios是基于Promise的，因此可以使用Promise API
+ axios的请求方式：
+
+    axios(config)
+    axios.request(config)
+    axios.get(url [,config])
+    axios.post(url [,data [,config]])
+    axios.put(url [,data [,config]])
+    axios.delete(url [,config])
+    axios.patch(url [,data [,config]])
+    axios.head(url [,config])
+ /--------------------------------
+ 注意: params方式会将请求参数拼接在URL上面，Request URL: http:/192.168.1.106:8080/data.json?id=12
+参数形式:id:12
+Content-Type: text/html; charset=utf-8
+data方式不会讲参数拼接，是直接放置在请求体中的，Request URL:http:/192.168.1.106:8080/data.json
+参数形式: {id:12}
+Content-Type: application/json;charset=UTF-8
+总结:上述方法中均对应两种写法:(1）使用别名:形如axios.get();(2）不使用别名形如axios();

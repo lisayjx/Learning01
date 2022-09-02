@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 策略模式
+        // +一个问题匹配多个解决方案，不一定要用到哪一个
+        // +而且有可能随时还会继续增加多个方案
+        // ＋例子:购物车结算
+        //     =〉我们有好多种折扣计算方式
+        //     =>满100 减10
+        //     =>满200 减25
+        //     =>8折
+        //     =>7折
+        //  +把我们的多种方案,以闭包的形式保存起来
+        //  +对外留一个接口：按照传递进来的折扣和价格计算最终价格返回
+        //  +可以添加和减少：留下添加折扣和删除折扣的接口（下一篇做）
+                //   +函数也是一个对象
+                //   +可以把函数名当作一个对象,向里面添加一些成员
+
+
+
+        // function calcPrice(price, type) {//商品价格，折扣种类
+        //     if (type === '折扣1:满100-10') {
+        //         price -= 30
+        //     } else if (type === '折扣2:满100-20') {
+        //         price -= 20
+        //     } else if (type === '折扣3:打八折') {
+        //         price *= 0.8
+        //     }
+
+        // }
+
+        // //将来使用的时候
+        // const res1 = calcPrice(320, '折扣1:满100-10')
+        // const res2 = calcPrice(170, '折扣2:满100-20')
+        // const res3 = calcPrice(150, '折扣3:打八折')
+
+        //------------------------------------
+
+        const calcPrice = (function () {
+
+            //装着折扣方案的对象  永久保存
+            const sale = {
+                '折扣1:满100-10': function (price) { return price -= 30 },
+                '折扣2:满100-20': function (price) { return price -= 20 },
+                '折扣3:打八折': function (price) { return price *= 0.8 }
+            }
+
+
+
+
+
+            //---------------
+            //被送出去的函数 才是calcPrice本体
+            return function (price, type) {
+                //判断对象里到底有没有这个折扣类型 如果有就执行计算把结果送出去
+                //如果没有就告诉他没有这个折扣类型
+                if (!sale[type])  return '没有这个折扣类型'
+
+                //如果能来到这就说明有这个折扣类型，就可以计算了 调用对应函数
+                const result=sale[type](price)
+
+                // console.log(result);
+
+                //找到sale里面指定的那个函数执行计算出结果。返回给外边
+                return result
+
+            }
+        })()
+        const res1 = calcPrice(320, '折扣1:满100-10')
+        const res2 = calcPrice(170, '折扣2:满100-20')
+        const res3 = calcPrice(150, '折扣3:打八折')
+
+
+    </script>
+</body>
+
+</html>

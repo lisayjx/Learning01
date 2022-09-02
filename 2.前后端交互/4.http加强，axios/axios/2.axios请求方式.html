@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CDN形式引入  以后用 npm下载  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        //简写形式
+
+        //1. get  无参
+        // axios.get('http://www.liulongbin.top:3006/api/getbooks')
+        // .then(res=>{console.log(res);})
+        // .catch(err=>{console.log(err);})
+
+        // // get  有参
+        // axios.get('http://www.liulongbin.top:3006/api/getbooks',{params:{id:1,bookname:'西游记'}})
+        // .then(res=>{console.log(res);})
+        // .catch(err=>{console.log(err);})
+
+        // //2. post  无参
+        // axios.post('http://www.liulongbin.top:3006/api/addbook')
+        // .then(res=>{console.log(res);})
+        // .catch(err=>{console.log(err);})
+
+        // post  有参
+        //推荐这种方式
+        axios.post('http://www.liulongbin.top:3006/api/addbook', 'bookname=你好李焕英&author=李小&publisher=北京')
+            .then(res => { console.log(res); })//添加图书成功
+            .catch(err => { console.log(err); })
+
+
+            //使用data传递数据 后台需要将axios自动转换的json数据 转换为java对象
+            //解决方法：修改后台代码 //接收参数添加@requestBody注解
+        // axios.post('http://www.liulongbin.top:3006/api/addbook',{data:{bookname:'你好李焕英',author:'李小',publisher:'大连'}})
+        //     .then(res => { console.log(res); }) 
+        //     .catch(err => { console.log(err); })
+        // 为啥没用{data:{bookname:'你好李焕英',author:'李小',publisher:'大连'}}呢
+      //因为axios post有参传递时候默认传的是json格式  后台解析不了
+    </script>
+</body>
+
+</html>

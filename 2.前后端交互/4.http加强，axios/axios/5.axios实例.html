@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // 封装实例的好处就是容易修改API    API是/api/getbooks这写
+
+        ///可以创建实例，基于这些实例创建特定的网络请求，可以传入属于他的实例的配置
+        const instance = axios.create({
+            baseURL: 'http://www.liulongbin.top:3006',
+            timeout: 1000,
+            headers: { 'X-Custom-Header': 'foobar' }
+        });
+        //instance的使用
+        instance.get('/api/getbooks', {
+            params: { id: 3 }
+        }).then(res => console.log(res))
+            .catch(err => console.log(err))
+
+
+
+
+        /*  Config配置选项   axios(config)
+    设置是可以被覆盖的，设置包括了全局默认设置，
+    实例默认设置以及请求中config中的默认设置，
+    越往后，优先级越高，后面的会覆盖前面的设置
+    
+    
+        //服务器的地址，是必须的选项
+        url: '/user',
+            
+        //请求的方式，若没有则默认是get
+        method:'get',
+            
+        //如果url不是绝对地址，则会加上baseURL
+        baseURL: 'http://localhost:3000/',
+           
+        //transformRequest允许请求的数据在发送至服务器之前进行处理，这个属性只适用于put、post、patch方式
+        //数组的最后一个函数必须返回一个字符串或者一个'ArrayBuffer'或'Stream'或'Buffer' 实例或'ArrayBuffer'，'Formdata'，
+        //若函数中用到了headers，则需要设置headers属性    
+        transformRequest: [function(data,headers){
+            //根据需求对数据进行处理
+            return data;
+        }],    
+        
+        //transformResponse允许对返回的数据传入then/catch之前进行处理    
+        transformResponse:[function(data){
+            //依需要对数据进行处理
+            return data;
+        }],   
+        
+        //headers是自定义的要被发送的信息头
+        headers: {'X-Requested-with':'XMLHttpRequest'},
+            
+        //params是请求连接中的请求参数，必须是一个纯对象
+        params:{
+          ID:12345  
+        },    
+        
+        //paramsSerializer用于序列化参数
+        paramsSerializer: function(params){
+          return Qs.stringify(params,{arrayFormat:'brackets'});  
+        },     
+        
+        //data是请求时作为请求体的数据——request.body
+        //只适用于put、post、patch请求方法
+        //浏览器:FormData，File，Blob;Node:stream
+        data:{
+          firstName: 'simon',  
+        },    
+        
+        //timeout定义请求的时间，单位是毫秒，如果请求时间超过设定时间，请求将停止
+        timeout:1000,
+            
+        //withCredentials表明跨跨域请求书否需要证明。
+        withCredentials:false, //默认值
+            
+        //adapter适配器，允许自定义处理请求
+        //返回一个promise
+        adapter:function(config){
+            
+        },    
+         
+        //auth表明HTTP基础的认证应该被使用，并提供证书
+        auth:{
+          username:'simon',
+          password:'123456',    
+        },    
+        
+        //responseType表明服务器返回的数据类型，这些类型包括：json/blob/document/ 		arraybuffer/text/stream    
+         responseType: 'json',   
+             
+         //proxy定义服务器的主机名和端口号
+         //auth属性表明HTTP基本认证应该跟proxy相连接，并提供证书
+         //这将设置一个'Proxy-Authorization'头(header)，覆盖原来自定义的
+         proxy:{
+             host:127.0.0.1,
+             port:8080,
+             auth:{
+                 username:'simon',
+                 password:'123456'    
+             }    
+         },   
+         
+         //取消请求
+         cancelToken: new CancelToken(cancel=>{})    
+     */
+
+
+/*
+     一个请求的返回(即响应)包含以下信息
+
+     
+    //data是服务器提供的响应
+    data:{},
+    
+    //服务器返回的http状态码   
+    status: 200,
+     
+    //statusText是服务器返回的http状态信息
+    statusText: 'ok',
+        
+    //heades是服务器响应中携带的headers
+    headers:{},
+    
+    //config是axios进行的设置，目的是为了请求(request)
+    config:{}, 
+ 
+
+//使用then后，response中将包含上述信息
+axios.get('/user/12345').then(response={
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+})
+
+*/
+
+
+    </script>
+</body>
+
+</html>

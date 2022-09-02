@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CDN形式引入  以后用 npm下载  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+
+    <script>
+        // params传递的是JSON数据
+        // -------使用默认方式发送无参数请求  默认使用get
+        // 用then接收数据是请求成功返回的回调函数  //返回的是一个Promise
+        axios({
+            url: 'http://www.liulongbin.top:3006/api/getbooks',
+        }).then(res => {  //res是请求的结果
+            console.log(res);
+        }).catch(err => { console.log(err); })
+
+        //---------get 用params----------------
+        // //------指定请求方式为get请求  无参数
+        // axios({
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks',
+        //     method:'get' //默认是get
+        // }).then(res => {  //res是请求的结果
+        //     console.log(res);
+        // }).catch(err=>{console.log(err);})
+        //  //------指定请求方式为get请求  有参数  方式一
+        //  axios({
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks?id=1',
+        //     method:'get' 
+        // }).then(res => {  
+        //     console.log(res);
+        // }).catch(err=>{console.log(err);})
+
+        //  //------指定请求方式为get请求  有参数  方式二
+        //  axios({
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks',
+        //     params:{
+        //            id:2
+        //     },
+        //     method:'get' 
+        // }).then(res => {  
+        //     console.log(res);
+        // }).catch(err=>{console.log(err);})
+
+
+        //------------post  用data-----------------------------------------
+
+        //  ---使用post方式发送请求 无参数
+        axios({
+            url: 'http://www.liulongbin.top:3006/api//api/addbook',
+            method: 'post'
+        }).then(res => {
+            console.log(res);
+        }).catch(err => { console.log(err); })
+
+        //  ---使用post方式发送请求 有参数    
+        axios({
+            url: 'http://www.liulongbin.top:3006/api//api/addbook',
+            data: {
+                id: 1
+            },
+            method: 'post'
+        }).then(res => {
+            console.log(res);
+        }).catch(err => { console.log(err); })
+
+        // 后台控制器接收到的name null axios使用post携带参数请求默认使用application / json
+        // 解决方式一: params属性进行数据的传递
+        // 解决方式二:“name = 张三"
+        // 解决方式三:服务器端给接收的参数加上 @requestBody
+
+
+    </script>
+</body>
+
+</html>

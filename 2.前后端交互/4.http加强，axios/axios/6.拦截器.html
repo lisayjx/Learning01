@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+// 发起请求时可以添加网页加载的动画使用token认证时 在发送请求前。去验证客户是否登录（应用最多）
+ //响应回来前对数据做一些过滤之类的
+
+        //类似出门之前的嘱咐，和回家前的喷酒精
+        // 截器是指当发送请求 或者 得到响应 被then或catch处理之前对它们进行拦截，
+        // 拦截后可对数据做一些处理，比如给请求数据添加头部信息，
+        // 或对响应数据进行序列化，然后再传给浏览器，这些都可以在拦截器中进行拦
+
+        //两大类拦截器   请求拦截器（成功的，失败的）   响应拦截器（成功的，失败的）
+
+        // 注意里面的回调函数里的两个参数不是then和catch了  ，是 config和 err
+//----------------------------------------------
+// 请求拦截: 从cookie中拿用户token，加到header中
+        //添加一个请求拦截器
+        axios.interceptors.request.use(config => {
+            //进入请求拦截器   看看config都有啥
+            console.log('进入请求拦截器');
+            console.log(config);
+            //在请求之前做一些事
+            return config;        //拦截处理完完让它走  放行！！  return之前都是在处理
+        }, err => {
+            console.log('请求方向失败');
+            //请求错误的时候做一些事
+            return Promise.reject(err);
+        });
+
+
+        axios.get('http://www.liulongbin.top:3006/api/getbooks')
+        .then(res=>{console.log(res);})
+        .catch(err=>{console.log(err);})
+
+ 
+//-------------------------------------------------------------------
+// 响应拦截：错误code处理，比如没有登录，或token过期，则跳到login页面     
+        //添加一个响应拦截器      把config改成response
+        axios.interceptors.response.use(response => {
+            console.log('进入响应拦截器');
+            //对返回的数据做一些处理
+            return response;
+        }, err => {
+            //对返回的错误做一些处理
+            return Promise.reject(err);
+        });
+         axios.get('http://www.liulongbin.top:3006/api/getbooks')
+        .then(res=>{console.log(res);})
+        .catch(err=>{console.log(err);})
+
+ 
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------
+
+/*
+        //移除拦截器
+        const myInterceptor = axios.interceptors.request.use(config => { return config })
+        axios.interceptors.request.eject(myInterceptor);
+
+        //在一个axios实例中使用拦截器
+        var instance = axios.create();
+        instance.interceptors.request.use(function () {  });
+*/
+ 
+
+
+
+
+    </script>
+</body>
+
+</html>

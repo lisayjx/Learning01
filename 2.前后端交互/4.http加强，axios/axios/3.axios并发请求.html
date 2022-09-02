@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+
+
+        //  通过axios.all(iterable)可实现发送多个请求，参数不一定是数组，只要有iterable接口就行，
+        //  函数返回的是一个数组
+        // axios.spread(callback)可用于将结果数组展开
+
+
+        //发送多个请求(并发请求)，类似于promise.all，若一个请求出错，那就会停止请求
+        const get1 = axios.get('http://www.liulongbin.top:3006/api/getbooks',{params:{id:1}});
+        const get2 = axios.get('http://www.liulongbin.top:3006/api/cmtlist');
+        axios.all([get1, get2])
+            .then(axios.spread((res1, res2) => {
+                console.log(res1, res2);
+                console.log('成功');
+            }))
+            .catch(err => console.log(err + '失败'))
+
+
+
+
+    </script>
+</body>
+
+</html>

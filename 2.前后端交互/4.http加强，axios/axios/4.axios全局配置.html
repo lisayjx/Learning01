@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        //配置全局属性
+        //每次都需要的地址的前半部分
+        axios.defaults.baseURL = 'http://www.liulongbin.top:3006'
+        //超时的时间   如果5秒没回应就认为是失败了
+        axios.defaults.timeout = 5000
+
+
+        //在全局配置基础上去网络请求
+        axios.get('/api/getbooks?id=1')  //返回的是一个Promise
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

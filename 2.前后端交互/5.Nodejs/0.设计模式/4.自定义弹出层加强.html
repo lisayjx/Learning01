@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tip {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: pink;
+            line-height: 50px;
+
+            /* display: none; */
+        }
+
+        .top {
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            background-color: orange;
+            line-height: 50px;
+        }
+
+        span {
+            margin-top: 20px;
+            float: right;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: red;
+            font-size: 18px;
+            text-align: center;
+            line-height: 16px;
+        }
+
+        .content {
+            height: 200px;
+            background-color: #fff;
+        }
+
+        .btn {
+            height: 50px;
+            background-color: blue;
+        }
+
+        .btn button {
+            height: 30px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="tip">
+        <div class="top">标题
+            <span class="close">×</span>
+        </div>
+        <div class="content">提示内容
+
+        </div>
+
+        <div class="btn">
+            <button class="no">取消</button>
+            <button class="ok">确定</button>
+        </div>
+    </div> -->
+
+
+    <script>
+        //自定义弹出层
+        //一、书写一个构造函数
+        //二、改造成单例模式
+        //   => 书写闭包
+        //   => 把类放在闭包里面
+        //   => 单例模式核心代码
+
+
+
+        // class Tip {
+        //     constructor() {//和new关联
+        //         //创建个盒子给个类名 
+        //         this.ele = document.createElement('div')
+        //         this.ele.className = 'tip'
+        //         document.body.appendChild(this.ele)
+
+        //         //2.绑定各种事件（只绑一次就行往后就不用管了 ）
+        //         this.bindEvent()
+
+        //     }
+
+        //     //1.填充this.ele内容
+        //     // 他应该在new的时候执行，每次new时候都要新文本传进来
+        //     setContent(txt) {
+        //         // /只修改文本 要是像每次背景颜色啥的不一样 还要自己创建节点
+        //         this.ele.innerHTML = `
+        //         <div class="top">标题
+        //          <span class="close">×</span>
+        //           </div>
+        //           <div class="content">${txt}
+        //           </div>
+        //           <div class="btn">
+        //          <button class="no">确定</button>
+        //          <button class="ok">取消</button>
+        //          </div>
+        //         `
+
+        //         //只要调用他就是想让他显示
+        //         this.ele.style.display = 'block'
+        //     }
+
+
+        //     //2.绑定各种事件
+        //     //因为我们用的字符串填充，必须用事件委托，要不字符串变得时候 事件就没有了
+        //     bindEvent() {
+        //         //给tip盒子绑定事件
+        //         this.ele.addEventListener('click', function (e) {
+
+        //             console.log(e.target.className);
+        //             //如果点击了×
+        //             if (e.target.className === 'close') {
+        //                 this.ele.style.display = 'none'
+        //             }
+        //             //如果点击了取消
+        //             if (e.target.className === 'no') {
+        //                 this.ele.style.display = 'none'
+        //             }
+        //             //如果点击了确定
+        //             if (e.target.className === 'ok') {
+        //                 this.ele.style.display = 'none'
+        //             }
+        //         })
+        //     }
+
+
+        // }
+
+        // const t = new Tip()
+        // t.setContent('你好')
+
+        //--------------------改造后
+
+        const Tip = (function () {
+
+            //1.实现功能的类
+            class Tip {
+                constructor() {//和new关联
+                    //创建个盒子给个类名 
+                    this.ele = document.createElement('div')
+                    this.ele.className = 'tip'
+                    document.body.appendChild(this.ele)
+
+
+                    //添加一个属性 回调函数
+                    this.callback = function () { }
+
+
+
+                    //2.绑定各种事件（只绑一次就行往后就不用管了 ）
+                    this.bindEvent()
+
+                }
+
+                //1.填充this.ele内容
+                // 他应该在new的时候执行，每次new时候都要新文本传进来
+                setContent(txt) {
+                    // /只修改文本 要是像每次背景颜色啥的不一样 还要自己创建节点
+                    this.ele.innerHTML = `
+                <div class="top">标题
+                 <span class="close">×</span>
+                  </div>
+                  <div class="content">${txt}
+                  </div>
+                  <div class="btn">
+                 <button class="no">确定</button>
+                 <button class="ok">取消</button>
+                 </div>
+                `
+
+                    //只要调用他就是想让他显示
+                    this.ele.style.display = 'block'
+                }
+
+
+                //2.绑定各种事件
+                //因为我们用的字符串填充，必须用事件委托，要不字符串变得时候 事件就没有了
+                bindEvent() {
+                    //给tip盒子绑定事件
+                    this.ele.addEventListener('click', e => {
+                        const target = e.target
+
+
+                        // 在这里的this.ele相当于this.ele.ele了
+                        //所以用箭头函数把
+
+                        //如果点击了×
+                        if (target.className === 'close') {
+                            this.ele.style.display = 'none'
+
+                        }
+                        //如果点击了取消
+                        if (target.className === 'no') {
+                            this.ele.style.display = 'none'
+                            this.callback(false)
+                        }
+                        //如果点击了确定
+                        if (target.className === 'ok') {
+                            this.ele.style.display = 'none'
+                            this.callback(true)
+                        }
+                    })
+                }
+
+
+                //3.调整样式
+                //调整top背景色
+                setStyle(val) {
+                    this.ele.querySelector('.top').style.backgroundColor = val
+                }
+
+
+            }
+
+            // const t = new Tip()
+            // t.setContent('你好')
+
+
+            //2.单例模式核心代码  为了实现功能的单例模式
+            let instance = null
+
+            //这里的形参接收外面Tip()传来的实参
+            return function singleTon(options = {}, cb) {//cb是接收回调函数的
+                if (!instance) instance = new Tip()
+
+                //每一次实例化的时候,都要执行以下 setContent 函数
+                //代码能来到这里instance一定是实例
+                instance.setContent(options.txt || '你好世界')
+
+
+                //每一次都要通过实例设置样式
+                instance.setStyle(options.topBG || 'red')
+
+
+                //每次都把你传递进来的回调函数赋值给实例的callback成员
+                instance.callback = cb || function () { }//为了防止下面没写函数
+
+
+
+                return instance//这个代码每次都执行
+            }
+
+        })()
+
+        Tip({
+            txt: '你好世界',
+            topBG: 'purple'
+        }, function a(res) {
+            console.log('打印结果', res);
+        })
+
+
+    </script>
+</body>
+
+</html>

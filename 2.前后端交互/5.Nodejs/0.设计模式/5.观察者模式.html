@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 特殊说明
+        // +观察者和发布订阅是两个设计模式
+
+        //1.观察者模式
+        // 例子:监控
+        // =>我们坐在教室里就是被观察者
+        // =>监控后面的老师，就是观察者
+        // =>当被观察者触发了一些条件的时候，观察者就会触发技能
+        // 观察者模式:监控一个对象的状态，一旦状态发生变化，马上触发技能
+        // =>需要两个构造函数来实现
+        //     1.创建被观察者 ：
+        //   属性 （自己的状态） ， 
+        //   队列（记录都有谁观察自己，以至于触发哪个观察者的技能，  数组[对象班主任12]）
+        //   方法：能设置自己的状态，当我们需要改变的时候，要触发这个方法改变状态  触发观察者技能
+        //   方法：添加观察者     因为刚开始数组是空的
+        //   方法： 删除观察者，他不观察我，我改变状态就不触发观察者了
+        //     2.创建观察者   ：有个身份，有个技能  ， 至于什么时候触发取决于被观察者
+
+
+
+
+        //1.观察者的构造函数
+        class Observer {
+            constructor(name, fn = () => { }) {//name身份，fn技能(如果你没传函数，做一个默认函数别有空技能)
+                this.name = name
+                this.fn = fn
+            }
+        }
+        //创建3个观察者
+        const bean1 = new Observer('班主任1', (state) => { console.log('因为' + state + '找家长'); })
+        const bean2 = new Observer('班主任2', (state) => { console.log('因为' + state + '没收电话'); })
+        const bean3 = new Observer('班主任3', (state) => { console.log('因为' + state + '找警察'); })
+
+
+        //2.被观察者的构造函数
+        class Subject {
+            constructor(state) {
+                //记录自己的状态
+                this.state = state
+                //数组用来保存观察着我的人
+                this.Observers = []
+            }
+            //设置改变 自己的状态
+            setState(val) {
+                this.state = val
+                //只要我的状态改变，就需要把我所有的观察者的技能都触发
+                // 遍历this.observers依次触发技能
+                this.Observers.forEach(item => {//item就是每一个观察者，一个个对象
+                    //告诉他我改变成了什么状态
+                    //把每一个观察者的技能触发州
+                    //把每一个观察者的技能触发掉
+                    item.fn(item.state)
+                })
+            }
+
+            //添加观察者
+            addObserver(obs) {
+                //谁是观察者就传递谁进来
+                // 判断一下，如果观察者已经存在,就不再添加了
+                // item===obs 意思 小明的观察者=== 小明的观察者 就是有重复的出现了
+                //some有一个满足条件就返回true
+                //find 有东西就存在 没有符合这个条件的就是undefined
+                //indexOf  findIndex 找不到符合条件的就是-1，找到就是0
+                //filter  过滤掉符合条件的
+                // const res=this.Observers.some(item=>item===obs)
+                // const res=this.Observers.find(item=>item===obs)
+                // const res=this.Observers.indexOf(item=>item===obs)
+                // const res=this.Observers.indexOf(filter =>item===obs)
+                this.Observers = this.Observers.filter(item => item !== obs)
+                //让t.o=t.o 不等于obs的，相当于如果有一样的就把以前的观察者干掉
+
+
+                this.Observers.push(obs)
+            }
+
+
+            //删除观察者
+            delObserver(obs) {
+                //把obs观察者删除
+                this.Observers = this.Observers.filter(item => item !== obs)
+            }
+
+
+
+
+
+
+
+
+        }
+        //创建一个被观察者
+        const xiaoming = new Subject('学习')
+        //给小明添加个观察者
+        //bean123是个对象有名字和技能
+        xiaoming.addObserver(bean1)
+        xiaoming.addObserver(bean2)
+        xiaoming.addObserver(bean3)
+
+        // xiaoming.setState('吃饭')
+
+//-------------------
+        const xiaohong = new Subject('学习')
+        xiaohong.addObserver(bean1)
+        xiaoming.addObserver(bean2)
+
+        console.log(xiaoming);
+        console.log(xiaohong);
+
+    </script>
+</body>
+
+</html>

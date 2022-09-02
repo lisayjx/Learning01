@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 策略模式
+        // +一个问题匹配多个解决方案，不一定要用到哪一个
+        // +而且有可能随时还会继续增加多个方案
+        // ＋例子:购物车结算
+        //     =〉我们有好多种折扣计算方式
+        //     =>满100 减10
+        //     =>满200 减25
+        //     =>8折
+        //     =>7折
+        //  +把我们的多种方案,以闭包的形式保存起来
+        //  +对外留一个接口：按照传递进来的折扣和价格计算最终价格返回
+
+        //做这步骤了
+        //  +可以添加和减少：留下添加折扣和删除折扣的接口 
+        //   +函数也是一个对象
+        //   +可以把函数名当作一个对象,向里面添加一些成员
+
+
+
+        const calcPrice = (function () {
+
+            //装着折扣方案的对象  永久保存
+            //会有方法往里添加 或者删除折扣类型的
+            const sale = {
+                '折扣1:满100-10': function (price) { return price -= 30 },
+                '折扣2:满100-20': function (price) { return price -= 20 },
+                '折扣3:打八折': function (price) { return price *= 0.8 }
+            }
+
+            function calcPrice(price, type) {
+                if (!sale[type]) return '没有这个折扣类型'
+                const result = sale[type](price)
+                return result
+            }
+
+            //添加折扣类型
+            //把函数当作对象，向里面添加一些成员 这个方法专门用来添加折扣
+            calcPrice.add = function (type, fn) { //折扣类型和计算方法
+                //先判断这个折扣是否存在
+                if (sale[type]) return '该折扣已经存在'
+
+                //如果折扣不存在  添加进去
+                sale[type] = fn
+                return '添加成功'
+            }
+
+            //删除折扣类型
+            calcPrice.del = function (type, fn) { //折扣类型和计算方法
+                delete this[type]
+            }
+
+
+
+
+            //把函数送出去
+            return calcPrice
+        })()
+
+
+        //加入以后要向里面添加折扣类型
+        calcPrice.add('折扣4:打七折', function (price) { return price *= 0.7 })
+        //删除不想要的折扣类型
+        calcPrice.del('折扣4:打七折', function (price) { return price *= 0.7 })
+
+
+
+
+        //计算价格
+        const res1 = calcPrice(320, '折扣1:满100-10')
+        const res2 = calcPrice(170, '折扣2:满100-20')
+        const res3 = calcPrice(150, '折扣3:打八折')
+        const res4 = calcPrice(160, '折扣4:打七折')
+    </script>
+</body>
+
+</html>

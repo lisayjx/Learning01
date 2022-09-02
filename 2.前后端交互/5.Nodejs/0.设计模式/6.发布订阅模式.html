@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 发布订阅
+        // +有一个对象，有人一直看着他
+        // +当这个对象发生变化的时候，第三方通知这个看着的人，触发技能
+
+        // 观察者是书变了就触发技能，发布订阅是第三方
+
+
+        //  例子:买书
+        // 1.普通程序员买书
+        // =〉去书店，问，没有，回家
+        // =〉过一会再去，问，没有，回家
+        // =>过一会再去，问，没有,回家
+
+        // 2．发布订阅的程序员买书
+        // =>去书店，问，没有,留下一个联系方式给店员
+        // =>一旦有了书，就会接到电话
+        // =>触发技能去买书
+
+        // 只需要一个构造函数：创建一个第三方店员的身份
+
+        // 其使用的特别多：就是事件监听，浏览器就是第三方 帮你看着div， 用户触发了，马上执行后面的函数
+        // 我们的任务就是 模拟一个  addEventListener（）
+
+        //分析构造函数：
+        // =>属性：消息队列
+        // {
+        //     click: [fn1, fn2],  一旦触发click就执行fn1 2
+        //     seeBook: [fn1, fn2, fn3]   一旦触发abc就执行fn1 2 3
+        // } 
+        // =>方法：可以向消息队列里添加内容   可以给你打电话
+        // => 方法:删除消息队列里面的内容
+        // => 方法:触发消息队列里面的内容
+
+
+        //创建第三方观察者构造函数  店员
+        class Observer {
+            constructor() {
+                this.message = {}
+            }
+            //1.向消息队列添加内容
+            on(type, fn) {
+                //type 就是我拜托你看着的行为   fn就是发生行为书到了你要做的事情
+                //记录在消息队列里，就像是 店员那个本吧这个事情记录下来一样
+                //  1.判断message里面有没有这个行为已经被注册过了
+                //  如果没有。我应该给你赋值一个这个行为，值赋值为[]
+                //  如果有，直接向数组里面添加就可以 
+                if (!this.message[type]) {//如果消息队列（记事本上）还没有这个行为（你让我办的事）
+                    this.message[type] = []
+                }
+                //直接把你告诉我的行为 记录在本上（消息队列中）
+                this.message[type] = [fn]
+
+            }
+            //2.删除消息队列里的内容
+            //告诉店员，我的事情不用你管了
+            //分两种情况，1.我只告诉你这个事情不用管了 
+            //   2.告诉你发生a时候不用做 handlerA这个事情了   
+            off(type, fn) {
+                //判断如果 fn不存在 只有一个参数的情况 
+                if (!fn) {//直接把这个事情 取消掉  直接从message任务队列里把seeBook1这个事 成员给删除
+                    delete this.message[type]
+                    return
+                }
+                //代码能来到这 说明 fn存在
+                //判断你是不是真的跟我说过这个事情，是不是真的订阅过
+                if (!this.message[type]) return
+                //如果你和我说过这个事，订阅过，就用filter删除
+                this.message[type] = this.message[type].filter(item => item !== fn)
+
+            }
+            //3.触发消息队列
+            trigger(type) {
+                //判断你是不是真的跟我说过这个事情，是不是真的订阅过
+                if (!this.message[type]) return
+                //如果你和我说过这个事，订阅过， 我就给你打电话 执行后面的函数
+                // 找到这个数组。把里面的每一个函数触发
+                this.message[type].forEach(item => {
+                    //item是每个函数
+                    item()
+                });
+
+            }
+
+        }
+        //创建一个实例 店员1
+        const p1 = new Observer()
+        // 当你向拜托这个p1帮你观察一些内容的时候
+        // 告诉她  你让她怎么帮你 告诉她一个行为
+        //帮我看着书，书到了给我打电话 传到上面的type和fn中
+        p1.on('seeBook1', function handlerA() { console.log('书1到了给我打电话'); })  //拜托p1店员做一个callIphone行为,当他出现执行一个函数
+        p1.on('seeBook2', function handlerB() { console.log('书2到了,给我打电话'); })  //拜托p1店员做一个callIphone行为,当他出现执行一个函数
+        //p1这个店员 一旦触发了seeBook1行为，就要把后面的所有事件处理函数执行掉
+        p1.trigger('seeBook1')
+        p1.trigger('seeBook2')
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

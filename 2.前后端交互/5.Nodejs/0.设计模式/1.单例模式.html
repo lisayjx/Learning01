@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 一个构造函数一生只能有一个实例
+        // 不管你new多少次都是这一个实例
+        // 应用：比如 自定义浏览器弹出框   layer专门做弹出层的
+        // 结构:div > xxx，,默认隐藏,在一定条件下显示
+        // 实现:每次显示都是一个新的 div，还是一个div 来回来去的显示？
+        // 是一个div来回来去显示，只是里面文字变了
+
+
+
+
+        // function Person() {
+        //     this.name = 'Jack'
+        // }
+        // const p1 = new Person()
+        // const p2 = new Person()
+        // console.log(p1 === p2);//false
+        //此时他俩实例不一样，我们想实现他们都是一样的就是接下来要做的事情
+
+/*
+        单例模式核心代码
+        let instance = null
+        function singleTon() {
+            //如果instance存在我什么都不做，
+            // 如果instance不存在，让instance=实例对象
+            if (!instance) instance = 实例对象
+            return instance
+        }
+        // 问题
+        // 1.书写代码的时候和构造函数已经没有关系
+        // 2.new关键字没有了
+        // 看情况进行改造
+
+*/
+
+ 
+
+
+        function Person() {
+            this.name = 'Jack'
+        }
+
+        //加入单例模式核心代码
+        let instance = null
+        function singleTon() {
+            if (!instance) instance = new Person()
+            return instance
+        }
+        // 再来创建，使用singleTon
+        // 当我第一次调用singLeTon的时候, instance是 null
+        // 就要执行 new Person 给 instance 赋值，从此以后，instance 就是一个 Person 的实例了
+        // 返回instance
+
+        const p1 = singleTon()
+
+        // 当我第二次调用singLeTon的时候
+        // 此时instance是第一次new出来的实例
+        // if条件就不会执行了，直接返回第一次实例的地址
+        // 相当于一个instance赋值给了p1和p2  那么他们俩就是一个对象
+
+        const p2 = singleTon()
+        console.log(p1 === p2);//true
+
+
+    </script>
+</body>
+
+</html>
