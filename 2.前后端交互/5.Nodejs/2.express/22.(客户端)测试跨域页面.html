@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引用一个在线的JQuery  注意，你要是用了在线版的jQuery，请保持网络 -->
+    <!-- <script  src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+
+    <!-- 本地的JQ -->
+    <script src="./jquery-3.6.0.js"></script>
+</head>
+
+<body>
+
+    <button class="btnGet">测试get接口</button>
+    <button class="btnPost">测试post接口</button>
+    <button class="btnDel">测试预检请求</button>
+    <button class="btnJSONP">JSONP解决跨域问题</button>
+    <script>
+        //是模拟客户端向服务器请求!!!!!!
+        // 跨域的!!!!!!!!!
+
+        $(function () {//jq入口
+
+            //1.测试get接口
+            $('.btnGet').click(function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://192.168.56.1/api/get',
+                    data: { name: 'zs' },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+
+
+
+            })
+
+
+            //2.测试post接口
+            $('.btnPost').click(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://192.168.56.1/api/post',
+                    data: { bookName: '水浒传', age: 18 },//为什么这里改成params，服务器端就获得的req.body是空呢？？
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+
+
+            //3.cors跨域问题的 预检请求  
+            $('.btnDel').click(function () {
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'http://192.168.56.1/api/delete',
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+
+
+            //测试JSONP解决跨域（不推荐）
+            $('.btnJSONP').click(function () {
+
+                $.ajax({
+                    type: 'GET',  //JSONP只能get
+                    url: 'http://192.168.56.1/api/jsonp',
+                    dataType: 'jsonp',
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+
+
+
+
+
+
+        })
+        //打开火狐浏览器，网络 点击上面两个其中一个都是发一个请求
+        //点击按钮3，会发送2个请求，一个预请求option，一个正式请求delete
+        //打开谷歌 找Network all
+
+
+//测试之前把后端服务器22.服务端测试跨域页面.js 启动起来
+// Object { status: 0, msg: "GET请求成功!", data: {…} }
+// Object { status: 0, msg: "POST请求成功", data: {} }
+
+//打开浏览器 会报错
+// 已拦截跨源请求：同源策略禁止读取位于 http://192.168.56.1/api/get?name=zs 的远程资源。（原因：CORS 头缺少 'Access-Control-Allow-Origin'）。状态码：200。
+// 因为此时浏览器客户端的地址是:file:///D:/%E7%88%B1%E5%88%9B%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/2.%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/5.Nodejs/2.express/22.%E6%B5%8B%E8%AF%95%E8%B7%A8%E5%9F%9F%E9%A1%B5%E9%9D%A2.html
+//不同源,跨域了  file协议和http协议不通关
+// get传参是在url上传，保密性差且量小，post更大更隐蔽
+
+    </script>
+
+</body>
+
+</html>
