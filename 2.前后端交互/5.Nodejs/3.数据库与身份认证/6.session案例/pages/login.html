@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./jquery.js"></script>
+</head>
+
+<body>
+  <!-- 登录表单 -->
+  <form id="form1">
+    <div>账号：<input type="text" name="username" /></div>
+    <div>密码：<input type="password" name="password" /></div>
+    <button>登录</button>
+  </form>
+
+  <script>
+    $(function () {
+      // 监听表单的提交事件
+      $('#form1').on('submit', function (e) {
+        // 阻止默认提交行为
+        e.preventDefault()
+        // 发起 POST 登录请求
+        $.post('/api/login', $(this).serialize(), function (res) {  //序列表单内容为字符串。类似 name=za$age=18
+          // status 为 0 表示登录成功；否则表示登录失败！
+          if (res.status === 0) {
+            location.href = './index.html'
+          } else {
+            alert('登录失败！')
+          }
+        })
+      })
+    })
+
+
+    //JQ中的方法
+  //  1. serialize()//序列表单内容为字符串。类似 name=za$age=18 查询字符串  输出的结果为表单项中的各表单元素的name和value值
+  //  2. serializeArray()：序列化表格元素返回 JSON 数据结构数据。
+  //      我们看到调用方法返回的是json对象  不是字符串
+  //      可用JSON.stringify()方法将json对象转化为json字符串
+
+  //   [ 
+  //    {name: 'firstname', value: 'Hello'}, 
+  //    {name: 'lastname', value: 'World'},
+  //    {name: 'alias'}, // this one was empty
+  // ]
+  </script>
+</body>
+
+</html>

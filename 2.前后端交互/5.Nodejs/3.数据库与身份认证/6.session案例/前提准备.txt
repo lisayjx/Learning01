@@ -1,0 +1,9 @@
+1.打开案例中的package.json 看看需要下载哪些包
+发现只有 express包
+"dependencies": {
+    "express": "^4.17.1"
+  }
+运行 npm i 就可以把dependencies里的包下载
+2.装express-session的中间件   npm i express-session
+3.导入session中间件
+  配置session中间件
