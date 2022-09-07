@@ -1,0 +1,18 @@
+能够说出webpack的作用
+能够掌握webpack基本配置
+能够知道webpack开发服务器
+能够熟练webpack中文文档
+
+
+webpack本质: node环境下的包
+安装步骤-----------------
+1.初始化包环境
+yarn init ===>为了得到 package.json
+2.安装依赖包  2个包webpac和他的附属工具包
+yarn add webpack webpack-cli -D
+3.配置scripts(自定义命令)      在package.json中
+"scripts" :{
+"build":"webpack"    左边起名字无所谓，右边必须叫webpack
+},
+ 
+问题:如何把2个js文件,打包整合到一起并压缩呢?
