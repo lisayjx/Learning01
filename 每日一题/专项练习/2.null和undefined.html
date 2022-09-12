@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //undefined字面量，Undefined就表示数据类型
+        //场景一：
+        let a
+        console.log(a)//undefined
+        //场景二：
+        let obj = {}
+        console.log(obj.name)//undefined
+        //场景三：
+        function fn() {
+
+        }
+        console.log(fn())//undefined
+        //场景四：
+        function fn1(x, y) {
+            console.log(y)
+        }
+        fn(1)
+        //只传了一个形参过去相当于：x=1,y=undefined
+
+        console.log('-----------------------------------------------')
+
+        //null
+        // 场景一：未来会给obj1再赋值，先用null占位
+        let obj1 = null
+        function fn1() {
+            return {}
+        }
+        obj1 = fn1()
+
+        // 场景二:dom操作里
+        console.log(document.querySelector('nav'))//因为没有这个元素 所以输出null
+
+        //场景三：正则
+        'hello'.match(/a/)//在字符串hello匹配不到a 所以 null
+
+
+        // 相同点：
+        // 1.一个对象字面量值 undefined和null
+        // 2.undefined和null=false
+        // 3. 如果想将null或者undefined类型的值转换成对象的话都会抛出异常
+        // // 4.在非严格时 undefined==null是true  在严格时候 undefined===null 是false
+
+        // 不同点：
+        // 1.null是关键字，undefined是全局变量 挂载在window上的 
+        // 2. typeof undefined 打印Undefined
+        //    typeof null      打印 Object
+        // 3.类型检测
+        // Object.prototype.toString.call(null)  //[object Null]
+        // Object.prototype.toString.call(undefined) //[object Undefined]
+        // 4.进行字符串类型转换时
+        // null+'aaa'--->'nullaaa'
+        // undefined+'aaa'-->'undefinedaaa'
+        // 5.在参与数值运算时
+        // null+1=1    null会变成0
+        // undefined+1 NaN  因为undefined变成数值型就是Nan然后Nan加任何数都是NaN
+
+    </script>
+</body>
+
+</html>

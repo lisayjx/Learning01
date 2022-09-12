@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(0.1 + 0.2);//0.30000000000000004
+        // 为什么呢？
+        // 因为0.1和0.2转换为二进制计算被截取的只有64位所以丢失精度了而结果不准确
+        // 解决方法
+        console.log((0.1 * 10 + 0.2 * 10) / 10) //0.3
+    </script>
+
+</body>
+
+</html>

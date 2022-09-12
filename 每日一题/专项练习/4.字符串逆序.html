@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现字符串逆序输出
+        ///写一个reverseString()函数，将传入字符串以相反顺序输出
+        // reverseString('abcd')  -->dcba
+        //四种方式！！！！！
+
+        // 一：借助数组的reverse方法
+        //前情提要 
+        // 1.数组的reverse()方法
+        // [1,2,3,4].reverse()  输出[4,3,2,1]
+        // 2.字符串-->数组  'abc'.split('')  //以abc中有的东西进行分割
+        //   数组--->字符串  [ "a", "b", "c" ].join('*')  中间用*分割 举个例子
+
+        function reverseString1(str) {
+            //先把字符串转换成数组
+            // console.log( str.split(''));//[ "a", "b", "c" ]
+            // console.log(str.split('').reverse());//[ "c", "b", "a" ]
+            //再把数组转回到字符串
+            return str.split('').reverse().join('')
+        }
+        let re = reverseString1('abc')
+        console.log(re);//c，b，a
+
+        //方法二：使用字符串的charAt()方法
+        // charAt(索引值) 会找到对应字符
+        function reverseString2(str) {
+            let re = ''//最终输出的结果
+            for (let i = str.length - 1; i >= 0; i--) {
+                re += str.charAt(i)
+            }
+            return re
+        }
+        console.log(reverseString2('asdf'))//fdsa
+
+
+        //方法三：使用递归去获取charAt()值
+        // strIn 
+        // pos索引位
+        // strOut最终的结果
+        function reverseString3(strIn, pos, strOut) {
+            //如果索引位小于0 就是没有了 就退出
+            if (pos < 0) {
+                return strOut
+            }
+            //如果索引位不小于0
+            // 通过charAt找到对应字符 拼接到结果字符串上 然后 索引位变化--
+            strOut += strIn.charAt(pos)
+            pos--
+            return reverseString3(strIn, pos, strOut)
+
+        }
+        let s = 'qwe'
+        let p = s.length - 1
+        let so = ''
+        reverseString3(s, p, so)
+
+
+        //方法四：使用call，动态地去调用属于数组的方法slice() 截取，
+        //把字符串变成数组然后就可以reverse
+        // [1,2,3].slice() =[1,2,3]
+        // [1,2,3].slice(0)=[1,2,3]
+        // [1,2,3].slice(1)=[2,3]
+        // [1,2,3].slice(1,2)=[2]
+        function reverseString4(str) {
+            //数组原型上有slice方法，用str去调用slice方法
+          let arr=  Array.prototype.slice.call(str)
+          return  arr.reverse().join('') 
+          //join()什么都不传 默认逗号分割 所以传空字符串
+        }
+      console.log(reverseString4('ert'))  
+
+
+    </script>
+</body>
+
+</html>
