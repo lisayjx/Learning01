@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+
+
+    <!-- 把依赖包下载到本地引入使用，因为cdn没有网就不能用了-->
+
+    <!-- 引入依赖 -->
+    <!-- react包 -->
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <!-- babel包 -->
+    <script src="./lib/babel.js"></script>
+
+
+    <!-- 编写react代码 -->
+    <script type="text/babel">
+
+        //1.将文本定义成变量
+        let message = 'hello world'
+        //2.监听按钮的点击，把这个函数绑定在<button>上， 一旦点击了就执行这个函数
+
+        function btnClick() {
+            //修改数据
+            message = 'hello react'
+            //渲染函数
+            rootRender()
+        }
+
+
+        //------------------------------------
+        const root = ReactDOM.createRoot(document.querySelector('#root'))   //root的根
+
+        //最开始的渲染
+        rootRender()
+        //------------------------------------
+
+
+        //封装的渲染函数  为了复用
+        function rootRender() {
+            root.render((
+                <div>
+                    <h2>{message}</h2>
+                    {/*只要在jsx中动态绑定某个变量 统一用{} 不要用引号
+                  onClick={btnClick} 绑定函数 */}
+                    <button onClick={btnClick}>改变文本</button>
+                </div>
+            ))
+        }
+
+
+
+        //1.创建一个根容器 
+        //2.渲染你要做的东西到这个容器中
+        //3.监听里面内容需要在外定义变量或者函数 并且绑定这个函数或者变量
+        //4.只要点击或者发生变化，函数或者变量就会做出相应的变化，变化完再渲染
+
+
+
+
+
+        
+    </script>
+
+</body>
+
+</html>

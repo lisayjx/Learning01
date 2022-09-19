@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 不能在这里直接编写，因为react中写完会把这里覆盖掉
+        所以用react进行编写
+        -->
+    </div>
+    <!-- 为了演练React，我们可以提出一个小的需求:口在界面显示一个文本:Hello World
+    点击下方的一个按钮，点击后文本改变为Hello React -->
+
+    <!-- <img src="./img/1hello React.png" alt=""> -->
+
+    <!-- 引入依赖 -->
+    <!-- react包 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- babel包 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <!-- 编写react代码 -->
+    <script type="text/babel">
+
+        //1.将文本定义成变量
+        let message = 'hello world'
+        //2.监听按钮的点击，把这个函数绑定在<button>上， 一旦点击了就执行这个函数
+        function btnClick() {
+            //修改数据
+            message = 'hello react'
+            //渲染函数
+            rootRender()
+        }
+
+
+        //------------------------------------
+        const root = ReactDOM.createRoot(document.querySelector('#root'))   //root的根
+
+        //最开始的渲染
+        rootRender()
+        //------------------------------------
+
+
+        //封装的渲染函数  为了复用
+        function rootRender() {
+            root.render((
+                <div>
+                    <h2>{message}</h2>
+                    {/*只要在jsx中动态绑定某个变量 统一用{} 不要用引号
+                  onClick={btnClick} 绑定函数 */}
+                    <button onClick={btnClick}>改变文本</button>
+                </div>
+            ))
+        }
+
+
+     
+        //1.创建一个根容器 
+        //2.渲染你要做的东西到这个容器中
+        //3.监听里面内容需要在外定义变量或者函数 并且绑定这个函数或者变量
+        //4.只要点击或者发生变化，函数或者变量就会做出相应的变化，变化完再渲染
+    </script>
+
+</body>
+
+</html>

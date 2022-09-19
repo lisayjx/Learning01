@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+    <script type="text/babel">
+
+
+        class App extends React.Component {
+
+            //1.定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello world'
+                }
+
+                //修改this指向
+                this.changeText = this.changeText.bind(this)
+
+            }
+
+            //2.定义方法
+            changeText() {
+
+                //修改+重新渲染  setState都干了
+                this.setState  ({
+                    message: 'hello react'
+                })
+                  
+                 
+            }
+
+            //3.render渲染
+            render() {
+                return (//有且只有一个根元素
+                    <div>  
+                        <h2>{this.state.message}</h2>
+                        <button onClick={this.changeText}>改变文本</button>
+                    </div>
+                )
+            }
+
+
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+        // 需求：默认情况下 第一个电影是红色，然后点击谁谁变红色，其他没色
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    movies: ['你好李焕英', '星际穿越', '大话西游', '盗梦空间'],
+                    //1.用变量记录你当前选中东西的索引
+                    currentIndex: 0
+                }
+
+            }
+
+            //定义方法
+            itemClick(index) {
+                // console.log('itemClick');
+                //拿到了新的当前点击的索引index后，就可以让他变色
+                this.setState({
+                    currentIndex: index
+                })
+            }
+
+
+            //组件渲染
+            render() {
+                const { movies, currentIndex } = this.state
+
+                return (
+                    <div>
+                        {/*参数传递*/}
+                        <ul>
+                            {
+                                movies.map((item, index) => {
+                                    return (
+                                        <li className={currentIndex === index ? 'active' : ''}
+                                            key={item}
+                                            onClick={() => this.itemClick(index)}
+                                        >{item}</li>
+                                    )
+                                })
+
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+
+        // 应该是只有上面的currentIndex数值和下面的参数item一致时候，才会加类名active,所以加判断
+    </script>
+</body>
+
+</html>

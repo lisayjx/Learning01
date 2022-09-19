@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello'
+                }
+
+            }
+
+            //定义方法
+            btn1Click(event) {
+                console.log('btn1Click', event);
+            }
+
+            btn2Click(event) {
+                console.log('btn2Click', event);
+            }
+
+            btn3Click(event, name, age) {
+                console.log('btn3Click', event, name, age);
+            }
+            btn4Click(event, name, age) {
+                console.log('btn3Click', event, name, age);
+            }
+
+
+
+            //组件渲染
+            render() {
+                const { message } = this.state
+                return (
+                    <div>
+                        {/*1.event参数的传递(用的this绑定方式一)*/}
+                        <button onClick={this.btn1Click.bind(this)}>按钮一</button>
+
+                        {/*2.event参数的传递(用的this绑定方式三)*/}
+                        <button onClick={(event) => this.btn2Click(event)}>按钮二</button>
+
+                        {/*3.传递额外参数(用的this绑定方式一)不推荐，event传的参数被放到最后了*/}
+                        <button onClick={this.btn1Click.bind(this, 'lisa', 18)}>按钮三</button>
+
+
+                        {/*4.传递额外参数(用的this绑定方式三) 推荐*/}
+                        <button onClick={(event) => this.btn4Click(event,'lisa',18)}>按钮四</button>
+
+                    </div>
+                )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

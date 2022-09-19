@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+ 整个逻辑其实可以看做一个整体，那么我们就可以将其封装成一个组件:
+我们说过root.renderHTML元素或者一个组件;
+所以我们可以先将之前的业务逻辑封装到【一个组件】中，然后传入到ReactDOM.render函数中的第一个参数
+
+root.render(<h1>aaa</h1>)
+这里不仅可以传入标签，还可以传入组件
+ root.render(<App/> )  传入app这个组件
+
+ 
+1.使用组件进行重构代码
+
+2.将组件渲染到页面
+
+react中有两个组件叫：类组件和函数式组件  先讲类组件
+-->
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+        // 1.使用组件进行重构代码
+        // class App {
+
+        // }
+        //此时App只是个普通类，那么怎么让他变成组件呢，要继承于React包中的Component
+        class App extends React.Component {
+            //1.组件里要有数据
+            constructor(){
+                super() //因为有继承所以有super
+
+                //参与界面更新的
+                this.state={//state是固定的
+                    message:'hello world'
+                }
+            }
+
+            //2.组件要有方法
+
+            
+
+            //3.组件要有渲染内容render方法（固定）  你要把什么标签啥的渲染到页面
+            render() {  //render()中你return什么东西，页面就会渲染什么东西
+                return (
+                    <div>
+                        <h2>{this.state.message}</h2>
+                        <button>改变文本</button>
+                    </div>
+                )
+            }
+        }
+
+
+
+
+        // 2.将组件渲染到页面root根上
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        root.render(<App />)
+
+
+
+
+
+
+
+
+
+
+ //---------------
+// 1.整个逻辑其实可以看做一个整体，那么我们就可以将其封装成一个组件:
+//     我们说过  root.render参数  是  一个HTML元素或者一个组件;
+//     所以我们可以先将之前的业务逻辑封装到  一个组件 中，然后传入到ReactDOM.render函数中的第一个参数;
+// 2.在React中，如何封装一个组件呢?这里我们暂时使用类的方式封装组件:
+//   (1)定义一个类(类名大写，组件的名称是必须大写的，小写会被认为是HTML元素)，继承自React.Component
+//   (2) 实现当前组件的render函数
+//       render当中返回的jsx内容，就是之后React会帮助我们渲染的内容
+
+
+//--------组件化-数据依赖
+// 组件化问题一:数据在哪里定义?
+
+// 在组件中的数据，我们可以分成两类:
+//     【参与界面更新的数据】:当数据变量时，需要更新组件渲染的内容;
+//     【不参与界面更新的数据】:当数据变量时，不需要更新时候将组件重新渲染的内容;
+// 参与界面更新的数据我们也可以称之为是 参与数据流，这个数据是定义在当前对象的state中
+//         我们可以通过在构造函数中 this.state ={定义的数据}
+//         当我们的数据发生变化时，我们可以调用this.setState 来更新数据，并且通知React进行update操作;
+//                在进行update操作时，就会【重新调用render函数】，并且使用最新的数据，来渲染界面
+
+    </script>
+</body>
+
+</html>

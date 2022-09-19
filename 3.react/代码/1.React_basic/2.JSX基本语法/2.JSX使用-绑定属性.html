@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello',
+                    title: '哈哈哈哈哈哈',
+                    imgURL: 'https://img0.baidu.com/it/u=2012180831,3586543751&fm=253&fmt=auto&app=138&f=JPEG?w=600&h=498',
+                    aURL: 'https://www.baidu.com',
+                    isActive: true,
+                    objStyle: { color: 'red', fontSize: '30px' }
+
+                }
+
+            }
+
+            //定义方法
+
+
+            //组件渲染
+            render() {
+                //****************************************开始
+                const { message, title, imgURL, aURL, isActive, objStyle } = this.state
+                //class绑定方法一：拼接字符串
+                const className = `abc cba ${isActive ? 'active' : ''}`
+                //class绑定方法二：将所有class放到数组中
+                const classList = ['abc', 'cba']
+                if (isActive) classList.push('active')
+                //class绑定方法三：第三方库 classnames-->npm i classnames 
+                classNames('active', { isActive: true })
+
+                return (
+                    <div>
+                        {/*1.绑定全局tile属性*/}
+                        <h2 title='哈哈哈'>我是h2</h2>
+                        <h2 title={title}>我是h22</h2>
+
+                        {/*2.绑定img得url属性*/}
+                        <img src={imgURL} />
+
+                        {/*3.绑定a得href属性*/}
+                        <a href={aURL}>百度一下 </a>
+
+                        {/*4.绑定class属性,注意要用className绑定类名*/}
+                        {/*     需求：如果isActive为true就加类名active，如果是false就不加类名
+                        abc和cba是之前的类名
+                        */}
+                        {/* <h3 className={`abc cba ${isActive ? 'active' : ''}`}>ppppppppppp</h3> */}
+                        <h3 className={className}>ppppppppppp</h3>
+
+                        {/*5.绑定style属性:绑定对象类型
+                        {}里面是子元素时候里面不能对象，但是在属性那得{}可以放对象
+                        */}
+                        <h3 style={{ color: 'red', fontSize: '30px' }}></h3>
+                        <h3 style={objStyle}></h3>
+                    </div>
+                )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

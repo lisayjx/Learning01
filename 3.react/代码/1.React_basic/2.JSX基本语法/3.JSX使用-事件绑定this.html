@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 如果原生DOM原生有一个监听事件，我们可以如何操作呢?
+    方式一:获取DOM原生，添加监听事件;
+    方式二:在HTML原生中，直接绑定onclick;
+    
+    在React中是如何操作呢?我们来实现一下React中的事件监听，这里主要有两点不同
+    React事件的命名采用小驼峰式(camelCase)，而不是纯小写; 例如onClick
+    我们需要通过0)传入一个事件处理函数，这个函数会在事件发生时被执行;
+     -->
+
+
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+        /*
+        this四种绑定规则：
+        1.默认绑定：独立执行 foo()
+        2.隐式绑定：被一个对象执行 obj.foo()--->obj
+        3.显式绑定：call/apply/bind  foo.call('aaa')--->String('aaa')
+        4.new绑定：new Foo()--->创建一个新对象，并且赋值给this
+        */
+       /*
+       为什么是undefined呢?
+       原因是btnClick函数并不是我们主动调用的，而吊当button发生改变时，React内部调用了btnClick函数;
+       而它内部调用时，并不知道要如何绑定正确的this 
+       */
+        const obj = {
+            foo: function () {
+                console.log('foo:', this)//this-->window，this-->window但是在严格模式指向undefined
+            }
+        }
+        obj.foo()  //此时foo指向obj
+        const config = {
+            onClick: obj.foo  //此时onClick指向foo
+        }
+        //又把onClick赋值给了click
+        const click = config.onClick
+        click()//所以这个click也是指向foo，这里默认调用 所以上面this指向window
+
+        //-----------------------------------------------------------
+        //3.定义App根组件
+        class App extends React.Component {
+
+            name='lisa' //ES6 class fields 类字段  相当于所有实例都有这个字段
+
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello',
+                    count: 100
+                }
+
+                //处理按钮一的绑定
+                this.btn1Click = this.btn1Click.bind(this)
+                // this.btn1Click.bind(this) 括号里的this 指向实例
+
+                //处理按钮二的绑定 变成箭头函数
+
+            }
+
+            //定义方法
+            btn1Click() {
+                // console.log(this);//undefined   类是ES6 然后又在babel环境 所以 this独立函数指向window
+
+                this.setState({//this是undefined，现在转换成了实例
+                    count: this.state.count + 1
+                })
+            }
+            //改成箭头函数  相当于所有实例都有这个函数 箭头函数去上一层作用域找就是类的作用域-->指向实例
+            btn2Click = () => {
+                // console.log(this)//undefined
+                this.setState({//变成箭头函数后 this指向App实例
+                    count: 1000
+                })
+            }
+
+            btn3Click(){
+                // console.log(this)//undefined
+                this.setState({ 
+                    count: 2000
+                })
+            }
+
+
+
+            //组件渲染
+            render() {
+                const { message, count } = this.state
+                return (
+                    <div>
+                        {/*this绑定方式一：bind绑定*/}
+                        <button onClick={this.btn1Click}> 按钮一 </button>
+                        {/* this.btn1Click不是隐式绑定只是把上面的btn1Click取过来 没调用*/}
+                        <h2>当前计数：{count} </h2>
+
+
+
+
+                        {/*this绑定方式二：ES6得 class fields 一般不用*/}
+                        <button onClick={this.btn2Click}> 按钮二 </button>
+
+
+                         {/*（常用）this绑定方式三：直接传入一个箭头函数*/}
+                       {/*   <button onClick={()=>console.log('btn3Click')}> 按钮三 </button>*/}
+                         <button onClick={()=>this.btn3Click()}> 按钮三 </button>
+                    </div>
+                )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

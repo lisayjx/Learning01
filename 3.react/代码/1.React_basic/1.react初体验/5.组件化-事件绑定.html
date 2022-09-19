@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            //1.组件里要有数据
+            constructor() {
+                super()
+
+                //参与界面更新的
+                this.state = {//这里的this指向他的组件实例  root.render(<App />)
+                    message: 'hello world',
+
+                }
+            }
+
+            //2.组件要有方法(实例方法)
+            btnClick() {//这里的this默认是undefined  下面有解释
+                //修改文本
+                // setState来自this，this来自APP实例，然后app又继承了Component
+                // 所以setState来自Component
+                this.setState({
+                    //内部完成了两件事：1.修改state中message，2.自动执行render函数
+                    message: 'hello React'
+                })
+
+                //重新渲染
+            }
+
+
+            //3.组件要有渲染内容render方法（固定）  你要把什么标签啥的渲染到页面
+            render() {
+                // console.log('render的this指向:',this);//App实例
+                return (
+                    <div>
+                        <h2>{this.state.message}</h2>
+                        <button onClick={this.btnClick.bind(this)}>改变文本</button>
+                        {/*因为这里的this.btnClick能获取到上面的 btnClick()，
+                        所以在这里直接改变一下上面的this指向，指向新this
+                        新this就是指向render()的this指向也就是app组件的实例
+                        */}
+                    </div>
+                )
+            }
+        }
+
+
+        // 2.将组件渲染到页面root根上
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        root.render(<App />)
+
+     
+
+
+
+
+
+
+
+
+
+
+
+        //--------------
+        // function bar(){
+        //     console.log(this);//undefined
+        // }
+
+// 默认情况下函数的this指向window，严格模式下函数的this指向undefined
+// ES6中的函数默认情况下是严格模式的，所以函数的this指向undefined
+//因为类是ES6提出的，所以类中的函数也是严格模式所以类中的函数的this指向undefined
+// babel默认情况下会把我们的代码转成严格模式，所以在text/babel中写的函数指向undefined
+
+    </script>
+</body>
+
+</html>

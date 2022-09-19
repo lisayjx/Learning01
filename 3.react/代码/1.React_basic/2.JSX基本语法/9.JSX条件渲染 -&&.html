@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello',
+                    isReady: true,
+                    //模拟来自服务器的数据，这个数据最开始可能是null或者undefined的
+                    //需求：当这里有数据就展示，没有数据就不展示
+                    friend: {
+                        name: 'lisa',
+                        age: 18
+                    }
+                }
+
+            }
+
+            //定义方法
+
+
+            //组件渲染
+            render() {
+                const { message, friend } = this.state
+
+                //*****************
+                //方式三：逻辑与&&运算符
+
+                return (
+                    <div>
+                        {friend && <h1>{friend.name + '' + friend.age}</h1>}
+                    </div>
+                )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+        // 先判断friend里面是否有值，如果有就执行friend.name + '' + friend.age,如果没有值就不展示
+    </script>
+</body>
+
+</html>

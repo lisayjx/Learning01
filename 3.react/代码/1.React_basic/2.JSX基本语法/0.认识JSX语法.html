@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello'
+                }
+
+            }
+
+            //定义方法
+
+
+            //组件渲染
+            render() {
+                const { message } = this.state
+                //**************************
+                //现在是JSX环境
+                let a = '哈啊哈'//对 在js中也对
+                let b = <h1>哈哈哈哈</h1>//对  但是在js中就不对
+                // babel暗中给你把你写的东西转换了
+                // 转换成了浏览器可以识别的代码： React.createElement('h1',null,<h1>哈哈哈哈</h1>)
+                //  我们用react就一直得用babel
+
+                //return后面也可以很自由 我们写的代码可以直接渲染
+                let c = <h2>{message}</h2>
+                return c
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+
+
+
+
+
+       
+ 
+ 
+ 
+ </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                //*******************************开始
+                this.state = {
+                    // number,string,Array直接显示出来
+                    message: 'hello',
+                    list: ['a', 'b', 'c'],
+                    count: 100,
+                    //null、undefined、Boolean内容为空
+                    a: null,
+                    b: undefined,
+                    c: true,
+                    //对象类型不能放在子元素中显示
+                    obj: { name: 'lisa', age: 18 }
+
+                }
+
+            }
+
+            //定义方法
+
+
+            //组件渲染
+            render() {
+                const { message, list, count } = this.state
+                const { a, b, c } = this.state
+                const { obj } = this.state
+
+                const fullName = message + count
+                //******************************* 
+
+
+
+                return (
+                    <div>
+                        {/*1.number,string,Array直接显示出来*/}
+                        <h2>{message}</h2>
+                        <h2>{list}</h2>
+                        <h2>{count}</h2>
+
+                        {/*2.null、undefined、Boolean内容为空
+                        如果你非要显示出来就把它变成字符串
+                        比如toString方法、和空字符串拼接，String(变量)等方式
+                        */}
+                        <h2>{a}</h2>
+                        <h2>{b}</h2>
+                        <h2>{c}</h2>
+                        {/*
+                        <h2>{String(a)}</h2>
+                        <h2>{String(b)}</h2>
+                        <h2>{String(c)}</h2> */}
+
+                        {/*3.对象类型不能放在子元素中显示*/}
+
+                        {/*但是可以拿到对象得属性名或者值*/}
+                        <h2>{Object.keys(obj)[0]}</h2>
+                        <h2>{Object.values(obj)[1]}</h2>
+
+                        {/*4.还可以插入表达式*/}
+                        <h2>{10 + 20}</h2>
+                        <h2>{message + count}</h2>
+                        <h2>{fullName}</h2>
+
+                        {/*调用方法*/}
+                        <ul>{this.getList()}</ul>
+                    </div>
+                )
+            }
+
+
+
+            getList() {
+                const lis = this.state.list.map(item => <li>{item}</li>)
+                return lis
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    count: 100
+                }
+
+                //改变方法中的this指向
+                this.addCount = this.addCount.bind(this)
+                this.delCount = this.delCount.bind(this)
+            }
+
+
+
+
+            //定义方法
+            addCount() {
+                this.setState({
+                    count: this.state.count + 1
+                })
+            }
+            delCount() {
+                this.setState({
+                    count: this.state.count - 1
+                })
+            }
+
+            //组件渲染
+            render() {
+                const { count } = this.state
+                //本来找到count得this.state.count ，现在解构直接在 this.state找到count就叫count     
+                return (
+                    <div>
+                        <h2>计数器数字是：{count}</h2>
+                        <button onClick={this.addCount}>+1</button>
+                        <button onClick={this.delCount}>-1</button>
+                    </div>
+                )
+            }
+
+        }
+
+ 
+        //1.
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2
+        root.render(<App />)
+
+
+
+        // 封装好组件，把组件渲染出来，组件里告诉我们要渲染的内容
+        // 如果有数据就放在state中
+    </script>
+</body>
+
+</html>

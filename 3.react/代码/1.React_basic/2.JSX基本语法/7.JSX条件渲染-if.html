@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+
+    <script type="text/babel">
+
+
+        //3.定义App根组件
+        class App extends React.Component {
+            //定义数据
+            constructor() {
+                super()
+
+                this.state = {
+                    message: 'hello',
+                    isReady: true
+                }
+
+            }
+
+            //定义方法
+
+
+            //组件渲染
+            render() {
+                const { message } = this.state
+
+                //*****************
+                // 条件渲染，根据不同条件来决定你渲染什么东西
+                if (isReady) {
+                    //return在哪里就在哪里渲染
+                    return (
+                        <div>
+                            <h1>准备开始比赛吧！！</h1>
+                        </div>
+                    )
+                } else {
+                    //return在哪里就在哪里渲染
+                    return (
+                        <div>
+                            <h2>请提前做好准备</h2>
+                        </div>
+                    )
+                }
+
+
+                // return (
+                //     <div>
+                //         <h2>{message}</h2>
+                //     </div>
+                // )
+            }
+
+        }
+
+
+        //1.创建root根 
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        //2.渲染App组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>
