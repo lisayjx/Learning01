@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 30px;
+        }
+
+        .demo1 {
+            background-color: pink;
+        }
+
+        .father {
+            padding: 20px;
+            background-color: orange;
+        }
+
+        .son {
+            height: 100px;
+            width: 300px;
+            background-color: pink;
+        }
+    </style>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>你好 {{name}}</h1>
+
+        <!-- 1.阻止默认行为 click是事件，prevent是修饰符 -->
+        <a href="http://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
+
+        <!-- 2.阻止事件冒泡 stop-->
+        <div class="demo1" @click="showInfo2">
+            <button @click.stop="showInfo">点我</button>
+        </div>
+        <!-- 不阻止就会先弹出 你好啊啊啊啊，然后弹出哈哈哈哈哈哈哈 -->
+
+        <!-- 3.事件只触发一次once -->
+        <button @click.once="showInfo">点我</button>
+
+        <!-- 4.事件捕获capture（不常用） -->
+        <div class="father" @click.capture="showMsg('触发了father')">
+            111
+            <div class="son" @click="showMsg('触发了son')">222</div>
+        </div>
+
+        <!-- 正常来说 点击里面的 会冒泡，先son再father
+        先点击外面的father 就会只输出father
+        要是加上了事件捕获 ，点击里面的son，就会先输出father再输出son
+        如果只点击father 那就是father
+        -->
+
+        <!-- 5.self 只有event.target是当前操作的元素时才触发事件 -->
+        <div class="demo1" @click.self="showInfo2">
+            <button @click="showInfo">点我</button>
+        </div>
+        <!-- 此时是不阻止冒泡形式，正常来说点击就会先弹出你好啊啊啊啊然后哈哈哈哈哈哈哈
+         给外面加.self，管div的
+         如果有人触发了div，并且e.target还得是div时候，才能调用showInfo2
+
+         错误情况：点击里面的按钮，然后冒泡冒到了外面的div上，虽然是触发了div
+         但是e.target不是div而是里面得button，所以div上得函数不会执行
+         所以好像self也能阻止冒泡
+        -->
+
+        <!-- 6.也可以 stop+prevent  -->
+        <div class="demo1" @click="showInfo2">
+            <a href="http://www.baidu.com"  @click.stop.prevent="showInfo">点我</a>
+        </div>
+        <!-- 他俩顺序咋写都行 -->
+        <!-- 阻止冒泡 弹窗 然后阻止默认行为 页面不跳转
+         -->
+    </div>
+
+
+    <!-- 
+      需求：点击a标签会弹窗说同学你好，但是不想让页面跳转
+      跳转是a标签的默认行文，所以就要阻止默认行为
+     -->
+
+    <script>
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'lisa'
+            },
+
+            methods: {
+                showInfo(e) {
+                    // e.preventDefault() 原生写法
+                    alert('你好啊啊啊啊')
+                },
+                showInfo2(e) {
+                    // e.stopPropagation()
+                    alert('哈哈哈哈哈哈哈')
+                },
+                showMsg(msg) {
+                    console.log(msg)
+                }
+
+            }
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>

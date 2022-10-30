@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        {{name}}
+        <!-- 学校组件 -->
+        <School></School>
+        <hr>
+        <!-- 学生组件 -->
+        <Student></Student>
+
+        <!-- 使用全局组件 -->
+        <Hello></Hello>
+    </div>
+
+
+    <script>
+        Vue.config.productionTip = false
+        // 创建一个hello得全局组件
+
+        // 创建hello组件
+        const hello = Vue.extend({
+            template: `
+                <div>
+                    <h2>{{msg}}</h2> 
+                </div>
+            `,
+            data() {
+                return {
+                    msg: 'hello'
+                }
+            }
+        })
+        //全局注册hello组件
+        Vue.component('Hello', hello)
+
+
+
+
+        // 创建school组件
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h2>学校名字：{{schoolName}}</h2>
+                    <h2>学校地址：{{address}}</h2>       
+                </div>
+            `,
+            data() {
+                return {
+                    schoolName: '大学',
+                    address: '北京'
+                }
+            }
+        })
+
+
+        // 创建student组件
+        const student = Vue.extend({
+            template: `
+                <div>
+                    <h2>学生姓名：{{studentName}}</h2>
+                    <h2>年龄：{{age}}</h2>       
+                </div>
+            `,
+            data() {
+                return {
+                    studentName: 'tom',
+                    age: 18
+                }
+            }
+        })
+
+
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'lisa'
+            },
+            components: {
+                School: school,
+                Student: student
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

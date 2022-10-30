@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        姓：<input type="text" v-model:value="surname"> <br>
+        名：<input type="text" v-model="givenName"> <br>
+        全名：<span>{{fullName}}</span>
+    </div>
+
+
+    <script>
+
+        // 简写形式前提：你已经确定咱们用不上set时候才能用简写
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                surname: '张',
+                givenName: '三'
+            },
+            computed: {
+                // function(){}等于getter
+                fullName: function () {
+                    console.log('get被调用了')
+                    return `${this.surname.slice(0, 3)}--${this.givenName}`
+                }
+
+
+            }
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

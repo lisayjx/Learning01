@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showMsg">
+    </div>
+
+
+
+    <script>
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+
+            },
+
+            methods: {
+                // 原生写法
+                // showMsg(e) {
+                //     // 如果按下回车就弹出input用户输入的值e.target.value
+                //     if (e.key !== 'Enter') return
+                //     console.log(e.target.value)
+                // }
+
+                showMsg(e) {
+                    console.log(e.key, e.keyCode)
+                    console.log(e.target.value)
+                }
+
+            }
+        })
+
+        // 定制别名
+        Vue.config.keyCodes.huiche = 13  //定制键盘编码为13的键 为回车
+
+
+    </script>
+</body>
+
+</html>

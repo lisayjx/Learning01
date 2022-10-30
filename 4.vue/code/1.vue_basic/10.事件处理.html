@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>我叫{{name}}</h1>
+        <button v-on:click="info">点我就提示弹框</button>
+        <button @click="info">点我就提示弹框 简写形式</button>
+        <button @click="info2(666)">点我就传参进去</button>
+
+        <!-- 想传参就加小括号，不想就不加，但是这样写event就丢了 -->
+
+        <button @click="info3(666,$event)">点我就传参进去</button>
+    </div>
+
+
+
+    <script>
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'lisa'
+            },
+            // 方法写在methods中 才能被页面渲染
+            methods: {
+                info(e) {
+                    alert('你好啊')
+                    console.log(this);//vm 写成箭头函数就变成了window
+                    console.log(e.target) //  <button>点我就提示弹框</button>
+                },
+                // info(a,b){
+                //     console.log(a,b)//undefined undefined
+                // }
+                info2(value) {
+                    alert(value)
+                },
+
+                info3(num, e) {
+                    console.log(num, e)//666,PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
+                }
+
+
+
+            }
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>

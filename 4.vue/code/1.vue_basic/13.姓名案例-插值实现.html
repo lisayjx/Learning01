@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        姓：<input type="text" v-model:value="surname"> <br>
+        名：<input type="text" v-model="givenName"> <br>
+        全名：<span>{{surname.slice(0,3)}}--{{givenName}}</span>
+    </div>
+
+    <!-- 需求：输入框的值变化 下面的全名也变化
+假如姓 输入的特别长 但是 下面的全名就要姓的前三位 -->
+
+    <script>
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                surname: '张',
+                givenName: '三'
+            },
+
+            methods: {
+
+
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

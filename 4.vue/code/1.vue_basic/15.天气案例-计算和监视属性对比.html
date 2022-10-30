@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        姓：<input type="text" v-model:value="surname"> <br>
+        名：<input type="text" v-model="givenName"> <br>
+        全名：<span>{{fullName}}</span>
+    </div>
+
+
+    <script>
+        // 用监视watch属性 写案例
+        Vue.config.productTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                surname: '张',
+                givenName: '三',
+                fullName: '张-三'
+            },
+            computed: {//计算属性
+                // fullName: {
+                //     get() {
+                //         return `${this.surname.slice(0, 3)}--${this.givenName}`
+                //     },  
+                //     set(value) {
+                //         // 先把 姓-名 用-拆开
+                //         const arr = value.split('-')
+                //         this.surname = arr[0]
+                //         this.givenName = arr[1]
+                //     }
+
+                // }
+            },
+            //    用监视属性做
+            watch: {
+                surname(newValue, oldValue) {
+                    //新的姓+旧的名
+                    this.fullName = newValue + '-' + this.givenName
+                },
+                givenName(newValue, oldValue) {
+                    //旧的姓+新的名
+                    this.fullName = this.surname + '-' + newValue
+                }
+            }
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

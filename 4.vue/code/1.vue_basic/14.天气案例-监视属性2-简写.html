@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>今天天气真{{info}}</h1>
+        <button @click="changeW">点击切换</button>
+    </div>
+
+    <script>
+        Vue.config.productTip = false
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+
+            },
+            methods: {
+                changeW() {
+                    this.isHot = !this.isHot
+                }
+            },
+            // 监视 方式一
+            watch: {
+                isHot: {//监视isHot
+                    // immediate:true,   //初始化时候让Handler调用一下
+                    // deep:true,  //深度监视
+                    handler(newValue, oldValue) {
+                        console.log('isHot被修改了')
+                    }
+                },
+
+                // // 简写形式
+                // isHot(newValue, oldValue){
+                //     console.log('isHot被修改了')
+                // }
+
+            }
+
+
+
+        })
+
+
+        // 能用简写形式的前提就是:你不用immediate和deep，只有handler时候能用简写
+
+        // 方式二的简写  不能写成箭头函数
+
+        vm.$watch('isHot', function (newValue, oldValue) {
+            console.log('isHot被修改了')
+        })
+
+    </script>
+</body>
+
+</html>

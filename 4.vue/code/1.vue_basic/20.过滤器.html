@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+    <script src="./js/dayjs.min.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+
+        计算属性， 格式化后的时间:{{fmtTime}} <br>
+        方法， 格式化后的时间:{{getFmtTime()}} <br>
+        过滤器实现，格式化后的时间{{time | timeFormater}} <br>
+        过滤器传参，格式化后的时间{{time | timeFormater('YYYY-MM-DD')}} <br>
+        过滤器，格式化后的时间 截取前四位{{time | timeFormater('YYYY-MM-DD') | mySlice}}
+
+
+    </div>
+
+<hr>
+
+    <div id="root2">
+
+        截取前2位 {{num | mySlice2}}
+    </div>
+
+
+    <script>
+        Vue.config.productTip = false
+        // 配置全局过滤器
+        Vue.filter('mySlice2', function (val) {
+            return val.slice(0, 4)
+        })
+
+        new Vue({
+            el: '#root',
+            data: {
+                time: 1666349122378
+
+            },
+            // 计算属性  方法一
+            computed: {
+                fmtTime() {
+                    // 你要是不传入时间 他就把当前时间给格式化了
+                    // 传了就按照你传的为主
+                    // return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            // 方法二
+            methods: {
+                getFmtTime() {
+                    return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                }
+
+            },
+            // 局部过滤器
+            // 方式三：过滤器
+            filters: {
+                // timeFormater(val){  //收到time 当参数
+                //     return dayjs(val).format('YYYY-MM-DD HH:mm:ss')
+                // }
+
+                timeFormater(val, str = 'YYYY年MM月DD日 HH:mm:ss') {  //收到time 当参数
+                    return dayjs(val).format(str)
+                },
+                mySlice(val) {
+                    return val.slice(0, 4)
+                }
+            }
+
+        })
+
+
+
+
+        new Vue({
+            el: '#root2',
+            data: {
+                num: '123456'
+            }
+        })
+    </script>
+</body>
+
+</html>

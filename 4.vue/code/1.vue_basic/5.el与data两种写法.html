@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>你好 {{name}}</h1>
+    </div>
+
+
+
+    <script>
+        Vue.config.productTip = false
+
+        // ---------el两种写法
+        const v = new Vue({
+            // el: '#root',   //el写法一
+            data: {
+                name: 'lisa'
+            }
+        })
+
+        // 一秒后为Vue实例指定容器
+        setTimeout(() => {
+            v.$mount('#root')   //el写法2
+        }, 1000);
+
+
+
+
+        // ----------data两种写法
+        const vx = new Vue({
+            el: '#root',
+            // data: {  //写法一：对象式
+            //     name: 'lisa'
+            // }
+
+
+            // 第二种写法：函数式
+            //  子组件中data必须写成函数式
+            // data: function () {
+            //     console.log(this)//this指向Vue实例对象，箭头函数就不是了
+            //     return {
+            //         name: 'lisa'
+            //     }
+            // }
+
+            // 简写
+            data() {
+                return {
+                    name: 'lisa'
+                }
+            }
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

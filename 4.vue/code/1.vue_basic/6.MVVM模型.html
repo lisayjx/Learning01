@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>你好 {{name}}</h1>
+        <h1>你好 {{1+1}}</h1>
+        <h1>你好 {{$options}}</h1>
+        <h1>你好 {{$emit}}</h1>
+
+        <!-- {{}}里可以写的东西很多，vue实例vm身上有的他都能写
+        vue原型上的她也能写
+        -->
+    </div>
+
+
+
+    <script>
+        Vue.config.productTip = false
+
+
+        const vm = new Vue({
+            el: '#root',
+            data: { //data中的数据 最后都会在实例vm身上
+                name: 'lisa',
+                age:20
+            }
+        })
+
+
+        console.log(vm)
+
+        // 不是说 data里的数据能写在{{}}中被显示
+        // 是data中的数据放在了 vm身上 然后 {{}}能显示所有的vm身上的东西
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        //    数据代理：通过以一个对象代理 对另一个对象中的属性的操作 （读/写）
+        // 有一个对象obj，他里面有属性x，obj.x读取属性   obj.x = 1 修改属性
+      
+        // 还有一个对象obj2, 想让obj2能 读和写 obj1中的x属性
+
+        let obj1 = {
+            x: 100
+        }
+        let obj2 = {
+            y: 200
+        }
+
+        Object.defineProperty(obj2, 'x', {//起和obj中x一样的名
+
+            get() {
+                // 返回值是啥，第二个参数的x就等于啥
+                return obj1.x   //相当于这里的 x=obj1.x
+            },
+
+            set(value) {
+                obj1.x = value
+            }
+        })
+        // 这样obj2就有了x属性，然后修改obj2.x=99，那么obj的x也会变成99
+
+    </script>
+</body>
+
+</html>

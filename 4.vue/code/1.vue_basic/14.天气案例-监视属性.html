@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- <h1>今天天气真{{isHot?'炎热':'凉爽'}}</h1> -->
+        <h1>今天天气真{{info}}</h1>
+        <button @click="isHot = !isHot">点击切换</button>
+    </div>
+
+    <script>
+        Vue.config.productTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            computed: {//计算属性
+                info() { //简写形式
+                    return this.isHot ? '炎热' : '凉爽'//把return后的结果给vm，名字叫info
+                }
+                // 完整写法
+                // info:{
+                //     get(){
+                //         return this.isHot ? '炎热' : '凉爽'
+                //     }
+                // }
+
+            },
+            methods: {
+                // changeW() {
+                //     this.isHot = !this.isHot
+                // }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>总结数据监视</title>
+	<style>
+		button {
+			margin: 5px;
+		}
+	</style>
+	<!-- 引入Vue -->
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+	<!-- 准备好一个容器-->
+	<div id="root">
+		<h1>学生信息</h1>
+		<!-- 功能按钮 -->
+		<button @click="student.age++">年龄+1</button><br>
+		<button @click="addSex">添加性别属性：默认值男</button><br>
+		<button @click=" student.sex='未知'">修改性别属性</button><br>
+		<button @click.once="addFriend">在列表首位添加一个朋友华莎</button><br>
+		<button @click="changeFriendName">修改第一个朋友的名字为：张三</button><br>
+		<button @click.once="addHobby">添加一个爱好</button><br>
+		<button @click="changeHobby">修改第一个爱好为：开车</button>
+
+		<button @click="removeSing">过滤掉爱好中的唱歌</button> <br />
+
+		<h2>姓名：{{student.name}}</h2>
+		<h2>年龄：{{student.age}}</h2>
+		<h2 v-if="student.sex">性别：{{student.sex}}</h2>
+		<h2>爱好：</h2>
+		<ul>
+			<li v-for="(item,index) in student.hobby" :key="index">
+				{{item}}
+			</li>
+		</ul>
+		<h2>朋友们</h2>
+		<ul>
+			<li v-for="(item,index) in student.friends" :key="index">
+				{{item.name}}--{{item.age}}
+			</li>
+		</ul>
+
+	</div>
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+	const vm = new Vue({
+		el: '#root',
+		data: {
+			// student对象中
+			student: {
+				name: 'lisa',
+				age: 18,
+				hobby: ['唱歌', '跳舞', '吃饭'],
+				friends: [
+					{ name: 'rose', age: 19 },
+					{ name: 'jennie', age: 22 },
+					{ name: 'zx', age: 20 },
+				]
+			}
+		},
+		methods: {
+			addSex() {
+				// this.student.sex='男'//不对，当时没有的东西不能这么加，也不是响应式得 vue不认
+
+				//方法一：  this是vm
+				Vue.set(this.student, 'sex', '男')
+				// 方法二：
+				this.$set(this.student, 'sex', '男')
+			},
+			// 添加一个朋友信息 unshift会修改原数组 vue可以监测到
+			addFriend() {//操作了数组，用了vue包装后的会引起原数组变化的API了 就是响应式
+				this.student.friends.unshift({ name: '华莎', age: 16 })
+			},
+			changeFriendName() {
+				this.student.friends[0].name = '张三'
+			},
+			addHobby() {
+				this.student.hobby.push('跑步')
+			},
+			changeHobby() {
+				// this.student.hobby[0] = '开车'  大错特错
+				this.student.hobby.splice(0, 1, '开车')   //方式一
+				Vue.set(this.student.hobby, 0, '开车')    //方式二
+				this.$set(this.student.hobby, 0, '开车')    //方式三
+			},
+			removeSing() {
+				//把符合条件的挑选出来
+				// filter不影响原数组 那么vue怎么监测呢？
+				this.student.hobby = this.student.hobby.filter((item) => {
+					return item !== '唱歌'
+				})
+			}
+		}
+	})
+
+</script>
+
+</html>

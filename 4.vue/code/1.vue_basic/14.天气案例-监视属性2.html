@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>今天天气真{{info}}</h1>
+        <button @click="changeW">点击切换</button>
+    </div>
+
+    <script>
+        Vue.config.productTip = false
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+
+            },
+            methods: {
+                changeW() {
+                    this.isHot = !this.isHot
+                }
+            },
+            // 监视 方式一
+            watch: {
+                isHot: {//监视isHot
+                    immediate: true,  //初始化时让handler调用一下
+                    //handler什么时候调用？当isHot发生改变时
+                    //还会把修改前和修改后的值给你
+                    handler(newValue, oldValue) {
+                        console.log('isHot被修改了')
+                    }
+                },
+                info: {//检测计算属性info
+                    handler(newValue, oldValue) {
+                        console.log('info被修改了')
+                    }
+                }
+
+            }
+
+
+
+        })
+
+
+
+
+        // 监视方式二  一定注意这里有引号！！！！！！
+        vm.$watch('isHot', {
+            immediate: true,
+            handler(newValue, oldValue) {
+                console.log('isHot被修改了')
+            }
+        })
+
+
+        // 什么个情况用方式一？什么情况用方式二？
+        // 如果你在创建实例时候已经明确知道要监视谁，你就用方式一，如果不知道就用方式二
+    </script>
+</body>
+
+</html>

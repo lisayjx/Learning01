@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h1>学校名称:{{schoolName}}</h1>
+        <h1>学校地址:{{address}}</h1>
+    </div>
+
+
+
+    <script>
+        //    数据代理：通过以一个对象代理 对另一个对象中的属性的操作 （读/写）
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                schoolName: '你好学校',
+                address: '北京'
+            }
+        })
+        console.log(vm)
+ 
+
+    </script>
+</body>
+
+</html>
