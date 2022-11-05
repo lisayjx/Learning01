@@ -1,0 +1,35 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index"
+			 
+		}
+	    ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                // "navigationBarTitleText": "",
+                // "enablePullDownRefresh": false
+				// 标题本来没有，往下滑会显示
+				"transparentTitle": "auto"
+            }
+            
+        }
+        ,{
+            "path" : "pages/discuss/discuss",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "新闻头条",
+		"navigationBarBackgroundColor": "#FCA60B",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

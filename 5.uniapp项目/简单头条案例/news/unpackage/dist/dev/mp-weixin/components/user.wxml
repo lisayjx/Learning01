@@ -1,0 +1,1 @@
+<view class="user data-v-707f4c06"><view class="title data-v-707f4c06">{{data.user}}</view><view class="content data-v-707f4c06">{{data.content}}</view><view class="time data-v-707f4c06">{{data.time}}</view></view>
